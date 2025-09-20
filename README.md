@@ -2,7 +2,7 @@
 
 Este é o repositório do meu portfólio pessoal, um site de página única (one-page) desenvolvido para apresentar minhas habilidades, projetos e experiência profissional a recrutadores e colaboradores.
 
-**[Acesse a versão online aqui!](https://mayconxzdev.github.io)** *(Nota: Este link se tornará funcional após a publicação com GitHub Pages)*
+**[Acesse a versão online aqui!](https://mayconxzdev.github.io)**
 
 ## ✨ Funcionalidades
 
