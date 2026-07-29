@@ -194,7 +194,7 @@ def draw_header(canvas: Canvas, data: dict[str, object]) -> float:
         ("E-mail: mayconxz00dev@gmail.com", "mailto:mayconxz00dev@gmail.com"),
     ])
     y = link_line(canvas, y, [
-        ("LinkedIn: Maycon Ferreira", "https://www.linkedin.com/in/maycon-ferreira-7bb870231/"),
+        ("LinkedIn: www.linkedin.com/in/maycon-ferreira-7bb870231/", "https://www.linkedin.com/in/maycon-ferreira-7bb870231/"),
         ("GitHub: github.com/Mayconxzdev", "https://github.com/Mayconxzdev"),
         ("Portfólio: mayconxzdev.github.io", "https://mayconxzdev.github.io/"),
     ])
