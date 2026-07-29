@@ -10,6 +10,8 @@ O objetivo não é mostrar uma coleção de telas. Cada case começa pelo proble
 - 18 cases por idioma, com rotas próprias;
 - links para código público quando existe;
 - currículo em PDF e formas diretas de contato;
+- tema claro como padrão e tema escuro persistente, com controle por teclado;
+- provas visuais públicas ou sanitizadas, sempre identificadas pelo seu contexto;
 - navegação, busca e filtros que funcionam sem depender do JavaScript para o conteúdo principal.
 
 ## Validação local
@@ -18,6 +20,10 @@ O objetivo não é mostrar uma coleção de telas. Cada case começa pelo proble
 python scripts/validate_site.py
 node --check js/site.js
 ```
+
+## Critérios de evidência
+
+As capturas do portfólio são da camada pública de produtos publicados ou de versões sanitizadas e identificadas como demonstração. Credenciais, dados de leads, anexos operacionais, caminhos locais, IPs e detalhes privados de integrações não são publicados. Quando uma tela segura não existe, o case usa uma composição arquitetural identificada como tal — não uma interface fictícia apresentada como produto.
 
 ## Estrutura do projeto
 

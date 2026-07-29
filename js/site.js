@@ -1,4 +1,28 @@
 function initSite(){
+  const themeToggle=document.querySelector('.theme-toggle');
+  const themeMeta=document.querySelector('meta[name="theme-color"]');
+  const language=document.documentElement.lang||'pt-BR';
+  function applyTheme(value,{persist=false}={}){
+    const theme=value==='dark'?'dark':'light';
+    document.documentElement.dataset.theme=theme;
+    if(themeToggle){
+      const dark=theme==='dark';
+      themeToggle.setAttribute('aria-pressed',String(dark));
+      themeToggle.setAttribute('aria-label',language.startsWith('en')
+        ?(dark?'Switch to light theme':'Switch to dark theme')
+        :(dark?'Ativar tema claro':'Ativar tema escuro'));
+    }
+    themeMeta?.setAttribute('content',theme==='dark'?'#0a0a0a':'#ffffff');
+    if(persist){
+      try{localStorage.setItem('mf-theme',theme);}catch(_error){}
+    }
+  }
+  if(themeToggle){
+    applyTheme(document.documentElement.dataset.theme||'light');
+    themeToggle.addEventListener('click',()=>{
+      applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',{persist:true});
+    });
+  }
   const menu=document.querySelector('.menu-button');
   const nav=document.querySelector('#main-nav');
   if(menu&&nav){
