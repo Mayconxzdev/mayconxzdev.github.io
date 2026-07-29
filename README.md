@@ -1,16 +1,16 @@
-# Maycon Ferreira — Sistemas em Operação
+# Maycon Ferreira — Automação, IA e integrações
 
-Portfólio profissional bilíngue para GitHub Pages, com foco em **Automação, IA, integrações e sistemas internos reais**.
+Este é o código do meu portfólio profissional: [mayconxzdev.github.io](https://mayconxzdev.github.io/). Ele reúne cases de automação de processos, integrações, n8n e sistemas internos, sempre separando o que foi comprovado do que depende de ambiente privado ou de um provedor externo.
 
-A direção visual é editorial e técnica: hierarquia tipográfica, grid, evidências, screenshots reais, diagramas derivados da arquitetura e estados declarados. O site evita dashboard genérico, neon, glassmorphism, excesso de cards e efeitos sem função.
+O objetivo não é mostrar uma coleção de telas. Cada case começa pelo problema operacional, explica a minha participação e registra resultado, evidência pública e limite real.
 
-## Publicação
+## O que há no site
 
-1. Substitua o conteúdo de `Mayconxzdev/mayconxzdev.github.io` pelos arquivos deste pacote.
-2. Em **Settings → Pages**, selecione **GitHub Actions**.
-3. Faça commit na branch `main`.
-
-O workflow valida páginas, referências locais e sintaxe JavaScript antes do deploy.
+- uma página inicial em português e inglês;
+- 18 cases por idioma, com rotas próprias;
+- links para código público quando existe;
+- currículo em PDF e formas diretas de contato;
+- navegação, busca e filtros que funcionam sem depender do JavaScript para o conteúdo principal.
 
 ## Validação local
 
@@ -19,7 +19,7 @@ python scripts/validate_site.py
 node --check js/site.js
 ```
 
-## Estrutura
+## Estrutura do projeto
 
 - `/` — português;
 - `/en/` — inglês;
@@ -30,12 +30,6 @@ node --check js/site.js
 - currículo em `assets/cv/`;
 - Open Graph local em `assets/social/`.
 
-## Documentação
+## Notas de qualidade
 
-- [`docs/DESIGN_STRATEGY.md`](docs/DESIGN_STRATEGY.md) — público, conceito, direção visual e arquitetura da informação;
-- [`docs/VALIDATION.md`](docs/VALIDATION.md) — plano de validação;
-- [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md) — resultados observados e limites.
-
-## Identidade
-
-O pacote usa uma marca tipográfica local, sem depender de imagens externas. Uma fotografia autorizada pode ser adicionada depois sem alterar a estrutura do site.
+O workflow do GitHub Pages executa as verificações estáticas antes do deploy. O relatório desta versão está em [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md); decisões de conteúdo e apresentação estão registradas de forma curta em [`docs/DESIGN_STRATEGY.md`](docs/DESIGN_STRATEGY.md).
