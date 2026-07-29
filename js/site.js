@@ -18,7 +18,9 @@ function initSite(){
     }
   }
   if(themeToggle){
-    applyTheme(document.documentElement.dataset.theme||'light');
+    let savedTheme='';
+    try{savedTheme=localStorage.getItem('mf-theme')||'';}catch(_error){}
+    applyTheme(savedTheme||document.documentElement.dataset.theme||'light');
     themeToggle.addEventListener('click',()=>{
       applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark',{persist:true});
     });
