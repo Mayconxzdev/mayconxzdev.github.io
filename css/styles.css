@@ -82,3 +82,50 @@ html[data-theme="dark"] .node--core small,html[data-theme="dark"] .node--core sp
 .hero--not-found{grid-template-columns:minmax(0,760px);grid-template-rows:auto;align-content:center;min-height:calc(100svh - 70px)}
 .hero--not-found .hero-main{grid-column:auto;grid-row:auto}
 @media(max-width:720px){.hero-stage{overflow:clip}.hero-stage__orbit{display:none}.section-heading h2{font-size:clamp(2.55rem,11vw,4rem)}}
+
+/*
+  Home composition safeguards
+  --------------------------
+  The hero is deliberately editorial, but its decorative stage must never
+  compete with the headline or conceal an action.  These overrides keep the
+  two columns in separate stacking contexts and crop the source art slightly
+  so the image reads as an intentional focal point rather than a half-empty
+  card.  They apply to both language versions.
+*/
+.hero-main{position:relative;z-index:2}
+.hero h1{position:relative;z-index:1;max-width:9.5ch;font-size:clamp(3.65rem,6.45vw,7.35rem);line-height:.84}
+.hero-stage{isolation:isolate;z-index:1;min-height:clamp(300px,30vw,430px);padding-bottom:28px}
+.hero-art{height:auto;min-height:0;aspect-ratio:16/9}
+.hero-art img{height:100%;object-position:50% 46%;transform:scale(1.12);transform-origin:50% 46%;transition:transform .35s ease}
+.hero-stage:hover .hero-art img{transform:scale(1.15)}
+.hero-art figcaption{z-index:2;background:color-mix(in srgb,var(--surface) 94%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 18%,transparent)}
+.hero-stage__marker{display:none!important}
+
+/* Do not let the longer English title force a different or clipped layout. */
+html[lang^="en"] .hero{grid-template-columns:minmax(0,.96fr) minmax(420px,1.04fr)}
+html[lang^="en"] .hero h1{max-width:11.5ch;font-size:clamp(3rem,4.2vw,5.15rem);line-height:.86}
+
+/* Explicit foregrounds prevent theme inheritance from washing out cards. */
+.incident-list article,.case-facts>div,.case-evidence-index>div,.case-story article{background:var(--surface-raised);color:var(--text)}
+.incident-list h3,.incident-list dd,.case-facts b,.case-evidence-index p:last-child,.case-story h2{color:var(--ink)}
+.incident-list dt,.case-facts span,.case-evidence-index>div>p:not(:last-child){color:var(--muted)}
+.site-footer{background:var(--inverse-surface);color:var(--inverse-text)}
+.site-footer p{color:var(--inverse-muted)}
+.site-footer a{color:var(--inverse-text);text-underline-offset:3px}
+.site-footer a:hover,.site-footer a:focus-visible{color:var(--inverse-accent)}
+
+@media(max-width:1080px){
+  html[lang^="en"] .hero{grid-template-columns:1fr}
+  .hero h1{max-width:10ch}
+  .hero-stage{min-height:clamp(360px,52vw,500px)}
+  .hero-art{aspect-ratio:16/9}
+}
+@media(max-width:720px){
+  .hero h1{font-size:clamp(3rem,13vw,4.25rem);line-height:.86}
+  .hero-stage{min-height:0}
+  .hero-art{aspect-ratio:16/10}
+  .hero-art img{transform:scale(1.07)}
+  .hero-stage:hover .hero-art img{transform:scale(1.07)}
+  html[lang^="en"] .hero h1{font-size:clamp(2.7rem,11.5vw,3.45rem);line-height:.9}
+}
+@media(prefers-reduced-motion:reduce){.hero-art img,.hero-stage:hover .hero-art img{transform:none;transition:none}}
