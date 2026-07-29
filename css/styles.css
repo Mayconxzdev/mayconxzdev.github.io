@@ -76,6 +76,9 @@ html[lang^="en"] .hero h1 span:nth-child(3){padding-left:clamp(16px,2.2vw,32px)}
 .proof-strip .eyebrow,.proof-strip .section-heading>p:first-child,.featured .eyebrow,.featured .section-heading>p:first-child,.case-limit .eyebrow{color:var(--inverse-accent)!important}
 .metric-list strong,.featured .case-category{color:var(--inverse-accent)}
 .featured .text-link--muted{color:var(--inverse-muted)}
+.hero-stage__label--top{color:#121313}
+html[data-theme="dark"] .node--core,html[data-theme="dark"] .portal-core{color:#121313}
+html[data-theme="dark"] .node--core small,html[data-theme="dark"] .node--core span,html[data-theme="dark"] .portal-core span,html[data-theme="dark"] .portal-core small{color:#121313}
 .hero--not-found{grid-template-columns:minmax(0,760px);grid-template-rows:auto;align-content:center;min-height:calc(100svh - 70px)}
 .hero--not-found .hero-main{grid-column:auto;grid-row:auto}
 @media(max-width:720px){.hero-stage__orbit{display:none}}
