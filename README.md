@@ -1,50 +1,41 @@
-# Portfólio de Maycon Ferreira
+# Maycon Ferreira — Sistemas em Operação
 
-Este é o repositório do meu portfólio pessoal, um site de página única (one-page) desenvolvido para apresentar minhas habilidades, projetos e experiência profissional a recrutadores e colaboradores.
+Portfólio profissional bilíngue para GitHub Pages, com foco em **Automação, IA, integrações e sistemas internos reais**.
 
-**[Acesse a versão online aqui!](https://mayconxzdev.github.io)**
+A direção visual é editorial e técnica: hierarquia tipográfica, grid, evidências, screenshots reais, diagramas derivados da arquitetura e estados declarados. O site evita dashboard genérico, neon, glassmorphism, excesso de cards e efeitos sem função.
 
-## ✨ Funcionalidades
+## Publicação
 
-*   **Design Moderno e Responsivo:** Interface limpa com tema escuro, totalmente funcional em desktop e dispositivos móveis.
-*   **Seções Detalhadas:** Apresenta informações sobre competências, experiência profissional, projetos em andamento e roteiro de estudos.
-*   **Interatividade:** Animações de entrada suaves ao rolar a página e navegação com destaque de seção ativa.
-*   **Menu Mobile:** Menu "hambúrguer" para uma experiência de usuário completa em telas menores.
+1. Substitua o conteúdo de `Mayconxzdev/mayconxzdev.github.io` pelos arquivos deste pacote.
+2. Em **Settings → Pages**, selecione **GitHub Actions**.
+3. Faça commit na branch `main`.
 
-## 🚀 Tecnologias Utilizadas
+O workflow valida páginas, referências locais e sintaxe JavaScript antes do deploy.
 
-*   **Front-End:**
-    *   HTML5
-    *   CSS3 (com Variáveis, Flexbox e Grid)
-    *   JavaScript (ES6+)
-*   **Bibliotecas:**
-    *   [Font Awesome](https://fontawesome.com/) para ícones.
-    *   [ScrollReveal](https://scrollrevealjs.org/) para animações de rolagem.
+## Validação local
 
-## 🛠️ Como Executar o Projeto Localmente
+```bash
+python scripts/validate_site.py
+node --check js/site.js
+```
 
-Para visualizar o projeto em sua máquina local, siga estes passos:
+## Estrutura
 
-1.  **Clone o repositório (exemplo):**
-    ```bash
-    git clone https://github.com/Mayconxzdev/portfolio.git
-    ```
+- `/` — português;
+- `/en/` — inglês;
+- `/cases/<slug>/` — cases em português;
+- `/en/cases/<slug>/` — cases em inglês;
+- HTML estático para o conteúdo principal;
+- JavaScript somente para menu, busca e filtros;
+- currículo em `assets/cv/`;
+- Open Graph local em `assets/social/`.
 
-2.  **Navegue até o diretório do projeto:**
-    ```bash
-    cd portfolio
-    ```
+## Documentação
 
-3.  **Inicie um servidor local:**
-    A maneira mais simples é usar a extensão **Live Server** no VS Code. Clique com o botão direito no arquivo `index.html` e selecione "Abrir com Live Server".
+- [`docs/DESIGN_STRATEGY.md`](docs/DESIGN_STRATEGY.md) — público, conceito, direção visual e arquitetura da informação;
+- [`docs/VALIDATION.md`](docs/VALIDATION.md) — plano de validação;
+- [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md) — resultados observados e limites.
 
-    Alternativamente, você pode usar o módulo `http.server` do Python (que já utilizamos):
-    ```bash
-    python -m http.server
-    ```
-    Depois, acesse `http://localhost:8000` no seu navegador.
+## Identidade
 
-## Contato
-
-*   **LinkedIn:** [Maycon Ferreira](https://www.linkedin.com/in/maycon-ferreira-7bb870231/)
-*   **E-mail:** Mayconxz00dev@gmail.com
+O pacote usa uma marca tipográfica local, sem depender de imagens externas. Uma fotografia autorizada pode ser adicionada depois sem alterar a estrutura do site.
