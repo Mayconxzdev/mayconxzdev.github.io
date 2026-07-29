@@ -81,4 +81,4 @@ html[data-theme="dark"] .node--core,html[data-theme="dark"] .portal-core{color:#
 html[data-theme="dark"] .node--core small,html[data-theme="dark"] .node--core span,html[data-theme="dark"] .portal-core span,html[data-theme="dark"] .portal-core small{color:#121313}
 .hero--not-found{grid-template-columns:minmax(0,760px);grid-template-rows:auto;align-content:center;min-height:calc(100svh - 70px)}
 .hero--not-found .hero-main{grid-column:auto;grid-row:auto}
-@media(max-width:720px){.hero-stage__orbit{display:none}}
+@media(max-width:720px){.hero-stage{overflow:clip}.hero-stage__orbit{display:none}.section-heading h2{font-size:clamp(2.55rem,11vw,4rem)}}
