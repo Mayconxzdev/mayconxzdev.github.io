@@ -93,7 +93,8 @@ html[data-theme="dark"] .node--core small,html[data-theme="dark"] .node--core sp
   card.  They apply to both language versions.
 */
 .hero-main{position:relative;z-index:2}
-.hero h1{position:relative;z-index:1;max-width:9.5ch;font-size:clamp(3.65rem,6.45vw,7.35rem);line-height:.84}
+.hero h1{position:relative;z-index:1;max-width:none;font-size:clamp(3.65rem,6.45vw,7.35rem);line-height:.84}
+.hero h1 span{white-space:nowrap}
 .hero-stage{isolation:isolate;z-index:1;min-height:clamp(300px,30vw,430px);padding-bottom:28px}
 .hero-art{height:auto;min-height:0;aspect-ratio:16/9}
 .hero-art img{height:100%;object-position:50% 46%;transform:scale(1.12);transform-origin:50% 46%;transition:transform .35s ease}
