@@ -48,12 +48,16 @@ function initSite(){
     });
     if(empty)empty.hidden=visible!==0;
   }
-  filters.forEach(button=>button.addEventListener('click',()=>{
-    filters.forEach(item=>item.classList.remove('active'));
-    button.classList.add('active');
-    active=button.dataset.filter||'all';
-    apply();
-  }));
+  filters.forEach(button=>{
+    button.setAttribute('aria-pressed',String(button.classList.contains('active')));
+    button.addEventListener('click',()=>{
+      filters.forEach(item=>{item.classList.remove('active');item.setAttribute('aria-pressed','false');});
+      button.classList.add('active');
+      button.setAttribute('aria-pressed','true');
+      active=button.dataset.filter||'all';
+      apply();
+    });
+  });
   search?.addEventListener('input',apply);
 
   const stage=document.querySelector('[data-tilt]');

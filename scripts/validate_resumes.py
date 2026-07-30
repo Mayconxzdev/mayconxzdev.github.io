@@ -32,6 +32,7 @@ FILES = {
         "AI AUTOMATION & INTEGRATIONS ANALYST",
         "Junior Process Automation Technician",
         "PROFESSIONAL SUMMARY",
+        "Portfolio: mayconxzdev.github.io",
     ],
 }
 
@@ -59,6 +60,11 @@ def main() -> int:
             errors.append(f"{filename}: esperado 1 página, encontrado {len(reader.pages)}")
             continue
         content = reader.pages[0].extract_text() or ""
+        metadata = reader.metadata or {}
+        if metadata.get("/Author") != "Maycon Ferreira":
+            errors.append(f"{filename}: metadado Author ausente ou incorreto")
+        if not str(metadata.get("/Title") or "").startswith("Maycon Ferreira - "):
+            errors.append(f"{filename}: metadado Title ausente ou incorreto")
         for phrase in required_text:
             if phrase not in content:
                 errors.append(f"{filename}: texto obrigatório ausente: {phrase}")

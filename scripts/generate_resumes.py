@@ -48,6 +48,7 @@ PT = {
     "title": "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES",
     "location": "Rio de Janeiro - RJ, Brasil",
     "footer": "Portfólio público: mayconxzdev.github.io",
+    "portfolio_label": "Portfólio",
     "summary_heading": "RESUMO PROFISSIONAL",
     "summary": (
         "Profissional de automação, IA aplicada e integrações com atuação ponta a ponta em sistemas internos: "
@@ -89,6 +90,7 @@ EN = {
     "title": "AI AUTOMATION & INTEGRATIONS ANALYST",
     "location": "Rio de Janeiro - Brazil",
     "footer": "Public portfolio: mayconxzdev.github.io",
+    "portfolio_label": "Portfolio",
     "summary_heading": "PROFESSIONAL SUMMARY",
     "summary": (
         "Automation, applied AI and integrations professional working end to end on internal systems: process mapping, requirements, architecture, development, deployment, training, monitoring and support. "
@@ -196,7 +198,7 @@ def draw_header(canvas: Canvas, data: dict[str, object]) -> float:
     y = link_line(canvas, y, [
         ("LinkedIn: www.linkedin.com/in/maycon-ferreira-7bb870231/", "https://www.linkedin.com/in/maycon-ferreira-7bb870231/"),
         ("GitHub: github.com/Mayconxzdev", "https://github.com/Mayconxzdev"),
-        ("Portfólio: mayconxzdev.github.io", "https://mayconxzdev.github.io/"),
+        (f"{data['portfolio_label']}: mayconxzdev.github.io", "https://mayconxzdev.github.io/"),
     ])
     canvas.setStrokeColor(LINE)
     canvas.line(LEFT, y - 2, LEFT + CONTENT_W, y - 2)
@@ -205,7 +207,11 @@ def draw_header(canvas: Canvas, data: dict[str, object]) -> float:
 
 def generate(data: dict[str, object]) -> Path:
     out = OUTPUT / str(data["filename"])
-    canvas = Canvas(str(out), pagesize=A4, pageCompression=1, title=f"Maycon Ferreira - {data['title']}", author="Maycon Ferreira")
+    canvas = Canvas(str(out), pagesize=A4, pageCompression=1)
+    canvas.setTitle(f"Maycon Ferreira - {data['title']}")
+    canvas.setAuthor("Maycon Ferreira")
+    canvas.setSubject("Professional resume for automation, applied AI and systems integrations roles")
+    canvas.setKeywords("automation, applied AI, integrations, n8n, Python, APIs, FastAPI, SQL, Docker")
     canvas.setCreator("Maycon Ferreira")
 
     # A recruiter should be able to read this at 100% without zooming. The

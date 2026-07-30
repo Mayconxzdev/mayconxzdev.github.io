@@ -18,6 +18,7 @@ class PageParser(HTMLParser):
         self.has_canonical = False
         self.has_hreflang = False
         self.has_theme_toggle = False
+        self.metric_links = 0
         self.images_without_alt: list[str] = []
         self.classes: set[str] = set()
         self._in_title = False
@@ -29,6 +30,7 @@ class PageParser(HTMLParser):
         if tag == "title": self._in_title = True
         if value := data.get("id"): self.ids.append(value)
         if value := data.get("class"): self.classes.update(value.split())
+        if tag == "a" and "metric-link" in (data.get("class") or "").split(): self.metric_links += 1
         if tag == "meta" and data.get("name") == "description" and (data.get("content") or "").strip(): self.has_description = True
         if tag == "link" and "canonical" in (data.get("rel") or "").split(): self.has_canonical = True
         if tag == "link" and data.get("hreflang"): self.has_hreflang = True
@@ -74,6 +76,7 @@ def main() -> int:
         if not parser.has_theme_toggle: errors.append(f"{rel}: controle de tema acessível ausente")
         if parser.images_without_alt: errors.append(f"{rel}: imagens sem alt: {parser.images_without_alt}")
         if "cases" in rel.parts and not ({"case-showcase", "case-proof-card"} & parser.classes): errors.append(f"{rel}: case sem prova visual principal")
+        if "cases" in rel.parts and not {"case-gallery-section", "case-evidence-index", "evidence-label"}.issubset(parser.classes): errors.append(f"{rel}: case sem galeria visual rastreável")
         for value in parser.refs:
             try: target = resolve_reference(page, value)
             except ValueError as exc: errors.append(f"{rel}: {exc}"); continue
@@ -86,6 +89,12 @@ def main() -> int:
     for case in (ROOT / "cases").glob("*/index.html"):
         translated = ROOT / "en" / case.relative_to(ROOT)
         if not translated.exists(): errors.append(f"case sem equivalente em inglês: {case.relative_to(ROOT)}")
+    for home in (ROOT / "index.html", ROOT / "en" / "index.html"):
+        parser = PageParser(); parser.feed(home.read_text(encoding="utf-8"))
+        if parser.metric_links != 6: errors.append(f"{home.relative_to(ROOT)}: esperado 6 indicadores com links para cases, encontrado {parser.metric_links}")
+    english_home = (ROOT / "en" / "index.html").read_text(encoding="utf-8")
+    if "10 mil+" in english_home or "out. 2024 — mar. 2025" in english_home:
+        errors.append("en/index.html: conteúdo de localidade PT-BR no resumo em inglês")
     if not (ROOT / "assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf").exists(): errors.append("currículo PDF ausente")
     if not (ROOT / "assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf").exists(): errors.append("resume em inglês ausente")
     css = (ROOT / "css/styles.css").read_text(encoding="utf-8")
