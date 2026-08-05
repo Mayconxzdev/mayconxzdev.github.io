@@ -1,0 +1,3 @@
+/* Prevent transformed decorative elements from creating a blank horizontal scroll area. */
+html,body{max-width:100%;overflow-x:clip}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
