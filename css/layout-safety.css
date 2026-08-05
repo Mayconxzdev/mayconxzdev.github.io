@@ -1,3 +1,11 @@
 /* Prevent transformed decorative elements from creating a blank horizontal scroll area. */
 html,body{max-width:100%;overflow-x:clip}
 @supports not (overflow:clip){html,body{overflow-x:hidden}}
+
+/* Skills pages do not have a showcase column, so the hero must use the full reading width. */
+.skills-body .case-identity{grid-template-columns:minmax(0,1fr);max-width:1080px}
+.skills-body .case-identity h1{max-width:17ch;font-size:clamp(3.2rem,5vw,6rem);overflow-wrap:normal;word-break:normal}
+.skills-body .case-summary{max-width:72ch}
+@media(max-width:720px){
+  .skills-body .case-identity h1{max-width:none;font-size:clamp(2.55rem,11vw,3.65rem);line-height:.88;overflow-wrap:normal;word-break:normal}
+}
