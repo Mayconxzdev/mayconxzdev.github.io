@@ -32,15 +32,13 @@ FILES = {
             "mapeamento AS-IS/TO-BE",
             "IA generativa e agentes de IA",
             "APIs de LLM",
-            "recuperação de contexto",
-            "grounding",
+            "recuperação de contexto/grounding",
             "JSON Schema",
+            "IA multimodal",
             "text-to-video",
             "Integração de sistemas e ferramentas",
             "APIs REST",
             "webhooks",
-            "Python",
-            "JavaScript/TypeScript",
             "Node.js/Express",
             "FastAPI",
             "Git/GitHub Actions",
@@ -57,9 +55,9 @@ FILES = {
         ],
         "forbidden": [
             "EVIDÊNCIAS, FORMAÇÃO E CERTIFICAÇÕES",
-            "Ferramentas de conversão de texto em vídeo não são apresentadas",
             "RAG/grounding",
             "FastAPI/Flask",
+            "Profissional de automação, IA generativa e aplicada",
         ],
         "date_patterns": [r"12/2025\s*-\s*presente", r"10/2024\s*-\s*03/2025"],
     },
@@ -76,18 +74,16 @@ FILES = {
         "required": [
             "AI AUTOMATION & INTEGRATIONS ANALYST",
             "self-hosted n8n",
-            "AS-IS/TO-BE process mapping",
+            "AS-IS/TO-BE mapping",
             "Generative AI and AI agents",
             "LLM APIs",
-            "context retrieval",
-            "grounding",
+            "context retrieval/grounding",
             "JSON Schema",
+            "multimodal AI",
             "text-to-video",
             "Systems and tools integration",
             "REST APIs",
             "webhooks",
-            "Python",
-            "JavaScript/TypeScript",
             "Node.js/Express",
             "FastAPI",
             "Git/GitHub Actions",
@@ -104,9 +100,9 @@ FILES = {
         ],
         "forbidden": [
             "EVIDENCE, EDUCATION & CERTIFICATIONS",
-            "Text-to-video tools are not presented",
             "RAG/grounding",
             "FastAPI/Flask",
+            "Automation, generative and applied AI",
         ],
         "date_patterns": [r"12/2025\s*-\s*Present", r"10/2024\s*-\s*03/2025"],
     },
@@ -135,7 +131,7 @@ def main() -> int:
         if not path.exists():
             errors.append(f"missing: {filename}")
             continue
-        if path.stat().st_size > 400_000:
+        if path.stat().st_size > 250_000:
             errors.append(f"{filename}: file is unexpectedly large ({path.stat().st_size} bytes)")
 
         reader = PdfReader(str(path))
@@ -151,7 +147,7 @@ def main() -> int:
 
         raw = page.extract_text() or ""
         text = normalized(raw)
-        if len(text) < 2500:
+        if len(text) < 2400:
             errors.append(f"{filename}: extracted text is too short ({len(text)} chars)")
 
         metadata = reader.metadata or {}
@@ -159,8 +155,10 @@ def main() -> int:
             errors.append(f"{filename}: invalid Author metadata")
         if not str(metadata.get("/Title") or "").startswith("Maycon Ferreira - "):
             errors.append(f"{filename}: invalid Title metadata")
-        if "automation" not in str(metadata.get("/Keywords") or "").lower():
-            errors.append(f"{filename}: Keywords metadata is incomplete")
+        keywords = str(metadata.get("/Keywords") or "").lower()
+        for keyword in ("automation", "n8n", "generative ai", "systems integration", "python"):
+            if keyword not in keywords:
+                errors.append(f"{filename}: Keywords metadata is missing {keyword}")
 
         previous = -1
         for heading in rules["headings"]:
@@ -176,7 +174,7 @@ def main() -> int:
                 errors.append(f"{filename}: missing required evidence/keyword: {phrase}")
         for phrase in rules["forbidden"]:
             if phrase in text:
-                errors.append(f"{filename}: forbidden outdated text found: {phrase}")
+                errors.append(f"{filename}: forbidden outdated or unsupported text found: {phrase}")
         for pattern in rules["date_patterns"]:
             if not re.search(pattern, text):
                 errors.append(f"{filename}: inconsistent or missing date pattern: {pattern}")
@@ -194,7 +192,7 @@ def main() -> int:
     if errors:
         print("\n".join(f"ERROR: {error}" for error in errors))
         return 1
-    print("Resume validation completed without errors.")
+    print("Resume content validation completed without errors.")
     return 0
 
 
