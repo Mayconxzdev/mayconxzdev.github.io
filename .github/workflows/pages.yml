@@ -29,24 +29,49 @@ jobs:
         run: python -m compileall -q scripts
       - name: Generate ATS resumes
         run: python scripts/generate_resumes.py
-      - name: Normalize verified portfolio facts
+      - name: Normalize verified portfolio facts and positioning
         run: python scripts/normalize_portfolio_content.py
-      - name: Validate resume content
+      - name: Validate resume content and parser compatibility
         run: python scripts/validate_resumes.py
       - name: Validate rendered resume layout
         run: python scripts/validate_resume_visual.py
-      - name: Validate static pages and references
+      - name: Validate portfolio content, links and hygiene
         run: python scripts/validate_site.py
       - name: Validate JavaScript syntax
-        run: node --check js/site.js
-      - name: Commit generated resumes and verified facts
+        run: node --check js/site.js && node --check scripts/visual_smoke.mjs
+      - name: Install browser smoke dependencies
+        run: |
+          npm install --no-save playwright@1.54.2
+          npx playwright install --with-deps chromium
+      - name: Run portfolio browser and visual smoke
+        run: |
+          python -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for attempt in {1..20}; do
+            if curl -fsS http://127.0.0.1:8000/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8000/ >/dev/null
+          PORTFOLIO_BASE_URL=http://127.0.0.1:8000 node scripts/visual_smoke.mjs
+      - name: Upload visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-visual-qa-${{ github.run_id }}
+          path: artifacts/visual/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Commit generated resumes and normalized home pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           if ! git diff --quiet -- assets/cv/*.pdf index.html en/index.html; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add assets/cv/*.pdf index.html en/index.html
-            git commit -m "chore: regenerate resumes and verified portfolio facts [skip ci]"
+            git commit -m "chore: regenerate audited resumes and portfolio positioning [skip ci]"
             git push
           fi
       - name: Configure GitHub Pages

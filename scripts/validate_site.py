@@ -5,6 +5,10 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+CURRENT_CVS = {
+    "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf",
+    "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf",
+}
 
 
 class PageParser(HTMLParser):
@@ -12,6 +16,7 @@ class PageParser(HTMLParser):
         super().__init__()
         self.ids: list[str] = []
         self.refs: list[str] = []
+        self.pdf_refs: list[str] = []
         self.has_title = False
         self.html_lang = ""
         self.has_description = False
@@ -54,6 +59,8 @@ class PageParser(HTMLParser):
         attr = "href" if tag in {"a", "link"} else "src" if tag in {"img", "script"} else None
         if attr and (value := data.get(attr)):
             self.refs.append(value)
+            if tag == "a" and urlparse(value).path.lower().endswith(".pdf"):
+                self.pdf_refs.append(value)
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "title":
@@ -87,14 +94,33 @@ def require_text(content: str, required: list[str], label: str, errors: list[str
             errors.append(f"{label}: texto verificado ausente: {phrase}")
 
 
+def forbid_text(content: str, forbidden: list[str], label: str, errors: list[str]) -> None:
+    for phrase in forbidden:
+        if phrase in content:
+            errors.append(f"{label}: conteúdo antigo ou não sustentado encontrado: {phrase}")
+
+
+def validate_cv_inventory(errors: list[str]) -> None:
+    cv_dir = ROOT / "assets" / "cv"
+    actual = {path.name for path in cv_dir.glob("*.pdf")}
+    missing = CURRENT_CVS - actual
+    legacy = actual - CURRENT_CVS
+    if missing:
+        errors.append(f"currículos atuais ausentes: {sorted(missing)}")
+    if legacy:
+        errors.append(f"PDFs antigos ainda presentes em assets/cv: {sorted(legacy)}")
+
+
 def main() -> int:
     errors: list[str] = []
     html_pages = sorted(ROOT.rglob("*.html"))
     refs_checked = 0
+    pdf_links_checked = 0
 
     for page in html_pages:
         parser = PageParser()
-        parser.feed(page.read_text(encoding="utf-8"))
+        content = page.read_text(encoding="utf-8")
+        parser.feed(content)
         rel = page.relative_to(ROOT)
         duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
         if duplicates:
@@ -117,6 +143,13 @@ def main() -> int:
             errors.append(f"{rel}: case sem prova visual principal")
         if "cases" in rel.parts and not {"case-gallery-section", "case-evidence-index", "evidence-label"}.issubset(parser.classes):
             errors.append(f"{rel}: case sem galeria visual rastreável")
+
+        for pdf_ref in parser.pdf_refs:
+            pdf_links_checked += 1
+            filename = Path(urlparse(pdf_ref).path).name
+            if filename not in CURRENT_CVS:
+                errors.append(f"{rel}: link aponta para currículo antigo ou inesperado: {pdf_ref}")
+
         for value in parser.refs:
             try:
                 target = resolve_reference(page, value)
@@ -128,6 +161,9 @@ def main() -> int:
             refs_checked += 1
             if not target.exists():
                 errors.append(f"{rel}: referência inexistente: {value}")
+
+    if len(html_pages) != 41:
+        errors.append(f"quantidade de páginas HTML inesperada: {len(html_pages)} (esperado: 41)")
 
     pt_cases = len(list((ROOT / "cases").glob("*/index.html")))
     en_cases = len(list((ROOT / "en/cases").glob("*/index.html")))
@@ -146,12 +182,18 @@ def main() -> int:
 
     pt_home = (ROOT / "index.html").read_text(encoding="utf-8")
     en_home = (ROOT / "en" / "index.html").read_text(encoding="utf-8")
-    if "10 mil+" in en_home or "out. 2024 — mar. 2025" in en_home:
-        errors.append("en/index.html: conteúdo de localidade PT-BR no resumo em inglês")
+    pt_skills = (ROOT / "competencias" / "index.html").read_text(encoding="utf-8")
+    en_skills = (ROOT / "en" / "skills" / "index.html").read_text(encoding="utf-8")
 
     require_text(
         pt_home,
         [
+            "Analista de Automação, IA e Integrações. Cases reais de n8n, Python, APIs REST, IA generativa, agentes, sistemas internos e resultados mensuráveis.",
+            "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES · 2026",
+            "<dt>Posicionamento</dt><dd>Analista de Automação, IA e Integrações</dd>",
+            '<a href="competencias/">Competências</a>',
+            '"Automação low-code"',
+            '"Codex"',
             "Automação de Processos através da RPA",
             "Fundamentos da Transformação Digital: Mapeamento e Automação de Processos",
             "DIO · 4h / 4 cursos",
@@ -162,6 +204,12 @@ def main() -> int:
     require_text(
         en_home,
         [
+            "AI Automation and Integrations Analyst. Real cases involving n8n, Python, REST APIs, generative AI, agents, internal systems and measurable outcomes.",
+            "AI AUTOMATION &amp; INTEGRATIONS ANALYST · 2026",
+            "<dt>Positioning</dt><dd>AI Automation &amp; Integrations Analyst</dd>",
+            '<a href="skills/">Skills</a>',
+            '"Low-code automation"',
+            '"Codex"',
             "AI Tools: Agents and Automations",
             "Process Automation through RPA",
             "Digital Transformation Fundamentals: Process Mapping and Automation",
@@ -173,24 +221,74 @@ def main() -> int:
         "en/index.html",
         errors,
     )
-    if "DIO · 8h / 4 cursos" in pt_home or "DIO · 8h / 4 cursos" in en_home:
-        errors.append("carga horária DIO antiga ainda presente")
+    require_text(
+        pt_skills,
+        [
+            "automação low-code/no-code",
+            "OpenAI, Gemini, Ollama, OpenRouter e Codex",
+            "geração de texto, imagem e vídeo (text-to-video)",
+            "Node.js/Express",
+            "mais de 10 mil execuções de workflows em produção",
+            "Protótipos funcionais privados",
+        ],
+        "competencias/index.html",
+        errors,
+    )
+    require_text(
+        en_skills,
+        [
+            "low-code/no-code automation",
+            "OpenAI, Gemini, Ollama, OpenRouter and Codex",
+            "text, image and video generation (text-to-video)",
+            "Node.js/Express",
+            "more than 10,000 production workflow executions",
+            "Private functional prototypes",
+        ],
+        "en/skills/index.html",
+        errors,
+    )
 
-    if not (ROOT / "assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf").exists():
-        errors.append("currículo PDF ausente")
-    if not (ROOT / "assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf").exists():
-        errors.append("resume em inglês ausente")
+    forbid_text(
+        pt_home + en_home + pt_skills + en_skills,
+        [
+            "DIO · 8h / 4 cursos",
+            "RAG/grounding",
+            "FastAPI/Flask",
+            '"Applied AI"',
+            "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
+            "SYSTEMS IN OPERATION · 2026",
+        ],
+        "home/skills",
+        errors,
+    )
+    if "10 mil+" in en_home or "out. 2024 — mar. 2025" in en_home:
+        errors.append("en/index.html: conteúdo de localidade PT-BR no resumo em inglês")
+
+    validate_cv_inventory(errors)
+
+    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    if sitemap.count("<url>") != 40:
+        errors.append(f"sitemap.xml: quantidade inesperada de URLs ({sitemap.count('<url>')}, esperado: 40)")
+    for route in (
+        "https://mayconxzdev.github.io/competencias/",
+        "https://mayconxzdev.github.io/en/skills/",
+    ):
+        if route not in sitemap:
+            errors.append(f"sitemap.xml: rota estratégica ausente: {route}")
 
     css = (ROOT / "css/styles.css").read_text(encoding="utf-8")
     if "[hidden]" not in css:
         errors.append("CSS não preserva o atributo hidden")
 
-    print(f"HTML: {len(html_pages)} páginas | referências locais: {refs_checked} | cases: PT {pt_cases} / EN {en_cases}")
+    print(
+        f"HTML: {len(html_pages)} páginas | referências locais: {refs_checked} | "
+        f"links de currículo: {pdf_links_checked} | cases: PT {pt_cases} / EN {en_cases}"
+    )
     if errors:
         for error in errors:
             print(f"ERRO: {error}")
         return 1
-    print("Validação concluída sem erros.")
+    print("Validação de conteúdo, posicionamento, referências e higiene concluída sem erros.")
     return 0
 
 

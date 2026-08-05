@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+import fitz
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,9 +29,12 @@ FILES = {
         ],
         "required": [
             "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES",
+            "Telefone/WhatsApp",
             "n8n self-hosted",
+            "automação low-code",
             "mapeamento AS-IS/TO-BE",
             "IA generativa e agentes de IA",
+            "Codex",
             "APIs de LLM",
             "recuperação de contexto/grounding",
             "JSON Schema",
@@ -43,12 +47,14 @@ FILES = {
             "FastAPI",
             "Git/GitHub Actions",
             "CI/CD",
-            "mais de 10 mil execuções em produção",
+            "mais de 10 mil execuções de workflows em produção",
             "menos de 30 segundos",
             "11 computadores",
             "11 usuários",
             "mais de 900 destinatários",
             "3 horas para cerca de 5 minutos",
+            "GRUPO VESPER",
+            "Vesper Equipamentos EX e Vent Rio Equipamentos",
             "Técnico Júnior em Automação de Processos",
             "Tecnólogo em Análise e Desenvolvimento de Sistemas",
             "Ferramentas de IA: Agentes e Automações",
@@ -58,6 +64,8 @@ FILES = {
             "RAG/grounding",
             "FastAPI/Flask",
             "Profissional de automação, IA generativa e aplicada",
+            "GRUPO VESPER - VESPER EQUIPAMENTOS EX E VENT RIO EQUIPAMENTOS",
+            "com mais de 10 mil execuções. Atuação",
         ],
         "date_patterns": [r"12/2025\s*-\s*presente", r"10/2024\s*-\s*03/2025"],
     },
@@ -73,9 +81,12 @@ FILES = {
         ],
         "required": [
             "AI AUTOMATION & INTEGRATIONS ANALYST",
+            "Phone/WhatsApp",
             "self-hosted n8n",
+            "low-code automation",
             "AS-IS/TO-BE mapping",
             "Generative AI and AI agents",
+            "Codex",
             "LLM APIs",
             "context retrieval/grounding",
             "JSON Schema",
@@ -88,14 +99,16 @@ FILES = {
             "FastAPI",
             "Git/GitHub Actions",
             "CI/CD",
-            "more than 10,000 production executions",
+            "more than 10,000 production workflow executions",
             "under 30 seconds",
             "11 workstations",
             "11 users",
             "more than 900 recipients",
             "3 hours to around 5 minutes",
+            "GRUPO VESPER",
+            "Vesper Equipamentos EX e Vent Rio Equipamentos",
             "Junior Process Automation Technician",
-            "Systems Analysis and Development",
+            "Technology Degree in Systems Analysis and Development",
             "AI Tools: Agents and Automations",
         ],
         "forbidden": [
@@ -103,6 +116,8 @@ FILES = {
             "RAG/grounding",
             "FastAPI/Flask",
             "Automation, generative and applied AI",
+            "GRUPO VESPER - VESPER EQUIPAMENTOS EX AND VENT RIO EQUIPAMENTOS",
+            "with more than 10,000 executions. Works",
         ],
         "date_patterns": [r"12/2025\s*-\s*Present", r"10/2024\s*-\s*03/2025"],
     },
@@ -126,6 +141,11 @@ def normalized(text: str) -> str:
 
 def main() -> int:
     errors: list[str] = []
+    pdf_names = sorted(path.name for path in CV.glob("*.pdf"))
+    expected_names = sorted(FILES)
+    if pdf_names != expected_names:
+        errors.append(f"assets/cv must contain only current resumes: found {pdf_names}, expected {expected_names}")
+
     for filename, rules in FILES.items():
         path = CV / filename
         if not path.exists():
@@ -150,13 +170,21 @@ def main() -> int:
         if len(text) < 2400:
             errors.append(f"{filename}: extracted text is too short ({len(text)} chars)")
 
+        fitz_doc = fitz.open(path)
+        fitz_text = normalized(fitz_doc[0].get_text("text"))
+        if len(fitz_text) < 2400:
+            errors.append(f"{filename}: PyMuPDF text extraction is too short ({len(fitz_text)} chars)")
+        for heading in rules["headings"]:
+            if heading not in fitz_text:
+                errors.append(f"{filename}: PyMuPDF missing heading: {heading}")
+
         metadata = reader.metadata or {}
         if metadata.get("/Author") != "Maycon Ferreira":
             errors.append(f"{filename}: invalid Author metadata")
         if not str(metadata.get("/Title") or "").startswith("Maycon Ferreira - "):
             errors.append(f"{filename}: invalid Title metadata")
         keywords = str(metadata.get("/Keywords") or "").lower()
-        for keyword in ("automation", "n8n", "generative ai", "systems integration", "python"):
+        for keyword in ("automation", "n8n", "generative ai", "systems integration", "python", "low-code", "codex"):
             if keyword not in keywords:
                 errors.append(f"{filename}: Keywords metadata is missing {keyword}")
 
