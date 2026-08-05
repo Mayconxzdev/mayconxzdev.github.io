@@ -30,26 +30,28 @@ PT = {
     "title": "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES",
     "location": "Rio de Janeiro - RJ | remoto, híbrido ou presencial",
     "portfolio_label": "Portfólio",
+    "phone_label": "Telefone/WhatsApp: +55 (21) 96481-0480",
     "summary_heading": "RESUMO PROFISSIONAL",
     "summary": (
-        "Analista de Automação, IA e Integrações que transforma processos internos em automações e sistemas em produção. "
-        "Experiência com n8n self-hosted, Python, APIs REST, IA generativa, agentes e bancos de dados, com mais de 10 mil "
-        "execuções. Atuação do levantamento à sustentação, com foco em confiabilidade e resultados mensuráveis."
+        "Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos e sistemas internos. "
+        "Experiência com n8n self-hosted, Python, APIs REST, IA generativa, agentes e bancos de dados, incluindo mais de "
+        "10 mil execuções de workflows em produção. Entrego do levantamento à sustentação, com foco em confiabilidade e impacto mensurável."
     ),
     "skills_heading": "HABILIDADES TÉCNICAS",
     "skills": [
-        "<b>Automação e processos:</b> n8n self-hosted, workflows, AS-IS/TO-BE, requisitos, regras de negócio, aprovação humana, documentação e melhoria contínua.",
-        "<b>IA generativa e agentes de IA:</b> OpenAI, Gemini, Ollama/OpenRouter, APIs de LLM, engenharia de prompts, recuperação de contexto/grounding, JSON Schema, pipelines multiestágio, IA multimodal, text-to-video e revisão humana.",
+        "<b>Automação e processos:</b> n8n self-hosted, automação low-code, workflows, AS-IS/TO-BE, requisitos, regras de negócio, aprovação humana, documentação e melhoria contínua.",
+        "<b>IA generativa e agentes de IA:</b> OpenAI, Gemini, Ollama/OpenRouter, Codex, APIs de LLM, engenharia de prompts, recuperação de contexto/grounding, JSON Schema, pipelines multiestágio, IA multimodal, geração de mídia (text-to-video) e revisão humana.",
         "<b>Integração de sistemas e ferramentas:</b> APIs REST, webhooks, HTTP/JSON, OAuth 2.0, SMTP/IMAP, Meta Graph API, Evolution API/WPPConnect e Google Sheets.",
         "<b>Engenharia e confiabilidade:</b> Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, testes, logs, retries, idempotência, backups e gestão de segredos.",
     ],
     "experience_heading": "EXPERIÊNCIA PROFISSIONAL",
-    "vesper_org": "GRUPO VESPER - VESPER EQUIPAMENTOS EX E VENT RIO EQUIPAMENTOS",
+    "vesper_org": "GRUPO VESPER",
+    "vesper_company": "Vesper Equipamentos EX e Vent Rio Equipamentos",
     "vesper_date": "12/2025 - presente",
     "vesper_role": "Técnico Júnior em Automação de Processos (cargo formal) | automação, IA aplicada e integrações",
     "vesper_points": [
-        "Administro ambiente n8n self-hosted em Windows/Docker com mais de 10 mil execuções em produção, integrando APIs, webhooks, PostgreSQL, SMTP e ferramentas internas com logs, retries, alertas, backups e auditoria.",
-        "Desenvolvi o Vesper Propostas com geração ODT/PDF, IMAP/SMTP e revisão humana; propostas simples passaram de aproximadamente 2-4 minutos para menos de 30 segundos, em uso diário por 4 profissionais.",
+        "Administro o ambiente n8n self-hosted em Windows/Docker, com mais de 10 mil execuções de workflows em produção; integro APIs, webhooks, PostgreSQL, SMTP e ferramentas internas com logs, retries, alertas, backups e auditoria.",
+        "Desenvolvi o Vesper Propostas com geração ODT/PDF, IMAP/SMTP e revisão humana, reduzindo propostas simples de 2-4 minutos para menos de 30 segundos; uso diário por 4 profissionais.",
         "Implantei o Produção Operacional em 11 computadores e uma TV de fábrica e o HelpDesk para 11 usuários; conduzo requisitos, mapeamento AS-IS/TO-BE, arquitetura, testes, implantação, treinamento, monitoramento e sustentação.",
     ],
     "compasso_org": "COMPASSO TECNOLOGIA LTDA",
@@ -61,8 +63,8 @@ PT = {
     ),
     "projects_heading": "PROJETOS SELECIONADOS",
     "projects": [
-        "<b>Mala Direta:</b> automação n8n em produção com 158 nós, 9 Data Tables, fila por destinatário, deduplicação, SMTP, cancelamento revalidado e campanha com mais de 900 destinatários.",
-        "<b>Postagem Redes:</b> 3 workflows e 58 nós, Meta Graph API e cadeia OpenAI - Gemini - Ollama com aprovação humana, idempotência e resultado independente por rede.",
+        "<b>Mala Direta:</b> campanha automatizada para mais de 900 destinatários; solução n8n com 5 workflows/158 nós, 9 Data Tables, fila por destinatário, deduplicação, SMTP, cancelamento revalidado e auditoria.",
+        "<b>Postagem Redes:</b> pipeline multicanal com 3 workflows/58 nós, Meta Graph API, OpenAI/Gemini/Ollama, aprovação humana, idempotência e resultados independentes por rede.",
     ],
     "education_heading": "FORMAÇÃO",
     "education": [
@@ -76,7 +78,7 @@ PT = {
         "Introdução à LGPD - ENAP (10h)."
     ),
     "language_heading": "IDIOMAS",
-    "language": "Inglês técnico para leitura; escrita e conversação básicas.",
+    "language": "Português nativo | Inglês técnico para leitura; escrita e conversação básicas.",
 }
 
 EN = {
@@ -84,26 +86,28 @@ EN = {
     "title": "AI AUTOMATION & INTEGRATIONS ANALYST",
     "location": "Rio de Janeiro - Brazil | remote, hybrid or on-site",
     "portfolio_label": "Portfolio",
+    "phone_label": "Phone/WhatsApp: +55 (21) 96481-0480",
     "summary_heading": "PROFESSIONAL SUMMARY",
     "summary": (
-        "AI Automation and Integrations Analyst who turns internal processes into production automations and systems. "
-        "Experience with self-hosted n8n, Python, REST APIs, generative AI, agents and databases, with more than 10,000 "
-        "executions. Works from discovery through support, focused on reliability and measurable outcomes."
+        "AI Automation and Integrations Analyst with end-to-end experience in process automation and internal systems. "
+        "Skilled in self-hosted n8n, Python, REST APIs, generative AI, agents and databases, including more than 10,000 "
+        "production workflow executions. Delivers from discovery through support, focused on reliability and measurable impact."
     ),
     "skills_heading": "TECHNICAL SKILLS",
     "skills": [
-        "<b>Automation and processes:</b> self-hosted n8n, workflows, AS-IS/TO-BE, requirements, business rules, human approval, documentation and continuous improvement.",
-        "<b>Generative AI and AI agents:</b> OpenAI, Gemini, Ollama/OpenRouter, LLM APIs, prompt engineering, context retrieval/grounding, JSON Schema, multi-stage pipelines, multimodal AI, text-to-video and human review.",
+        "<b>Automation and processes:</b> self-hosted n8n, low-code automation, workflows, AS-IS/TO-BE, requirements, business rules, human approval, documentation and continuous improvement.",
+        "<b>Generative AI and AI agents:</b> OpenAI, Gemini, Ollama/OpenRouter, Codex, LLM APIs, prompt engineering, context retrieval/grounding, JSON Schema, multi-stage pipelines, multimodal AI, media generation (text-to-video) and human review.",
         "<b>Systems and tools integration:</b> REST APIs, webhooks, HTTP/JSON, OAuth 2.0, SMTP/IMAP, Meta Graph API, Evolution API/WPPConnect and Google Sheets.",
         "<b>Engineering and reliability:</b> Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, tests, logs, retries, idempotency, backups and secrets management.",
     ],
     "experience_heading": "PROFESSIONAL EXPERIENCE",
-    "vesper_org": "GRUPO VESPER - VESPER EQUIPAMENTOS EX AND VENT RIO EQUIPAMENTOS",
+    "vesper_org": "GRUPO VESPER",
+    "vesper_company": "Vesper Equipamentos EX e Vent Rio Equipamentos",
     "vesper_date": "12/2025 - Present",
     "vesper_role": "Junior Process Automation Technician (formal title) | automation, applied AI and integrations",
     "vesper_points": [
-        "Administer a self-hosted n8n environment on Windows/Docker with more than 10,000 production executions, integrating APIs, webhooks, PostgreSQL, SMTP and internal tools with logs, retries, alerts, backups and auditing.",
-        "Developed Vesper Propostas with ODT/PDF generation, IMAP/SMTP and human review; simple proposals went from approximately 2-4 minutes to under 30 seconds, with daily use by 4 professionals.",
+        "Administer a self-hosted n8n environment on Windows/Docker with more than 10,000 production workflow executions; integrate APIs, webhooks, PostgreSQL, SMTP and internal tools with logs, retries, alerts, backups and auditing.",
+        "Developed Vesper Propostas with ODT/PDF generation, IMAP/SMTP and human review, reducing simple proposals from 2-4 minutes to under 30 seconds; used daily by 4 professionals.",
         "Deployed Produção Operacional to 11 workstations and a factory TV and HelpDesk to 11 users; lead requirements, AS-IS/TO-BE mapping, architecture, testing, deployment, training, monitoring and support.",
     ],
     "compasso_org": "COMPASSO TECNOLOGIA LTDA",
@@ -115,12 +119,12 @@ EN = {
     ),
     "projects_heading": "SELECTED PROJECTS",
     "projects": [
-        "<b>Mala Direta:</b> production n8n automation with 158 nodes, 9 Data Tables, per-recipient queue, deduplication, SMTP, revalidated cancellation and a campaign with more than 900 recipients.",
-        "<b>Postagem Redes:</b> 3 workflows and 58 nodes, Meta Graph API and an OpenAI - Gemini - Ollama chain with human approval, idempotency and independent results per channel.",
+        "<b>Mala Direta:</b> automated campaign for more than 900 recipients; n8n solution with 5 workflows/158 nodes, 9 Data Tables, per-recipient queue, deduplication, SMTP, revalidated cancellation and auditing.",
+        "<b>Postagem Redes:</b> multichannel pipeline with 3 workflows/58 nodes, Meta Graph API, OpenAI/Gemini/Ollama, human approval, idempotency and independent results per channel.",
     ],
     "education_heading": "EDUCATION",
     "education": [
-        "<b>Associate Degree in Systems Analysis and Development - UNISUAM</b> | expected completion: Dec. 2026",
+        "<b>Technology Degree in Systems Analysis and Development - UNISUAM</b> | expected completion: Dec. 2026",
         "42 Rio Piscine | intensive program completed in Jul. 2025",
     ],
     "certs_heading": "CERTIFICATIONS",
@@ -130,7 +134,7 @@ EN = {
         "Introduction to Brazil's Data Protection Law - ENAP (10h)."
     ),
     "language_heading": "LANGUAGES",
-    "language": "Technical English for reading; basic writing and conversation.",
+    "language": "Portuguese: native | English: technical reading; basic writing and conversation.",
 }
 
 
@@ -269,7 +273,7 @@ def generate(data: dict[str, object]) -> Path:
     canvas.setSubject("One-page resume for process automation, AI agents, generative AI and systems integration roles")
     canvas.setKeywords(
         "automation, process automation, process mapping, AS-IS, TO-BE, n8n, generative AI, AI agents, prompt engineering, "
-        "context retrieval, grounding, multimodal AI, text-to-video, systems integration, REST APIs, webhooks, Python, JavaScript, TypeScript, SQL, Docker"
+        "context retrieval, grounding, multimodal AI, text-to-video, low-code, Codex, systems integration, REST APIs, webhooks, Python, JavaScript, TypeScript, SQL, Docker"
     )
     canvas.setCreator("Maycon Ferreira")
 
@@ -309,7 +313,7 @@ def generate(data: dict[str, object]) -> Path:
         canvas,
         y,
         [
-            ("WhatsApp: +55 (21) 96481-0480", "https://wa.me/5521964810480"),
+            (str(data["phone_label"]), "https://wa.me/5521964810480"),
             ("E-mail: mayconxz00dev@gmail.com", "mailto:mayconxz00dev@gmail.com"),
         ],
         audit,
@@ -343,6 +347,8 @@ def generate(data: dict[str, object]) -> Path:
     y = draw_role_header(
         canvas, y, str(data["vesper_org"]), str(data["vesper_date"]), audit, "role:vesper-header"
     )
+    y = paragraph(escape(str(data["vesper_company"])), role, canvas, y, audit, "role:vesper-company")
+    y -= 1
     y = paragraph(escape(str(data["vesper_role"])), role, canvas, y, audit, "role:vesper-title")
     y -= 2
     for index, item in enumerate(data["vesper_points"]):
