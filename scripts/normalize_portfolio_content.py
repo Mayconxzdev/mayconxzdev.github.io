@@ -15,7 +15,7 @@ REPLACEMENTS = {
         '    <a href="#evidence">Evidências</a>\n    <a href="#contact">Contato</a>':
             '    <a href="#evidence">Evidências</a>\n    <a href="competencias/">Competências</a>\n    <a href="#contact">Contato</a>',
         '<p class="eyebrow">REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026</p>':
-            '<p class="eyebrow">ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES · 2026</p>',
+            '<p class="eyebrow">AUTOMAÇÃO · IA · INTEGRAÇÕES · 2026</p>',
         '<p class="hero-statement">Automação, IA e integrações que deixam de ser ideia e passam a fazer parte do trabalho.</p>':
             '<p class="hero-statement">Automação de processos, IA generativa e integrações que entram na rotina com regras, evidência e sustentação.</p>',
         '<p class="hero-body">Transformo necessidades operacionais em automações, integrações e sistemas internos usados de verdade. Trabalho do entendimento do processo à implantação, documentação, monitoramento e sustentação.</p>':
