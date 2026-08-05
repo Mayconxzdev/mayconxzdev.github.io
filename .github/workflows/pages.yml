@@ -29,20 +29,22 @@ jobs:
         run: python -m compileall -q scripts
       - name: Generate ATS resumes
         run: python scripts/generate_resumes.py
+      - name: Normalize verified portfolio facts
+        run: python scripts/normalize_portfolio_content.py
       - name: Validate one-page resumes
         run: python scripts/validate_resumes.py
       - name: Validate static pages and references
         run: python scripts/validate_site.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js
-      - name: Commit generated resumes
+      - name: Commit generated resumes and verified facts
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if ! git diff --quiet -- assets/cv/*.pdf; then
+          if ! git diff --quiet -- assets/cv/*.pdf index.html en/index.html; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add assets/cv/*.pdf
-            git commit -m "chore: regenerate ATS resumes [skip ci]"
+            git add assets/cv/*.pdf index.html en/index.html
+            git commit -m "chore: regenerate resumes and verified portfolio facts [skip ci]"
             git push
           fi
       - name: Configure GitHub Pages
