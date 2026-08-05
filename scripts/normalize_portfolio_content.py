@@ -6,6 +6,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REPLACEMENTS = {
     ROOT / "index.html": {
+        '<link rel="stylesheet" href="css/styles.css">':
+            '<link rel="stylesheet" href="css/styles.css">\n  <link rel="stylesheet" href="css/layout-safety.css">',
         '<meta name="description" content="Automação, IA e integrações que saíram da ideia e entraram na rotina. Cases reais de n8n, Python, APIs, sistemas internos e IA aplicada.">':
             '<meta name="description" content="Analista de Automação, IA e Integrações. Cases reais de n8n, Python, APIs REST, IA generativa, agentes, sistemas internos e resultados mensuráveis.">',
         '<meta property="og:description" content="Automação, IA e integrações que saíram da ideia e entraram na rotina. Cases reais de n8n, Python, APIs, sistemas internos e IA aplicada.">':
@@ -30,6 +32,8 @@ REPLACEMENTS = {
             '<strong>Trilha n8n e Workflows</strong><span>DIO · 4h / 4 cursos</span>',
     },
     ROOT / "en" / "index.html": {
+        '<link rel="stylesheet" href="../css/styles.css">':
+            '<link rel="stylesheet" href="../css/styles.css">\n  <link rel="stylesheet" href="../css/layout-safety.css">',
         '<meta name="description" content="Automation, AI and integrations that moved from an idea into daily operations. Real cases involving n8n, Python, APIs, internal systems and applied AI.">':
             '<meta name="description" content="AI Automation and Integrations Analyst. Real cases involving n8n, Python, REST APIs, generative AI, agents, internal systems and measurable outcomes.">',
         '<meta property="og:description" content="Automation, AI and integrations that moved from an idea into daily operations. Real cases involving n8n, Python, APIs, internal systems and applied AI.">':
