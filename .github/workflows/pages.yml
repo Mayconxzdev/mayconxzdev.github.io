@@ -24,15 +24,17 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install resume dependencies
-        run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0
+        run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
       - name: Validate Python sources
         run: python -m compileall -q scripts
       - name: Generate ATS resumes
         run: python scripts/generate_resumes.py
       - name: Normalize verified portfolio facts
         run: python scripts/normalize_portfolio_content.py
-      - name: Validate one-page resumes
+      - name: Validate resume content
         run: python scripts/validate_resumes.py
+      - name: Validate rendered resume layout
+        run: python scripts/validate_resume_visual.py
       - name: Validate static pages and references
         run: python scripts/validate_site.py
       - name: Validate JavaScript syntax
