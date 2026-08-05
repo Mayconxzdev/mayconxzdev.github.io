@@ -54,9 +54,9 @@ PT = {
     "skills_heading": "HABILIDADES TÉCNICAS",
     "skills": [
         "<b>Automação e processos:</b> n8n self-hosted, workflows, AS-IS/TO-BE, levantamento de requisitos, regras de negócio, aprovação humana e melhoria contínua.",
-        "<b>IA generativa e agentes de IA:</b> OpenAI, Gemini e Ollama/OpenRouter; APIs de LLM, engenharia de prompts, RAG/grounding, JSON Schema, pipelines multiestágio, IA multimodal, text-to-video, fallback, auditoria e revisão humana.",
+        "<b>IA generativa e agentes de IA:</b> OpenAI, Gemini e Ollama/OpenRouter; APIs de LLM, engenharia de prompts, recuperação de contexto/grounding, JSON Schema, pipelines multiestágio, IA multimodal, text-to-video, fallback, auditoria e revisão humana.",
         "<b>Integração de sistemas e ferramentas:</b> APIs REST, webhooks, HTTP/JSON, OAuth 2.0, SMTP/IMAP, Meta Graph API, Evolution API/WPPConnect e Google Sheets.",
-        "<b>Engenharia e confiabilidade:</b> Python, JavaScript/TypeScript, Node.js, FastAPI/Flask, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, testes, logs, retries, idempotência, backups e gestão de segredos.",
+        "<b>Engenharia e confiabilidade:</b> Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, testes, logs, retries, idempotência, backups e gestão de segredos.",
     ],
     "experience_heading": "EXPERIÊNCIA PROFISSIONAL",
     "vesper_org": "GRUPO VESPER - VESPER EQUIPAMENTOS EX E VENT RIO EQUIPAMENTOS",
@@ -108,9 +108,9 @@ EN = {
     "skills_heading": "TECHNICAL SKILLS",
     "skills": [
         "<b>Automation and processes:</b> self-hosted n8n, workflows, AS-IS/TO-BE, requirements discovery, business rules, human approval and continuous improvement.",
-        "<b>Generative AI and AI agents:</b> OpenAI, Gemini and Ollama/OpenRouter; LLM APIs, prompt engineering, RAG/grounding, JSON Schema, multi-stage pipelines, multimodal AI, text-to-video, fallback, auditing and human review.",
+        "<b>Generative AI and AI agents:</b> OpenAI, Gemini and Ollama/OpenRouter; LLM APIs, prompt engineering, context retrieval/grounding, JSON Schema, multi-stage pipelines, multimodal AI, text-to-video, fallback, auditing and human review.",
         "<b>Systems and tools integration:</b> REST APIs, webhooks, HTTP/JSON, OAuth 2.0, SMTP/IMAP, Meta Graph API, Evolution API/WPPConnect and Google Sheets.",
-        "<b>Engineering and reliability:</b> Python, JavaScript/TypeScript, Node.js, FastAPI/Flask, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, tests, logs, retries, idempotency, backups and secrets management.",
+        "<b>Engineering and reliability:</b> Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, tests, logs, retries, idempotency, backups and secrets management.",
     ],
     "experience_heading": "PROFESSIONAL EXPERIENCE",
     "vesper_org": "GRUPO VESPER - VESPER EQUIPAMENTOS EX AND VENT RIO EQUIPAMENTOS",
@@ -210,7 +210,7 @@ def generate(data: dict[str, object]) -> Path:
     canvas.setSubject("One-page resume for process automation, AI agents, generative AI and systems integration roles")
     canvas.setKeywords(
         "automation, process automation, process mapping, AS-IS, TO-BE, n8n, generative AI, AI agents, prompt engineering, "
-        "RAG, multimodal AI, text-to-video, systems integration, REST APIs, webhooks, Python, JavaScript, TypeScript, SQL, Docker"
+        "context retrieval, grounding, multimodal AI, text-to-video, systems integration, REST APIs, webhooks, Python, JavaScript, TypeScript, SQL, Docker"
     )
     canvas.setCreator("Maycon Ferreira")
 
