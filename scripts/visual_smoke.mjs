@@ -44,6 +44,25 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+async function loadAllImages(page) {
+  await page.locator('img').evaluateAll((images) => {
+    for (const image of images) image.loading = 'eager';
+  });
+  await page.evaluate(async () => {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const step = Math.max(window.innerHeight * 0.8, 500);
+    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await sleep(25);
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForFunction(
+    () => Array.from(document.images).every((image) => image.complete),
+    { timeout: 30_000 },
+  );
+}
+
 await fs.rm(outputRoot, { recursive: true, force: true });
 await fs.mkdir(outputRoot, { recursive: true });
 
@@ -72,6 +91,7 @@ try {
           await page.addStyleTag({
             content: `*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition:none!important;caret-color:transparent!important}`,
           });
+          await loadAllImages(page);
           await page.waitForTimeout(100);
 
           const bodyText = await page.locator('body').innerText();
