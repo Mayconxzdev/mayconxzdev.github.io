@@ -11,8 +11,8 @@ const routes = [
   { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI, data and governance applied in real projects.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
   { path: '/cases/catalogo-operacional-compras/', slug: 'catalog-pt', expected: 'Catálogo Operacional de Compras', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
   { path: '/en/cases/operational-procurement-catalog/', slug: 'catalog-en', expected: 'Operational Procurement Catalog', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
-  { path: '/cases/portal/', slug: 'portal-pt', expected: 'Business Operating Platform multiempresa', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/cases/portal/', slug: 'portal-en', expected: 'Multi-tenant Business Operating Platform', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/cases/portal/', slug: 'portal-pt', expected: 'Estou construindo uma plataforma para conectar pessoas, processos, dados, aprovações, integrações, automações e agentes governados', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/cases/portal/', slug: 'portal-en', expected: 'I am building a platform that connects people, processes, data, approvals, integrations, automations and governed agents', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
 ];
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
