@@ -34,6 +34,7 @@ jobs:
         run: |
           python scripts/reconcile_public_cases.py
           python scripts/rewrite_public_voice.py
+          python scripts/final_quality_patch.py
       - name: Validate resume content and ATS parsing
         run: python scripts/validate_resumes.py
       - name: Validate rendered resume layout
@@ -112,3 +113,29 @@ jobs:
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify-live:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Confirm current portfolio is live
+        shell: bash
+        run: |
+          for attempt in {1..30}; do
+            HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            if grep -Fq "RESULTADOS EM USO" <<<"$HTML" \
+              && grep -Fq "base de 1.020 contatos" <<<"$HTML" \
+              && grep -Fq "10+ computadores e 1 TV" <<<"$HTML" \
+              && ! grep -Fq "PROVAS EM CONTEXTO" <<<"$HTML" \
+              && ! grep -Fq "3h → 5min" <<<"$HTML" \
+              && ! grep -Fq "Portal Vesper" <<<"$HTML"; then
+              echo "Published portfolio matches the current source."
+              exit 0
+            fi
+            echo "Published content is not current yet (attempt ${attempt}/30)."
+            sleep 10
+          done
+          echo "The Pages deployment completed, but the public URL did not expose the current portfolio within the verification window."
+          exit 1
