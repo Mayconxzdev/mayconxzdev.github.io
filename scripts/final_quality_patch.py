@@ -17,6 +17,38 @@ PATCHES = {
             "The n8n environment I administer has surpassed 10,000 workflow executions in production.",
         ),
     ],
+    "cases/compras-vesper/index.html": [
+        (
+            "../../assets/evidence/compras-menu.webp",
+            "https://raw.githubusercontent.com/Mayconxzdev/ComprasProducao/main/docs/assets/ui-dashboard-real.png",
+        ),
+        (
+            "../../assets/evidence/compras-frete.webp",
+            "https://raw.githubusercontent.com/Mayconxzdev/ComprasProducao/main/docs/assets/ui-freight-real.png",
+        ),
+        (
+            "../../assets/evidence/compras-acompanhar.webp",
+            "https://raw.githubusercontent.com/Mayconxzdev/ComprasProducao/main/docs/assets/ui-tracking-real.png",
+        ),
+    ],
+    "cases/vesper-manutencao/index.html": [
+        (
+            "../../assets/evidence/manutencao-dashboard.webp",
+            "../../assets/evidence/manutencao-dashboard.svg",
+        ),
+        (
+            "../../assets/evidence/manutencao-equipment.webp",
+            "../../assets/evidence/manutencao-equipment.svg",
+        ),
+        (
+            "../../assets/evidence/manutencao-document.webp",
+            "../../assets/evidence/manutencao-document.svg",
+        ),
+        (
+            "../../assets/evidence/manutencao-chat.webp",
+            "../../assets/evidence/manutencao-chat.svg",
+        ),
+    ],
 }
 
 
@@ -28,9 +60,9 @@ def main() -> None:
             if old in text:
                 text = text.replace(old, new)
             elif new not in text:
-                raise RuntimeError(f"{relative}: expected wording not found: {old}")
+                raise RuntimeError(f"{relative}: expected content not found: {old}")
         path.write_text(text, encoding="utf-8")
-        print(f"final wording current: {relative}")
+        print(f"final quality patch current: {relative}")
 
 
 if __name__ == "__main__":
