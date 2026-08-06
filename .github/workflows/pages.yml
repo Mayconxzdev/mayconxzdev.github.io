@@ -35,6 +35,7 @@ jobs:
           python scripts/normalize_portfolio_content.py
           python scripts/normalize_canonical_routes.py
           python scripts/apply_verified_career_facts_v2.py
+          python scripts/final_text_patch.py
       - name: Validate resume content and parser compatibility
         run: python scripts/validate_resumes.py
       - name: Validate rendered resume layout
