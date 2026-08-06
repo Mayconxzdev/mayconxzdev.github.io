@@ -17,8 +17,8 @@ class PageParser(HTMLParser):
         self.ids: list[str] = []
         self.refs: list[str] = []
         self.pdf_refs: list[str] = []
-        self.has_title = False
         self.html_lang = ""
+        self.has_title = False
         self.has_description = False
         self.has_canonical = False
         self.has_hreflang = False
@@ -50,7 +50,7 @@ class PageParser(HTMLParser):
         if tag == "button" and "theme-toggle" in (data.get("class") or "").split() and data.get("aria-label") and data.get("aria-pressed") is not None:
             self.has_theme_toggle = True
         if tag == "img" and not (data.get("alt") or "").strip():
-            self.images_without_alt.append(data.get("src") or "[sem src]")
+            self.images_without_alt.append(data.get("src") or "[missing src]")
         attr = "href" if tag in {"a", "link"} else "src" if tag in {"img", "script"} else None
         if attr and (value := data.get(attr)):
             self.refs.append(value)
@@ -93,6 +93,10 @@ def forbid_text(content: str, forbidden: list[str], label: str, errors: list[str
     for phrase in forbidden:
         if phrase in content:
             errors.append(f"{label}: stale, ambiguous or unsupported text found: {phrase}")
+
+
+def read(relative: str) -> str:
+    return (ROOT / relative).read_text(encoding="utf-8")
 
 
 def main() -> int:
@@ -155,14 +159,14 @@ def main() -> int:
         if not (ROOT / "en" / case.relative_to(ROOT)).exists():
             errors.append(f"case lacks English counterpart: {case.relative_to(ROOT)}")
 
-    pt_home = (ROOT / "index.html").read_text(encoding="utf-8")
-    en_home = (ROOT / "en/index.html").read_text(encoding="utf-8")
-    pt_skills = (ROOT / "competencias/index.html").read_text(encoding="utf-8")
-    en_skills = (ROOT / "en/skills/index.html").read_text(encoding="utf-8")
-    pt_catalog = (ROOT / "cases/procureflow/index.html").read_text(encoding="utf-8")
-    en_catalog = (ROOT / "en/cases/procureflow/index.html").read_text(encoding="utf-8")
-    pt_portal = (ROOT / "cases/portal-vesper/index.html").read_text(encoding="utf-8")
-    en_portal = (ROOT / "en/cases/portal-vesper/index.html").read_text(encoding="utf-8")
+    pt_home = read("index.html")
+    en_home = read("en/index.html")
+    pt_skills = read("competencias/index.html")
+    en_skills = read("en/skills/index.html")
+    pt_catalog = read("cases/procureflow/index.html")
+    en_catalog = read("en/cases/procureflow/index.html")
+    pt_portal = read("cases/portal-vesper/index.html")
+    en_portal = read("en/cases/portal-vesper/index.html")
 
     for home in (ROOT / "index.html", ROOT / "en/index.html"):
         parser = PageParser()
@@ -173,7 +177,7 @@ def main() -> int:
     require_text(pt_home, [
         "Analista de Automação, IA e Integrações", "2 workflows públicos", "Catálogo Operacional de Compras",
         "Usado diariamente por 3 usuários operacionais e consultado pela gestão", "58 nós no workflow de ações",
-        "Portal", "Procurement e sourcing validados em sandbox", "tenant/RLS", "Action Envelope",
+        "Procurement e sourcing validados em sandbox", "tenant/RLS", "Action Envelope",
         '<a href="competencias/">Competências</a>', "DIO · 4h / 4 cursos",
     ], "index.html", errors)
     require_text(en_home, [
@@ -202,8 +206,8 @@ def main() -> int:
     ], "en/cases/procureflow/index.html", errors)
 
     require_text(pt_portal, [
-        "Business Operating Platform multiempresa", "EM DESENVOLVIMENTO · PRÉ-PILOTO", "produto autoral",
-        "tenant/RLS", "Action Envelope", "Procurement Intake e sourcing", "em preparação para piloto interno",
+        "Business Operating Platform multiempresa", "EM DESENVOLVIMENTO · PRÉ-PILOTO", "Produto autoral",
+        "tenant/RLS", "Action Envelope", "Procurement Intake e sourcing", "preparada para piloto interno",
         "ainda não está comprovado", "referência pública anterior",
     ], "cases/portal-vesper/index.html", errors)
     require_text(en_portal, [
@@ -223,7 +227,7 @@ def main() -> int:
     if actual_cvs != CURRENT_CVS:
         errors.append(f"assets/cv inventory differs from current resumes: {sorted(actual_cvs)}")
 
-    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    sitemap = read("sitemap.xml")
     if sitemap.count("<url>") != 40:
         errors.append(f"sitemap URL count is {sitemap.count('<url>')}, expected 40")
     for route in ("https://mayconxzdev.github.io/competencias/", "https://mayconxzdev.github.io/en/skills/"):
