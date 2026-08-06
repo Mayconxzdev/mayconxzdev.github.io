@@ -9,10 +9,10 @@ const routes = [
   { path: '/en/', slug: 'home-en', expected: 'AI AUTOMATION & INTEGRATIONS ANALYST', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: ['#systems', '#experience', '#evidence'] },
   { path: '/competencias/', slug: 'skills-pt', expected: 'Automação, IA, dados e governança com evidência.', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
   { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI, data and governance backed by evidence.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
-  { path: '/cases/procureflow/', slug: 'catalog-pt', expected: 'Catálogo Operacional de Compras', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/cases/procureflow/', slug: 'catalog-en', expected: 'Operational Procurement Catalog', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
-  { path: '/cases/portal-vesper/', slug: 'portal-pt', expected: 'Business Operating Platform multiempresa', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/cases/portal-vesper/', slug: 'portal-en', expected: 'Multi-tenant Business Operating Platform', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/cases/catalogo-operacional-compras/', slug: 'catalog-pt', expected: 'Catálogo Operacional de Compras', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/cases/operational-procurement-catalog/', slug: 'catalog-en', expected: 'Operational Procurement Catalog', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/cases/portal/', slug: 'portal-pt', expected: 'Business Operating Platform multiempresa', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/cases/portal/', slug: 'portal-en', expected: 'Multi-tenant Business Operating Platform', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
 ];
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
