@@ -7,8 +7,8 @@ const outputRoot = path.resolve('artifacts/visual');
 const routes = [
   { path: '/', slug: 'home-pt', expected: 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: ['#systems', '#experience', '#evidence'] },
   { path: '/en/', slug: 'home-en', expected: 'AI AUTOMATION & INTEGRATIONS ANALYST', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: ['#systems', '#experience', '#evidence'] },
-  { path: '/competencias/', slug: 'skills-pt', expected: 'Automação, IA, dados e governança com evidência.', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI, data and governance backed by evidence.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/competencias/', slug: 'skills-pt', expected: 'Automação, IA, dados e governança aplicados em projetos reais.', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI, data and governance applied in real projects.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
   { path: '/cases/catalogo-operacional-compras/', slug: 'catalog-pt', expected: 'Catálogo Operacional de Compras', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
   { path: '/en/cases/operational-procurement-catalog/', slug: 'catalog-en', expected: 'Operational Procurement Catalog', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
   { path: '/cases/portal/', slug: 'portal-pt', expected: 'Business Operating Platform multiempresa', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
