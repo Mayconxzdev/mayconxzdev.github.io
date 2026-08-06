@@ -31,7 +31,9 @@ jobs:
       - name: Generate ATS resumes
         run: python scripts/generate_resumes.py
       - name: Normalize verified portfolio facts and positioning
-        run: python scripts/normalize_portfolio_content.py
+        run: |
+          python scripts/normalize_portfolio_content.py
+          python scripts/normalize_canonical_routes.py
       - name: Validate resume content and parser compatibility
         run: python scripts/validate_resumes.py
       - name: Validate rendered resume layout
@@ -65,14 +67,26 @@ jobs:
           path: artifacts/visual/
           if-no-files-found: warn
           retention-days: 14
-      - name: Commit generated resumes and normalized home pages
+      - name: Commit generated and canonicalized artifacts
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if ! git diff --quiet -- assets/cv/*.pdf index.html en/index.html; then
+          TRACKED=(
+            assets/cv/*.pdf
+            index.html
+            en/index.html
+            competencias/index.html
+            en/skills/index.html
+            cases/compras-vesper/index.html
+            en/cases/compras-vesper/index.html
+            cases/postagem-redes/index.html
+            en/cases/postagem-redes/index.html
+            sitemap.xml
+          )
+          if ! git diff --quiet -- "${TRACKED[@]}"; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add assets/cv/*.pdf index.html en/index.html
-            git commit -m "chore: regenerate audited resumes and portfolio positioning [skip ci]"
+            git add "${TRACKED[@]}"
+            git commit -m "chore: regenerate audited resumes and canonical portfolio routes [skip ci]"
             git push
           fi
       - name: Configure GitHub Pages
