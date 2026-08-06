@@ -28,20 +28,23 @@ jobs:
         run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
       - name: Validate Python sources
         run: python -m compileall -q scripts
-      - name: Generate ATS resumes
+      - name: Generate resumes
         run: python scripts/generate_resumes.py
-      - name: Normalize verified portfolio facts and positioning
+      - name: Normalize facts, routes and public voice
         run: |
           python scripts/normalize_portfolio_content.py
           python scripts/normalize_canonical_routes.py
           python scripts/apply_verified_career_facts_v2.py
           python scripts/final_text_patch.py
+          python scripts/rewrite_public_voice.py
       - name: Validate resume content and parser compatibility
         run: python scripts/validate_resumes.py
       - name: Validate rendered resume layout
         run: python scripts/validate_resume_visual.py
       - name: Validate portfolio content, links and hygiene
         run: python scripts/validate_site.py
+      - name: Validate natural public voice
+        run: python scripts/validate_public_voice.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js && node --check scripts/visual_smoke.mjs
       - name: Install browser smoke dependencies
@@ -77,40 +80,15 @@ jobs:
           path: artifacts/visual/
           if-no-files-found: warn
           retention-days: 14
-      - name: Commit generated and verified artifacts
+      - name: Commit generated public artifacts
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          TRACKED=(
-            assets/cv/*.pdf
-            index.html
-            en/index.html
-            competencias/index.html
-            en/skills/index.html
-            cases/mala-direta/index.html
-            en/cases/mala-direta/index.html
-            cases/producao-operacional/index.html
-            en/cases/producao-operacional/index.html
-            cases/catalogo-operacional-compras/index.html
-            en/cases/operational-procurement-catalog/index.html
-            cases/postagem-redes/index.html
-            en/cases/postagem-redes/index.html
-            cases/portal/index.html
-            en/cases/portal/index.html
-            cases/compass/index.html
-            en/cases/compass/index.html
-            cases/helpdesk/index.html
-            en/cases/helpdesk/index.html
-            cases/compass-automation/index.html
-            en/cases/compass-automation/index.html
-            cases/compras-vesper/index.html
-            en/cases/compras-vesper/index.html
-            sitemap.xml
-          )
-          if ! git diff --quiet -- "${TRACKED[@]}"; then
+          git add assets/cv/*.pdf sitemap.xml
+          find . -type f -name 'index.html' -not -path './artifacts/*' -print0 | xargs -0 git add --
+          if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add "${TRACKED[@]}"
-            git commit -m "chore: publish verified career facts and audited resumes [skip ci]"
+            git commit -m "chore: publish current portfolio content and resumes [skip ci]"
             git push
           fi
       - name: Configure GitHub Pages
