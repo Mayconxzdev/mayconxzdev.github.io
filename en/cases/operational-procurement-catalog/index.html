@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Internal procurement catalog used daily to search materials, suppliers, prices and history with FastAPI, SQLite FTS5 and revision-based concurrency control.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/">
+  <link rel="alternate" hreflang="pt-BR" href="https://mayconxzdev.github.io/cases/catalogo-operacional-compras/">
+  <link rel="alternate" hreflang="en" href="https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/">
+  <link rel="alternate" hreflang="x-default" href="https://mayconxzdev.github.io/cases/catalogo-operacional-compras/">
+  <meta property="og:title" content="Operational Procurement Catalog | Maycon Ferreira">
+  <meta property="og:description" content="Internal search and purchasing-history system with integrity across concurrent edits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/">
+  <meta property="og:image" content="https://mayconxzdev.github.io/assets/social/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Operational Procurement Catalog | Maycon Ferreira</title>
+  <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../../css/styles.css">
+  <link rel="stylesheet" href="../../../css/layout-safety.css">
+  <script defer src="../../../js/site.js"></script>
+  <script>(function(){try{var t=localStorage.getItem('mf-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}}())</script>
+</head>
+<body class="case-body case-body--catalogo-operacional-compras">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="../../" aria-label="Maycon Ferreira"><span class="brand-mark">MF</span><span class="brand-copy"><strong>Maycon Ferreira</strong><small>Systems in operation</small></span></a>
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
+    <nav id="main-nav" aria-label="Primary navigation"><a href="../../#overview">Overview</a><a href="../../#systems">Systems</a><a href="../../#experience">Experience</a><a href="../../#evidence">Evidence</a><a href="../../#contact">Contact</a><a class="nav-cv" href="../../../assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf">Resume</a><a class="lang-link" href="../../../cases/catalogo-operacional-compras/">PT</a></nav>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme" title="Toggle theme"><span class="theme-toggle__icon" aria-hidden="true">◐</span><span class="sr-only">Toggle theme</span></button>
+  </header>
+  <main id="main" class="case-page">
+    <section class="case-hero">
+      <a class="back-link" href="../../">← Back to portfolio</a>
+      <div class="case-identity"><div>
+        <p class="eyebrow">CASE / OPERATIONAL PROCUREMENT CATALOG</p>
+        <span class="status status--internal">INTERNAL USE</span>
+        <h1>Operational Procurement Catalog</h1>
+        <p class="case-category">Search, history and data integrity for procurement</p>
+        <p class="case-summary">Internal system used daily by three operational users and consulted by management to find materials, suppliers, prices and history without manually navigating spreadsheet tabs and product families.</p>
+        <div class="project-links"><a class="text-link text-link--muted" href="https://github.com/Mayconxzdev/PlanilhaCompras">View public repository<span aria-hidden="true">↗</span></a></div>
+      </div><div class="case-hero__visual"><figure class="case-showcase"><div class="case-showcase__frame"><img src="../../../assets/evidence/procureflow-search.webp" alt="Material search in the Operational Procurement Catalog demonstration dataset." decoding="async"></div><figcaption><span class="evidence-label">DEMONSTRATION DATA</span><strong>Search by material, code and supplier.</strong><span>The public interface preserves the workflow while replacing company data.</span></figcaption></figure></div></div>
+    </section>
+    <section class="case-facts" aria-label="Technical summary"><div><span>State</span><b>DAILY INTERNAL USE</b></div><div><span>Technologies</span><b>FastAPI · Python · SQLite FTS5 · JavaScript · OCR</b></div><div><span>Evidence type</span><b>Sanitized public code, tests and declared internal use</b></div></section>
+    <section class="case-gallery-section"><div class="case-gallery-heading"><p>VISUAL EVIDENCE</p><div><h2>The workflow that replaced manual search</h2><span>The screens demonstrate search, structured entry and conflict protection without exposing real materials, prices or suppliers.</span></div></div><div class="case-gallery"><figure class="case-gallery__item"><div class="case-gallery__frame"><img src="../../../assets/evidence/procureflow-new.webp" alt="Structured new-material entry with fictional data." loading="lazy" decoding="async"></div><figcaption><span class="evidence-label">DEMONSTRATION DATA</span><strong>Structured technical entry.</strong></figcaption></figure><figure class="case-gallery__item"><div class="case-gallery__frame"><img src="../../../assets/evidence/procureflow-conflict.webp" alt="Conflict handling between two catalog edits." loading="lazy" decoding="async"></div><figcaption><span class="evidence-label">REAL BEHAVIOR</span><strong>Revision conflict instead of silent overwrite.</strong></figcaption></figure></div><div class="case-evidence-index"><div><p class="eyebrow">What this gallery shows</p><p>Operational search, field separation and an explicit response when another user has already changed the source.</p></div><div><p class="eyebrow">Public limit</p><p>The internal base originated from a spreadsheet maintained for approximately two years, but volumes, values and suppliers are not published.</p></div></div></section>
+    <section class="case-story">
+      <article><span>01</span><h2>Context and problem</h2><p>The information existed, but finding an item required knowing its spreadsheet tab, family or exact description. Concurrent edits could also overwrite newer work.</p></article>
+      <article><span>02</span><h2>What I did</h2><p>Modeled the catalog and implemented the API, search, entry, history, backups, revision control, optional OCR, sanitized public edition and local deployment.</p></article>
+      <article><span>03</span><h2>How I built it</h2><p>FastAPI serves the interface and contracts; versioned JSON remains the readable source and SQLite FTS5 is a rebuildable derived index. Each write validates the loaded revision.</p></article>
+      <article><span>04</span><h2>What is demonstrated</h2><ul><li>Daily use by three operational users and management consultation.</li><li>Fast search by code, name or supplier.</li><li>Edit conflicts, backups and reproducible tests in the public release.</li></ul></article>
+    </section>
+    <section class="case-limit"><div><p class="eyebrow">What this case does not claim</p><p>It is not an ERP, fiscal module, payment platform or large-scale enterprise system.</p></div><div><p class="eyebrow">Responsible evolution</p><p>Higher scale would require a central transactional database, corporate identity, role-based authorization, HTTPS, observability and a monitored backup and restore policy.</p></div></section>
+    <section class="case-proof"><p>The publication contains no company materials, suppliers, prices, paths, credentials or history.</p><div class="project-links"><a class="text-link text-link--muted" href="https://github.com/Mayconxzdev/PlanilhaCompras">View architecture and tests<span aria-hidden="true">↗</span></a></div></section>
+    <section class="case-next"><div><span>Next case</span><a href="../helpdesk/">HelpDesk <span aria-hidden="true">→</span></a></div><a class="button button--primary" href="mailto:mayconxz00dev@gmail.com">Contact</a></section>
+  </main>
+  <footer class="site-footer"><div><strong>Maycon Ferreira</strong><p>Content based on real systems, sanitized releases and declared limitations.</p></div><div class="footer-links"><a href="mailto:mayconxz00dev@gmail.com">Email</a><a href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/">LinkedIn</a><a href="https://github.com/Mayconxzdev">GitHub</a><a href="../../../assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf">PDF</a></div></footer>
+</body>
+</html>
