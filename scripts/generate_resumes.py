@@ -14,8 +14,8 @@ from reportlab.platypus import Paragraph
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "assets" / "cv"
 PAGE_W, PAGE_H = A4
-LEFT = 44
-RIGHT = 44
+LEFT = 42
+RIGHT = 42
 CONTENT_W = PAGE_W - LEFT - RIGHT
 
 FONT = "Helvetica"
@@ -28,20 +28,20 @@ ACCENT = HexColor("#0F4C81")
 PT = {
     "filename": "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf",
     "title": "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES",
-    "location": "Rio de Janeiro - RJ | remoto, híbrido ou presencial",
+    "location": "Rio de Janeiro - RJ | remoto, híbrido ou presencial | disponibilidade para viagens",
     "portfolio_label": "Portfólio",
     "phone_label": "Telefone/WhatsApp: +55 (21) 96481-0480",
     "summary_heading": "RESUMO PROFISSIONAL",
     "summary": (
         "Analista de Automação, IA e Integrações com atuação ponta a ponta em processos e sistemas internos. "
-        "Experiência com n8n self-hosted, Python, APIs REST, IA generativa, agentes e bancos de dados, incluindo mais de "
-        "10 mil execuções de workflows em produção. Entrego do levantamento à sustentação, com confiabilidade e impacto mensurável."
+        "Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo soluções com Python, FastAPI, APIs REST, "
+        "bancos de dados e IA generativa, do levantamento à implantação, treinamento e sustentação."
     ),
     "skills_heading": "HABILIDADES TÉCNICAS",
     "skills": [
-        "<b>Automação e processos:</b> n8n self-hosted, automação low-code, workflows, AS-IS/TO-BE, requisitos, regras de negócio, aprovação humana, documentação e melhoria contínua.",
-        "<b>IA generativa e agentes:</b> OpenAI, Gemini, Ollama/OpenRouter, Codex, APIs de LLM, engenharia de prompts, recuperação de contexto/grounding, JSON Schema, pipelines multiestágio, IA multimodal, text-to-video e revisão humana.",
-        "<b>Integrações, engenharia e confiabilidade:</b> APIs REST, webhooks, OAuth 2.0, SMTP/IMAP, Meta Graph API, Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, testes, logs, retries, idempotência, backups e segredos.",
+        "<b>Automação e processos:</b> n8n self-hosted, automação low-code/no-code, workflows, AS-IS/TO-BE, levantamento de requisitos, regras de negócio, aprovação humana, documentação e melhoria contínua.",
+        "<b>IA e integrações:</b> OpenAI, Gemini, Ollama/OpenRouter, APIs de LLM, engenharia de prompts, recuperação de contexto/grounding, JSON Schema, pipelines multiestágio, IA multimodal e geração de mídia; APIs REST, webhooks, OAuth 2.0, SMTP/IMAP e Meta Graph API.",
+        "<b>Engenharia, dados e confiabilidade:</b> Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL, SQLite FTS5, Docker, Git/GitHub Actions, AWS S3/EC2/Lambda/Glue/Athena/QuickSight, testes, logs, retries, idempotência, backups e gestão de segredos.",
     ],
     "experience_heading": "EXPERIÊNCIA PROFISSIONAL",
     "vesper_org": "GRUPO VESPER",
@@ -49,23 +49,23 @@ PT = {
     "vesper_date": "12/2025 - presente",
     "vesper_role": "Técnico Júnior em Automação de Processos (cargo formal) | automação, IA aplicada e integrações",
     "vesper_points": [
-        "Administro n8n self-hosted em Windows/Docker com mais de 10 mil execuções de workflows em produção, integrando APIs, webhooks, PostgreSQL e SMTP com logs, retries, alertas, backups e auditoria.",
+        "Administro instância n8n self-hosted em Windows/Docker com 10 mil+ execuções em produção, integrando APIs, webhooks, PostgreSQL e SMTP com logs, retries, alertas, backups e auditoria.",
         "Desenvolvi o Vesper Propostas com ODT/PDF, IMAP/SMTP e revisão humana, reduzindo propostas simples de 2-4 minutos para menos de 30 segundos; uso diário por 4 profissionais.",
-        "Implantei o Produção Operacional em 11 computadores e uma TV de fábrica e o HelpDesk para 11 usuários; conduzo requisitos, AS-IS/TO-BE, arquitetura, testes, implantação, treinamento e sustentação.",
+        "Implantei o Produção Operacional em 10+ computadores e 1 TV, apoiando 20+ profissionais em 9 setores, e um HelpDesk utilizado por 11 usuários; treinei e orientei 30+ pessoas em escritório, fábrica e acesso remoto.",
     ],
-    "compasso_org": "COMPASSO TECNOLOGIA LTDA",
+    "compasso_org": "COMPASS UOL",
     "compasso_date": "10/2024 - 03/2025",
-    "compasso_role": "Estagiário de TI/Dados",
+    "compasso_role": "Programa de Bolsas em Engenharia de Dados",
     "compasso_point": (
-        "Reduzi de aproximadamente 3 horas para cerca de 5 minutos uma rotina com Python/Pandas; atuei também com AWS S3/EC2, "
-        "boto3, Pandas/Polars, SQL, Docker, suporte e documentação."
+        "Concluí 10 sprints práticas e construí pipeline com Python, SQL, Docker e AWS: ingestão CSV/API TMDB, S3, Lambda/boto3, "
+        "Glue/PySpark, Parquet, camadas Raw/Trusted/Refined, Athena e QuickSight."
     ),
     "projects_heading": "PROJETOS SELECIONADOS",
     "projects": [
-        "<b>Mala Direta:</b> automação n8n em produção com 2 workflows; fluxo principal com 158 nós e 9 Data Tables de domínio, fila por destinatário, deduplicação, SMTP, auditoria e campanha para 900+ destinatários.",
-        "<b>Catálogo Operacional de Compras:</b> sistema interno usado diariamente por 3 usuários e consultado pela gestão; FastAPI, busca SQLite FTS5 por código/nome/fornecedor, controle de concorrência por revisão, backups e OCR.",
-        "<b>Postagem Redes:</b> 3 workflows n8n para portal, ações e mídia; workflow de ações com 58 nós, Meta Graph API, OpenAI/Gemini/Ollama, aprovação humana, idempotência e Facebook validado em teste.",
-        "<b>Portal - em desenvolvimento:</b> Business Operating Platform multiempresa em React/TypeScript, FastAPI e PostgreSQL, com tenant/RLS, Action Envelope, aprovações versionadas e outbox; Procurement validado em sandbox e em preparação para piloto interno.",
+        "<b>Mala Direta:</b> 6 campanhas sobre base de 1.020 contatos, incluindo uma para 900+ destinatários; 2 workflows n8n, com 158 nós no principal e 9 Data Tables, filas, deduplicação, cancelamento revalidado e auditoria.",
+        "<b>Catálogo Operacional de Compras:</b> base histórica com 24 categorias e 480+ códigos, usada diariamente por 3 usuários e consultada pela gestão; FastAPI, SQLite FTS5, controle de revisão, backups e OCR.",
+        "<b>Postagem Redes:</b> 3 workflows n8n e 58 nós no fluxo de ações; Meta Graph API, OpenAI/Gemini/Ollama, aprovação humana e idempotência, com Facebook e Instagram validados em teste.",
+        "<b>Portal - em desenvolvimento:</b> produto multiempresa em React/TypeScript, FastAPI e PostgreSQL, com tenant/RLS, Action Envelope, aprovações e outbox; Procurement implementado em sandbox e revalidação técnica em andamento antes do piloto interno.",
     ],
     "education_heading": "FORMAÇÃO",
     "education": [
@@ -78,26 +78,26 @@ PT = {
         "Automação de Processos através da RPA - ENAP (25h); Mapeamento e Automação de Processos - ENAP (20h)."
     ),
     "language_heading": "IDIOMAS",
-    "language": "Português nativo | Inglês técnico para leitura; escrita e conversação básicas.",
+    "language": "Português nativo | Inglês básico; leitura independente de documentação técnica, escrita e conversação básicas.",
 }
 
 EN = {
     "filename": "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf",
     "title": "AI AUTOMATION & INTEGRATIONS ANALYST",
-    "location": "Rio de Janeiro - Brazil | remote, hybrid or on-site",
+    "location": "Rio de Janeiro - Brazil | remote, hybrid or on-site | available to travel",
     "portfolio_label": "Portfolio",
     "phone_label": "Phone/WhatsApp: +55 (21) 96481-0480",
     "summary_heading": "PROFESSIONAL SUMMARY",
     "summary": (
-        "AI Automation and Integrations Analyst with end-to-end experience in processes and internal systems. Skilled in self-hosted n8n, "
-        "Python, REST APIs, generative AI, agents and databases, including more than 10,000 production workflow executions. "
-        "Delivers from discovery through support, focused on reliability and measurable impact."
+        "AI Automation and Integrations Analyst with end-to-end experience in internal processes and systems. Administers a self-hosted "
+        "n8n environment with 10,000+ production executions and builds solutions with Python, FastAPI, REST APIs, databases and generative AI, "
+        "from discovery through deployment, training and support."
     ),
     "skills_heading": "TECHNICAL SKILLS",
     "skills": [
-        "<b>Automation and processes:</b> self-hosted n8n, low-code automation, workflows, AS-IS/TO-BE, requirements, business rules, human approval, documentation and continuous improvement.",
-        "<b>Generative AI and agents:</b> OpenAI, Gemini, Ollama/OpenRouter, Codex, LLM APIs, prompt engineering, context retrieval/grounding, JSON Schema, multi-stage pipelines, multimodal AI, text-to-video and human review.",
-        "<b>Integrations, engineering and reliability:</b> REST APIs, webhooks, OAuth 2.0, SMTP/IMAP, Meta Graph API, Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL/SQLite, Docker, Git/GitHub Actions, CI/CD, tests, logs, retries, idempotency, backups and secrets.",
+        "<b>Automation and processes:</b> self-hosted n8n, low-code/no-code automation, workflows, AS-IS/TO-BE, requirements discovery, business rules, human approval, documentation and continuous improvement.",
+        "<b>AI and integrations:</b> OpenAI, Gemini, Ollama/OpenRouter, LLM APIs, prompt engineering, context retrieval/grounding, JSON Schema, multi-stage pipelines, multimodal AI and media generation; REST APIs, webhooks, OAuth 2.0, SMTP/IMAP and Meta Graph API.",
+        "<b>Engineering, data and reliability:</b> Python, JavaScript/TypeScript, Node.js/Express, FastAPI, SQL, PostgreSQL, SQLite FTS5, Docker, Git/GitHub Actions, AWS S3/EC2/Lambda/Glue/Athena/QuickSight, tests, logs, retries, idempotency, backups and secrets management.",
     ],
     "experience_heading": "PROFESSIONAL EXPERIENCE",
     "vesper_org": "GRUPO VESPER",
@@ -105,23 +105,23 @@ EN = {
     "vesper_date": "12/2025 - Present",
     "vesper_role": "Junior Process Automation Technician (formal title) | automation, applied AI and integrations",
     "vesper_points": [
-        "Administer self-hosted n8n on Windows/Docker with more than 10,000 production workflow executions, integrating APIs, webhooks, PostgreSQL and SMTP with logs, retries, alerts, backups and auditing.",
+        "Administer a self-hosted n8n environment on Windows/Docker with 10,000+ production executions, integrating APIs, webhooks, PostgreSQL and SMTP with logs, retries, alerts, backups and auditing.",
         "Developed Vesper Propostas with ODT/PDF, IMAP/SMTP and human review, reducing simple proposals from 2-4 minutes to under 30 seconds; used daily by 4 professionals.",
-        "Deployed Produção Operacional to 11 workstations and a factory TV and HelpDesk to 11 users; lead requirements, AS-IS/TO-BE, architecture, testing, deployment, training and support.",
+        "Deployed Produção Operacional to 10+ workstations and 1 factory TV, supporting 20+ professionals across 9 production areas, plus a HelpDesk used by 11 users; trained and guided 30+ people in office, factory and remote settings.",
     ],
-    "compasso_org": "COMPASSO TECNOLOGIA LTDA",
+    "compasso_org": "COMPASS UOL",
     "compasso_date": "10/2024 - 03/2025",
-    "compasso_role": "IT/Data Intern",
+    "compasso_role": "Data Engineering Scholarship Program",
     "compasso_point": (
-        "Reduced a routine from approximately 3 hours to around 5 minutes with Python/Pandas; also worked with AWS S3/EC2, boto3, "
-        "Pandas/Polars, SQL, Docker, support and documentation."
+        "Completed 10 practical sprints and built a pipeline with Python, SQL, Docker and AWS: CSV/TMDB API ingestion, S3, Lambda/boto3, "
+        "Glue/PySpark, Parquet, Raw/Trusted/Refined layers, Athena and QuickSight."
     ),
     "projects_heading": "SELECTED PROJECTS",
     "projects": [
-        "<b>Mala Direta:</b> production n8n automation with 2 workflows; the main workflow has 158 nodes and 9 domain Data Tables, per-recipient queues, deduplication, SMTP, auditing and a 900+ recipient campaign.",
-        "<b>Operational Procurement Catalog:</b> internal system used daily by 3 users and consulted by management; FastAPI, SQLite FTS5 search by code/name/supplier, optimistic revision control, backups and OCR.",
-        "<b>Postagem Redes:</b> 3 n8n workflows for portal, actions and media; the actions workflow has 58 nodes, Meta Graph API, OpenAI/Gemini/Ollama, human approval, idempotency and Facebook validated in testing.",
-        "<b>Portal - in development:</b> multi-tenant Business Operating Platform using React/TypeScript, FastAPI and PostgreSQL, with tenant/RLS, versioned Action Envelopes, approvals and outbox; Procurement validated in sandbox and being prepared for an internal pilot.",
+        "<b>Mala Direta:</b> 6 campaigns over a 1,020-contact base, including one for 900+ recipients; 2 n8n workflows, with 158 nodes in the main flow and 9 Data Tables, queues, deduplication, revalidated cancellation and auditing.",
+        "<b>Operational Procurement Catalog:</b> historical base with 24 categories and 480+ material codes, used daily by 3 users and consulted by management; FastAPI, SQLite FTS5, revision control, backups and OCR.",
+        "<b>Postagem Redes:</b> 3 n8n workflows and 58 nodes in the actions flow; Meta Graph API, OpenAI/Gemini/Ollama, human approval and idempotency, with Facebook and Instagram validated in testing.",
+        "<b>Portal - in development:</b> multi-tenant product using React/TypeScript, FastAPI and PostgreSQL, with tenant/RLS, Action Envelopes, approvals and outbox; Procurement implemented in sandbox and technical revalidation underway before an internal pilot.",
     ],
     "education_heading": "EDUCATION",
     "education": [
@@ -134,7 +134,7 @@ EN = {
         "Process Automation through RPA - ENAP (25h); Process Mapping and Automation - ENAP (20h)."
     ),
     "language_heading": "LANGUAGES",
-    "language": "Portuguese: native | English: technical reading; basic writing and conversation.",
+    "language": "Portuguese: native | English: basic; independently reads technical documentation; basic writing and conversation.",
 }
 
 
@@ -176,11 +176,11 @@ def paragraph(text: str, style: ParagraphStyle, canvas: Canvas, y: float, audit:
 
 
 def section(canvas: Canvas, title: str, y: float, audit: LayoutAudit) -> float:
-    top = y - 8
-    heading_baseline = top - 10.2
+    top = y - 7
+    heading_baseline = top - 10.0
     bar_bottom = heading_baseline - 1
-    line_y = heading_baseline - 5.3
-    bottom = line_y - 8
+    line_y = heading_baseline - 5.2
+    bottom = line_y - 7
     canvas.setFillColor(ACCENT)
     canvas.rect(LEFT, bar_bottom, 4, 12, fill=1, stroke=0)
     canvas.setFillColor(INK)
@@ -199,8 +199,8 @@ def text_width(text: str, font: str, size: float) -> float:
 
 def link_line(canvas: Canvas, y: float, items: list[tuple[str, str]], audit: LayoutAudit, name: str) -> float:
     x = LEFT
-    size = 8.3
-    leading = 11.5
+    size = 8.2
+    leading = 11.3
     line_top = y + 2
     line_bottom = y - size - 1
     canvas.setFont(FONT, size)
@@ -248,42 +248,61 @@ def generate(data: dict[str, object]) -> Path:
     canvas.setAuthor("Maycon Ferreira")
     canvas.setSubject("One-page resume for process automation, AI, integrations and internal systems roles")
     canvas.setKeywords(
-        "automation, process automation, process mapping, AS-IS, TO-BE, n8n, low-code, generative AI, AI agents, Codex, "
-        "multimodal AI, text-to-video, systems integration, REST APIs, webhooks, Python, JavaScript, TypeScript, FastAPI, "
-        "PostgreSQL, FTS5, Docker, RLS, outbox, Action Envelope"
+        "automation, process automation, n8n, low-code, process mapping, AS-IS, TO-BE, generative AI, AI agents, "
+        "multimodal AI, media generation, systems integration, REST APIs, webhooks, Python, JavaScript, TypeScript, "
+        "FastAPI, PostgreSQL, SQLite FTS5, Docker, AWS, data engineering, PySpark, RLS, outbox, Action Envelope"
     )
     canvas.setCreator("Maycon Ferreira")
 
-    base = ParagraphStyle("base", fontName=FONT, fontSize=9.55, leading=11.9, textColor=INK)
-    skill = ParagraphStyle("skill", parent=base, fontSize=9.15, leading=11.35)
-    role = ParagraphStyle("role", parent=base, fontSize=8.95, leading=11.2, textColor=MUTED)
-    bullet = ParagraphStyle("bullet", parent=base, fontSize=8.95, leading=11.25, leftIndent=13, firstLineIndent=-9)
-    project = ParagraphStyle("project", parent=base, fontSize=8.55, leading=10.55, leftIndent=13, firstLineIndent=-9)
-    compact = ParagraphStyle("compact", parent=base, fontSize=8.95, leading=11.15)
+    base = ParagraphStyle("base", fontName=FONT, fontSize=9.35, leading=11.55, textColor=INK)
+    skill = ParagraphStyle("skill", parent=base, fontSize=8.9, leading=10.9)
+    role = ParagraphStyle("role", parent=base, fontSize=8.7, leading=10.7, textColor=MUTED)
+    bullet = ParagraphStyle("bullet", parent=base, fontSize=8.7, leading=10.85, leftIndent=13, firstLineIndent=-9)
+    project = ParagraphStyle("project", parent=base, fontSize=8.25, leading=10.0, leftIndent=13, firstLineIndent=-9)
+    compact = ParagraphStyle("compact", parent=base, fontSize=8.65, leading=10.65)
 
     audit = LayoutAudit()
-    y = PAGE_H - 36
+    y = PAGE_H - 35
     canvas.setFillColor(ACCENT)
     canvas.rect(0, PAGE_H - 6, PAGE_W, 6, fill=1, stroke=0)
 
     canvas.setFillColor(INK)
-    canvas.setFont(FONT_BOLD, 18.7)
+    canvas.setFont(FONT_BOLD, 18.5)
     canvas.drawString(LEFT, y, "MAYCON FERREIRA")
     audit.add("header:name", y + 4, y - 4)
     y -= 17
     canvas.setFillColor(ACCENT)
-    canvas.setFont(FONT_BOLD, 10.3)
+    canvas.setFont(FONT_BOLD, 10.2)
     canvas.drawString(LEFT, y, str(data["title"]))
     audit.add("header:title", y + 2, y - 3)
     y -= 14
     canvas.setFillColor(MUTED)
-    canvas.setFont(FONT, 8.65)
+    canvas.setFont(FONT, 8.5)
     canvas.drawString(LEFT, y, str(data["location"]))
     audit.add("header:location", y + 2, y - 3)
     y -= 12
 
-    y = link_line(canvas, y, [(str(data["phone_label"]), "https://wa.me/5521964810480"), ("E-mail: mayconxz00dev@gmail.com", "mailto:mayconxz00dev@gmail.com")], audit, "header:contact")
-    y = link_line(canvas, y, [("LinkedIn: linkedin.com/in/maycon-ferreira-7bb870231/", "https://www.linkedin.com/in/maycon-ferreira-7bb870231/"), ("GitHub: github.com/Mayconxzdev", "https://github.com/Mayconxzdev"), (f"{data['portfolio_label']}: mayconxzdev.github.io", "https://mayconxzdev.github.io/")], audit, "header:profiles")
+    y = link_line(
+        canvas,
+        y,
+        [
+            (str(data["phone_label"]), "https://wa.me/5521964810480"),
+            ("E-mail: mayconxz00dev@gmail.com", "mailto:mayconxz00dev@gmail.com"),
+        ],
+        audit,
+        "header:contact",
+    )
+    y = link_line(
+        canvas,
+        y,
+        [
+            ("LinkedIn: linkedin.com/in/maycon-ferreira-7bb870231/", "https://www.linkedin.com/in/maycon-ferreira-7bb870231/"),
+            ("GitHub: github.com/Mayconxzdev", "https://github.com/Mayconxzdev"),
+            (f"{data['portfolio_label']}: mayconxzdev.github.io", "https://mayconxzdev.github.io/"),
+        ],
+        audit,
+        "header:profiles",
+    )
     canvas.setStrokeColor(LINE)
     canvas.line(LEFT, y - 1, LEFT + CONTENT_W, y - 1)
     y -= 3
@@ -293,27 +312,27 @@ def generate(data: dict[str, object]) -> Path:
 
     y = section(canvas, str(data["skills_heading"]), y, audit)
     for index, item in enumerate(data["skills"]):
-        y = paragraph(str(item), skill, canvas, y, audit, f"skill:{index + 1}") - 2.0
+        y = paragraph(str(item), skill, canvas, y, audit, f"skill:{index + 1}") - 1.8
 
     y = section(canvas, str(data["experience_heading"]), y, audit)
     y = draw_role_header(canvas, y, str(data["vesper_org"]), str(data["vesper_date"]), audit, "role:vesper-header")
-    y = paragraph(escape(str(data["vesper_company"])), role, canvas, y, audit, "role:vesper-company") - 0.5
-    y = paragraph(escape(str(data["vesper_role"])), role, canvas, y, audit, "role:vesper-title") - 1.5
+    y = paragraph(escape(str(data["vesper_company"])), role, canvas, y, audit, "role:vesper-company") - 0.3
+    y = paragraph(escape(str(data["vesper_role"])), role, canvas, y, audit, "role:vesper-title") - 1.3
     for index, item in enumerate(data["vesper_points"]):
-        y = paragraph("- " + escape(str(item)), bullet, canvas, y, audit, f"vesper-bullet:{index + 1}") - 2.0
+        y = paragraph("- " + escape(str(item)), bullet, canvas, y, audit, f"vesper-bullet:{index + 1}") - 1.8
 
-    y -= 3
+    y -= 2.5
     y = draw_role_header(canvas, y, str(data["compasso_org"]), str(data["compasso_date"]), audit, "role:compasso-header")
-    y = paragraph(escape(str(data["compasso_role"])), role, canvas, y, audit, "role:compasso-title") - 1
+    y = paragraph(escape(str(data["compasso_role"])), role, canvas, y, audit, "role:compasso-title") - 0.8
     y = paragraph("- " + escape(str(data["compasso_point"])), bullet, canvas, y, audit, "compasso-bullet")
 
     y = section(canvas, str(data["projects_heading"]), y, audit)
     for index, item in enumerate(data["projects"]):
-        y = paragraph("- " + str(item), project, canvas, y, audit, f"project:{index + 1}") - 1.8
+        y = paragraph("- " + str(item), project, canvas, y, audit, f"project:{index + 1}") - 1.5
 
     y = section(canvas, str(data["education_heading"]), y, audit)
     for index, item in enumerate(data["education"]):
-        y = paragraph(str(item), compact, canvas, y, audit, f"education:{index + 1}") - 1
+        y = paragraph(str(item), compact, canvas, y, audit, f"education:{index + 1}") - 0.8
 
     y = section(canvas, str(data["certs_heading"]), y, audit)
     y = paragraph(escape(str(data["certs"])), compact, canvas, y, audit, "certifications")
