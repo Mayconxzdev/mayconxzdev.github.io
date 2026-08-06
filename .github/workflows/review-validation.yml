@@ -1,0 +1,97 @@
+name: Final branch validation report
+
+on:
+  push:
+    branches: [final/verified-career-materials-2026-08]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: final-branch-validation
+  cancel-in-progress: true
+
+jobs:
+  validate-and-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
+          npm install --no-save playwright@1.54.2
+          npx playwright install --with-deps chromium
+      - name: Run complete validation and capture report
+        id: audit
+        shell: bash
+        run: |
+          set +e
+          REPORT=docs/BRANCH_VALIDATION_REPORT.txt
+          : > "$REPORT"
+          overall=0
+          run_check() {
+            name="$1"
+            shift
+            printf '\n===== %s =====\n' "$name" | tee -a "$REPORT"
+            "$@" >>"$REPORT" 2>&1
+            status=$?
+            printf 'STATUS=%s\n' "$status" | tee -a "$REPORT"
+            if [ "$status" -ne 0 ]; then overall=1; fi
+          }
+          run_check "compile Python" python -m compileall -q scripts
+          run_check "generate resumes" python scripts/generate_resumes.py
+          run_check "normalize positioning" python scripts/normalize_portfolio_content.py
+          run_check "normalize routes" python scripts/normalize_canonical_routes.py
+          run_check "apply verified facts" python scripts/apply_verified_career_facts_v2.py
+          run_check "final wording" python scripts/final_text_patch.py
+          run_check "validate resume content" python scripts/validate_resumes.py
+          run_check "validate resume visuals" python scripts/validate_resume_visual.py
+          run_check "validate site" python scripts/validate_site.py
+          run_check "validate site JavaScript" node --check js/site.js
+          run_check "validate smoke JavaScript" node --check scripts/visual_smoke.mjs
+          python -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-http.log 2>&1 &
+          SERVER_PID=$!
+          sleep 2
+          run_check "browser visual smoke" env PORTFOLIO_BASE_URL=http://127.0.0.1:8000 node scripts/visual_smoke.mjs
+          kill "$SERVER_PID" 2>/dev/null || true
+          printf '\nOVERALL_STATUS=%s\n' "$overall" | tee -a "$REPORT"
+          echo "overall=$overall" >> "$GITHUB_OUTPUT"
+          exit 0
+      - name: Commit generated review artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            docs/BRANCH_VALIDATION_REPORT.txt \
+            assets/cv/*.pdf \
+            index.html en/index.html \
+            competencias/index.html en/skills/index.html \
+            cases/mala-direta/index.html en/cases/mala-direta/index.html \
+            cases/producao-operacional/index.html en/cases/producao-operacional/index.html \
+            cases/catalogo-operacional-compras/index.html en/cases/operational-procurement-catalog/index.html \
+            cases/portal/index.html en/cases/portal/index.html \
+            cases/compass/index.html en/cases/compass/index.html \
+            cases/helpdesk/index.html en/cases/helpdesk/index.html \
+            sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: record final branch validation artifacts [skip ci]"
+            git push
+          fi
+      - name: Enforce result
+        run: test "${{ steps.audit.outputs.overall }}" = "0"
+      - name: Upload review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-branch-review-${{ github.run_id }}
+          path: |
+            docs/BRANCH_VALIDATION_REPORT.txt
+            assets/cv/*.pdf
+            artifacts/visual/
+          if-no-files-found: warn
+          retention-days: 30
