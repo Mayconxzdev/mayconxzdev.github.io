@@ -21,7 +21,7 @@ Também mantenho cases de sites industriais, aplicações pessoais e versões p�
 
 ## Resultados apresentados
 
-- 10 mil+ execuções na instância n8n de produção, distribuídas entre diferentes automações;
+- 10 mil+ execuções de workflows na instância n8n de produção, distribuídas entre diferentes automações;
 - seis campanhas na Mala Direta sobre uma base de 1.020 contatos, incluindo uma campanha para 900+ destinatários;
 - Produção Operacional em 10+ computadores e uma TV, apoiando 20+ profissionais em nove setores;
 - HelpDesk utilizado por 11 pessoas;
@@ -45,7 +45,7 @@ Eles são gerados por `scripts/generate_resumes.py` e mantidos em uma página A4
 - `/competencias/` e `/en/skills/` — tecnologias e práticas que utilizo;
 - `/cases/` e `/en/cases/` — detalhes dos projetos;
 - `/assets/cv/` — currículos gerados;
-- `/scripts/` — geração, normalização e validação;
+- `/scripts/` — geração, reconciliação e validação;
 - `/docs/` — decisões técnicas e relatórios internos de qualidade.
 
 ## Executar localmente
@@ -56,16 +56,14 @@ python -m http.server 8000 --bind 127.0.0.1
 
 Abra `http://127.0.0.1:8000`.
 
-Para gerar e validar os currículos e as páginas:
+Para repetir a geração e a validação usadas na publicação:
 
 ```bash
 python -m pip install reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
 python scripts/generate_resumes.py
-python scripts/normalize_portfolio_content.py
-python scripts/normalize_canonical_routes.py
-python scripts/apply_verified_career_facts_v2.py
-python scripts/final_text_patch.py
+python scripts/reconcile_public_cases.py
 python scripts/rewrite_public_voice.py
+python scripts/final_quality_patch.py
 python scripts/validate_resumes.py
 python scripts/validate_resume_visual.py
 python scripts/validate_site.py
@@ -81,9 +79,10 @@ O GitHub Actions verifica:
 - geração e leitura dos PDFs;
 - quantidade de páginas, margens, fonte e sobreposição;
 - rotas, links, imagens e versões em português e inglês;
-- ausência de métricas antigas nas áreas principais;
-- linguagem pública escrita como apresentação dos meus projetos, sem parecer um relatório de recrutamento;
-- navegação em desktop e celular, nos temas claro e escuro.
+- ausência de métricas, nomes e estados antigos nas áreas públicas;
+- linguagem escrita como apresentação dos meus projetos, sem parecer um relatório de recrutamento;
+- navegação em desktop e celular, nos temas claro e escuro;
+- publicação do conteúdo atual no endereço público após o deploy.
 
 Os detalhes técnicos dessas verificações ficam em [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md).
 
