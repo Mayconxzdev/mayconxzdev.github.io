@@ -19,30 +19,25 @@ EXPECTED_URIS = {
 FILES = {
     "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf": {
         "headings": [
-            "RESUMO PROFISSIONAL",
-            "HABILIDADES TÉCNICAS",
-            "EXPERIÊNCIA PROFISSIONAL",
-            "PROJETOS SELECIONADOS",
-            "FORMAÇÃO",
-            "CERTIFICAÇÕES",
-            "IDIOMAS",
+            "RESUMO PROFISSIONAL", "HABILIDADES TÉCNICAS", "EXPERIÊNCIA PROFISSIONAL",
+            "PROJETOS SELECIONADOS", "FORMAÇÃO", "CERTIFICAÇÕES", "IDIOMAS",
         ],
         "required": [
             "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES",
-            "n8n self-hosted",
+            "viagens e mudança",
+            "uma instância n8n self-hosted",
+            "10 mil+ execuções de workflows em produção",
             "automação low-code/no-code",
             "AS-IS/TO-BE",
-            "IA e integrações",
+            "Ollama e OpenRouter",
             "APIs de LLM",
             "recuperação de contexto/grounding",
             "JSON Schema",
             "IA multimodal e geração de mídia",
             "APIs REST",
-            "webhooks",
             "Node.js/Express",
             "FastAPI",
             "AWS S3/EC2/Lambda/Glue/Athena/QuickSight",
-            "10 mil+ execuções em produção",
             "menos de 30 segundos",
             "10+ computadores",
             "1 TV",
@@ -50,6 +45,7 @@ FILES = {
             "9 setores",
             "11 usuários",
             "30+ pessoas",
+            "Estagiário de TI/Dados",
             "Programa de Bolsas em Engenharia de Dados",
             "10 sprints práticas",
             "CSV/API TMDB",
@@ -65,56 +61,42 @@ FILES = {
             "24 categorias",
             "480+ códigos",
             "Postagem Redes",
-            "Facebook e Instagram validados em teste",
+            "Facebook e Instagram exercitados em teste",
             "Portal - em desenvolvimento",
             "tenant/RLS",
             "Action Envelope",
             "revalidação técnica em andamento",
             "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-            "Inglês básico",
-            "leitura independente de documentação técnica",
+            "Inglês: leitura técnica independente",
         ],
         "forbidden": [
-            "3 horas para cerca de 5 minutos",
-            "3h",
-            "text-to-video",
-            "11 computadores",
-            "PlanilhaCompras",
-            "ProcureFlow",
-            "Portal Vesper",
-            "Procurement validado em sandbox",
-            "RAG/grounding",
-            "FastAPI/Flask",
-            "Profissional de automação, IA generativa e aplicada",
+            "3 horas para cerca de 5 minutos", "3h", "text-to-video", "11 computadores",
+            "PlanilhaCompras", "ProcureFlow", "Portal Vesper", "Procurement validado em sandbox",
+            "Facebook e Instagram validados em teste", "10 mil+ execuções em produção",
+            "Inglês básico", "Ollama/OpenRouter", "FastAPI/Flask",
         ],
         "date_patterns": [r"12/2025\s*-\s*presente", r"10/2024\s*-\s*03/2025"],
     },
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf": {
         "headings": [
-            "PROFESSIONAL SUMMARY",
-            "TECHNICAL SKILLS",
-            "PROFESSIONAL EXPERIENCE",
-            "SELECTED PROJECTS",
-            "EDUCATION",
-            "CERTIFICATIONS",
-            "LANGUAGES",
+            "PROFESSIONAL SUMMARY", "TECHNICAL SKILLS", "PROFESSIONAL EXPERIENCE",
+            "SELECTED PROJECTS", "EDUCATION", "CERTIFICATIONS", "LANGUAGES",
         ],
         "required": [
             "AI AUTOMATION & INTEGRATIONS ANALYST",
-            "self-hosted n8n",
+            "available to travel and relocate",
+            "10,000+ workflow executions in production",
             "low-code/no-code automation",
             "AS-IS/TO-BE",
-            "AI and integrations",
+            "Ollama and OpenRouter",
             "LLM APIs",
             "context retrieval/grounding",
             "JSON Schema",
             "multimodal AI and media generation",
             "REST APIs",
-            "webhooks",
             "Node.js/Express",
             "FastAPI",
             "AWS S3/EC2/Lambda/Glue/Athena/QuickSight",
-            "10,000+ production executions",
             "under 30 seconds",
             "10+ workstations",
             "1 factory TV",
@@ -122,7 +104,8 @@ FILES = {
             "9 production areas",
             "11 users",
             "30+ people",
-            "Data Engineering Scholarship Program",
+            "Data Engineering Intern",
+            "Scholarship Program",
             "10 practical sprints",
             "CSV/TMDB API",
             "Glue/PySpark",
@@ -137,25 +120,20 @@ FILES = {
             "24 categories",
             "480+ material codes",
             "Postagem Redes",
-            "Facebook and Instagram validated in testing",
+            "Facebook and Instagram exercised in testing",
             "Portal - in development",
             "tenant/RLS",
             "Action Envelopes",
             "technical revalidation underway",
-            "Technology Degree in Systems Analysis and Development",
-            "English: basic",
-            "independently reads technical documentation",
+            "Technology Degree (Tecnólogo) in Systems Analysis and Development",
+            "Process Automation with RPA",
+            "English: independent technical reading",
         ],
         "forbidden": [
-            "3 hours to around 5 minutes",
-            "text-to-video",
-            "11 workstations",
-            "PlanilhaCompras",
-            "ProcureFlow",
-            "Portal Vesper",
-            "Procurement validated in sandbox",
-            "RAG/grounding",
-            "FastAPI/Flask",
+            "3 hours to around 5 minutes", "text-to-video", "11 workstations", "PlanilhaCompras",
+            "ProcureFlow", "Portal Vesper", "Procurement validated in sandbox",
+            "Facebook and Instagram validated in testing", "10,000+ production executions",
+            "English: basic", "Ollama/OpenRouter", "FastAPI/Flask",
         ],
         "date_patterns": [r"12/2025\s*-\s*Present", r"10/2024\s*-\s*03/2025"],
     },
@@ -221,7 +199,7 @@ def main() -> int:
                 errors.append(f"{filename}: missing required evidence/keyword: {phrase}")
         for phrase in rules["forbidden"]:
             if phrase in text:
-                errors.append(f"{filename}: stale, ambiguous or unsupported text found: {phrase}")
+                errors.append(f"{filename}: stale, awkward or unsupported text found: {phrase}")
         for pattern in rules["date_patterns"]:
             if not re.search(pattern, text):
                 errors.append(f"{filename}: inconsistent date pattern: {pattern}")
@@ -232,18 +210,7 @@ def main() -> int:
         if not str(metadata.get("/Title") or "").startswith("Maycon Ferreira - "):
             errors.append(f"{filename}: invalid Title metadata")
         keywords = str(metadata.get("/Keywords") or "").lower()
-        for keyword in (
-            "automation",
-            "n8n",
-            "generative ai",
-            "media generation",
-            "fastapi",
-            "fts5",
-            "aws",
-            "data engineering",
-            "rls",
-            "action envelope",
-        ):
+        for keyword in ("automation", "n8n", "generative ai", "media generation", "fastapi", "fts5", "aws", "data engineering", "rls", "action envelope"):
             if keyword not in keywords:
                 errors.append(f"{filename}: Keywords metadata is missing {keyword}")
 
@@ -252,14 +219,13 @@ def main() -> int:
             errors.append(f"{filename}: missing links: {sorted(missing)}")
         if extra := found - EXPECTED_URIS:
             errors.append(f"{filename}: unexpected links: {sorted(extra)}")
-
         print(f"OK: {filename} | one A4 page | {len(text)} chars | {len(found)} links")
 
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("Resume content and ATS validation completed without errors.")
+    print("Resume content, evidence and ATS parsing validated without errors.")
     return 0
 
 
