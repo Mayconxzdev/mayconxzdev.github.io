@@ -1,6 +1,6 @@
 # Verificação da versão publicada
 
-Atualizado em **6 de agosto de 2026**, após revisão dos repositórios atuais, métricas, posicionamento, redundância entre projetos, consistência bilíngue e apresentação visual.
+Atualizado em **6 de agosto de 2026**, após revisão dos repositórios atuais, métricas, posicionamento, redundância entre projetos, consistência bilíngue, rotas canônicas e apresentação visual.
 
 ## Currículos PT-BR e inglês
 
@@ -17,7 +17,7 @@ Confirmado automaticamente em cada execução do GitHub Actions:
 - distinção explícita entre três workflows do Postagem Redes e 58 nós no workflow de ações;
 - Catálogo apresentado com FastAPI, SQLite FTS5, controle de concorrência por revisão e uso diário;
 - Portal apresentado como produto multiempresa em desenvolvimento, Procurement validado em sandbox e preparação para piloto interno;
-- ausência de nomes antigos, combinações ambíguas de métricas, PDFs legados, texto fora das margens e colisões visuais;
+- ausência de combinações ambíguas de métricas, PDFs legados, texto fora das margens e colisões visuais;
 - fonte mínima de 8 pontos nas informações auxiliares e corpo principal acima desse limite;
 - renderização raster válida e PDF não escaneado.
 
@@ -25,17 +25,28 @@ Confirmado automaticamente em cada execução do GitHub Actions:
 
 O validador estático confere:
 
-- 41 páginas HTML;
-- 18 cases em português e 18 equivalentes em inglês;
-- 40 URLs no sitemap;
+- **45 páginas HTML** no total;
+- **18 cases ativos em português e 18 equivalentes em inglês**;
+- quatro páginas legadas mantidas exclusivamente como redirects compatíveis;
+- **40 URLs canônicas no sitemap**, sem as rotas antigas;
 - títulos, `lang`, meta descriptions, canonical, `hreflang` e controle de tema;
 - referências locais existentes, imagens com texto alternativo e provas visuais rastreáveis;
 - seis indicadores principais ligados aos cases correspondentes;
-- identidade **Catálogo Operacional de Compras** nas superfícies estratégicas;
+- identidade **Catálogo Operacional de Compras** nas superfícies ativas;
 - Portal sem identidade específica de empresa e com status pré-piloto;
 - telas antigas do Portal identificadas como referência histórica;
+- links da versão inglesa permanecendo dentro de `/en/cases/`;
 - competências ligadas a evidências de automação, IA, backend, dados, confiabilidade e governança;
-- bloqueio de `5 workflows/158`, `3 workflows/58`, `Portal Vesper`, nomes antigos visíveis e outras descrições ambíguas.
+- bloqueio de `5 workflows/158`, `3 workflows/58`, `Portal Vesper`, rotas antigas nas superfícies estratégicas e outras descrições ambíguas.
+
+### Rotas canônicas verificadas
+
+- `/cases/catalogo-operacional-compras/`;
+- `/en/cases/operational-procurement-catalog/`;
+- `/cases/portal/`;
+- `/en/cases/portal/`.
+
+As rotas `/cases/procureflow/`, `/en/cases/procureflow/`, `/cases/portal-vesper/` e `/en/cases/portal-vesper/` existem somente para redirecionar links previamente compartilhados.
 
 ## Inspeção em navegador
 

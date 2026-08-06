@@ -17,12 +17,18 @@ Os materiais principais demonstram dimensões diferentes, evitando repetir o mes
 ## Estrutura pública
 
 - página inicial em português e inglês;
-- 18 cases por idioma;
+- 18 cases ativos por idioma;
 - página de competências em português e inglês;
 - currículo de uma página em PT-BR e inglês;
 - links para código público quando existe;
 - provas visuais públicas, sanitizadas ou identificadas como referência histórica;
-- tema claro e escuro, navegação por teclado, busca e filtros progressivos.
+- tema claro e escuro, navegação por teclado, busca e filtros progressivos;
+- quatro rotas antigas preservadas apenas como redirecionamento, fora do sitemap.
+
+Rotas canônicas dos projetos renomeados:
+
+- `/cases/catalogo-operacional-compras/` e `/en/cases/operational-procurement-catalog/`;
+- `/cases/portal/` e `/en/cases/portal/`.
 
 ## Currículos
 
@@ -39,10 +45,12 @@ A validação exige uma página A4, texto selecionável, cinco links funcionais,
 python -m pip install reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
 python scripts/generate_resumes.py
 python scripts/normalize_portfolio_content.py
+python scripts/normalize_canonical_routes.py
 python scripts/validate_resumes.py
 python scripts/validate_resume_visual.py
 python scripts/validate_site.py
 node --check js/site.js
+node --check scripts/visual_smoke.mjs
 ```
 
 Para repetir a inspeção visual:
@@ -63,17 +71,18 @@ O smoke test cobre home, competências, Catálogo Operacional de Compras e Porta
 - código privado é identificado como privado;
 - telas da arquitetura anterior do Portal são rotuladas como referência histórica;
 - o novo Portal é apresentado como em desenvolvimento e pré-piloto, não como produção;
+- rotas antigas não competem com as páginas canônicas no sitemap;
 - credenciais, dados pessoais, fornecedores, preços, caminhos e detalhes privados não são expostos.
 
 ## Estrutura do projeto
 
 - `/` e `/en/` — portfólio bilíngue;
 - `/competencias/` e `/en/skills/` — competências ligadas a provas;
-- `/cases/<slug>/` e `/en/cases/<slug>/` — cases;
+- `/cases/<slug>/` e `/en/cases/<slug>/` — cases ativos e redirects compatíveis;
 - `/assets/cv/` — currículos gerados;
 - `/scripts/` — geração, normalização, validação e smoke visual;
 - `/docs/` — estratégia e relatório de qualidade.
 
 ## Qualidade publicada
 
-O workflow **Validate and deploy GitHub Pages** só libera o deploy após validar fontes Python, conteúdo e parsing dos currículos, geometria dos PDFs, referências locais, higiene de conteúdo, JavaScript e 32 renderizações estratégicas. O estado auditado está em [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md).
+O workflow **Validate and deploy GitHub Pages** só libera o deploy após validar fontes Python, conteúdo e parsing dos currículos, geometria dos PDFs, referências locais, rotas canônicas, redirects, sitemap, higiene de conteúdo, JavaScript e 32 renderizações estratégicas. O estado auditado está em [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md).
