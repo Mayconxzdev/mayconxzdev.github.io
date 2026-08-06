@@ -7,8 +7,12 @@ const outputRoot = path.resolve('artifacts/visual');
 const routes = [
   { path: '/', slug: 'home-pt', expected: 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: ['#systems', '#experience', '#evidence'] },
   { path: '/en/', slug: 'home-en', expected: 'AI AUTOMATION & INTEGRATIONS ANALYST', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: ['#systems', '#experience', '#evidence'] },
-  { path: '/competencias/', slug: 'skills-pt', expected: 'Automação, IA e integrações com evidência.', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI and integrations backed by evidence.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/competencias/', slug: 'skills-pt', expected: 'Automação, IA, dados e governança com evidência.', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI, data and governance backed by evidence.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/cases/procureflow/', slug: 'catalog-pt', expected: 'Catálogo Operacional de Compras', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/cases/procureflow/', slug: 'catalog-en', expected: 'Operational Procurement Catalog', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  { path: '/cases/portal-vesper/', slug: 'portal-pt', expected: 'Business Operating Platform multiempresa', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
+  { path: '/en/cases/portal-vesper/', slug: 'portal-en', expected: 'Multi-tenant Business Operating Platform', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
 ];
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
@@ -33,10 +37,7 @@ async function loadAllImages(page) {
     }
     window.scrollTo(0, 0);
   });
-  await page.waitForFunction(
-    () => Array.from(document.images).every((image) => image.complete),
-    { timeout: 30_000 },
-  );
+  await page.waitForFunction(() => Array.from(document.images).every((image) => image.complete), { timeout: 30_000 });
 }
 
 async function horizontalOverflowDetails(page) {
@@ -49,9 +50,7 @@ async function horizontalOverflowDetails(page) {
           tag: element.tagName.toLowerCase(),
           className: typeof element.className === 'string' ? element.className : '',
           text: (element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80),
-          left: Math.round(rect.left),
-          right: Math.round(rect.right),
-          width: Math.round(rect.width),
+          left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width),
         };
       })
       .filter((item) => item.right > viewport + 1 || item.left < -1)
@@ -71,17 +70,11 @@ try {
   for (const route of routes) {
     for (const viewport of viewports) {
       for (const theme of themes) {
-        const context = await browser.newContext({
-          viewport: { width: viewport.width, height: viewport.height },
-          colorScheme: theme,
-          reducedMotion: 'reduce',
-          deviceScaleFactor: 1,
-        });
+        const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, colorScheme: theme, reducedMotion: 'reduce', deviceScaleFactor: 1 });
         await context.addInitScript((selectedTheme) => localStorage.setItem('mf-theme', selectedTheme), theme);
         const page = await context.newPage();
         const label = `${route.slug}-${viewport.name}-${theme}`;
         const screenshotPath = path.join(outputRoot, `${label}.png`);
-
         try {
           await page.goto(`${baseURL}${route.path}`, { waitUntil: 'networkidle', timeout: 45_000 });
           await page.addStyleTag({ content: '*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition:none!important;caret-color:transparent!important}' });
@@ -90,7 +83,6 @@ try {
 
           const bodyText = (await page.locator('body').innerText()).toLocaleLowerCase();
           assert(bodyText.includes(route.expected.toLocaleLowerCase()), `${label}: target positioning text is not visible`);
-
           const htmlTheme = await page.locator('html').getAttribute('data-theme');
           assert(htmlTheme === theme, `${label}: expected theme ${theme}, found ${htmlTheme}`);
 
@@ -115,7 +107,6 @@ try {
           const pdfLinks = await page.locator('a[href$=".pdf"]').evaluateAll((links) => links.map((link) => link.getAttribute('href') || ''));
           assert(pdfLinks.length > 0, `${label}: no resume link found`);
           assert(pdfLinks.every((href) => href.includes(route.cv)), `${label}: stale or incorrect resume link: ${pdfLinks.join(', ')}`);
-
           for (const anchor of route.anchors) assert((await page.locator(anchor).count()) === 1, `${label}: missing strategic section ${anchor}`);
 
           if (viewport.name === 'mobile') {
@@ -147,4 +138,4 @@ if (failures.length) {
   console.error(failures.map((failure) => `ERROR: ${failure}`).join('\n'));
   process.exit(1);
 }
-console.log(`Portfolio browser smoke completed: ${screenshots} screenshots, 4 strategic routes, 2 viewports and 2 themes.`);
+console.log(`Portfolio browser smoke completed: ${screenshots} screenshots, ${routes.length} strategic routes, 2 viewports and 2 themes.`);
