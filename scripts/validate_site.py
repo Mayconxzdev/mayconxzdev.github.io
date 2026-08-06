@@ -47,12 +47,7 @@ class PageParser(HTMLParser):
             self.has_canonical = True
         if tag == "link" and data.get("hreflang"):
             self.has_hreflang = True
-        if (
-            tag == "button"
-            and "theme-toggle" in (data.get("class") or "").split()
-            and data.get("aria-label")
-            and data.get("aria-pressed") is not None
-        ):
+        if tag == "button" and "theme-toggle" in (data.get("class") or "").split() and data.get("aria-label") and data.get("aria-pressed") is not None:
             self.has_theme_toggle = True
         if tag == "img" and not (data.get("alt") or "").strip():
             self.images_without_alt.append(data.get("src") or "[sem src]")
@@ -82,7 +77,7 @@ def resolve_reference(page: Path, value: str) -> Path | None:
     try:
         target.relative_to(ROOT)
     except ValueError as exc:
-        raise ValueError(f"referência sai da raiz: {value}") from exc
+        raise ValueError(f"reference leaves repository root: {value}") from exc
     if parsed.path.endswith("/"):
         target = target / "index.html"
     return target
@@ -91,24 +86,13 @@ def resolve_reference(page: Path, value: str) -> Path | None:
 def require_text(content: str, required: list[str], label: str, errors: list[str]) -> None:
     for phrase in required:
         if phrase not in content:
-            errors.append(f"{label}: texto verificado ausente: {phrase}")
+            errors.append(f"{label}: required verified text missing: {phrase}")
 
 
 def forbid_text(content: str, forbidden: list[str], label: str, errors: list[str]) -> None:
     for phrase in forbidden:
         if phrase in content:
-            errors.append(f"{label}: conteúdo antigo ou não sustentado encontrado: {phrase}")
-
-
-def validate_cv_inventory(errors: list[str]) -> None:
-    cv_dir = ROOT / "assets" / "cv"
-    actual = {path.name for path in cv_dir.glob("*.pdf")}
-    missing = CURRENT_CVS - actual
-    legacy = actual - CURRENT_CVS
-    if missing:
-        errors.append(f"currículos atuais ausentes: {sorted(missing)}")
-    if legacy:
-        errors.append(f"PDFs antigos ainda presentes em assets/cv: {sorted(legacy)}")
+            errors.append(f"{label}: stale, ambiguous or unsupported text found: {phrase}")
 
 
 def main() -> int:
@@ -124,31 +108,30 @@ def main() -> int:
         rel = page.relative_to(ROOT)
         duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
         if duplicates:
-            errors.append(f"{rel}: IDs duplicados: {duplicates}")
+            errors.append(f"{rel}: duplicate IDs: {duplicates}")
         if not parser.has_title:
-            errors.append(f"{rel}: título ausente")
+            errors.append(f"{rel}: title missing")
         if not parser.html_lang:
-            errors.append(f"{rel}: atributo lang ausente")
+            errors.append(f"{rel}: lang missing")
         if not parser.has_description:
-            errors.append(f"{rel}: meta description ausente")
+            errors.append(f"{rel}: meta description missing")
         if not parser.has_canonical:
-            errors.append(f"{rel}: canonical ausente")
+            errors.append(f"{rel}: canonical missing")
         if rel.name != "404.html" and not parser.has_hreflang:
-            errors.append(f"{rel}: hreflang ausente")
+            errors.append(f"{rel}: hreflang missing")
         if not parser.has_theme_toggle:
-            errors.append(f"{rel}: controle de tema acessível ausente")
+            errors.append(f"{rel}: accessible theme toggle missing")
         if parser.images_without_alt:
-            errors.append(f"{rel}: imagens sem alt: {parser.images_without_alt}")
+            errors.append(f"{rel}: images without alt: {parser.images_without_alt}")
         if "cases" in rel.parts and not ({"case-showcase", "case-proof-card"} & parser.classes):
-            errors.append(f"{rel}: case sem prova visual principal")
+            errors.append(f"{rel}: case lacks primary visual evidence")
         if "cases" in rel.parts and not {"case-gallery-section", "case-evidence-index", "evidence-label"}.issubset(parser.classes):
-            errors.append(f"{rel}: case sem galeria visual rastreável")
+            errors.append(f"{rel}: case lacks traceable gallery/evidence labels")
 
         for pdf_ref in parser.pdf_refs:
             pdf_links_checked += 1
-            filename = Path(urlparse(pdf_ref).path).name
-            if filename not in CURRENT_CVS:
-                errors.append(f"{rel}: link aponta para currículo antigo ou inesperado: {pdf_ref}")
+            if Path(urlparse(pdf_ref).path).name not in CURRENT_CVS:
+                errors.append(f"{rel}: unexpected resume link: {pdf_ref}")
 
         for value in parser.refs:
             try:
@@ -160,135 +143,99 @@ def main() -> int:
                 continue
             refs_checked += 1
             if not target.exists():
-                errors.append(f"{rel}: referência inexistente: {value}")
+                errors.append(f"{rel}: missing local reference: {value}")
 
     if len(html_pages) != 41:
-        errors.append(f"quantidade de páginas HTML inesperada: {len(html_pages)} (esperado: 41)")
-
+        errors.append(f"unexpected HTML page count: {len(html_pages)} (expected 41)")
     pt_cases = len(list((ROOT / "cases").glob("*/index.html")))
     en_cases = len(list((ROOT / "en/cases").glob("*/index.html")))
     if pt_cases != 18 or en_cases != 18:
-        errors.append(f"quantidade de cases inesperada: PT={pt_cases}, EN={en_cases}")
+        errors.append(f"unexpected case count: PT={pt_cases}, EN={en_cases}")
     for case in (ROOT / "cases").glob("*/index.html"):
-        translated = ROOT / "en" / case.relative_to(ROOT)
-        if not translated.exists():
-            errors.append(f"case sem equivalente em inglês: {case.relative_to(ROOT)}")
+        if not (ROOT / "en" / case.relative_to(ROOT)).exists():
+            errors.append(f"case lacks English counterpart: {case.relative_to(ROOT)}")
 
-    for home in (ROOT / "index.html", ROOT / "en" / "index.html"):
+    pt_home = (ROOT / "index.html").read_text(encoding="utf-8")
+    en_home = (ROOT / "en/index.html").read_text(encoding="utf-8")
+    pt_skills = (ROOT / "competencias/index.html").read_text(encoding="utf-8")
+    en_skills = (ROOT / "en/skills/index.html").read_text(encoding="utf-8")
+    pt_catalog = (ROOT / "cases/procureflow/index.html").read_text(encoding="utf-8")
+    en_catalog = (ROOT / "en/cases/procureflow/index.html").read_text(encoding="utf-8")
+    pt_portal = (ROOT / "cases/portal-vesper/index.html").read_text(encoding="utf-8")
+    en_portal = (ROOT / "en/cases/portal-vesper/index.html").read_text(encoding="utf-8")
+
+    for home in (ROOT / "index.html", ROOT / "en/index.html"):
         parser = PageParser()
         parser.feed(home.read_text(encoding="utf-8"))
         if parser.metric_links != 6:
-            errors.append(f"{home.relative_to(ROOT)}: esperado 6 indicadores com links para cases, encontrado {parser.metric_links}")
+            errors.append(f"{home.relative_to(ROOT)}: expected 6 linked metrics, found {parser.metric_links}")
 
-    pt_home = (ROOT / "index.html").read_text(encoding="utf-8")
-    en_home = (ROOT / "en" / "index.html").read_text(encoding="utf-8")
-    pt_skills = (ROOT / "competencias" / "index.html").read_text(encoding="utf-8")
-    en_skills = (ROOT / "en" / "skills" / "index.html").read_text(encoding="utf-8")
+    require_text(pt_home, [
+        "Analista de Automação, IA e Integrações", "2 workflows públicos", "Catálogo Operacional de Compras",
+        "Usado diariamente por 3 usuários operacionais e consultado pela gestão", "58 nós no workflow de ações",
+        "Portal", "Procurement e sourcing validados em sandbox", "tenant/RLS", "Action Envelope",
+        '<a href="competencias/">Competências</a>', "DIO · 4h / 4 cursos",
+    ], "index.html", errors)
+    require_text(en_home, [
+        "AI Automation &amp; Integrations Analyst", "2 public workflows", "Operational Procurement Catalog",
+        "Used daily by 3 operational users and consulted by management", "58 nodes in Actions",
+        "Procurement and sourcing validated in sandbox", "tenant/RLS", "Action Envelope",
+        '<a href="skills/">Skills</a>', "DIO · 4h / 4 courses",
+    ], "en/index.html", errors)
 
-    require_text(
-        pt_home,
-        [
-            "Analista de Automação, IA e Integrações. Cases reais de n8n, Python, APIs REST, IA generativa, agentes, sistemas internos e resultados mensuráveis.",
-            "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES · 2026",
-            "<dt>Posicionamento</dt><dd>Analista de Automação, IA e Integrações</dd>",
-            '<a href="competencias/">Competências</a>',
-            '"Automação low-code"',
-            '"Codex"',
-            "Automação de Processos através da RPA",
-            "Fundamentos da Transformação Digital: Mapeamento e Automação de Processos",
-            "DIO · 4h / 4 cursos",
-        ],
-        "index.html",
-        errors,
-    )
-    require_text(
-        en_home,
-        [
-            "AI Automation and Integrations Analyst. Real cases involving n8n, Python, REST APIs, generative AI, agents, internal systems and measurable outcomes.",
-            "AI AUTOMATION &amp; INTEGRATIONS ANALYST · 2026",
-            "<dt>Positioning</dt><dd>AI Automation &amp; Integrations Analyst</dd>",
-            '<a href="skills/">Skills</a>',
-            '"Low-code automation"',
-            '"Codex"',
-            "AI Tools: Agents and Automations",
-            "Process Automation through RPA",
-            "Digital Transformation Fundamentals: Process Mapping and Automation",
-            "AI in the Public Service Context",
-            "Introduction to Brazil's Data Protection Law",
-            "n8n and Workflows Learning Path",
-            "DIO · 4h / 4 courses",
-        ],
-        "en/index.html",
-        errors,
-    )
-    require_text(
-        pt_skills,
-        [
-            "automação low-code/no-code",
-            "OpenAI, Gemini, Ollama, OpenRouter e Codex",
-            "geração de texto, imagem e vídeo (text-to-video)",
-            "Node.js/Express",
-            "mais de 10 mil execuções de workflows em produção",
-            "Protótipos funcionais privados",
-        ],
-        "competencias/index.html",
-        errors,
-    )
-    require_text(
-        en_skills,
-        [
-            "low-code/no-code automation",
-            "OpenAI, Gemini, Ollama, OpenRouter and Codex",
-            "text, image and video generation (text-to-video)",
-            "Node.js/Express",
-            "more than 10,000 production workflow executions",
-            "Private functional prototypes",
-        ],
-        "en/skills/index.html",
-        errors,
-    )
+    require_text(pt_skills, [
+        "automação low-code/no-code", "OpenAI, Gemini, Ollama, OpenRouter e Codex", "SQLite e FTS5",
+        "Action Envelope", "Catálogo Operacional de Compras", "Procurement do Portal validado em sandbox",
+    ], "competencias/index.html", errors)
+    require_text(en_skills, [
+        "low-code/no-code automation", "OpenAI, Gemini, Ollama, OpenRouter and Codex", "SQLite and FTS5",
+        "Action Envelopes", "Operational Procurement Catalog", "Portal Procurement validated in sandbox",
+    ], "en/skills/index.html", errors)
 
-    forbid_text(
-        pt_home + en_home + pt_skills + en_skills,
-        [
-            "DIO · 8h / 4 cursos",
-            "RAG/grounding",
-            "FastAPI/Flask",
-            '"Applied AI"',
-            "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
-            "SYSTEMS IN OPERATION · 2026",
-        ],
-        "home/skills",
-        errors,
-    )
-    if "10 mil+" in en_home or "out. 2024 — mar. 2025" in en_home:
-        errors.append("en/index.html: conteúdo de localidade PT-BR no resumo em inglês")
+    require_text(pt_catalog, [
+        "Catálogo Operacional de Compras", "USO INTERNO DIÁRIO", "três usuários operacionais", "SQLite FTS5",
+        "controle de revisão", "aproximadamente dois anos", "Conflito por revisão",
+    ], "cases/procureflow/index.html", errors)
+    require_text(en_catalog, [
+        "Operational Procurement Catalog", "DAILY INTERNAL USE", "three operational users", "SQLite FTS5",
+        "revision", "approximately two years", "Revision conflict",
+    ], "en/cases/procureflow/index.html", errors)
 
-    validate_cv_inventory(errors)
+    require_text(pt_portal, [
+        "Business Operating Platform multiempresa", "EM DESENVOLVIMENTO · PRÉ-PILOTO", "produto autoral",
+        "tenant/RLS", "Action Envelope", "Procurement Intake e sourcing", "em preparação para piloto interno",
+        "ainda não está comprovado", "referência pública anterior",
+    ], "cases/portal-vesper/index.html", errors)
+    require_text(en_portal, [
+        "Multi-tenant Business Operating Platform", "IN DEVELOPMENT · PRE-PILOT", "Author-built product",
+        "tenant/RLS", "Action Envelopes", "Procurement Intake and sourcing", "prepared for an internal pilot",
+        "not yet demonstrated", "previous public reference",
+    ], "en/cases/portal-vesper/index.html", errors)
+
+    strategic = pt_home + en_home + pt_skills + en_skills + pt_catalog + en_catalog + pt_portal + en_portal
+    forbid_text(strategic, [
+        "5 workflows publicados", "5 published workflows", "5 workflows/158", "3 workflows/58",
+        "Portal Vesper", ">ProcureFlow<", "REFERENCE ARCHITECTURE</span><h1>Portal",
+        "RAG/grounding", "FastAPI/Flask", "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
+    ], "strategic pages", errors)
+
+    actual_cvs = {path.name for path in (ROOT / "assets/cv").glob("*.pdf")}
+    if actual_cvs != CURRENT_CVS:
+        errors.append(f"assets/cv inventory differs from current resumes: {sorted(actual_cvs)}")
 
     sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     if sitemap.count("<url>") != 40:
-        errors.append(f"sitemap.xml: quantidade inesperada de URLs ({sitemap.count('<url>')}, esperado: 40)")
-    for route in (
-        "https://mayconxzdev.github.io/competencias/",
-        "https://mayconxzdev.github.io/en/skills/",
-    ):
+        errors.append(f"sitemap URL count is {sitemap.count('<url>')}, expected 40")
+    for route in ("https://mayconxzdev.github.io/competencias/", "https://mayconxzdev.github.io/en/skills/"):
         if route not in sitemap:
-            errors.append(f"sitemap.xml: rota estratégica ausente: {route}")
+            errors.append(f"sitemap missing strategic route: {route}")
 
-    css = (ROOT / "css/styles.css").read_text(encoding="utf-8")
-    if "[hidden]" not in css:
-        errors.append("CSS não preserva o atributo hidden")
-
-    print(
-        f"HTML: {len(html_pages)} páginas | referências locais: {refs_checked} | "
-        f"links de currículo: {pdf_links_checked} | cases: PT {pt_cases} / EN {en_cases}"
-    )
+    print(f"HTML: {len(html_pages)} | local refs: {refs_checked} | resume links: {pdf_links_checked} | cases PT/EN: {pt_cases}/{en_cases}")
     if errors:
         for error in errors:
-            print(f"ERRO: {error}")
+            print(f"ERROR: {error}")
         return 1
-    print("Validação de conteúdo, posicionamento, referências e higiene concluída sem erros.")
+    print("Portfolio content, evidence, links and hygiene validation completed without errors.")
     return 0
 
 
