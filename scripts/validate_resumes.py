@@ -18,106 +18,46 @@ EXPECTED_URIS = {
 
 FILES = {
     "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf": {
-        "headings": [
-            "RESUMO PROFISSIONAL",
-            "HABILIDADES TÉCNICAS",
-            "EXPERIÊNCIA PROFISSIONAL",
-            "PROJETOS SELECIONADOS",
-            "FORMAÇÃO",
-            "CERTIFICAÇÕES",
-            "IDIOMAS",
-        ],
+        "headings": ["RESUMO PROFISSIONAL", "HABILIDADES TÉCNICAS", "EXPERIÊNCIA PROFISSIONAL", "PROJETOS SELECIONADOS", "FORMAÇÃO", "CERTIFICAÇÕES", "IDIOMAS"],
         "required": [
             "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES",
-            "Telefone/WhatsApp",
-            "n8n self-hosted",
-            "automação low-code",
-            "mapeamento AS-IS/TO-BE",
-            "IA generativa e agentes de IA",
-            "Codex",
-            "APIs de LLM",
-            "recuperação de contexto/grounding",
-            "JSON Schema",
-            "IA multimodal",
-            "text-to-video",
-            "Integração de sistemas e ferramentas",
-            "APIs REST",
-            "webhooks",
-            "Node.js/Express",
-            "FastAPI",
-            "Git/GitHub Actions",
-            "CI/CD",
-            "mais de 10 mil execuções de workflows em produção",
-            "menos de 30 segundos",
-            "11 computadores",
-            "11 usuários",
-            "mais de 900 destinatários",
-            "3 horas para cerca de 5 minutos",
-            "GRUPO VESPER",
-            "Vesper Equipamentos EX e Vent Rio Equipamentos",
-            "Técnico Júnior em Automação de Processos",
-            "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-            "Ferramentas de IA: Agentes e Automações",
+            "n8n self-hosted", "automação low-code", "AS-IS/TO-BE", "IA generativa e agentes", "Codex", "APIs de LLM",
+            "recuperação de contexto/grounding", "JSON Schema", "IA multimodal", "text-to-video", "APIs REST", "webhooks",
+            "Node.js/Express", "FastAPI", "Git/GitHub Actions", "CI/CD",
+            "mais de 10 mil execuções de workflows em produção", "menos de 30 segundos", "11 computadores", "11 usuários",
+            "3 horas para cerca de 5 minutos", "GRUPO VESPER", "Técnico Júnior em Automação de Processos",
+            "Mala Direta", "2 workflows", "fluxo principal com 158 nós", "9 Data Tables de domínio", "900+ destinatários",
+            "Catálogo Operacional de Compras", "usado diariamente por 3 usuários", "SQLite FTS5", "controle de concorrência por revisão",
+            "Postagem Redes", "3 workflows n8n", "workflow de ações com 58 nós", "Facebook validado em teste",
+            "Portal - em desenvolvimento", "Business Operating Platform multiempresa", "tenant/RLS", "Action Envelope",
+            "Procurement validado em sandbox", "preparação para piloto interno",
+            "Tecnólogo em Análise e Desenvolvimento de Sistemas", "Ferramentas de IA: Agentes e Automações",
         ],
         "forbidden": [
-            "EVIDÊNCIAS, FORMAÇÃO E CERTIFICAÇÕES",
-            "RAG/grounding",
-            "FastAPI/Flask",
-            "Profissional de automação, IA generativa e aplicada",
-            "GRUPO VESPER - VESPER EQUIPAMENTOS EX E VENT RIO EQUIPAMENTOS",
-            "com mais de 10 mil execuções. Atuação",
+            "5 workflows/158", "3 workflows/58", "ProcureFlow", "Portal Vesper", "RAG/grounding", "FastAPI/Flask",
+            "Profissional de automação, IA generativa e aplicada", "EVIDÊNCIAS, FORMAÇÃO E CERTIFICAÇÕES",
         ],
         "date_patterns": [r"12/2025\s*-\s*presente", r"10/2024\s*-\s*03/2025"],
     },
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf": {
-        "headings": [
-            "PROFESSIONAL SUMMARY",
-            "TECHNICAL SKILLS",
-            "PROFESSIONAL EXPERIENCE",
-            "SELECTED PROJECTS",
-            "EDUCATION",
-            "CERTIFICATIONS",
-            "LANGUAGES",
-        ],
+        "headings": ["PROFESSIONAL SUMMARY", "TECHNICAL SKILLS", "PROFESSIONAL EXPERIENCE", "SELECTED PROJECTS", "EDUCATION", "CERTIFICATIONS", "LANGUAGES"],
         "required": [
             "AI AUTOMATION & INTEGRATIONS ANALYST",
-            "Phone/WhatsApp",
-            "self-hosted n8n",
-            "low-code automation",
-            "AS-IS/TO-BE mapping",
-            "Generative AI and AI agents",
-            "Codex",
-            "LLM APIs",
-            "context retrieval/grounding",
-            "JSON Schema",
-            "multimodal AI",
-            "text-to-video",
-            "Systems and tools integration",
-            "REST APIs",
-            "webhooks",
-            "Node.js/Express",
-            "FastAPI",
-            "Git/GitHub Actions",
-            "CI/CD",
-            "more than 10,000 production workflow executions",
-            "under 30 seconds",
-            "11 workstations",
-            "11 users",
-            "more than 900 recipients",
-            "3 hours to around 5 minutes",
-            "GRUPO VESPER",
-            "Vesper Equipamentos EX e Vent Rio Equipamentos",
-            "Junior Process Automation Technician",
-            "Technology Degree in Systems Analysis and Development",
-            "AI Tools: Agents and Automations",
+            "self-hosted n8n", "low-code automation", "AS-IS/TO-BE", "Generative AI and agents", "Codex", "LLM APIs",
+            "context retrieval/grounding", "JSON Schema", "multimodal AI", "text-to-video", "REST APIs", "webhooks",
+            "Node.js/Express", "FastAPI", "Git/GitHub Actions", "CI/CD",
+            "more than 10,000 production workflow executions", "under 30 seconds", "11 workstations", "11 users",
+            "3 hours to around 5 minutes", "GRUPO VESPER", "Junior Process Automation Technician",
+            "Mala Direta", "2 workflows", "main workflow has 158 nodes", "9 domain Data Tables", "900+ recipient campaign",
+            "Operational Procurement Catalog", "used daily by 3 users", "SQLite FTS5", "optimistic revision control",
+            "Postagem Redes", "3 n8n workflows", "actions workflow has 58 nodes", "Facebook validated in testing",
+            "Portal - in development", "multi-tenant Business Operating Platform", "tenant/RLS", "Action Envelopes",
+            "Procurement validated in sandbox", "prepared for an internal pilot",
+            "Technology Degree in Systems Analysis and Development", "AI Tools: Agents and Automations",
         ],
         "forbidden": [
+            "5 workflows/158", "3 workflows/58", "ProcureFlow", "Portal Vesper", "RAG/grounding", "FastAPI/Flask",
             "EVIDENCE, EDUCATION & CERTIFICATIONS",
-            "RAG/grounding",
-            "FastAPI/Flask",
-            "Automation, generative and applied AI",
-            "GRUPO VESPER - VESPER EQUIPAMENTOS EX AND VENT RIO EQUIPAMENTOS",
-            "with more than 10,000 executions. Works",
         ],
         "date_patterns": [r"12/2025\s*-\s*Present", r"10/2024\s*-\s*03/2025"],
     },
@@ -141,10 +81,10 @@ def normalized(text: str) -> str:
 
 def main() -> int:
     errors: list[str] = []
-    pdf_names = sorted(path.name for path in CV.glob("*.pdf"))
-    expected_names = sorted(FILES)
-    if pdf_names != expected_names:
-        errors.append(f"assets/cv must contain only current resumes: found {pdf_names}, expected {expected_names}")
+    actual = sorted(path.name for path in CV.glob("*.pdf"))
+    expected = sorted(FILES)
+    if actual != expected:
+        errors.append(f"assets/cv must contain only current resumes: found {actual}, expected {expected}")
 
     for filename, rules in FILES.items():
         path = CV / filename
@@ -152,41 +92,22 @@ def main() -> int:
             errors.append(f"missing: {filename}")
             continue
         if path.stat().st_size > 250_000:
-            errors.append(f"{filename}: file is unexpectedly large ({path.stat().st_size} bytes)")
+            errors.append(f"{filename}: unexpectedly large ({path.stat().st_size} bytes)")
 
         reader = PdfReader(str(path))
         if len(reader.pages) != 1:
             errors.append(f"{filename}: expected 1 page, found {len(reader.pages)}")
             continue
-
         page = reader.pages[0]
-        width = float(page.mediabox.width)
-        height = float(page.mediabox.height)
+        width, height = float(page.mediabox.width), float(page.mediabox.height)
         if abs(width - 595.2756) > 1 or abs(height - 841.8898) > 1:
             errors.append(f"{filename}: page is not A4 ({width:.1f} x {height:.1f})")
 
-        raw = page.extract_text() or ""
-        text = normalized(raw)
-        if len(text) < 2400:
-            errors.append(f"{filename}: extracted text is too short ({len(text)} chars)")
-
+        text = normalized(page.extract_text() or "")
         fitz_doc = fitz.open(path)
         fitz_text = normalized(fitz_doc[0].get_text("text"))
-        if len(fitz_text) < 2400:
-            errors.append(f"{filename}: PyMuPDF text extraction is too short ({len(fitz_text)} chars)")
-        for heading in rules["headings"]:
-            if heading not in fitz_text:
-                errors.append(f"{filename}: PyMuPDF missing heading: {heading}")
-
-        metadata = reader.metadata or {}
-        if metadata.get("/Author") != "Maycon Ferreira":
-            errors.append(f"{filename}: invalid Author metadata")
-        if not str(metadata.get("/Title") or "").startswith("Maycon Ferreira - "):
-            errors.append(f"{filename}: invalid Title metadata")
-        keywords = str(metadata.get("/Keywords") or "").lower()
-        for keyword in ("automation", "n8n", "generative ai", "systems integration", "python", "low-code", "codex"):
-            if keyword not in keywords:
-                errors.append(f"{filename}: Keywords metadata is missing {keyword}")
+        if len(text) < 3300 or len(fitz_text) < 3300:
+            errors.append(f"{filename}: extracted text is unexpectedly short ({len(text)} / {len(fitz_text)} chars)")
 
         previous = -1
         for heading in rules["headings"]:
@@ -202,25 +123,34 @@ def main() -> int:
                 errors.append(f"{filename}: missing required evidence/keyword: {phrase}")
         for phrase in rules["forbidden"]:
             if phrase in text:
-                errors.append(f"{filename}: forbidden outdated or unsupported text found: {phrase}")
+                errors.append(f"{filename}: stale, ambiguous or unsupported text found: {phrase}")
         for pattern in rules["date_patterns"]:
             if not re.search(pattern, text):
-                errors.append(f"{filename}: inconsistent or missing date pattern: {pattern}")
+                errors.append(f"{filename}: inconsistent date pattern: {pattern}")
+
+        metadata = reader.metadata or {}
+        if metadata.get("/Author") != "Maycon Ferreira":
+            errors.append(f"{filename}: invalid Author metadata")
+        if not str(metadata.get("/Title") or "").startswith("Maycon Ferreira - "):
+            errors.append(f"{filename}: invalid Title metadata")
+        keywords = str(metadata.get("/Keywords") or "").lower()
+        for keyword in ("automation", "n8n", "generative ai", "fastapi", "fts5", "rls", "action envelope"):
+            if keyword not in keywords:
+                errors.append(f"{filename}: Keywords metadata is missing {keyword}")
 
         found = annotations(reader)
-        missing = EXPECTED_URIS - found
-        extra = found - EXPECTED_URIS
-        if missing:
+        if missing := EXPECTED_URIS - found:
             errors.append(f"{filename}: missing links: {sorted(missing)}")
-        if extra:
+        if extra := found - EXPECTED_URIS:
             errors.append(f"{filename}: unexpected links: {sorted(extra)}")
 
-        print(f"OK: {filename} | 1 A4 page | {len(text)} extracted chars | {len(found)} clickable links")
+        print(f"OK: {filename} | one A4 page | {len(text)} chars | {len(found)} links")
 
     if errors:
-        print("\n".join(f"ERROR: {error}" for error in errors))
+        for error in errors:
+            print(f"ERROR: {error}")
         return 1
-    print("Resume content validation completed without errors.")
+    print("Resume content and ATS validation completed without errors.")
     return 0
 
 
