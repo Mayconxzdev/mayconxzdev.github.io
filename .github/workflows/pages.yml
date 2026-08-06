@@ -12,12 +12,13 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-${{ github.ref }}
+  group: pages-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -93,6 +94,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Deploy GitHub Pages
         id: deployment
