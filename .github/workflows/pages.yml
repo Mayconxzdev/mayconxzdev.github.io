@@ -2,7 +2,7 @@ name: Validate and deploy GitHub Pages
 
 on:
   push:
-    branches: [main, final/verified-career-materials-2026-08]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
