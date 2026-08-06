@@ -14,6 +14,8 @@ LEGACY_REDIRECTS = {
     "en/cases/procureflow/index.html": "../operational-procurement-catalog/",
     "cases/portal-vesper/index.html": "../portal/",
     "en/cases/portal-vesper/index.html": "../portal/",
+    "cases/compass-automation/index.html": "../compass/",
+    "en/cases/compass-automation/index.html": "../compass/",
 }
 
 
@@ -158,11 +160,11 @@ def main() -> int:
 
         if is_redirect:
             redirects_seen.add(rel_str)
-            expected_target = LEGACY_REDIRECTS.get(rel_str)
-            if expected_target is None:
+            target = LEGACY_REDIRECTS.get(rel_str)
+            if target is None:
                 errors.append(f"{rel}: unexpected redirect page")
-            elif expected_target not in content:
-                errors.append(f"{rel}: redirect target is not canonical: {expected_target}")
+            elif target not in content:
+                errors.append(f"{rel}: redirect target is not canonical: {target}")
 
         for pdf_ref in parser.pdf_refs:
             pdf_links_checked += 1
@@ -183,28 +185,25 @@ def main() -> int:
 
     if len(html_pages) != 45:
         errors.append(f"unexpected HTML page count: {len(html_pages)} (expected 45)")
-    if active_pt != 18 or active_en != 18:
-        errors.append(f"unexpected active case count: PT={active_pt}, EN={active_en}, expected 18/18")
+    if active_pt != 17 or active_en != 17:
+        errors.append(f"unexpected active case count: PT={active_pt}, EN={active_en}, expected 17/17")
     if redirects_seen != set(LEGACY_REDIRECTS):
         errors.append(f"legacy redirect inventory differs: {sorted(redirects_seen)}")
-
-    for relative in (
-        "cases/catalogo-operacional-compras/index.html",
-        "en/cases/operational-procurement-catalog/index.html",
-        "cases/portal/index.html",
-        "en/cases/portal/index.html",
-    ):
-        if not (ROOT / relative).exists():
-            errors.append(f"missing canonical strategic route: {relative}")
 
     pt_home = read("index.html")
     en_home = read("en/index.html")
     pt_skills = read("competencias/index.html")
     en_skills = read("en/skills/index.html")
+    pt_mala = read("cases/mala-direta/index.html")
+    en_mala = read("en/cases/mala-direta/index.html")
+    pt_production = read("cases/producao-operacional/index.html")
+    en_production = read("en/cases/producao-operacional/index.html")
     pt_catalog = read("cases/catalogo-operacional-compras/index.html")
     en_catalog = read("en/cases/operational-procurement-catalog/index.html")
     pt_portal = read("cases/portal/index.html")
     en_portal = read("en/cases/portal/index.html")
+    pt_compass = read("cases/compass/index.html")
+    en_compass = read("en/cases/compass/index.html")
 
     if parse("index.html").metric_links != 6:
         errors.append("index.html: expected 6 linked metrics")
@@ -212,62 +211,53 @@ def main() -> int:
         errors.append("en/index.html: expected 6 linked metrics")
 
     require_text(pt_home, [
-        "Analista de Automação, IA e Integrações", "2 workflows públicos", "Catálogo Operacional de Compras",
-        "Usado diariamente por 3 usuários operacionais e consultado pela gestão", "58 nós no workflow de ações",
-        "Procurement e sourcing validados em sandbox", "tenant/RLS", "Action Envelope",
-        'href="cases/catalogo-operacional-compras/"', 'href="cases/portal/"',
-        '<a href="competencias/">Competências</a>', "DIO · 4h / 4 cursos",
+        "Analista de Automação, IA e Integrações", "10 mil+", "múltiplas automações em produção",
+        "10+ PCs · 1 TV · 9 setores", "6 campanhas", "base de 1.020 contatos", "480+", "24 categorias",
+        "treinei e orientei 30+ pessoas", "Programa de Bolsas em Engenharia de Dados",
+        "Facebook e Instagram exercitados em teste", "https://github.com/Mayconxzdev/CatalogoOperacional",
+        "revalidação técnica do head atual",
     ], "index.html", errors)
     require_text(en_home, [
-        "AI Automation &amp; Integrations Analyst", "2 public workflows", "Operational Procurement Catalog",
-        "Used daily by 3 operational users and consulted by management", "58 nodes in Actions",
-        "Procurement and sourcing validated in sandbox", "tenant/RLS", "Action Envelope",
-        'href="cases/operational-procurement-catalog/"', 'href="cases/portal/"',
-        '<a href="skills/">Skills</a>', "DIO · 4h / 4 courses",
+        "AI Automation &amp; Integrations Analyst", "10k+", "multiple production automations",
+        "10+ PCs · 1 TV · 9 areas", "6 campaigns", "1,020-contact base", "480+", "24 categories",
+        "Trained and guided 30+ people", "Data Engineering Scholarship Program",
+        "Facebook and Instagram exercised in testing", "https://github.com/Mayconxzdev/CatalogoOperacional",
+        "technical revalidation of the current head",
     ], "en/index.html", errors)
     if 'href="../cases/' in en_home:
         errors.append("en/index.html: English home links must remain inside /en/cases/")
 
     require_text(pt_skills, [
-        "automação low-code/no-code", "OpenAI, Gemini, Ollama, OpenRouter e Codex", "SQLite e FTS5",
-        "Action Envelope", "Catálogo Operacional de Compras", "Procurement do Portal validado em sandbox",
-        'href="../cases/catalogo-operacional-compras/"', 'href="../cases/portal/"',
+        "automação low-code/no-code", "IA multimodal e geração de mídia em texto, imagem, áudio e vídeo",
+        "AWS S3, EC2, Lambda, Glue/PySpark, Athena e QuickSight", "10 mil+ execuções na instância n8n de produção",
+        "24 categorias e 480+ códigos", "revalidação técnica pré-piloto",
     ], "competencias/index.html", errors)
     require_text(en_skills, [
-        "low-code/no-code automation", "OpenAI, Gemini, Ollama, OpenRouter and Codex", "SQLite and FTS5",
-        "Action Envelopes", "Operational Procurement Catalog", "Portal Procurement validated in sandbox",
-        'href="../cases/operational-procurement-catalog/"', 'href="../cases/portal/"',
+        "low-code/no-code automation", "multimodal AI and media generation across text, image, audio and video",
+        "AWS S3, EC2, Lambda, Glue/PySpark, Athena and QuickSight", "10,000+ executions across the production n8n environment",
+        "24 categories and 480+ codes", "pre-pilot technical revalidation",
     ], "en/skills/index.html", errors)
 
-    require_text(pt_catalog, [
-        "Catálogo Operacional de Compras", "USO INTERNO DIÁRIO", "três usuários operacionais", "SQLite FTS5",
-        "controle de revisão", "aproximadamente dois anos", "Conflito por revisão",
-        "https://mayconxzdev.github.io/cases/catalogo-operacional-compras/",
-    ], "cases/catalogo-operacional-compras/index.html", errors)
-    require_text(en_catalog, [
-        "Operational Procurement Catalog", "DAILY INTERNAL USE", "three operational users", "SQLite FTS5",
-        "revision", "approximately two years", "Revision conflict",
-        "https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/",
-    ], "en/cases/operational-procurement-catalog/index.html", errors)
+    require_text(pt_mala, ["Seis campanhas", "1.020 contatos", "158 nós no principal", "10 mil execuções em produção", "não é atribuído exclusivamente"], "cases/mala-direta/index.html", errors)
+    require_text(en_mala, ["Six campaigns", "1,020-contact base", "158 nodes in the main flow", "10,000 production executions", "not attributed exclusively"], "en/cases/mala-direta/index.html", errors)
+    require_text(pt_production, ["10+ computadores", "20+ profissionais", "nove setores produtivos", "treinamento e orientação", "NAS em modo somente leitura"], "cases/producao-operacional/index.html", errors)
+    require_text(en_production, ["10+ computers", "20+ professionals", "nine production areas", "user training and guidance", "NAS in read-only mode"], "en/cases/producao-operacional/index.html", errors)
+    require_text(pt_catalog, ["24 categorias", "mais de 480 códigos", "três usuários operacionais", "CatalogoOperacional", "Conflito por revisão"], "cases/catalogo-operacional-compras/index.html", errors)
+    require_text(en_catalog, ["24 categories", "more than 480 material codes", "three operational users", "CatalogoOperacional", "Revision conflict"], "en/cases/operational-procurement-catalog/index.html", errors)
+    require_text(pt_portal, ["EM DESENVOLVIMENTO · PRÉ-PILOTO", "head atual está em revalidação", "revalidação do head atual", "Piloto interno condicionado"], "cases/portal/index.html", errors)
+    require_text(en_portal, ["IN DEVELOPMENT · PRE-PILOT", "current head is being revalidated", "current-head revalidation", "internal pilot depends"], "en/cases/portal/index.html", errors)
+    require_text(pt_compass, ["dez sprints", "API TMDB", "Glue/PySpark", "Raw, Trusted e Refined", "QuickSight", "não apresentada como ambiente de produção"], "cases/compass/index.html", errors)
+    require_text(en_compass, ["ten sprints", "TMDB API", "Glue/PySpark", "Raw, Trusted and Refined", "QuickSight", "not presented as a production environment"], "en/cases/compass/index.html", errors)
 
-    require_text(pt_portal, [
-        "Business Operating Platform multiempresa", "EM DESENVOLVIMENTO · PRÉ-PILOTO", "Produto autoral",
-        "tenant/RLS", "Action Envelope", "Procurement Intake e sourcing", "preparada para piloto interno",
-        "ainda não está comprovado", "referência pública anterior",
-        "https://mayconxzdev.github.io/cases/portal/",
-    ], "cases/portal/index.html", errors)
-    require_text(en_portal, [
-        "Multi-tenant Business Operating Platform", "IN DEVELOPMENT · PRE-PILOT", "Author-built product",
-        "tenant/RLS", "Action Envelopes", "Procurement Intake and sourcing", "prepared for an internal pilot",
-        "not yet demonstrated", "previous public reference",
-        "https://mayconxzdev.github.io/en/cases/portal/",
-    ], "en/cases/portal/index.html", errors)
-
-    strategic = pt_home + en_home + pt_skills + en_skills + pt_catalog + en_catalog + pt_portal + en_portal
+    strategic = "".join([
+        pt_home, en_home, pt_skills, en_skills, pt_mala, en_mala, pt_production, en_production,
+        pt_catalog, en_catalog, pt_portal, en_portal, pt_compass, en_compass,
+    ])
     forbid_text(strategic, [
-        "5 workflows publicados", "5 published workflows", "5 workflows/158", "3 workflows/58",
-        "Portal Vesper", ">ProcureFlow<", "cases/procureflow/", "cases/portal-vesper/",
-        "RAG/grounding", "FastAPI/Flask", "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
+        "3h → 5min", "3 hours to five minutes", "três horas para cinco minutos",
+        "text-to-video", "Text-to-video", "11 computadores", "11 office computers",
+        "PlanilhaCompras", "Portal Vesper", "Procurement e sourcing validados em sandbox",
+        "Procurement and sourcing validated in sandbox", "cases/compass-automation/",
     ], "strategic pages", errors)
 
     actual_cvs = {path.name for path in (ROOT / "assets/cv").glob("*.pdf")}
@@ -275,23 +265,21 @@ def main() -> int:
         errors.append(f"assets/cv inventory differs from current resumes: {sorted(actual_cvs)}")
 
     sitemap = read("sitemap.xml")
-    if sitemap.count("<url>") != 40:
-        errors.append(f"sitemap URL count is {sitemap.count('<url>')}, expected 40")
+    if sitemap.count("<url>") != 38:
+        errors.append(f"sitemap URL count is {sitemap.count('<url>')}, expected 38")
     for route in (
-        "https://mayconxzdev.github.io/competencias/",
-        "https://mayconxzdev.github.io/en/skills/",
+        "https://mayconxzdev.github.io/competencias/", "https://mayconxzdev.github.io/en/skills/",
         "https://mayconxzdev.github.io/cases/catalogo-operacional-compras/",
         "https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/",
-        "https://mayconxzdev.github.io/cases/portal/",
-        "https://mayconxzdev.github.io/en/cases/portal/",
+        "https://mayconxzdev.github.io/cases/portal/", "https://mayconxzdev.github.io/en/cases/portal/",
+        "https://mayconxzdev.github.io/cases/compass/", "https://mayconxzdev.github.io/en/cases/compass/",
     ):
         if route not in sitemap:
-            errors.append(f"sitemap missing strategic route: {route}")
+            errors.append(f"sitemap missing canonical route: {route}")
     for stale in (
-        "https://mayconxzdev.github.io/cases/procureflow/",
-        "https://mayconxzdev.github.io/en/cases/procureflow/",
-        "https://mayconxzdev.github.io/cases/portal-vesper/",
-        "https://mayconxzdev.github.io/en/cases/portal-vesper/",
+        "https://mayconxzdev.github.io/cases/procureflow/", "https://mayconxzdev.github.io/en/cases/procureflow/",
+        "https://mayconxzdev.github.io/cases/portal-vesper/", "https://mayconxzdev.github.io/en/cases/portal-vesper/",
+        "https://mayconxzdev.github.io/cases/compass-automation/", "https://mayconxzdev.github.io/en/cases/compass-automation/",
     ):
         if stale in sitemap:
             errors.append(f"sitemap contains legacy redirect route: {stale}")
@@ -304,7 +292,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("Portfolio content, canonical routes, redirects, links and hygiene validation completed without errors.")
+    print("Portfolio facts, canonical routes, redirects, links and hygiene validated without errors.")
     return 0
 
 
