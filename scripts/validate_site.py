@@ -10,6 +10,15 @@ CURRENT_CVS = {
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf",
 }
 
+ACTIVE_CASES_PT = 18
+ACTIVE_CASES_EN = 18
+LEGACY_REDIRECTS = {
+    "cases/procureflow/index.html": "../catalogo-operacional-compras/",
+    "en/cases/procureflow/index.html": "../operational-procurement-catalog/",
+    "cases/portal-vesper/index.html": "../portal/",
+    "en/cases/portal-vesper/index.html": "../portal/",
+}
+
 
 class PageParser(HTMLParser):
     def __init__(self) -> None:
@@ -99,17 +108,37 @@ def read(relative: str) -> str:
     return (ROOT / relative).read_text(encoding="utf-8")
 
 
+def parse(relative: str) -> PageParser:
+    parser = PageParser()
+    parser.feed(read(relative))
+    return parser
+
+
 def main() -> int:
     errors: list[str] = []
     html_pages = sorted(ROOT.rglob("*.html"))
     refs_checked = 0
     pdf_links_checked = 0
+    active_pt = 0
+    active_en = 0
+    redirects_seen: set[str] = set()
 
     for page in html_pages:
         parser = PageParser()
         content = page.read_text(encoding="utf-8")
         parser.feed(content)
         rel = page.relative_to(ROOT)
+        rel_str = rel.as_posix()
+        is_redirect = "redirect-page" in parser.classes
+        is_case = "cases" in rel.parts
+        is_active_case = is_case and "case-body" in parser.classes and not is_redirect
+
+        if is_active_case:
+            if rel.parts[0] == "cases":
+                active_pt += 1
+            elif rel.parts[0] == "en":
+                active_en += 1
+
         duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
         if duplicates:
             errors.append(f"{rel}: duplicate IDs: {duplicates}")
@@ -123,14 +152,22 @@ def main() -> int:
             errors.append(f"{rel}: canonical missing")
         if rel.name != "404.html" and not parser.has_hreflang:
             errors.append(f"{rel}: hreflang missing")
-        if not parser.has_theme_toggle:
+        if not is_redirect and not parser.has_theme_toggle:
             errors.append(f"{rel}: accessible theme toggle missing")
         if parser.images_without_alt:
             errors.append(f"{rel}: images without alt: {parser.images_without_alt}")
-        if "cases" in rel.parts and not ({"case-showcase", "case-proof-card"} & parser.classes):
-            errors.append(f"{rel}: case lacks primary visual evidence")
-        if "cases" in rel.parts and not {"case-gallery-section", "case-evidence-index", "evidence-label"}.issubset(parser.classes):
-            errors.append(f"{rel}: case lacks traceable gallery/evidence labels")
+        if is_active_case and not ({"case-showcase", "case-proof-card"} & parser.classes):
+            errors.append(f"{rel}: active case lacks primary visual evidence")
+        if is_active_case and not {"case-gallery-section", "case-evidence-index", "evidence-label"}.issubset(parser.classes):
+            errors.append(f"{rel}: active case lacks traceable gallery/evidence labels")
+
+        if is_redirect:
+            redirects_seen.add(rel_str)
+            expected_target = LEGACY_REDIRECTS.get(rel_str)
+            if expected_target is None:
+                errors.append(f"{rel}: unexpected redirect page")
+            elif expected_target not in content:
+                errors.append(f"{rel}: redirect target is not canonical: {expected_target}")
 
         for pdf_ref in parser.pdf_refs:
             pdf_links_checked += 1
@@ -149,78 +186,93 @@ def main() -> int:
             if not target.exists():
                 errors.append(f"{rel}: missing local reference: {value}")
 
-    if len(html_pages) != 41:
-        errors.append(f"unexpected HTML page count: {len(html_pages)} (expected 41)")
-    pt_cases = len(list((ROOT / "cases").glob("*/index.html")))
-    en_cases = len(list((ROOT / "en/cases").glob("*/index.html")))
-    if pt_cases != 18 or en_cases != 18:
-        errors.append(f"unexpected case count: PT={pt_cases}, EN={en_cases}")
-    for case in (ROOT / "cases").glob("*/index.html"):
-        if not (ROOT / "en" / case.relative_to(ROOT)).exists():
-            errors.append(f"case lacks English counterpart: {case.relative_to(ROOT)}")
+    if len(html_pages) != 45:
+        errors.append(f"unexpected HTML page count: {len(html_pages)} (expected 45)")
+    if active_pt != ACTIVE_CASES_PT or active_en != ACTIVE_CASES_EN:
+        errors.append(f"unexpected active case count: PT={active_pt}, EN={active_en}, expected {ACTIVE_CASES_PT}/{ACTIVE_CASES_EN}")
+    if redirects_seen != set(LEGACY_REDIRECTS):
+        errors.append(f"legacy redirect inventory differs: {sorted(redirects_seen)}")
+
+    required_files = [
+        "cases/catalogo-operacional-compras/index.html",
+        "en/cases/operational-procurement-catalog/index.html",
+        "cases/portal/index.html",
+        "en/cases/portal/index.html",
+    ]
+    for relative in required_files:
+        if not (ROOT / relative).exists():
+            errors.append(f"missing canonical strategic route: {relative}")
 
     pt_home = read("index.html")
     en_home = read("en/index.html")
     pt_skills = read("competencias/index.html")
     en_skills = read("en/skills/index.html")
-    pt_catalog = read("cases/procureflow/index.html")
-    en_catalog = read("en/cases/procureflow/index.html")
-    pt_portal = read("cases/portal-vesper/index.html")
-    en_portal = read("en/cases/portal-vesper/index.html")
+    pt_catalog = read("cases/catalogo-operacional-compras/index.html")
+    en_catalog = read("en/cases/operational-procurement-catalog/index.html")
+    pt_portal = read("cases/portal/index.html")
+    en_portal = read("en/cases/portal/index.html")
 
-    for home in (ROOT / "index.html", ROOT / "en/index.html"):
-        parser = PageParser()
-        parser.feed(home.read_text(encoding="utf-8"))
-        if parser.metric_links != 6:
-            errors.append(f"{home.relative_to(ROOT)}: expected 6 linked metrics, found {parser.metric_links}")
+    if parse("index.html").metric_links != 6:
+        errors.append("index.html: expected 6 linked metrics")
+    if parse("en/index.html").metric_links != 6:
+        errors.append("en/index.html: expected 6 linked metrics")
 
     require_text(pt_home, [
         "Analista de Automação, IA e Integrações", "2 workflows públicos", "Catálogo Operacional de Compras",
         "Usado diariamente por 3 usuários operacionais e consultado pela gestão", "58 nós no workflow de ações",
         "Procurement e sourcing validados em sandbox", "tenant/RLS", "Action Envelope",
+        'href="cases/catalogo-operacional-compras/"', 'href="cases/portal/"',
         '<a href="competencias/">Competências</a>', "DIO · 4h / 4 cursos",
     ], "index.html", errors)
     require_text(en_home, [
         "AI Automation &amp; Integrations Analyst", "2 public workflows", "Operational Procurement Catalog",
         "Used daily by 3 operational users and consulted by management", "58 nodes in Actions",
         "Procurement and sourcing validated in sandbox", "tenant/RLS", "Action Envelope",
+        'href="cases/operational-procurement-catalog/"', 'href="cases/portal/"',
         '<a href="skills/">Skills</a>', "DIO · 4h / 4 courses",
     ], "en/index.html", errors)
 
     require_text(pt_skills, [
         "automação low-code/no-code", "OpenAI, Gemini, Ollama, OpenRouter e Codex", "SQLite e FTS5",
         "Action Envelope", "Catálogo Operacional de Compras", "Procurement do Portal validado em sandbox",
+        'href="../cases/catalogo-operacional-compras/"', 'href="../cases/portal/"',
     ], "competencias/index.html", errors)
     require_text(en_skills, [
         "low-code/no-code automation", "OpenAI, Gemini, Ollama, OpenRouter and Codex", "SQLite and FTS5",
         "Action Envelopes", "Operational Procurement Catalog", "Portal Procurement validated in sandbox",
+        'href="../cases/operational-procurement-catalog/"', 'href="../cases/portal/"',
     ], "en/skills/index.html", errors)
 
     require_text(pt_catalog, [
         "Catálogo Operacional de Compras", "USO INTERNO DIÁRIO", "três usuários operacionais", "SQLite FTS5",
         "controle de revisão", "aproximadamente dois anos", "Conflito por revisão",
-    ], "cases/procureflow/index.html", errors)
+        "https://mayconxzdev.github.io/cases/catalogo-operacional-compras/",
+    ], "cases/catalogo-operacional-compras/index.html", errors)
     require_text(en_catalog, [
         "Operational Procurement Catalog", "DAILY INTERNAL USE", "three operational users", "SQLite FTS5",
         "revision", "approximately two years", "Revision conflict",
-    ], "en/cases/procureflow/index.html", errors)
+        "https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/",
+    ], "en/cases/operational-procurement-catalog/index.html", errors)
 
     require_text(pt_portal, [
         "Business Operating Platform multiempresa", "EM DESENVOLVIMENTO · PRÉ-PILOTO", "Produto autoral",
         "tenant/RLS", "Action Envelope", "Procurement Intake e sourcing", "preparada para piloto interno",
         "ainda não está comprovado", "referência pública anterior",
-    ], "cases/portal-vesper/index.html", errors)
+        "https://mayconxzdev.github.io/cases/portal/",
+    ], "cases/portal/index.html", errors)
     require_text(en_portal, [
         "Multi-tenant Business Operating Platform", "IN DEVELOPMENT · PRE-PILOT", "Author-built product",
         "tenant/RLS", "Action Envelopes", "Procurement Intake and sourcing", "prepared for an internal pilot",
         "not yet demonstrated", "previous public reference",
-    ], "en/cases/portal-vesper/index.html", errors)
+        "https://mayconxzdev.github.io/en/cases/portal/",
+    ], "en/cases/portal/index.html", errors)
 
     strategic = pt_home + en_home + pt_skills + en_skills + pt_catalog + en_catalog + pt_portal + en_portal
     forbid_text(strategic, [
         "5 workflows publicados", "5 published workflows", "5 workflows/158", "3 workflows/58",
-        "Portal Vesper", ">ProcureFlow<", "REFERENCE ARCHITECTURE</span><h1>Portal",
-        "RAG/grounding", "FastAPI/Flask", "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
+        "Portal Vesper", ">ProcureFlow<", "cases/procureflow/", "cases/portal-vesper/",
+        'href="../cases/', "RAG/grounding", "FastAPI/Flask",
+        "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
     ], "strategic pages", errors)
 
     actual_cvs = {path.name for path in (ROOT / "assets/cv").glob("*.pdf")}
@@ -230,16 +282,34 @@ def main() -> int:
     sitemap = read("sitemap.xml")
     if sitemap.count("<url>") != 40:
         errors.append(f"sitemap URL count is {sitemap.count('<url>')}, expected 40")
-    for route in ("https://mayconxzdev.github.io/competencias/", "https://mayconxzdev.github.io/en/skills/"):
+    for route in (
+        "https://mayconxzdev.github.io/competencias/",
+        "https://mayconxzdev.github.io/en/skills/",
+        "https://mayconxzdev.github.io/cases/catalogo-operacional-compras/",
+        "https://mayconxzdev.github.io/en/cases/operational-procurement-catalog/",
+        "https://mayconxzdev.github.io/cases/portal/",
+        "https://mayconxzdev.github.io/en/cases/portal/",
+    ):
         if route not in sitemap:
             errors.append(f"sitemap missing strategic route: {route}")
+    for stale in (
+        "https://mayconxzdev.github.io/cases/procureflow/",
+        "https://mayconxzdev.github.io/en/cases/procureflow/",
+        "https://mayconxzdev.github.io/cases/portal-vesper/",
+        "https://mayconxzdev.github.io/en/cases/portal-vesper/",
+    ):
+        if stale in sitemap:
+            errors.append(f"sitemap contains legacy redirect route: {stale}")
 
-    print(f"HTML: {len(html_pages)} | local refs: {refs_checked} | resume links: {pdf_links_checked} | cases PT/EN: {pt_cases}/{en_cases}")
+    print(
+        f"HTML: {len(html_pages)} | local refs: {refs_checked} | resume links: {pdf_links_checked} | "
+        f"active cases PT/EN: {active_pt}/{active_en} | redirects: {len(redirects_seen)}"
+    )
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("Portfolio content, evidence, links and hygiene validation completed without errors.")
+    print("Portfolio content, canonical routes, redirects, links and hygiene validation completed without errors.")
     return 0
 
 
