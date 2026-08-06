@@ -56,6 +56,12 @@ STALE = [
     "Portal Vesper",
     "Procurement e sourcing validados em sandbox",
     "Procurement and sourcing validated in sandbox",
+    "Facebook e Instagram validados em teste",
+    "Facebook and Instagram validated in testing",
+    "ultrapassou 10 mil execuções em produção",
+    "surpassed 10,000 production executions",
+    "portal-dev-only",
+    "vesper_admin",
 ]
 
 REQUIRED = {
@@ -81,14 +87,14 @@ REQUIRED = {
         "COMPETÊNCIAS E EXPERIÊNCIA PRÁTICA",
         "ONDE APLICO NA ROTINA",
         "geração de mídia",
-        "10 mil execuções",
+        "10 mil execuções de workflows em produção",
         "AWS",
     ],
     "en/skills/index.html": [
         "SKILLS AND PRACTICAL EXPERIENCE",
         "WHERE I USE IT IN PRACTICE",
         "media generation",
-        "10,000 production executions",
+        "10,000 workflow executions in production",
         "AWS",
     ],
 }
@@ -108,7 +114,7 @@ def main() -> int:
                 errors.append(f"{relative}: external-review wording remains: {phrase}")
         for phrase in STALE:
             if phrase in text:
-                errors.append(f"{relative}: stale identity, metric or status remains: {phrase}")
+                errors.append(f"{relative}: stale wording, metric, status or credential remains: {phrase}")
 
     for relative, phrases in REQUIRED.items():
         path = ROOT / relative
@@ -125,7 +131,7 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
 
-    print(f"Natural public voice and current claims validated across {len(public_files)} public files.")
+    print(f"Natural public voice, current claims and public-secret hygiene validated across {len(public_files)} public files.")
     return 0
 
 
