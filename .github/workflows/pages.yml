@@ -18,7 +18,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -34,6 +34,7 @@ jobs:
         run: |
           python scripts/normalize_portfolio_content.py
           python scripts/normalize_canonical_routes.py
+          python scripts/apply_verified_career_facts.py
       - name: Validate resume content and parser compatibility
         run: python scripts/validate_resumes.py
       - name: Validate rendered resume layout
@@ -59,6 +60,14 @@ jobs:
           done
           curl -fsS http://127.0.0.1:8000/ >/dev/null
           PORTFOLIO_BASE_URL=http://127.0.0.1:8000 node scripts/visual_smoke.mjs
+      - name: Upload audited resumes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audited-resumes-${{ github.run_id }}
+          path: assets/cv/*.pdf
+          if-no-files-found: error
+          retention-days: 30
       - name: Upload visual QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -67,7 +76,7 @@ jobs:
           path: artifacts/visual/
           if-no-files-found: warn
           retention-days: 14
-      - name: Commit generated and canonicalized artifacts
+      - name: Commit generated and verified artifacts
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           TRACKED=(
@@ -76,17 +85,31 @@ jobs:
             en/index.html
             competencias/index.html
             en/skills/index.html
-            cases/compras-vesper/index.html
-            en/cases/compras-vesper/index.html
+            cases/mala-direta/index.html
+            en/cases/mala-direta/index.html
+            cases/producao-operacional/index.html
+            en/cases/producao-operacional/index.html
+            cases/catalogo-operacional-compras/index.html
+            en/cases/operational-procurement-catalog/index.html
             cases/postagem-redes/index.html
             en/cases/postagem-redes/index.html
+            cases/portal/index.html
+            en/cases/portal/index.html
+            cases/compass/index.html
+            en/cases/compass/index.html
+            cases/helpdesk/index.html
+            en/cases/helpdesk/index.html
+            cases/compass-automation/index.html
+            en/cases/compass-automation/index.html
+            cases/compras-vesper/index.html
+            en/cases/compras-vesper/index.html
             sitemap.xml
           )
           if ! git diff --quiet -- "${TRACKED[@]}"; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add "${TRACKED[@]}"
-            git commit -m "chore: regenerate audited resumes and canonical portfolio routes [skip ci]"
+            git commit -m "chore: publish verified career facts and audited resumes [skip ci]"
             git push
           fi
       - name: Configure GitHub Pages
