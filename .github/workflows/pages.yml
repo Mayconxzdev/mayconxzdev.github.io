@@ -79,7 +79,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
       - name: Commit generated public artifacts
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           git add assets/cv/*.pdf sitemap.xml
           find . -type f -name 'index.html' -not -path './artifacts/*' -print0 | xargs -0 git add --
