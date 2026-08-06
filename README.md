@@ -2,26 +2,36 @@
 
 Portfólio profissional de **Maycon Ferreira, Analista de Automação, IA e Integrações**: [mayconxzdev.github.io](https://mayconxzdev.github.io/).
 
-O site reúne sistemas em produção, cases sanitizados, repositórios públicos e competências comprovadas em n8n, Python, APIs REST, automação low-code, IA generativa, agentes e confiabilidade operacional. O objetivo não é acumular telas ou palavras-chave: cada case começa pelo problema, informa o estado real da entrega, descreve a participação e apresenta resultado, evidência e limite.
+O site reúne sistemas em produção, uso interno, cases sanitizados, repositórios públicos e produtos em desenvolvimento. Cada case declara problema, participação, stack, resultado, evidência, limitações e estado real — sem tratar sandbox, piloto e produção como sinônimos.
+
+## Posicionamento e seleção estratégica
+
+Os materiais principais demonstram dimensões diferentes, evitando repetir o mesmo tipo de projeto:
+
+- **Mala Direta** — n8n, escala, filas, cancelamento e auditoria;
+- **Catálogo Operacional de Compras** — FastAPI, SQLite FTS5, busca, histórico e concorrência;
+- **Postagem Redes** — IA generativa, Meta Graph API, aprovação humana e entrega multicanal;
+- **Portal** — produto multiempresa em desenvolvimento, tenancy/RLS, Action Envelope, aprovações e outbox;
+- **Produção Operacional, Vesper Propostas e HelpDesk** — implantação, adoção e sustentação em ambiente empresarial.
 
 ## Estrutura pública
 
 - página inicial em português e inglês;
-- 18 cases por idioma, com rotas próprias;
+- 18 cases por idioma;
 - página de competências em português e inglês;
 - currículo de uma página em PT-BR e inglês;
 - links para código público quando existe;
-- provas visuais públicas ou sanitizadas, identificadas pelo contexto;
+- provas visuais públicas, sanitizadas ou identificadas como referência histórica;
 - tema claro e escuro, navegação por teclado, busca e filtros progressivos.
 
 ## Currículos
 
-Os PDFs em `assets/cv/` são gerados por código para manter o conteúdo e o layout reproduzíveis:
+Os PDFs em `assets/cv/` são gerados por código:
 
 - `Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf`
 - `Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf`
 
-A validação automatizada exige uma página A4, texto selecionável, cinco links funcionais, seções ATS convencionais, termos e métricas obrigatórios, ausência de PDFs antigos, margens seguras, fonte mínima definida e nenhuma colisão visual.
+A validação exige uma página A4, texto selecionável, cinco links funcionais, seções ATS convencionais, datas consistentes, inventário sem versões antigas, margens seguras, fonte mínima e ausência de colisões. Também bloqueia métricas ambíguas, como associar 158 nós a todos os workflows da Mala Direta ou 58 nós aos três workflows do Postagem Redes.
 
 ## Validação local
 
@@ -35,7 +45,7 @@ python scripts/validate_site.py
 node --check js/site.js
 ```
 
-Para repetir a inspeção das rotas estratégicas em navegador:
+Para repetir a inspeção visual:
 
 ```bash
 npm install --no-save playwright@1.54.2
@@ -44,22 +54,26 @@ python -m http.server 8000 --bind 127.0.0.1
 PORTFOLIO_BASE_URL=http://127.0.0.1:8000 node scripts/visual_smoke.mjs
 ```
 
-O smoke test renderiza a home e a página de competências em PT-BR e inglês, nos temas claro e escuro e em desktop e mobile. Ele falha quando encontra posicionamento ausente, overflow horizontal, imagens quebradas, texto recortado, links de currículo antigos ou menu móvel inconsistente.
+O smoke test cobre home, competências, Catálogo Operacional de Compras e Portal em PT-BR e inglês, nos temas claro e escuro e em desktop e mobile: **32 capturas completas**. Ele falha com overflow horizontal, imagens quebradas, texto recortado, posicionamento ausente, links de currículo antigos ou menu móvel inconsistente.
 
 ## Critérios de evidência
 
-Capturas públicas pertencem ao produto publicado ou a versões sanitizadas e explicitamente identificadas. Credenciais, dados pessoais, anexos operacionais, caminhos locais, IPs e detalhes privados de integrações não são expostos. Quando não existe tela publicável, o case usa uma composição arquitetural identificada como explicativa — nunca uma interface fictícia apresentada como produto real.
+- valores de nós, workflows, usuários e resultados pertencem ao componente exato que os sustenta;
+- projetos usados na experiência profissional não são repetidos na seção de projetos do currículo;
+- código privado é identificado como privado;
+- telas da arquitetura anterior do Portal são rotuladas como referência histórica;
+- o novo Portal é apresentado como em desenvolvimento e pré-piloto, não como produção;
+- credenciais, dados pessoais, fornecedores, preços, caminhos e detalhes privados não são expostos.
 
 ## Estrutura do projeto
 
-- `/` — portfólio em português;
-- `/en/` — versão em inglês;
-- `/competencias/` e `/en/skills/` — matriz pública de competências;
+- `/` e `/en/` — portfólio bilíngue;
+- `/competencias/` e `/en/skills/` — competências ligadas a provas;
 - `/cases/<slug>/` e `/en/cases/<slug>/` — cases;
 - `/assets/cv/` — currículos gerados;
-- `/scripts/` — geração, normalização e validação;
+- `/scripts/` — geração, normalização, validação e smoke visual;
 - `/docs/` — estratégia e relatório de qualidade.
 
 ## Qualidade publicada
 
-O workflow **Validate and deploy GitHub Pages** só libera o deploy depois de validar fontes Python, conteúdo dos currículos, parsing por duas bibliotecas, renderização e geometria dos PDFs, referências locais, higiene de conteúdo, JavaScript e as 16 combinações visuais das rotas estratégicas. O estado auditado está documentado em [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md), e as decisões de apresentação em [`docs/DESIGN_STRATEGY.md`](docs/DESIGN_STRATEGY.md).
+O workflow **Validate and deploy GitHub Pages** só libera o deploy após validar fontes Python, conteúdo e parsing dos currículos, geometria dos PDFs, referências locais, higiene de conteúdo, JavaScript e 32 renderizações estratégicas. O estado auditado está em [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md).
