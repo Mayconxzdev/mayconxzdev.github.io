@@ -9,9 +9,6 @@ CURRENT_CVS = {
     "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf",
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf",
 }
-
-ACTIVE_CASES_PT = 18
-ACTIVE_CASES_EN = 18
 LEGACY_REDIRECTS = {
     "cases/procureflow/index.html": "../catalogo-operacional-compras/",
     "en/cases/procureflow/index.html": "../operational-procurement-catalog/",
@@ -76,6 +73,16 @@ class PageParser(HTMLParser):
             self._title_text.append(data)
 
 
+def read(relative: str) -> str:
+    return (ROOT / relative).read_text(encoding="utf-8")
+
+
+def parse(relative: str) -> PageParser:
+    parser = PageParser()
+    parser.feed(read(relative))
+    return parser
+
+
 def resolve_reference(page: Path, value: str) -> Path | None:
     if not value or value == "/" or value.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
         return None
@@ -104,16 +111,6 @@ def forbid_text(content: str, forbidden: list[str], label: str, errors: list[str
             errors.append(f"{label}: stale, ambiguous or unsupported text found: {phrase}")
 
 
-def read(relative: str) -> str:
-    return (ROOT / relative).read_text(encoding="utf-8")
-
-
-def parse(relative: str) -> PageParser:
-    parser = PageParser()
-    parser.feed(read(relative))
-    return parser
-
-
 def main() -> int:
     errors: list[str] = []
     html_pages = sorted(ROOT.rglob("*.html"))
@@ -134,10 +131,8 @@ def main() -> int:
         is_active_case = is_case and "case-body" in parser.classes and not is_redirect
 
         if is_active_case:
-            if rel.parts[0] == "cases":
-                active_pt += 1
-            elif rel.parts[0] == "en":
-                active_en += 1
+            active_pt += int(rel.parts[0] == "cases")
+            active_en += int(rel.parts[0] == "en")
 
         duplicates = sorted({value for value in parser.ids if parser.ids.count(value) > 1})
         if duplicates:
@@ -188,18 +183,17 @@ def main() -> int:
 
     if len(html_pages) != 45:
         errors.append(f"unexpected HTML page count: {len(html_pages)} (expected 45)")
-    if active_pt != ACTIVE_CASES_PT or active_en != ACTIVE_CASES_EN:
-        errors.append(f"unexpected active case count: PT={active_pt}, EN={active_en}, expected {ACTIVE_CASES_PT}/{ACTIVE_CASES_EN}")
+    if active_pt != 18 or active_en != 18:
+        errors.append(f"unexpected active case count: PT={active_pt}, EN={active_en}, expected 18/18")
     if redirects_seen != set(LEGACY_REDIRECTS):
         errors.append(f"legacy redirect inventory differs: {sorted(redirects_seen)}")
 
-    required_files = [
+    for relative in (
         "cases/catalogo-operacional-compras/index.html",
         "en/cases/operational-procurement-catalog/index.html",
         "cases/portal/index.html",
         "en/cases/portal/index.html",
-    ]
-    for relative in required_files:
+    ):
         if not (ROOT / relative).exists():
             errors.append(f"missing canonical strategic route: {relative}")
 
@@ -231,6 +225,8 @@ def main() -> int:
         'href="cases/operational-procurement-catalog/"', 'href="cases/portal/"',
         '<a href="skills/">Skills</a>', "DIO · 4h / 4 courses",
     ], "en/index.html", errors)
+    if 'href="../cases/' in en_home:
+        errors.append("en/index.html: English home links must remain inside /en/cases/")
 
     require_text(pt_skills, [
         "automação low-code/no-code", "OpenAI, Gemini, Ollama, OpenRouter e Codex", "SQLite e FTS5",
@@ -271,8 +267,7 @@ def main() -> int:
     forbid_text(strategic, [
         "5 workflows publicados", "5 published workflows", "5 workflows/158", "3 workflows/58",
         "Portal Vesper", ">ProcureFlow<", "cases/procureflow/", "cases/portal-vesper/",
-        'href="../cases/', "RAG/grounding", "FastAPI/Flask",
-        "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
+        "RAG/grounding", "FastAPI/Flask", "REGISTRO DE SISTEMAS EM OPERAÇÃO · 2026",
     ], "strategic pages", errors)
 
     actual_cvs = {path.name for path in (ROOT / "assets/cv").glob("*.pdf")}
