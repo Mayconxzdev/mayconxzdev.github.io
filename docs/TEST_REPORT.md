@@ -1,6 +1,8 @@
 # Verificação da versão publicada
 
-Atualizado em **6 de agosto de 2026**, após nova auditoria dos repositórios, métricas, currículo, posicionamento profissional, consistência bilíngue, rotas canônicas e apresentação visual.
+Atualizado em **7 de agosto de 2026**, após nova auditoria dos repositórios, métricas, currículo, posicionamento profissional, consistência bilíngue, rotas canônicas, apresentação visual e referências locais do portfólio.
+
+A rodada de 7 de agosto inclui a correção das referências visuais ausentes nos cases ComprasVesper e Vesper Manutenção e uma nova execução completa dos gates públicos antes da publicação.
 
 ## Currículos PT-BR e inglês
 
