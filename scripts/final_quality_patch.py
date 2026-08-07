@@ -31,6 +31,12 @@ PATCHES = {
             "https://raw.githubusercontent.com/Mayconxzdev/ComprasProducao/main/docs/assets/ui-tracking-real.png",
         ),
     ],
+    "cases/infinity-engine/index.html": [
+        (
+            "Aplicação privada: a material público é a arquitetura declarada, não uma captura de interface.",
+            "Como a aplicação é privada, publico apenas a arquitetura e o fluxo — não capturas da interface interna.",
+        ),
+    ],
     "cases/vesper-manutencao/index.html": [
         (
             "../../assets/evidence/manutencao-dashboard.webp",
