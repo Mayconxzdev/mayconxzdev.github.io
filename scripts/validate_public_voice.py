@@ -18,11 +18,19 @@ FORBIDDEN = [
     "PROVAS EM CONTEXTO",
     "PROVA OPERACIONAL",
     "PROVA DE AMPLITUDE",
+    "PROVAS VISUAIS",
     "SISTEMAS PRIORITÁRIOS",
     "COMPETÊNCIA → PROVA",
     "Seis entregas para entender meu valor",
     "Para uma avaliação rápida",
     "avaliação rápida de RH",
+    "Tipo de prova",
+    "tipo de prova",
+    "evidência pública",
+    "A material público",
+    "Imagem selecionada como evidência visual do case.",
+    "O que este case não mostra",
+    "Se a operação crescesse",
     "Recruiter overview",
     "Technical review summary",
     "Five-minute review path",
@@ -37,10 +45,17 @@ FORBIDDEN = [
     "EVIDENCE IN CONTEXT",
     "OPERATIONAL EVIDENCE",
     "BREADTH EVIDENCE",
+    "VISUAL EVIDENCE",
     "PRIORITY SYSTEMS",
     "SKILL → EVIDENCE",
     "For a quick evaluation",
     "quick HR evaluation",
+    "Evidence type",
+    "evidence type",
+    "public evidence",
+    "Image selected as visual evidence for this case.",
+    "What this case does not show",
+    "If the operation grew",
     "Text-to-video",
     "text-to-video",
 ]
@@ -86,14 +101,14 @@ REQUIRED = {
     "competencias/index.html": [
         "COMPETÊNCIAS E EXPERIÊNCIA PRÁTICA",
         "ONDE APLICO NA ROTINA",
-        "geração de mídia",
+        "IA multimodal",
         "10 mil execuções de workflows em produção",
         "AWS",
     ],
     "en/skills/index.html": [
         "SKILLS AND PRACTICAL EXPERIENCE",
         "WHERE I USE IT IN PRACTICE",
-        "media generation",
+        "multimodal AI",
         "10,000 workflow executions in production",
         "AWS",
     ],
@@ -111,7 +126,7 @@ def main() -> int:
         relative = path.relative_to(ROOT)
         for phrase in FORBIDDEN:
             if phrase in text:
-                errors.append(f"{relative}: external-review wording remains: {phrase}")
+                errors.append(f"{relative}: external-review or artificial wording remains: {phrase}")
         for phrase in STALE:
             if phrase in text:
                 errors.append(f"{relative}: stale wording, metric, status or credential remains: {phrase}")
@@ -131,7 +146,10 @@ def main() -> int:
             print(f"ERROR: {error}")
         return 1
 
-    print(f"Natural public voice, current claims and public-secret hygiene validated across {len(public_files)} public files.")
+    print(
+        "Natural first-person public voice, current claims and public-secret hygiene "
+        f"validated across {len(public_files)} public files."
+    )
     return 0
 
 
