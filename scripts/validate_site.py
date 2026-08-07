@@ -17,6 +17,12 @@ REDIRECT_ROUTES = {
     "cases/compass-automation/index.html",
     "en/cases/compass-automation/index.html",
 }
+IGNORED_HTML_PARTS = {
+    ".git",
+    ".venv",
+    "artifacts",
+    "node_modules",
+}
 
 
 class Parser(HTMLParser):
@@ -94,9 +100,14 @@ def local_target(page: Path, reference: str) -> Path | None:
     return target
 
 
+def is_public_html(path: Path) -> bool:
+    relative = path.relative_to(ROOT)
+    return not any(part in IGNORED_HTML_PARTS for part in relative.parts)
+
+
 def main() -> int:
     errors: list[str] = []
-    html_files = sorted(path for path in ROOT.rglob("*.html") if "artifacts" not in path.parts)
+    html_files = sorted(path for path in ROOT.rglob("*.html") if is_public_html(path))
     local_references = 0
     resume_links = 0
     pt_cases = 0
