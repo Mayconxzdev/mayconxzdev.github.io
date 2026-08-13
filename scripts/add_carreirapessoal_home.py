@@ -22,7 +22,7 @@ for rel,lang in [('index.html','pt'),('en/index.html','en')]:
         else:
             desc='Technical document-automation pilot based on Quality requirements, with deterministic rules, traceability and idempotent processing.'
             state='TECHNICAL PILOT'; note='sanitized public repository'; aria='Open Quality project'
-        row=f'<article class="archive-row persp-process persp-automation persp-architecture" data-search="quality-automation-pilot"><span class="archive-number">Q1</span><div class="archive-name"><h3>{display_name}</h3><p>{desc}</p></div><div class="archive-state"><span class="status status--pilot">{state}</span><small>{note}</small></div><div class="archive-stack">FastAPI · n8n · Docker · Tauri</div><a class="archive-open" href="https://github.com/Mayconxzdev/{repo_name}" aria-label="{aria}">↗</a></article>'
+        row=f'<article class="archive-row persp-process persp-automation persp-architecture" data-search="quality-automation-pilot"><span class="archive-number">08</span><div class="archive-name"><h3>{display_name}</h3><p>{desc}</p></div><div class="archive-state"><span class="status status--pilot">{state}</span><small>{note}</small></div><div class="archive-stack">FastAPI · n8n · Docker · Tauri</div><a class="archive-open" href="https://github.com/Mayconxzdev/{repo_name}" aria-label="{aria}">↗</a></article>'
         if archive not in text: raise RuntimeError(f'{rel}: archive marker missing')
         text=text.replace(archive,archive+'\n        '+row,1)
     p.write_text(text,encoding='utf-8')
