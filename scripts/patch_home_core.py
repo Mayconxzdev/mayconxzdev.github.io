@@ -16,6 +16,7 @@ patch('scripts/generate_resumes_general.py', [
     ('OpenAI, Gemini e Ollama, APIs de LLM, engenharia de prompts, RAG/grounding com LangChain, recuperação de contexto, respostas estruturadas e revisão humana (human-in-the-loop).', 'OpenAI, Gemini e Ollama, APIs de LLM, engenharia de prompts, RAG/grounding com LangChain, MCP, LangGraph, CrewAI, respostas estruturadas e revisão humana (human-in-the-loop).'),
     ('self-hosted n8n, Python, REST APIs, webhooks, JSON/JSON Schema, OAuth 2.0, SQL/PostgreSQL, AS-IS/TO-BE, requirements, business rules, traceability, auditing, quality/compliance and documentation.', 'self-hosted n8n, Power Automate, Make/Zapier, CRM, REST APIs, webhooks, JSON/JSON Schema, OAuth 2.0, SQL/PostgreSQL, BPMN, AS-IS/TO-BE, requirements, business rules, traceability and documentation.'),
     ('OpenAI, Gemini and Ollama, LLM APIs, prompt engineering, RAG/grounding with LangChain, context retrieval, structured outputs and human-in-the-loop review.', 'OpenAI, Gemini and Ollama, LLM APIs, prompt engineering, RAG/grounding with LangChain, MCP, LangGraph, CrewAI, structured outputs and human-in-the-loop review.'),
+    ("    x=L; size=8.05; lead=10.8\n", "    if data is EN:\n        links[0]=(links[0][0].replace('Telefone/WhatsApp','Phone/WhatsApp'),links[0][1])\n        links[1]=(links[1][0].replace('E-mail','Email'),links[1][1])\n    x=L; size=8.05; lead=10.8\n"),
 ])
 
 patch('index.html', [
