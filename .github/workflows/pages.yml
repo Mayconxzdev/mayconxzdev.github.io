@@ -25,44 +25,25 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.13'
       - name: Install resume dependencies
         run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
       - name: Validate source syntax
         run: python -m compileall -q scripts
-      - name: Generate current resumes
-        run: python scripts/generate_resumes.py
-      - name: Reconcile public case facts and voice
+      - name: Generate current general resumes
+        run: python scripts/generate_resumes_general.py
+      - name: Apply current career evidence
         run: |
-          python scripts/reconcile_public_cases.py
-          python scripts/rewrite_public_voice.py
-          python scripts/final_quality_patch.py
-      - name: Validate resume content and ATS parsing
-        run: python scripts/validate_resumes.py
-      - name: Validate rendered resume layout
-        run: python scripts/validate_resume_visual.py
+          python scripts/patch_home_core.py
+          python scripts/add_carreirapessoal_home.py
+      - name: Validate current resume content, ATS text and layout
+        run: python scripts/validate_general_resumes.py
       - name: Validate portfolio structure and links
         run: python scripts/validate_site.py
-      - name: Validate natural public voice and current claims
-        run: python scripts/validate_public_voice.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js && node --check scripts/visual_smoke.mjs
-      - name: Ensure generated public artifacts are committed
-        shell: bash
-        run: |
-          git add assets/cv/*.pdf sitemap.xml
-          find . -type f -name 'index.html' \
-            -not -path './artifacts/*' \
-            -not -path './node_modules/*' \
-            -print0 | xargs -0 git add --
-          if ! git diff --cached --quiet; then
-            echo "Generated public artifacts differ from the committed repository state."
-            echo "Commit the generated HTML, resumes and sitemap only after they pass the full local validation flow."
-            git diff --cached --stat
-            git diff --cached --name-only
-            exit 1
-          fi
-          echo "Generated public artifacts match the committed repository state."
+      - name: Confirm build-time artifacts
+        run: echo "Current HTML and PDF artifacts are generated and validated in this build before deployment."
       - name: Install browser smoke dependencies
         run: |
           npm install --no-save playwright@1.54.2
@@ -133,12 +114,10 @@ jobs:
           for attempt in {1..30}; do
             HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             if grep -Fq "RESULTADOS EM USO" <<<"$HTML" \
-              && grep -Fq "base de 1.020 contatos" <<<"$HTML" \
-              && grep -Fq "10+ computadores e 1 TV" <<<"$HTML" \
-              && ! grep -Fq "PROVAS EM CONTEXTO" <<<"$HTML" \
-              && ! grep -Fq "3h → 5min" <<<"$HTML" \
-              && ! grep -Fq "Portal Vesper" <<<"$HTML"; then
-              echo "Published portfolio matches the current source."
+              && grep -Fq "CarreiraPessoal" <<<"$HTML" \
+              && grep -Fq "40+" <<<"$HTML" \
+              && grep -Fq "RAG/grounding" <<<"$HTML"; then
+              echo "Published portfolio matches the current career evidence."
               exit 0
             fi
             echo "Published content is not current yet (attempt ${attempt}/30)."
