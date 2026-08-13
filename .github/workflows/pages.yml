@@ -37,6 +37,7 @@ jobs:
           python scripts/patch_home_core.py
           python scripts/add_carreirapessoal_home.py
           python scripts/patch_skills_current.py
+          python scripts/patch_portfolio_consistency.py
       - name: Validate current resume content, ATS text and layout
         run: python scripts/validate_general_resumes.py
       - name: Validate portfolio structure and links
@@ -118,7 +119,8 @@ jobs:
               && grep -Fq "CarreiraPessoal" <<<"$HTML" \
               && grep -Fq "Central ISO" <<<"$HTML" \
               && grep -Fq "40+" <<<"$HTML" \
-              && grep -Fq "RAG/grounding" <<<"$HTML"; then
+              && grep -Fq "RAG/grounding" <<<"$HTML" \
+              && grep -Fq "arquitetura de sistemas" <<<"$HTML"; then
               echo "Published portfolio matches the current career evidence."
               exit 0
             fi
