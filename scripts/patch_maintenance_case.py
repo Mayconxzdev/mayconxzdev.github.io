@@ -1,4 +1,5 @@
 from pathlib import Path
+import runpy
 root=Path(__file__).resolve().parents[1]
 
 def patch(rel,pairs):
@@ -26,4 +27,5 @@ patch('en/cases/vesper-manutencao/index.html',[
 ('Product, FastAPI, interface, database, text search, transcription, audit trail and technician review.','Asset flow with code/tag/name, checklist, date/time, responsible person, photos, notes, evidence and server-side history.'),
 ('FastAPI, React, SQLite/FTS5, PWA, OpenAI transcription and local faster-whisper/whisper.cpp alternatives.','Changes preserve author and previous/new values; a new maintenance execution never overwrites the previous history.'),
 ])
-print('Maintenance case refreshed.')
+runpy.run_path(str(root/'scripts'/'patch_proposal_case_en.py'),run_name='__main__')
+print('Maintenance and EN proposal cases refreshed.')
