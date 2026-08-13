@@ -6,7 +6,7 @@ root=Path(__file__).resolve().parents[1]
 cv=root/'assets'/'cv'
 files={
 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf':['ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES','APIs REST','Linux','BPMN','Power Automate','Make/Zapier','CRM','RAG/grounding com LangChain','MCP','LangGraph','CrewAI','CarreiraPessoal','Central ISO','40+ ativos','283 testes Python'],
-'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf':['AI AUTOMATION & INTEGRATIONS ANALYST','REST APIs','Linux','BPMN','Power Automate','Make/Zapier','CRM','RAG/grounding with LangChain','MCP','LangGraph','CrewAI','CarreiraPessoal','Central ISO','40+ assets','283 Python tests'],
+'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf':['AI AUTOMATION & INTEGRATIONS ANALYST','Phone/WhatsApp','Email:','REST APIs','Linux','BPMN','Power Automate','Make/Zapier','CRM','RAG/grounding with LangChain','MCP','LangGraph','CrewAI','CarreiraPessoal','Central ISO','40+ assets','283 Python tests'],
 }
 for name,required in files.items():
     path=cv/name
