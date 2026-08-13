@@ -11,6 +11,13 @@ def patch(path, pairs):
         text = text.replace(old, new, 1)
     p.write_text(text, encoding='utf-8')
 
+patch('scripts/generate_resumes_general.py', [
+    ('n8n self-hosted, Python, APIs REST, webhooks, JSON/JSON Schema, OAuth 2.0, SQL/PostgreSQL, AS-IS/TO-BE, requisitos, regras de negócio, rastreabilidade, auditoria, qualidade/conformidade e documentação.', 'n8n self-hosted, Power Automate, Make/Zapier, CRM, APIs REST, webhooks, JSON/JSON Schema, OAuth 2.0, SQL/PostgreSQL, BPMN, AS-IS/TO-BE, requisitos, regras de negócio, rastreabilidade e documentação.'),
+    ('OpenAI, Gemini e Ollama, APIs de LLM, engenharia de prompts, RAG/grounding com LangChain, recuperação de contexto, respostas estruturadas e revisão humana (human-in-the-loop).', 'OpenAI, Gemini e Ollama, APIs de LLM, engenharia de prompts, RAG/grounding com LangChain, MCP, LangGraph, CrewAI, respostas estruturadas e revisão humana (human-in-the-loop).'),
+    ('self-hosted n8n, Python, REST APIs, webhooks, JSON/JSON Schema, OAuth 2.0, SQL/PostgreSQL, AS-IS/TO-BE, requirements, business rules, traceability, auditing, quality/compliance and documentation.', 'self-hosted n8n, Power Automate, Make/Zapier, CRM, REST APIs, webhooks, JSON/JSON Schema, OAuth 2.0, SQL/PostgreSQL, BPMN, AS-IS/TO-BE, requirements, business rules, traceability and documentation.'),
+    ('OpenAI, Gemini and Ollama, LLM APIs, prompt engineering, RAG/grounding with LangChain, context retrieval, structured outputs and human-in-the-loop review.', 'OpenAI, Gemini and Ollama, LLM APIs, prompt engineering, RAG/grounding with LangChain, MCP, LangGraph, CrewAI, structured outputs and human-in-the-loop review.'),
+])
+
 patch('index.html', [
     ('AUTOMAÇÃO · IA · INTEGRAÇÕES · 2026', 'AUTOMAÇÃO · IA APLICADA · INTEGRAÇÕES · PROCESSOS'),
     ('Transformo necessidades operacionais em automações, integrações e sistemas internos que as pessoas conseguem usar no dia a dia.', 'Transformo necessidades operacionais em automações, integrações e sistemas internos rastreáveis, utilizáveis e sustentáveis.'),
