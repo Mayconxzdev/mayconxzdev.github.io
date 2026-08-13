@@ -36,6 +36,7 @@ jobs:
         run: |
           python scripts/patch_home_core.py
           python scripts/add_carreirapessoal_home.py
+          python scripts/patch_skills_current.py
       - name: Validate current resume content, ATS text and layout
         run: python scripts/validate_general_resumes.py
       - name: Validate portfolio structure and links
@@ -115,6 +116,7 @@ jobs:
             HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             if grep -Fq "RESULTADOS EM USO" <<<"$HTML" \
               && grep -Fq "CarreiraPessoal" <<<"$HTML" \
+              && grep -Fq "Central ISO" <<<"$HTML" \
               && grep -Fq "40+" <<<"$HTML" \
               && grep -Fq "RAG/grounding" <<<"$HTML"; then
               echo "Published portfolio matches the current career evidence."
