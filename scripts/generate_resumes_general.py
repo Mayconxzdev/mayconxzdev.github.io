@@ -19,15 +19,18 @@ CONTACT_EN = 'Rio de Janeiro, Brazil · +55 (21) 96481-0480 · mayconxz00dev@gma
 
 def styles():
     base = getSampleStyleSheet()
+    # Keep a conventional one-column ATS layout, but use the available A4 height
+    # intentionally. The extra breathing room is vertical rather than decorative,
+    # so parsing remains predictable while the page no longer looks underfilled.
     return {
-        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.3, textColor=BLACK, spaceAfter=1.4*mm),
-        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.3, textColor=BLACK, spaceAfter=1.1*mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.0, leading=9.4, textColor=GRAY, spaceAfter=3.3*mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.6, leading=11.2, textColor=BLACK, spaceBefore=3.15*mm, spaceAfter=1.55*mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.35, leading=11.9, textColor=BLACK, spaceAfter=1.35*mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.0, leading=12.05, textColor=BLACK, spaceAfter=1.0*mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.35, leading=11.8, textColor=BLACK, spaceAfter=0.75*mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.35, leading=10.5, textColor=GRAY, spaceAfter=1.0*mm),
+        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.3, textColor=BLACK, spaceAfter=1.6*mm),
+        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.3, textColor=BLACK, spaceAfter=1.25*mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.0, leading=9.4, textColor=GRAY, spaceAfter=3.7*mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.6, leading=11.2, textColor=BLACK, spaceBefore=3.55*mm, spaceAfter=1.75*mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.35, leading=12.15, textColor=BLACK, spaceAfter=1.55*mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.0, leading=12.25, textColor=BLACK, spaceAfter=1.15*mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.35, leading=11.8, textColor=BLACK, spaceAfter=0.9*mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.35, leading=10.5, textColor=GRAY, spaceAfter=1.15*mm),
     }
 
 
