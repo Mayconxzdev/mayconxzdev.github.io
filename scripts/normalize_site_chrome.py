@@ -48,6 +48,8 @@ def lang_target(route: str, english: bool) -> str:
 
     if route == "/":
         return "/en/"
+    if route == "/404.html":
+        return "/en/"
     if route == "/competencias/":
         return "/en/skills/"
     match = re.fullmatch(r"/cases/([^/]+)/", route)
