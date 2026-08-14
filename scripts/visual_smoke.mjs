@@ -70,16 +70,33 @@ try {
       if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
       await page.waitForLoadState('networkidle', { timeout: 4000 }).catch(() => {});
 
-      // Trigger browser lazy-loading before judging image health. The static validator
-      // already parses/decodes the underlying files; here we verify that the page can load them.
+      // Full-page screenshots can otherwise capture an unloaded lazy-image placeholder even
+      // when the file itself is healthy. Force every image into the loading pipeline, visit
+      // each image once, wait for decode/paint, and only then judge or capture the page.
       await page.evaluate(async () => {
-        const step = Math.max(500, Math.floor(window.innerHeight * 0.85));
-        for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
-          window.scrollTo(0, y);
-          await new Promise(resolve => setTimeout(resolve, 25));
+        const images = [...document.images];
+        for (const img of images) img.loading = 'eager';
+
+        const settle = img => new Promise(resolve => {
+          if (img.complete) return resolve();
+          const finish = () => resolve();
+          img.addEventListener('load', finish, { once: true });
+          img.addEventListener('error', finish, { once: true });
+          setTimeout(finish, 5000);
+        });
+        await Promise.all(images.map(settle));
+        await Promise.all(images.map(async img => {
+          if (typeof img.decode === 'function' && img.complete && img.naturalWidth) {
+            await img.decode().catch(() => {});
+          }
+        }));
+
+        for (const img of images) {
+          img.scrollIntoView({ block: 'center', inline: 'nearest' });
+          await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
         }
         window.scrollTo(0, 0);
-        await new Promise(resolve => setTimeout(resolve, 80));
+        await new Promise(resolve => setTimeout(resolve, 250));
       });
 
       const result = await page.evaluate(async ({ theme, alias }) => {
@@ -104,9 +121,18 @@ try {
         const nav = document.querySelector('#main-nav');
         const navLabels = nav ? [...nav.querySelectorAll('a')].map(a => a.textContent.trim().replace(/\s+/g, ' ')) : [];
         const text = document.body.innerText || '';
+        const visibleDeadLinks = [...document.querySelectorAll('a')].filter(anchor => {
+          const style = getComputedStyle(anchor);
+          const rect = anchor.getBoundingClientRect();
+          const visible = style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+          if (!visible) return false;
+          const href = (anchor.getAttribute('href') || '').trim();
+          return !href || style.pointerEvents === 'none';
+        }).map(anchor => (anchor.textContent || anchor.getAttribute('aria-label') || '<unnamed>').trim().replace(/\s+/g, ' '));
         return {
           overflow: Math.max(0, root.scrollWidth - root.clientWidth),
           broken: imageResults.filter(Boolean),
+          visibleDeadLinks,
           text,
           theme: root.dataset.theme || '',
           chrome: alias ? true : Boolean(document.querySelector('[data-global-chrome="2026-08"]')),
@@ -119,6 +145,7 @@ try {
 
       if (result.overflow > 2) failures.push(`${route} ${profileName}: horizontal overflow ${result.overflow}px`);
       if (result.broken.length) failures.push(`${route} ${profileName}: broken images: ${result.broken.map(x => `${x.src} (${x.error})`).join(', ')}`);
+      if (result.visibleDeadLinks.length) failures.push(`${route} ${profileName}: visible non-clickable links: ${result.visibleDeadLinks.join(', ')}`);
       for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
         if (result.text.includes(bad)) failures.push(`${route} ${profileName}: leaked error text: ${bad}`);
       }
@@ -166,7 +193,7 @@ try {
       }
 
       const file = path.join(out, `${routeName}-${profileName}.png`);
-      await page.screenshot({ path: file, fullPage: true, timeout: 10000 });
+      await page.screenshot({ path: file, fullPage: true, animations: 'disabled', timeout: 10000 });
       captures += 1;
       await context.close();
     }
