@@ -7,9 +7,14 @@ on:
       - '.github/workflows/materialize-resumes.yml'
       - 'scripts/generate_resumes_general.py'
       - 'scripts/validate_general_resumes.py'
+      - 'scripts/validate_resume_visual.py'
 
 permissions:
   contents: write
+
+concurrency:
+  group: materialize-resumes-main
+  cancel-in-progress: false
 
 jobs:
   generate:
@@ -28,9 +33,10 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          python -m pip install reportlab pypdf
+          python -m pip install reportlab pypdf pymupdf
           python scripts/generate_resumes_general.py
           python scripts/validate_general_resumes.py
+          python scripts/validate_resume_visual.py
 
       - name: Commit generated PDFs when changed
         shell: bash
@@ -43,5 +49,6 @@ jobs:
             echo 'Resume PDFs already match the generator.'
           else
             git commit -m 'cv: regenerate validated one-page resumes'
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
