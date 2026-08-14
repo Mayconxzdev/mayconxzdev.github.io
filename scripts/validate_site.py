@@ -80,7 +80,7 @@ en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 for required in ['Mala Direta', 'Produção Operacional', 'CarreiraPessoal', 'Catálogo Operacional', 'Postagem Redes']:
     if required not in home:
         errors.append(f'PT home missing strategic project: {required}')
-for required in ['CarreiraPessoal', 'Direct', 'Production']:
+for required in ['CarreiraPessoal', 'Production Operations', 'Operational Procurement Catalog']:
     if required not in en_home:
         errors.append(f'EN home missing strategic content: {required}')
 
@@ -89,6 +89,8 @@ required_routes = [
     ROOT / 'en/cases/career-personal/index.html',
     ROOT / 'cases/central-iso/index.html',
     ROOT / 'en/cases/central-iso/index.html',
+    ROOT / 'assets/evidence/carreira-overview.webp',
+    ROOT / 'assets/evidence/central-iso-overview.webp',
     ROOT / 'assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
     ROOT / 'assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
 ]
