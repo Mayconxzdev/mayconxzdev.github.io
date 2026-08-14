@@ -41,6 +41,7 @@ jobs:
           python scripts/patch_skills_current.py
           python scripts/patch_portfolio_consistency.py
           python scripts/normalize_site_chrome.py
+          python scripts/patch_404_language.py
       - name: Validate current resume content, links, ATS text and visual layout
         run: |
           python scripts/validate_general_resumes.py
