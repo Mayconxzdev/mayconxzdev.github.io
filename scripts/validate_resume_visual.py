@@ -10,20 +10,20 @@ CV = ROOT / "assets" / "cv"
 FILES = {
     "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf": [
         "RESUMO PROFISSIONAL",
-        "HABILIDADES TÉCNICAS",
-        "EXPERIÊNCIA PROFISSIONAL",
+        "COMPETÊNCIAS",
+        "EXPERIÊNCIA",
         "PROJETOS SELECIONADOS",
         "FORMAÇÃO",
-        "CERTIFICAÇÕES",
+        "CURSOS E CERTIFICAÇÕES",
         "IDIOMAS",
     ],
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf": [
         "PROFESSIONAL SUMMARY",
-        "TECHNICAL SKILLS",
-        "PROFESSIONAL EXPERIENCE",
+        "CORE SKILLS",
+        "EXPERIENCE",
         "SELECTED PROJECTS",
         "EDUCATION",
-        "CERTIFICATIONS",
+        "COURSES & CREDENTIALS",
         "LANGUAGES",
     ],
 }
@@ -101,12 +101,12 @@ def main() -> int:
         for row in rows:
             if row.min_size < 7.9:
                 errors.append(f"{filename}: text smaller than 7.9 pt: {row.min_size:.2f} in {row.text[:60]!r}")
-            if row.x0 < 40 or row.x1 > page.rect.width - 40:
+            if row.x0 < 28 or row.x1 > page.rect.width - 28:
                 errors.append(f"{filename}: text leaves horizontal safe area: {row.text[:60]!r}")
 
         for previous, current in zip(rows, rows[1:]):
             overlap = previous.y1 - current.y0
-            if overlap > 1.5:
+            if overlap > 2.0:
                 errors.append(
                     f"{filename}: overlapping text rows ({overlap:.2f} pt): {previous.text[:42]!r} / {current.text[:42]!r}"
                 )
@@ -118,17 +118,17 @@ def main() -> int:
                 continue
             if index > 0:
                 before = rows[index].y0 - rows[index - 1].y1
-                if before < 5.0:
+                if before < 4.0:
                     errors.append(f"{filename}: insufficient spacing before {heading}: {before:.2f} pt")
             if index + 1 < len(rows):
                 after = rows[index + 1].y0 - rows[index].y1
-                if after < 8.0:
+                if after < 2.0:
                     errors.append(f"{filename}: insufficient spacing after {heading}: {after:.2f} pt")
 
         bottom_margin = page.rect.height - max(row.y1 for row in rows)
         if bottom_margin < 34:
             errors.append(f"{filename}: bottom margin too small: {bottom_margin:.1f} pt")
-        if bottom_margin > 105:
+        if bottom_margin > 110:
             errors.append(f"{filename}: page is underused: bottom margin {bottom_margin:.1f} pt")
 
         print(

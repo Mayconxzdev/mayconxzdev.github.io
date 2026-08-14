@@ -10,7 +10,11 @@ pairs=[
 ('The application prepares and validates information, but review remains mandatory before sending.','Human review remains mandatory before the external effect; the workflow also preserves who prepared, approved and sent the proposal.'),
 ]
 for old,new in pairs:
-    if old not in t: raise RuntimeError(old[:90])
-    t=t.replace(old,new,1)
+    if old in t:
+        t=t.replace(old,new,1)
+    elif new in t:
+        continue
+    else:
+        raise RuntimeError(f'EN proposal case drift: {old[:90]}')
 p.write_text(t,encoding='utf-8')
 print('EN proposal case refreshed')

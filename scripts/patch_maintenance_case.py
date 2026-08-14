@@ -5,8 +5,12 @@ root=Path(__file__).resolve().parents[1]
 def patch(rel,pairs):
     p=root/rel; t=p.read_text(encoding='utf-8')
     for old,new in pairs:
-        if old not in t: raise RuntimeError(f'{rel}: missing source phrase')
-        t=t.replace(old,new,1)
+        if old in t:
+            t=t.replace(old,new,1)
+        elif new in t:
+            continue
+        else:
+            raise RuntimeError(f'{rel}: maintenance case drift: {old[:80]}')
     p.write_text(t,encoding='utf-8')
 
 patch('cases/vesper-manutencao/index.html',[

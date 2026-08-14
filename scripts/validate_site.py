@@ -3,6 +3,7 @@ from __future__ import annotations
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 IGNORED_DIRS = {'.git', '.github', '.venv', 'node_modules', 'artifacts', '__pycache__'}
@@ -49,6 +50,36 @@ def resolve_local(page: Path, ref: str) -> Path | None:
     return target
 
 
+def heading_position(text: str, label: str) -> int:
+    match = re.search(
+        r'<h3\b[^>]*>\s*' + re.escape(label) + r'\s*</h3>',
+        text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    return match.start() if match else -1
+
+
+def has_data_project(text: str, name: str) -> bool:
+    return bool(
+        re.search(
+            r'data-project\s*=\s*["\']' + re.escape(name) + r'["\']',
+            text,
+            flags=re.IGNORECASE,
+        )
+    )
+
+
+def assert_order(text: str, labels: list[str], surface: str, errors: list[str]) -> None:
+    positions = []
+    for label in labels:
+        pos = heading_position(text, label)
+        if pos < 0:
+            errors.append(f'{surface}: missing curated flagship: {label}')
+        positions.append(pos)
+    if all(pos >= 0 for pos in positions) and positions != sorted(positions):
+        errors.append(f'{surface}: flagship order drifted: {labels}')
+
+
 pages = list(html_files())
 assert pages, 'No HTML pages found'
 
@@ -77,12 +108,45 @@ for page in pages:
 
 home = (ROOT / 'index.html').read_text(encoding='utf-8')
 en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
-for required in ['Mala Direta', 'Produção Operacional', 'CarreiraPessoal', 'Catálogo Operacional', 'Postagem Redes']:
-    if required not in home:
-        errors.append(f'PT home missing strategic project: {required}')
-for required in ['CarreiraPessoal', 'Production Operations', 'Operational Procurement Catalog']:
-    if required not in en_home:
-        errors.append(f'EN home missing strategic content: {required}')
+
+pt_flagships = [
+    'Mala Direta',
+    'Produção Operacional',
+    'Vesper Propostas',
+    'CarreiraPessoal',
+    'Catálogo Operacional de Compras',
+    'Postagem Redes',
+]
+en_flagships = [
+    'Mala Direta',
+    'Production Operations',
+    'Vesper Propostas',
+    'CarreiraPessoal',
+    'Operational Procurement Catalog',
+    'Postagem Redes',
+]
+assert_order(home, pt_flagships, 'PT home', errors)
+assert_order(en_home, en_flagships, 'EN home', errors)
+
+for text, surface in [(home, 'PT home'), (en_home, 'EN home')]:
+    featured_start = text.find('<section class="featured"')
+    featured_end = text.find('</section>', featured_start)
+    featured = text[featured_start:featured_end] if featured_start >= 0 and featured_end >= 0 else ''
+    if heading_position(featured, 'Portal') >= 0:
+        errors.append(f'{surface}: Portal must stay out of the flagship section while in revalidation')
+    if not has_data_project(text, 'portal-archive'):
+        errors.append(f'{surface}: Portal archive status is missing')
+    if not has_data_project(text, 'central-iso'):
+        errors.append(f'{surface}: Central ISO archive status is missing')
+    if not has_data_project(text, 'carreira-pessoal'):
+        errors.append(f'{surface}: CarreiraPessoal flagship marker is missing')
+
+if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
+    errors.append('home pages must expose RAG/grounding as applied AI evidence')
+if 'FastAPI · APIs REST · SQL/PostgreSQL' not in home:
+    errors.append('PT home core positioning drifted')
+if 'FastAPI · REST APIs · SQL/PostgreSQL' not in en_home:
+    errors.append('EN home core positioning drifted')
 
 required_routes = [
     ROOT / 'cases/carreira-pessoal/index.html',
@@ -93,6 +157,7 @@ required_routes = [
     ROOT / 'assets/evidence/central-iso-overview.webp',
     ROOT / 'assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
     ROOT / 'assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
+    ROOT / 'docs/CAREER_EVIDENCE.md',
 ]
 for route in required_routes:
     if not route.exists():
@@ -108,4 +173,7 @@ if resume_links < 2:
 if errors:
     raise SystemExit('\n'.join(errors[:100]))
 
-print(f'HTML={len(pages)} | active cases PT/EN={len(pt_cases)}/{len(en_cases)} | local refs={ref_count} | resume links={resume_links}')
+print(
+    f'HTML={len(pages)} | active cases PT/EN={len(pt_cases)}/{len(en_cases)} | '
+    f'local refs={ref_count} | resume links={resume_links} | curated flagships=6'
+)

@@ -5,9 +5,20 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/materialize-site-source.yml'
+      - 'scripts/add_*.py'
+      - 'scripts/apply_*.py'
+      - 'scripts/final_*.py'
+      - 'scripts/normalize_*.py'
+      - 'scripts/patch_*.py'
+      - 'scripts/reconcile_*.py'
+      - 'scripts/rewrite_*.py'
 
 permissions:
   contents: write
+
+concurrency:
+  group: materialize-portfolio-source-main
+  cancel-in-progress: false
 
 jobs:
   materialize:
@@ -124,5 +135,6 @@ PY
             echo 'Source is already materialized.'
           else
             git commit -m 'refactor: materialize portfolio source and recruiter evidence'
+            git pull --rebase origin main
             git push origin HEAD:main
           fi

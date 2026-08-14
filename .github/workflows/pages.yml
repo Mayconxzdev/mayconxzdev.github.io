@@ -37,8 +37,10 @@ jobs:
           python scripts/add_carreirapessoal_home.py
           python scripts/patch_skills_current.py
           python scripts/patch_portfolio_consistency.py
-      - name: Validate current resume content, ATS text and layout
-        run: python scripts/validate_general_resumes.py
+      - name: Validate current resume content, ATS text and visual layout
+        run: |
+          python scripts/validate_general_resumes.py
+          python scripts/validate_resume_visual.py
       - name: Validate portfolio structure and links
         run: python scripts/validate_site.py
       - name: Validate JavaScript syntax
@@ -123,6 +125,7 @@ jobs:
             if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
               && grep -Fq "CarreiraPessoal" <<<"$HOME_HTML" \
               && grep -Fq "Central ISO" <<<"$HOME_HTML" \
+              && grep -Fq "DESENVOLVIMENTO / REVALIDAÇÃO" <<<"$HOME_HTML" \
               && grep -Fq "Eu fiz este aplicativo" <<<"$CAREER_HTML" \
               && grep -Fq "Este projeto começou conversando" <<<"$ISO_HTML" \
               && grep -Fq "200" <<<"$CAREER_IMAGE" \
