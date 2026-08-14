@@ -121,6 +121,19 @@ try {
         const nav = document.querySelector('#main-nav');
         const navLabels = nav ? [...nav.querySelectorAll('a')].map(a => a.textContent.trim().replace(/\s+/g, ' ')) : [];
         const text = document.body.innerText || '';
+        const caseTitle = document.querySelector('.case-identity h1');
+        let caseTitleOverflow = 0;
+        let caseTitleText = '';
+        if (caseTitle) {
+          caseTitleText = caseTitle.textContent.trim().replace(/\s+/g, ' ');
+          const range = document.createRange();
+          range.selectNodeContents(caseTitle);
+          const rect = range.getBoundingClientRect();
+          // Intrinsic scrollWidth can be larger than the title column by design while the
+          // glyphs remain fully visible in the page. Judge clipping against the viewport
+          // instead: this catches text actually cut off at the left/right screen edge.
+          caseTitleOverflow = Math.max(0, -rect.left, rect.right - window.innerWidth);
+        }
         const visibleDeadLinks = [...document.querySelectorAll('a')].filter(anchor => {
           const style = getComputedStyle(anchor);
           const rect = anchor.getBoundingClientRect();
@@ -131,6 +144,8 @@ try {
         }).map(anchor => (anchor.textContent || anchor.getAttribute('aria-label') || '<unnamed>').trim().replace(/\s+/g, ' '));
         return {
           overflow: Math.max(0, root.scrollWidth - root.clientWidth),
+          caseTitleOverflow,
+          caseTitleText,
           broken: imageResults.filter(Boolean),
           visibleDeadLinks,
           text,
@@ -144,6 +159,7 @@ try {
       }, { theme, alias: aliases.has(route) });
 
       if (result.overflow > 2) failures.push(`${route} ${profileName}: horizontal overflow ${result.overflow}px`);
+      if (result.caseTitleOverflow > 2) failures.push(`${route} ${profileName}: case title is clipped outside viewport by ${result.caseTitleOverflow.toFixed(1)}px: ${result.caseTitleText}`);
       if (result.broken.length) failures.push(`${route} ${profileName}: broken images: ${result.broken.map(x => `${x.src} (${x.error})`).join(', ')}`);
       if (result.visibleDeadLinks.length) failures.push(`${route} ${profileName}: visible non-clickable links: ${result.visibleDeadLinks.join(', ')}`);
       for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
