@@ -103,7 +103,7 @@ en_flagships = [
     'Vesper Propostas',
     'CarreiraPessoal',
     'Operational Procurement Catalog',
-    'Social Publishing',
+    'Postagem Redes',
 ]
 assert_order(home, pt_flagships, 'PT home', errors)
 assert_order(en_home, en_flagships, 'EN home', errors)
