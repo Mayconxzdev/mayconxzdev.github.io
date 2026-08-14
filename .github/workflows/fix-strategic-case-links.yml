@@ -21,13 +21,14 @@ jobs:
         run: |
           set -euo pipefail
           python - <<'PY'
-from pathlib import Path
-for name in ['en/cases/career-personal/index.html','en/cases/central-iso/index.html']:
-    p=Path(name)
-    s=p.read_text(encoding='utf-8')
-    s=s.replace('href="../../assets/cv/', 'href="../../../assets/cv/')
-    p.write_text(s,encoding='utf-8')
-PY
+          from pathlib import Path
+
+          for name in ['en/cases/career-personal/index.html', 'en/cases/central-iso/index.html']:
+              path = Path(name)
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('href="../../assets/cv/', 'href="../../../assets/cv/')
+              path.write_text(text, encoding='utf-8')
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add en/cases/career-personal/index.html en/cases/central-iso/index.html
