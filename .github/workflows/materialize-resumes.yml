@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/materialize-resumes.yml'
       - 'scripts/generate_resumes_general.py'
+      - 'scripts/add_resume_links.py'
       - 'scripts/validate_general_resumes.py'
       - 'scripts/validate_resume_visual.py'
 
@@ -35,6 +36,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install reportlab pypdf pymupdf
           python scripts/generate_resumes_general.py
+          python scripts/add_resume_links.py
           python scripts/validate_general_resumes.py
           python scripts/validate_resume_visual.py
 
@@ -46,9 +48,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf
           if git diff --cached --quiet; then
-            echo 'Resume PDFs already match the generator.'
+            echo 'Resume PDFs already match the generator and clickable-link pass.'
           else
-            git commit -m 'cv: regenerate validated one-page resumes'
+            git commit -m 'cv: regenerate validated one-page resumes with clickable links'
             git pull --rebase origin main
             git push origin HEAD:main
           fi
