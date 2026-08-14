@@ -58,6 +58,7 @@ jobs:
           python scripts/validate_navigation_targets.py
           python scripts/validate_editorial_consistency.py
           python scripts/validate_case_visual_consistency.py
+          python scripts/validate_case_sequence.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js && node --check scripts/visual_smoke.mjs
       - name: Install browser smoke dependencies
