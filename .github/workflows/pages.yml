@@ -50,11 +50,12 @@ jobs:
         run: |
           python scripts/validate_general_resumes.py
           python scripts/validate_resume_visual.py
-      - name: Validate every canonical page, local reference and referenced visual
+      - name: Validate every canonical page, local reference, shared layout and referenced visual
         run: |
           python scripts/validate_site.py
           python scripts/validate_navigation_targets.py
           python scripts/validate_editorial_consistency.py
+          python scripts/validate_case_visual_consistency.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js && node --check scripts/visual_smoke.mjs
       - name: Install browser smoke dependencies
@@ -138,11 +139,14 @@ jobs:
             if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
+              && grep -Fq 'class="case-page"' <<<"$CAREER_HTML" \
+              && grep -Fq '>Competências<' <<<"$CAREER_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$PROD_HTML" \
+              && grep -Fq '>Competências<' <<<"$PROD_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$ISO_HTML" \
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
               && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
-              && grep -Fq "Mapa visual sanitizado" <<<"$CAREER_HTML" \
+              && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
               && grep -Fq "200" <<<"$CAREER_IMAGE"; then
               echo "Published portfolio, cases, shared chrome, skills copy and visual evidence match the current build."
               exit 0
