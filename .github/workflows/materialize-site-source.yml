@@ -1,0 +1,128 @@
+name: Materialize current portfolio source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/materialize-site-source.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Materialize the transformations currently used by Pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install beautifulsoup4
+
+          python - <<'PY'
+from pathlib import Path
+import re, subprocess
+
+workflow = Path('.github/workflows/pages.yml').read_text(encoding='utf-8')
+allowed = re.compile(r'^\s*python\s+scripts/(?:add_|apply_|final_|normalize_|patch_|reconcile_|rewrite_)[A-Za-z0-9_.-]+\.py(?:\s+.*)?$')
+commands = []
+for raw in workflow.splitlines():
+    if allowed.match(raw):
+        command = raw.strip()
+        if 'validate_' in command or 'generate_' in command:
+            continue
+        if command not in commands:
+            commands.append(command)
+
+print('Materializing', len(commands), 'existing content transformations')
+for command in commands:
+    print('+', command)
+    subprocess.run(command, shell=True, check=True)
+PY
+
+      - name: Apply final recruiter-facing links and real product evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+
+
+def refresh(path, *, english=False):
+    p = Path(path)
+    soup = BeautifulSoup(p.read_text(encoding='utf-8'), 'html.parser')
+
+    target = None
+    for h in soup.find_all(['h2','h3','strong']):
+        if 'CarreiraPessoal' in h.get_text(' ', strip=True):
+            target = h.find_parent('article')
+            if target:
+                break
+    if target:
+        for a in target.find_all('a'):
+            text = a.get_text(' ', strip=True).lower()
+            if ('case' in text or 'projeto' in text or 'project' in text) and 'código' not in text and 'code' not in text:
+                a['href'] = 'cases/career-personal/' if english else 'cases/carreira-pessoal/'
+                break
+        visual = target.find(class_='feature-case__visual')
+        if visual:
+            visual.clear()
+            figure = soup.new_tag('figure')
+            figure['class'] = ['portfolio-proof']
+            img = soup.new_tag('img')
+            img['src'] = '../assets/evidence/carreira-overview.webp' if english else 'assets/evidence/carreira-overview.webp'
+            img['alt'] = 'Real CarreiraPessoal screens' if english else 'Telas reais do CarreiraPessoal'
+            img['loading'] = 'lazy'
+            figure.append(img)
+            cap = soup.new_tag('figcaption')
+            cap.string = 'Real v12.5.2 product screens.' if english else 'Telas reais da v12.5.2.'
+            figure.append(cap)
+            visual.append(figure)
+
+    for node in soup.find_all(string=lambda s: isinstance(s, str) and 'Central ISO' in s):
+        anchor = node.find_parent('a')
+        if anchor:
+            anchor['href'] = 'cases/central-iso/'
+            break
+
+    p.write_text(str(soup), encoding='utf-8')
+
+refresh('index.html', english=False)
+refresh('en/index.html', english=True)
+PY
+
+      - name: Add minimal styling for screenshot proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+from pathlib import Path
+p = Path('css/layout-safety.css')
+s = p.read_text(encoding='utf-8')
+block = '''\n/* Real product evidence used in flagship cards. */\n.portfolio-proof{margin:0;width:100%;display:grid;gap:.55rem}.portfolio-proof img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid rgba(127,127,127,.22);box-shadow:0 18px 54px rgba(0,0,0,.10)}.portfolio-proof figcaption{font-size:.76rem;line-height:1.4;opacity:.72}\n'''
+if 'Real product evidence used in flagship cards.' not in s:
+    p.write_text(s + block, encoding='utf-8')
+PY
+
+      - name: Commit materialized source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Source is already materialized.'
+          else
+            git commit -m 'refactor: materialize portfolio source and recruiter evidence'
+            git push origin HEAD:main
+          fi
