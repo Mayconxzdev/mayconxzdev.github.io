@@ -13,19 +13,32 @@ BLACK = colors.HexColor('#111111')
 GRAY = colors.HexColor('#555555')
 LIGHT = colors.HexColor('#D9D9D9')
 
-CONTACT_PT = 'Rio de Janeiro - RJ · +55 (21) 96481-0480 · mayconxz00dev@gmail.com · linkedin.com/in/maycon-ferreira-7bb870231/ · github.com/Mayconxzdev · mayconxzdev.github.io'
-CONTACT_EN = 'Rio de Janeiro, Brazil · +55 (21) 96481-0480 · mayconxz00dev@gmail.com · linkedin.com/in/maycon-ferreira-7bb870231/ · github.com/Mayconxzdev · mayconxzdev.github.io'
+# Generate annotations directly in the PDF instead of relying on URL auto-detection
+# from individual PDF viewers. Short labels also keep the contact line visually clean.
+CONTACT_PT = (
+    'Rio de Janeiro - RJ · '
+    '<link href="tel:+5521964810480" color="#555555">+55 (21) 96481-0480</link> · '
+    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555"><b>E-mail</b></link> · '
+    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555"><b>LinkedIn</b></link> · '
+    '<link href="https://github.com/Mayconxzdev" color="#555555"><b>GitHub</b></link> · '
+    '<link href="https://mayconxzdev.github.io/" color="#555555"><b>Portfólio</b></link>'
+)
+CONTACT_EN = (
+    'Rio de Janeiro, Brazil · '
+    '<link href="tel:+5521964810480" color="#555555">+55 (21) 96481-0480</link> · '
+    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555"><b>Email</b></link> · '
+    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555"><b>LinkedIn</b></link> · '
+    '<link href="https://github.com/Mayconxzdev" color="#555555"><b>GitHub</b></link> · '
+    '<link href="https://mayconxzdev.github.io/" color="#555555"><b>Portfolio</b></link>'
+)
 
 
 def styles():
     base = getSampleStyleSheet()
-    # Keep a conventional one-column ATS layout, but use the available A4 height
-    # intentionally. The extra breathing room is vertical rather than decorative,
-    # so parsing remains predictable while the page no longer looks underfilled.
     return {
         'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.3, textColor=BLACK, spaceAfter=1.6*mm),
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.3, textColor=BLACK, spaceAfter=1.25*mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.0, leading=9.4, textColor=GRAY, spaceAfter=3.7*mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.15, leading=9.5, textColor=GRAY, spaceAfter=3.7*mm),
         'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.6, leading=11.2, textColor=BLACK, spaceBefore=3.55*mm, spaceAfter=1.75*mm),
         'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.35, leading=12.15, textColor=BLACK, spaceAfter=1.55*mm),
         'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.0, leading=12.25, textColor=BLACK, spaceAfter=1.15*mm),
