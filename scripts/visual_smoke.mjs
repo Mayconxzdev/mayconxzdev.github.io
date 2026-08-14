@@ -19,7 +19,8 @@ const routes = [
   ['skills-pt', '/competencias/'],
   ['home-en', '/en/'],
   ['skills-en', '/en/skills/'],
-  ['not-found', '/404.html'],
+  ['not-found-pt', '/404.html'],
+  ['not-found-en', '/en/404.html'],
 ];
 
 async function addCaseRoutes(root, prefix, labelPrefix) {
@@ -68,18 +69,34 @@ try {
       if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
       await page.waitForLoadState('networkidle', { timeout: 4000 }).catch(() => {});
 
+      // Trigger browser lazy-loading before judging image health. The static validator
+      // already parses/decodes the underlying files; here we verify that the page can load them.
+      await page.evaluate(async () => {
+        const step = Math.max(500, Math.floor(window.innerHeight * 0.85));
+        for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+          window.scrollTo(0, y);
+          await new Promise(resolve => setTimeout(resolve, 25));
+        }
+        window.scrollTo(0, 0);
+        await new Promise(resolve => setTimeout(resolve, 80));
+      });
+
       const result = await page.evaluate(async ({ theme, alias }) => {
         const root = document.documentElement;
-        const withTimeout = (promise, ms, label) => Promise.race([
-          promise,
-          new Promise((_, reject) => setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms)),
-        ]);
+        const waitForImage = img => new Promise(resolve => {
+          if (img.complete) return resolve();
+          const finish = () => resolve();
+          img.addEventListener('load', finish, { once: true });
+          img.addEventListener('error', finish, { once: true });
+          setTimeout(finish, 5000);
+        });
         const imageResults = await Promise.all([...document.images].map(async img => {
-          try { await withTimeout(img.decode(), 5000, 'image decode'); } catch (error) {
-            return { src: img.currentSrc || img.src, error: String(error) };
-          }
-          if (!img.naturalWidth || !img.naturalHeight) {
-            return { src: img.currentSrc || img.src, error: `natural size ${img.naturalWidth}x${img.naturalHeight}` };
+          await waitForImage(img);
+          if (!img.complete || !img.naturalWidth || !img.naturalHeight) {
+            return {
+              src: img.currentSrc || img.src,
+              error: `browser load state complete=${img.complete} natural=${img.naturalWidth}x${img.naturalHeight}`,
+            };
           }
           return null;
         }));
@@ -100,7 +117,7 @@ try {
       }, { theme, alias: aliases.has(route) });
 
       if (result.overflow > 2) failures.push(`${route} ${profileName}: horizontal overflow ${result.overflow}px`);
-      if (result.broken.length) failures.push(`${route} ${profileName}: undecodable images: ${result.broken.map(x => `${x.src} (${x.error})`).join(', ')}`);
+      if (result.broken.length) failures.push(`${route} ${profileName}: broken images: ${result.broken.map(x => `${x.src} (${x.error})`).join(', ')}`);
       for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
         if (result.text.includes(bad)) failures.push(`${route} ${profileName}: leaked error text: ${bad}`);
       }
