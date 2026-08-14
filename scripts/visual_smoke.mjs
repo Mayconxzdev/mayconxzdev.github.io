@@ -49,6 +49,7 @@ await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const failures = [];
 let captures = 0;
+let interactionChecks = 0;
 
 try {
   for (const [routeName, route] of routes) {
@@ -130,6 +131,38 @@ try {
         if (JSON.stringify(result.navLabels) !== JSON.stringify(expectedNav)) {
           failures.push(`${route} ${profileName}: nav labels drifted: ${JSON.stringify(result.navLabels)}`);
         }
+
+        // Verify the visible controls are functional, not merely present in markup.
+        const initialTheme = await page.locator('html').getAttribute('data-theme');
+        await page.locator('.theme-toggle').click({ timeout: 3000 });
+        const toggledTheme = await page.locator('html').getAttribute('data-theme');
+        if (!initialTheme || !toggledTheme || toggledTheme === initialTheme) {
+          failures.push(`${route} ${profileName}: theme toggle is not functional`);
+        }
+        await page.locator('.theme-toggle').click({ timeout: 3000 });
+        const restoredTheme = await page.locator('html').getAttribute('data-theme');
+        if (restoredTheme !== initialTheme) {
+          failures.push(`${route} ${profileName}: theme toggle did not restore the original theme`);
+        }
+        interactionChecks += 1;
+
+        if (viewport.width <= 500) {
+          const menu = page.locator('.menu-button');
+          const nav = page.locator('#main-nav');
+          await menu.click({ timeout: 3000 });
+          const opened = await menu.getAttribute('aria-expanded');
+          const openClass = await nav.evaluate(node => node.classList.contains('open'));
+          if (opened !== 'true' || !openClass) {
+            failures.push(`${route} ${profileName}: mobile menu did not open`);
+          }
+          await menu.click({ timeout: 3000 });
+          const closed = await menu.getAttribute('aria-expanded');
+          const closedClass = await nav.evaluate(node => node.classList.contains('open'));
+          if (closed !== 'false' || closedClass) {
+            failures.push(`${route} ${profileName}: mobile menu did not close`);
+          }
+          interactionChecks += 1;
+        }
       }
 
       const file = path.join(out, `${routeName}-${profileName}.png`);
@@ -146,4 +179,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Visual smoke passed: ${captures} captures across ${routes.length} routes`);
+console.log(`Visual smoke passed: ${captures} captures across ${routes.length} routes; ${interactionChecks} theme/menu interaction checks`);
