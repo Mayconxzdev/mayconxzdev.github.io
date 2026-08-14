@@ -1,5 +1,6 @@
 from pathlib import Path
 from pypdf import PdfReader
+import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 CV = ROOT / 'assets' / 'cv'
@@ -65,6 +66,14 @@ FORBIDDEN = {
     ],
 }
 
+EXPECTED_URIS = {
+    'tel:+5521964810480',
+    'mailto:mayconxz00dev@gmail.com',
+    'https://www.linkedin.com/in/maycon-ferreira-7bb870231/',
+    'https://github.com/Mayconxzdev',
+    'https://mayconxzdev.github.io/',
+}
+
 
 def check(lang, path):
     if not path.exists():
@@ -81,7 +90,15 @@ def check(lang, path):
             raise SystemExit(f'{path.name}: forbidden general-resume text: {needle}')
     if len(text.strip()) < 3400:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')
-    print(f'OK {path.name}: 1 page, {len(text)} extracted chars')
+
+    doc = fitz.open(path)
+    links = {item.get('uri') for item in doc[0].get_links() if item.get('uri')}
+    doc.close()
+    missing_links = EXPECTED_URIS - links
+    if missing_links:
+        raise SystemExit(f'{path.name}: missing clickable contact links: {sorted(missing_links)}')
+
+    print(f'OK {path.name}: 1 page, {len(text)} extracted chars, {len(EXPECTED_URIS)} clickable contact links')
 
 
 for lang, path in FILES.items():
