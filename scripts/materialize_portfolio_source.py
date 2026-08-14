@@ -17,6 +17,7 @@ TRANSFORMATIONS = [
     'scripts/normalize_site_chrome.py',
     'scripts/patch_navigation_targets.py',
     'scripts/patch_404_language.py',
+    'scripts/normalize_case_sequence.py',
 ]
 
 for relative in TRANSFORMATIONS:
