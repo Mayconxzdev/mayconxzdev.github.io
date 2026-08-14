@@ -1,0 +1,47 @@
+name: Materialize resumes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/materialize-resumes.yml'
+      - 'scripts/generate_resumes_general.py'
+      - 'scripts/validate_general_resumes.py'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Generate and validate one-page resumes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install reportlab pypdf
+          python scripts/generate_resumes_general.py
+          python scripts/validate_general_resumes.py
+
+      - name: Commit generated PDFs when changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf
+          if git diff --cached --quiet; then
+            echo 'Resume PDFs already match the generator.'
+          else
+            git commit -m 'cv: regenerate validated one-page resumes'
+            git push origin HEAD:main
+          fi
