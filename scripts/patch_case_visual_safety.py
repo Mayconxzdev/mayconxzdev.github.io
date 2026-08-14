@@ -82,6 +82,12 @@ text = css.read_text(encoding='utf-8')
 marker = '/* Case title wrapping: prefer semantic breaks over mid-word fragmentation. */'
 block = '''\n/* Case title wrapping: prefer semantic breaks over mid-word fragmentation. */\n.case-identity h1{overflow-wrap:normal;word-break:normal;hyphens:none;text-wrap:balance}\n.case-identity h1 wbr{display:inline}\n'''
 if marker not in text:
-    css.write_text(text.rstrip() + '\n' + block, encoding='utf-8')
+    text = text.rstrip() + '\n' + block
 
-print('Case title wrapping, current evidence counts and confidential labels normalized.')
+mobile_marker = '/* Case-specific mobile title fit: preserve whole words at narrow widths. */'
+mobile_block = '''\n/* Case-specific mobile title fit: preserve whole words at narrow widths. */\n@media(max-width:720px){\n  .case-body--whatsapp .case-identity h1{font-size:clamp(2.75rem,13.8vw,4.55rem)}\n  .case-body--operational-procurement-catalog .case-identity h1{font-size:clamp(2.65rem,12.6vw,4.2rem)}\n}\n'''
+if mobile_marker not in text:
+    text = text.rstrip() + '\n' + mobile_block
+
+css.write_text(text, encoding='utf-8')
+print('Case title wrapping, mobile fit, current evidence counts and confidential labels normalized.')
