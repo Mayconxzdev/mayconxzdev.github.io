@@ -40,6 +40,7 @@ jobs:
           python scripts/patch_career_visual.py
           python scripts/patch_skills_current.py
           python scripts/patch_portfolio_consistency.py
+          python scripts/patch_case_visual_safety.py
           python scripts/normalize_site_chrome.py
           python scripts/patch_navigation_targets.py
           python scripts/patch_404_language.py
@@ -143,7 +144,9 @@ jobs:
               && grep -Fq '>Competências<' <<<"$CAREER_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$PROD_HTML" \
               && grep -Fq '>Competências<' <<<"$PROD_HTML" \
+              && grep -Fq 'Produção<br>Operacional' <<<"$PROD_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$ISO_HTML" \
+              && grep -Fq 'class="case-page"' <<<"$ISO_HTML" \
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
               && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
               && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
