@@ -5,64 +5,114 @@ import path from 'node:path';
 const base = (process.argv[2] || 'http://127.0.0.1:4173').replace(/\/$/, '');
 const out = process.argv[3] || 'artifacts/visual';
 
+const aliases = new Set([
+  '/cases/compass-automation/',
+  '/cases/portal-vesper/',
+  '/cases/procureflow/',
+  '/en/cases/compass-automation/',
+  '/en/cases/portal-vesper/',
+  '/en/cases/procureflow/',
+]);
+
 const routes = [
   ['home-pt', '/'],
-  ['carreira-pt', '/cases/carreira-pessoal/'],
-  ['central-iso-pt', '/cases/central-iso/'],
   ['skills-pt', '/competencias/'],
   ['home-en', '/en/'],
-  ['carreira-en', '/en/cases/career-personal/'],
-  ['central-iso-en', '/en/cases/central-iso/'],
+  ['skills-en', '/en/skills/'],
+  ['not-found', '/404.html'],
 ];
 
-const viewports = [
-  ['desktop', { width: 1440, height: 1000 }],
-  ['mobile', { width: 390, height: 844 }],
+async function addCaseRoutes(root, prefix, labelPrefix) {
+  const entries = await fs.readdir(root, { withFileTypes: true });
+  for (const entry of entries.filter(item => item.isDirectory()).sort((a, b) => a.name.localeCompare(b.name))) {
+    try {
+      await fs.access(path.join(root, entry.name, 'index.html'));
+      routes.push([`${labelPrefix}-${entry.name}`, `${prefix}${entry.name}/`]);
+    } catch {}
+  }
+}
+
+await addCaseRoutes('cases', '/cases/', 'case-pt');
+await addCaseRoutes('en/cases', '/en/cases/', 'case-en');
+
+const profiles = [
+  ['desktop-light', { width: 1440, height: 1000 }, 'light'],
+  ['desktop-dark', { width: 1440, height: 1000 }, 'dark'],
+  ['mobile-light', { width: 390, height: 844 }, 'light'],
 ];
 
-const themes = ['light', 'dark'];
+const PT_NAV = ['Visão geral', 'Projetos', 'Experiência', 'Resultados', 'Competências', 'Contato', 'Currículo', 'EN'];
+const EN_NAV = ['Overview', 'Projects', 'Experience', 'Results', 'Skills', 'Contact', 'Resume', 'PT'];
+
 await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const failures = [];
+let captures = 0;
 
 try {
   for (const [routeName, route] of routes) {
-    for (const [viewName, viewport] of viewports) {
-      for (const theme of themes) {
-        const context = await browser.newContext({ viewport });
-        await context.addInitScript((selected) => {
-          try { localStorage.setItem('mf-theme', selected); } catch {}
-        }, theme);
-        const page = await context.newPage();
-        const consoleErrors = [];
-        page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
-        page.on('pageerror', err => consoleErrors.push(String(err)));
+    const routeProfiles = aliases.has(route) ? profiles.slice(0, 1) : profiles;
+    for (const [profileName, viewport, theme] of routeProfiles) {
+      const context = await browser.newContext({ viewport });
+      await context.addInitScript((selected) => {
+        try { localStorage.setItem('mf-theme', selected); } catch {}
+      }, theme);
+      const page = await context.newPage();
+      const consoleErrors = [];
+      page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
+      page.on('pageerror', err => consoleErrors.push(String(err)));
 
-        const response = await page.goto(base + route, { waitUntil: 'networkidle' });
-        if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
+      const response = await page.goto(base + route, { waitUntil: 'domcontentloaded' });
+      if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
+      await page.waitForLoadState('networkidle').catch(() => {});
 
-        const result = await page.evaluate(() => {
-          const root = document.documentElement;
-          const broken = [...document.images].filter(img => img.complete && img.naturalWidth === 0).map(img => img.src);
-          const text = document.body.innerText || '';
-          return {
-            overflow: Math.max(0, root.scrollWidth - root.clientWidth),
-            broken,
-            text,
-          };
-        });
+      const result = await page.evaluate(async ({ theme, alias }) => {
+        const root = document.documentElement;
+        const imageResults = await Promise.all([...document.images].map(async img => {
+          try { await img.decode(); } catch (error) {
+            return { src: img.currentSrc || img.src, error: String(error) };
+          }
+          if (!img.naturalWidth || !img.naturalHeight) {
+            return { src: img.currentSrc || img.src, error: `natural size ${img.naturalWidth}x${img.naturalHeight}` };
+          }
+          return null;
+        }));
+        const nav = document.querySelector('#main-nav');
+        const navLabels = nav ? [...nav.querySelectorAll('a')].map(a => a.textContent.trim().replace(/\s+/g, ' ')) : [];
+        const text = document.body.innerText || '';
+        return {
+          overflow: Math.max(0, root.scrollWidth - root.clientWidth),
+          broken: imageResults.filter(Boolean),
+          text,
+          theme: root.dataset.theme || '',
+          chrome: alias ? true : Boolean(document.querySelector('[data-global-chrome="2026-08"]')),
+          footer: alias ? true : Boolean(document.querySelector('[data-global-footer="2026-08"]')),
+          themeToggle: alias ? true : Boolean(document.querySelector('.theme-toggle')),
+          menuButton: alias ? true : Boolean(document.querySelector('.menu-button')),
+          navLabels,
+        };
+      }, { theme, alias: aliases.has(route) });
 
-        if (result.overflow > 2) failures.push(`${route} ${viewName}/${theme}: horizontal overflow ${result.overflow}px`);
-        if (result.broken.length) failures.push(`${route} ${viewName}/${theme}: broken images: ${result.broken.join(', ')}`);
-        for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
-          if (result.text.includes(bad)) failures.push(`${route} ${viewName}/${theme}: leaked error text: ${bad}`);
-        }
-        if (consoleErrors.length) failures.push(`${route} ${viewName}/${theme}: console/page errors: ${consoleErrors.join(' | ')}`);
-
-        const file = path.join(out, `${routeName}-${viewName}-${theme}.png`);
-        await page.screenshot({ path: file, fullPage: true });
-        await context.close();
+      if (result.overflow > 2) failures.push(`${route} ${profileName}: horizontal overflow ${result.overflow}px`);
+      if (result.broken.length) failures.push(`${route} ${profileName}: undecodable images: ${result.broken.map(x => `${x.src} (${x.error})`).join(', ')}`);
+      for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
+        if (result.text.includes(bad)) failures.push(`${route} ${profileName}: leaked error text: ${bad}`);
       }
+      if (consoleErrors.length) failures.push(`${route} ${profileName}: console/page errors: ${consoleErrors.join(' | ')}`);
+
+      if (!aliases.has(route)) {
+        if (result.theme !== theme) failures.push(`${route} ${profileName}: requested ${theme} theme but got ${result.theme}`);
+        if (!result.chrome || !result.footer || !result.themeToggle || !result.menuButton) failures.push(`${route} ${profileName}: shared chrome incomplete`);
+        const expectedNav = route.startsWith('/en/') ? EN_NAV : PT_NAV;
+        if (JSON.stringify(result.navLabels) !== JSON.stringify(expectedNav)) {
+          failures.push(`${route} ${profileName}: nav labels drifted: ${JSON.stringify(result.navLabels)}`);
+        }
+      }
+
+      const file = path.join(out, `${routeName}-${profileName}.png`);
+      await page.screenshot({ path: file, fullPage: true });
+      captures += 1;
+      await context.close();
     }
   }
 } finally {
@@ -73,4 +123,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Visual smoke passed: ${routes.length * viewports.length * themes.length} captures`);
+console.log(`Visual smoke passed: ${captures} captures across ${routes.length} routes`);
