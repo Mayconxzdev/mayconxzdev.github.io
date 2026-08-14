@@ -1,0 +1,115 @@
+name: Refresh flagship visual evidence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-flagship-evidence.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Wait for canonical pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install beautifulsoup4
+          ready=0
+          for i in $(seq 1 30); do
+            git fetch origin main
+            git reset --hard origin/main
+            if grep -q 'Build clean Pages artifact' .github/workflows/pages.yml; then ready=1; break; fi
+            sleep 10
+          done
+          test "$ready" -eq 1
+
+      - name: Put real product screens in flagship cards and current names in display text
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+from pathlib import Path
+from bs4 import BeautifulSoup
+
+
+def replace_card_visual(soup, names, src, alt, case_href=None, new_name=None):
+    article=None; heading=None
+    for h in soup.find_all(['h2','h3']):
+        txt=h.get_text(' ',strip=True)
+        if txt in names:
+            heading=h; article=h.find_parent('article'); break
+    if not article:
+        return False
+    if new_name and heading:
+        heading.string=new_name
+    visual=article.find(class_='feature-case__visual')
+    if visual:
+        visual.clear()
+        fig=soup.new_tag('figure'); fig['class']=['portfolio-proof']
+        img=soup.new_tag('img'); img['src']=src; img['alt']=alt; img['loading']='lazy'; fig.append(img)
+        cap=soup.new_tag('figcaption'); cap.string='Tela real do projeto.' if not src.startswith('../') else 'Real product screen.'; fig.append(cap)
+        visual.append(fig)
+    if case_href:
+        for a in article.find_all('a'):
+            t=a.get_text(' ',strip=True).lower()
+            if ('case' in t or 'projeto' in t or 'project' in t) and 'código' not in t and 'code' not in t:
+                a['href']=case_href; break
+    return True
+
+
+def refresh_home(path, english=False):
+    p=Path(path); soup=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+    prefix='../assets/evidence/' if english else 'assets/evidence/'
+    replace_card_visual(soup, {'Mala Direta','Direct Mail'}, prefix+'mala-dashboard.webp', 'Painel real da Mala Direta' if not english else 'Real Direct Mail dashboard')
+    replace_card_visual(soup, {'Produção Operacional','Production Operations'}, prefix+'producao-escritorio.webp', 'Tela real da Produção Operacional' if not english else 'Real Production Operations screen')
+    replace_card_visual(soup, {'Vesper Propostas','Proposta Comercial','Vesper Proposals','Commercial Proposals'}, prefix+'propostas-pedidos.webp', 'Tela real da Proposta Comercial' if not english else 'Real Commercial Proposals screen', 'cases/vesper-propostas/', 'Commercial Proposals' if english else 'Proposta Comercial')
+    replace_card_visual(soup, {'CarreiraPessoal'}, prefix+'carreira-overview.webp', 'Telas reais do CarreiraPessoal' if not english else 'Real CarreiraPessoal screens', 'cases/career-personal/' if english else 'cases/carreira-pessoal/')
+    replace_card_visual(soup, {'Postagem Redes','Social Publishing'}, prefix+'postagem-editor.webp', 'Editor real da Postagem Redes' if not english else 'Real Social Publishing editor')
+    p.write_text(str(soup),encoding='utf-8')
+
+refresh_home('index.html',False)
+refresh_home('en/index.html',True)
+
+for path, old, new in [
+    ('cases/vesper-propostas/index.html','Vesper Propostas','Proposta Comercial'),
+    ('en/cases/vesper-propostas/index.html','Vesper Proposals','Commercial Proposals'),
+]:
+    p=Path(path)
+    if not p.exists(): continue
+    soup=BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser')
+    for tag in soup.find_all(['title','h1','h2','h3']):
+        if old in tag.get_text(' ',strip=True):
+            if tag.string:
+                tag.string=tag.string.replace(old,new)
+    p.write_text(str(soup),encoding='utf-8')
+PY
+
+      - name: Commit, self-remove and deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/refresh-flagship-evidence.yml
+          git add index.html en/index.html cases/vesper-propostas/index.html en/cases/vesper-propostas/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'portfolio: prioritize real flagship product evidence'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+          gh workflow run pages.yml --ref main
