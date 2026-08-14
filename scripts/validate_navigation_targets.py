@@ -1,5 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 ALIASES = {
@@ -29,6 +30,7 @@ EN = [
     ('Contact', '/en/#contact'),
     ('Resume', '/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf'),
 ]
+GLOBAL_ANCHORS = ['overview', 'systems', 'experience', 'evidence', 'contact']
 
 
 class NavParser(HTMLParser):
@@ -75,6 +77,16 @@ def route_for(path: Path) -> str:
 
 errors = []
 checked = 0
+
+# A correct-looking href is not enough: every global hash target must actually
+# exist in both language homes or the navigation still fails after clicking.
+for surface, home in [('PT', ROOT / 'index.html'), ('EN', ROOT / 'en/index.html')]:
+    text = home.read_text(encoding='utf-8')
+    ids = set(re.findall(r'\bid=["\']([^"\']+)["\']', text, flags=re.I))
+    for anchor in GLOBAL_ANCHORS:
+        if anchor not in ids:
+            errors.append(f'{surface} home: global navigation anchor missing: #{anchor}')
+
 for path in ROOT.rglob('*.html'):
     if any(part in {'.git', '.github', 'node_modules', 'artifacts', '.site'} for part in path.parts):
         continue
@@ -109,4 +121,4 @@ for path in ROOT.rglob('*.html'):
 
 if errors:
     raise SystemExit('\n'.join(errors[:100]))
-print(f'Navigation labels and href targets validated on {checked} canonical pages.')
+print(f'Navigation labels, href targets and global anchors validated on {checked} canonical pages.')
