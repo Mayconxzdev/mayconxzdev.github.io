@@ -49,11 +49,10 @@ EN = [
     ('whatsapp', 'WhatsApp Notifications'),
 ]
 
-PATTERN = re.compile(
-    r'<section class="case-next"><div><span>.*?</span><a href="[^"]+">.*?<span aria-hidden="true">→</span></a></div>'
-    r'<a class="button button--primary" href="mailto:mayconxz00dev@gmail.com">(.*?)</a></section>',
-    re.S,
-)
+# Case pages were created across several iterations, so the inner markup may use
+# either a plain arrow or a nested aria-hidden span. The section boundary is the
+# stable public contract and is safe to replace as a unit.
+PATTERN = re.compile(r'<section class="case-next">.*?</section>', re.S)
 
 
 def normalize(root: Path, sequence: list[tuple[str, str]], english: bool) -> int:
