@@ -4,8 +4,12 @@ root=Path(__file__).resolve().parents[1]
 def patch(rel,pairs):
     p=root/rel; text=p.read_text(encoding='utf-8')
     for old,new in pairs:
-        if old not in text: raise RuntimeError(f'{rel}: missing source phrase: {old[:90]}')
-        text=text.replace(old,new,1)
+        if old in text:
+            text=text.replace(old,new,1)
+        elif new in text:
+            continue
+        else:
+            raise RuntimeError(f'{rel}: neither source nor synchronized phrase found: {old[:90]}')
     p.write_text(text,encoding='utf-8')
 
 patch('competencias/index.html',[
