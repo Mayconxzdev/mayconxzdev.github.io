@@ -15,6 +15,12 @@ REPLACEMENTS = {
     'en/cases/career-personal/index.html': [
         ('<h1>CarreiraPessoal</h1>', '<h1>Carreira<wbr>Pessoal</h1>'),
     ],
+    'cases/compras-vesper/index.html': [
+        ('<h1>ComprasVesper</h1>', '<h1>Compras<wbr>Vesper</h1>'),
+    ],
+    'en/cases/compras-vesper/index.html': [
+        ('<h1>ComprasVesper</h1>', '<h1>Compras<wbr>Vesper</h1>'),
+    ],
 }
 
 for relative, pairs in REPLACEMENTS.items():
