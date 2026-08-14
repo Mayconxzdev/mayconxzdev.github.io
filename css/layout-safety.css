@@ -16,3 +16,9 @@ html,body{max-width:100%;overflow-x:clip}
 /* Case title wrapping: prefer semantic breaks over mid-word fragmentation. */
 .case-identity h1{overflow-wrap:normal;word-break:normal;hyphens:none;text-wrap:balance}
 .case-identity h1 wbr{display:inline}
+
+/* Case-specific mobile title fit: preserve whole words at narrow widths. */
+@media(max-width:720px){
+  .case-body--whatsapp .case-identity h1{font-size:clamp(2.75rem,13.8vw,4.55rem)}
+  .case-body--operational-procurement-catalog .case-identity h1{font-size:clamp(2.65rem,12.6vw,4.2rem)}
+}
