@@ -15,10 +15,14 @@ REQUIRED = {
         '10 mil+',
         'Power Automate',
         'BPMN',
-        'MCP',
-        'LangGraph/CrewAI',
+        'RAG/grounding',
+        'agentes de IA',
+        'HelpDesk',
+        '11 pessoas',
         'CarreiraPessoal',
+        '283 testes Python',
         'Catálogo Operacional',
+        'Postagem Redes',
         'CURSOS E CERTIFICAÇÕES',
         'Técnico Júnior em Automação de Processos',
     ],
@@ -27,18 +31,38 @@ REQUIRED = {
         '10k+',
         'Power Automate',
         'BPMN',
-        'MCP',
-        'LangGraph/CrewAI',
+        'RAG/grounding',
+        'AI agents',
+        'HelpDesk',
+        '11 people',
         'CarreiraPessoal',
+        '283 passing Python tests',
         'Operational Catalog',
+        'Social Publishing',
         'COURSES & CREDENTIALS',
         'Junior Process Automation Technician',
     ],
 }
 
 FORBIDDEN = {
-    'pt': ['(cargo formal)', 'Central ISO:</b>'],
-    'en': ['(formal role)', 'Central ISO:</b>'],
+    'pt': [
+        '(cargo formal)',
+        'Central ISO:</b>',
+        'Portal:</b>',
+        'MCP',
+        'LangGraph/CrewAI',
+        'IA multimodal',
+        'Geração de mídia',
+    ],
+    'en': [
+        '(formal role)',
+        'Central ISO:</b>',
+        'Portal:</b>',
+        'MCP',
+        'LangGraph/CrewAI',
+        'multimodal AI',
+        'media generation',
+    ],
 }
 
 
@@ -54,8 +78,8 @@ def check(lang, path):
             raise SystemExit(f'{path.name}: missing required text: {needle}')
     for needle in FORBIDDEN[lang]:
         if needle in text:
-            raise SystemExit(f'{path.name}: forbidden stale text: {needle}')
-    if len(text.strip()) < 2500:
+            raise SystemExit(f'{path.name}: forbidden general-resume text: {needle}')
+    if len(text.strip()) < 3400:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')
     print(f'OK {path.name}: 1 page, {len(text)} extracted chars')
 
