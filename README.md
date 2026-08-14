@@ -1,80 +1,62 @@
-# Portfólio profissional — Maycon Ferreira
+# Portfólio — Maycon Ferreira
 
-Este repositório é a versão pública do meu portfólio profissional em português e inglês. Ele organiza evidências de **automação de processos, IA aplicada, integrações, sistemas internos, transformação digital e produtos operacionais** sem misturar projeto em produção, piloto, teste, laboratório ou desenvolvimento.
+Código-fonte do meu portfólio profissional: **Automação, IA e Integrações**.
 
-Acesse: [mayconxzdev.github.io](https://mayconxzdev.github.io/)
+A ideia do site não é mostrar o maior número possível de projetos. Eu organizo os cases para cada um provar uma parte diferente do meu trabalho: automação, implantação, processo, produto, backend/dados, IA aplicada, arquitetura e Qualidade.
 
-## Posicionamento atual
+**Site:** https://mayconxzdev.github.io/
 
-Atuo como **Analista de Automação, IA e Integrações**, transformando necessidades operacionais em soluções rastreáveis do levantamento à sustentação. Minha base principal inclui **n8n self-hosted, Python, FastAPI, APIs REST/webhooks, SQL/PostgreSQL, Docker, Linux e IA aplicada**. Também uso, conforme o contexto, **BPMN, Power Automate, Make, Zapier, CRM, RAG/LangChain, MCP, LangGraph e CrewAI**.
+## Projetos que eu priorizo na apresentação
 
-A apresentação pública separa tecnologia de evidência: uma ferramenta pode fazer parte da minha prática sem ser artificialmente atribuída a um case que não a utiliza.
+| Projeto | Principal evidência |
+| --- | --- |
+| [Mala Direta](cases/mala-direta/) | n8n em produção, filas, deduplicação, cancelamento e auditoria |
+| [Produção Operacional](cases/producao-operacional/) | implantação em 10+ PCs + 1 TV, 20+ profissionais e 9 setores |
+| [Proposta Comercial](cases/vesper-propostas/) | processo de documentos/e-mail e redução de 2–4 min para menos de 30 s em propostas simples |
+| [CarreiraPessoal](cases/carreira-pessoal/) | produto Windows, arquitetura full-stack, evidências, ATS e testes |
+| [Catálogo Operacional](cases/catalogo-operacional-compras/) | FastAPI, FTS5, dados, revisão/histórico e uso diário |
+| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/grounding, APIs externas e revisão humana |
 
-## Projetos principais
+### Outros recortes importantes
 
-| Projeto | O que demonstra | Estado público |
-|---|---|---|
-| **Mala Direta** | n8n, filas, deduplicação, cancelamento revalidado, auditoria e operação em volume | Em produção |
-| **Produção Operacional** | aplicação Windows, implantação multi-PC, visão coletiva em TV e operação industrial | Em produção |
-| **Proposta Comercial** | ODT/PDF, IMAP/SMTP, revisão/aprovação humana, rastreabilidade e ganho de tempo | Uso interno diário |
-| **Catálogo Operacional de Compras** | FastAPI, SQLite FTS5, busca, histórico, concorrência e revisão | Uso interno diário |
-| **Postagem Redes** | RAG/grounding, LangChain, n8n, Meta Graph API, LLMs e aprovação humana | Validado em teste |
-| **CarreiraPessoal** | produto local-first, FastAPI, React/TypeScript, Tauri/Rust, evidências e regras de decisão | Produto pessoal em uso |
-| **Central ISO** | requisitos da Qualidade, automação documental, regras determinísticas, n8n, Docker e rastreabilidade | Piloto técnico |
-| **Portal** | tenancy/RLS, Action Envelope, aprovações, outbox e arquitetura de sistemas | Em desenvolvimento/revalidação |
+- [Portal](cases/portal/) — arquitetura e produto em desenvolvimento/revalidação;
+- [Central ISO](cases/central-iso/) — processo/Qualidade, regras determinísticas e rastreabilidade em piloto técnico;
+- [Compass UOL](cases/compass/) — Linux, Python, SQL, Docker, ETL/Data Lake e AWS/PySpark;
+- [Manutenção em Campo](cases/manutencao-campo/) — ativos, checklists, evidências e histórico;
+- [HelpDesk](cases/helpdesk/) — sistema interno e adoção por usuários;
+- [Hubora](cases/hubora/) — produto pessoal/PWA/local-first;
+- [Sites industriais](cases/sites-industriais/) — aplicações web públicas em produção.
 
-O arquivo do portfólio também inclui cases de HelpDesk, ComprasVesper, manutenção, sites industriais, integrações via WhatsApp, StudioCad, Hubora, Compass UOL e outras referências públicas sanitizadas.
+## Fonte de verdade profissional
 
-## Resultados apresentados
+O site segue algumas regras para evitar que uma apresentação bonita vire exagero:
 
-- **10 mil+** execuções de workflows na instância n8n de produção que administro;
-- propostas simples de **2–4 minutos para menos de 30 segundos**, com uso diário por 4 profissionais;
-- Produção Operacional em **10+ computadores e 1 TV**, apoiando **20+ profissionais em 9 setores**;
-- solução de manutenção acompanhando **40+ ativos**, com checklists, evidências, histórico e consulta pela Qualidade;
-- **6 campanhas** na Mala Direta sobre base de **1.020 contatos**, incluindo uma para **900+ destinatários**;
-- Catálogo Operacional com **24 categorias e 480+ códigos**, usado diariamente por 3 pessoas;
-- **30+ pessoas** treinadas/orientadas em escritório, fábrica e acesso remoto;
-- CarreiraPessoal v12.5.2 com **283 testes Python** registrados na versão-fonte auditada.
+- métricas só entram quando tenho base real;
+- projeto em teste não é chamado de produção;
+- piloto não é tratado como sistema certificado;
+- tecnologia que faz parte da minha prática não é atribuída artificialmente a um case que não a usa;
+- dados e código corporativos sensíveis são substituídos por demo, material sanitizado ou explicação técnica;
+- IA aplicada continua sujeita a revisão humana nos fluxos sensíveis.
 
-## Processos, automação e IA
+## Currículo
 
-Minha prática combina **BPMN e AS-IS/TO-BE, levantamento de requisitos, regras de negócio, documentação e rastreabilidade** com plataformas e código. O n8n é meu núcleo de orquestração, e Power Automate, Make, Zapier e CRM entram quando o ecossistema ou a necessidade faz mais sentido. Para IA, utilizo APIs de LLM, RAG/grounding, LangChain e, conforme a necessidade, MCP, LangGraph e CrewAI, preservando revisão humana em decisões sensíveis.
+O portfólio publica um currículo geral de uma página em PT-BR e EN. A fonte é gerada por `scripts/generate_resumes_general.py` e validada automaticamente antes do deploy.
 
-## Currículos
+- [Currículo PT-BR](assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf)
+- [Resume EN](assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf)
 
-Os currículos gerais ficam em `assets/cv/`:
+A organização atual diferencia **núcleo técnico** de ferramentas usadas de forma contextual, para não dar a impressão de mesma profundidade em todas as tecnologias.
 
-- `Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf`
-- `Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf`
+## Validação
 
-O pipeline de publicação gera os dois PDFs a partir de `scripts/generate_resumes_general.py`, aplica a evidência profissional atual, valida conteúdo e parsing ATS e mantém cada versão em **uma página A4**, com texto selecionável, uma coluna, headings convencionais e links funcionais.
+O deploy usa GitHub Pages e inclui verificações de HTML, links/rotas, JavaScript, currículo e smoke visual. Dependências locais e artefatos de teste não devem ficar versionados no repositório.
 
-## Estrutura
+## Privacidade
 
-- `/` e `/en/` — páginas iniciais em português e inglês;
-- `/competencias/` e `/en/skills/` — competências e práticas atuais;
-- `/cases/` e `/en/cases/` — estudos de caso e estados reais de cada projeto;
-- `/assets/cv/` — currículos PT-BR e EN;
-- `/scripts/` — geração, atualização de evidências, QA e validação;
-- `/docs/` — documentação complementar e relatórios de qualidade;
-- `/.github/workflows/pages.yml` — pipeline de validação, QA visual e deploy.
+Quando um case nasceu de um problema corporativo, eu publico somente o que pode ser mostrado com segurança: tela sanitizada, arquitetura, dados fictícios, código público preparado para avaliação ou descrição do fluxo. O objetivo é provar capacidade sem expor cliente, credencial, caminho de rede, documento ou dado pessoal.
 
-## Executar localmente
+## Contato
 
-Para visualizar o site:
-
-```bash
-python -m http.server 8000 --bind 127.0.0.1
-```
-
-Abra `http://127.0.0.1:8000`.
-
-A CI instala as dependências de currículo, aplica a evidência atual, gera os PDFs, valida texto/layout, verifica rotas e JavaScript, executa Playwright em desktop/mobile e light/dark, publica no GitHub Pages e confirma que a versão atual chegou ao endereço público.
-
-## Critério de apresentação
-
-Cada case tenta responder rapidamente a cinco perguntas: **qual problema existia, o que eu fiz, quais decisões técnicas importam, qual evidência existe e qual é o estado real hoje**. O objetivo não é exibir a maior quantidade possível de tecnologia, e sim permitir que recrutadores e profissionais técnicos diferenciem experiência em produção, uso interno, teste, piloto, laboratório e desenvolvimento.
-
-## Privacidade e precisão
-
-Nos cases públicos removo credenciais, dados pessoais, preços, documentos, caminhos de rede, fornecedores e informações internas que não deveriam sair do ambiente original. Não apresento como produção aquilo que é teste, laboratório, piloto ou desenvolvimento, e não atribuo uma tecnologia a um projeto apenas para aumentar cobertura de palavras-chave.
+**Maycon Ferreira**  
+Analista de Automação, IA e Integrações  
+[LinkedIn](https://www.linkedin.com/in/maycon-ferreira-7bb870231/) · [GitHub](https://github.com/Mayconxzdev) · [Portfólio](https://mayconxzdev.github.io/)
