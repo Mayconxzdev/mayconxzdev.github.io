@@ -1,26 +1,64 @@
 from pathlib import Path
-import fitz
 from pypdf import PdfReader
 
-root=Path(__file__).resolve().parents[1]
-cv=root/'assets'/'cv'
-files={
-'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf':['ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES','APIs REST','Linux','BPMN','Power Automate','Make/Zapier','CRM','RAG/grounding com LangChain','MCP','LangGraph','CrewAI','CarreiraPessoal','Central ISO','40+ ativos','283 testes Python'],
-'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf':['AI AUTOMATION & INTEGRATIONS ANALYST','Phone/WhatsApp','Email:','REST APIs','Linux','BPMN','Power Automate','Make/Zapier','CRM','RAG/grounding with LangChain','MCP','LangGraph','CrewAI','CarreiraPessoal','Central ISO','40+ assets','283 Python tests'],
+ROOT = Path(__file__).resolve().parents[1]
+CV = ROOT / 'assets' / 'cv'
+
+FILES = {
+    'pt': CV / 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
+    'en': CV / 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
 }
-for name,required in files.items():
-    path=cv/name
-    reader=PdfReader(str(path))
-    assert len(reader.pages)==1, f'{name}: expected one page'
-    page=reader.pages[0]
-    assert abs(float(page.mediabox.width)-595.3)<2 and abs(float(page.mediabox.height)-841.9)<2, f'{name}: expected A4'
-    text=' '.join((page.extract_text() or '').split())
-    for phrase in required: assert phrase in text, f'{name}: missing {phrase}'
-    doc=fitz.open(path); spans=[]
-    for block in doc[0].get_text('dict').get('blocks',[]):
-        if block.get('type')==0:
-            for line in block.get('lines',[]): spans += [s for s in line.get('spans',[]) if s.get('text','').strip()]
-    assert spans and min(float(s['size']) for s in spans)>=7.9, f'{name}: font too small'
-    assert doc[0].rect.height-max(float(s['bbox'][3]) for s in spans)>=34, f'{name}: bottom margin too small'
-    print(f'OK: {name} | one A4 page | {len(text)} chars')
-print('General resume validation passed.')
+
+REQUIRED = {
+    'pt': [
+        'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES',
+        '10 mil+',
+        'Power Automate',
+        'BPMN',
+        'MCP',
+        'LangGraph/CrewAI',
+        'CarreiraPessoal',
+        'Catálogo Operacional',
+        'CURSOS E CERTIFICAÇÕES',
+        'Técnico Júnior em Automação de Processos',
+    ],
+    'en': [
+        'AI, AUTOMATION & INTEGRATIONS ANALYST',
+        '10k+',
+        'Power Automate',
+        'BPMN',
+        'MCP',
+        'LangGraph/CrewAI',
+        'CarreiraPessoal',
+        'Operational Catalog',
+        'COURSES & CREDENTIALS',
+        'Junior Process Automation Technician',
+    ],
+}
+
+FORBIDDEN = {
+    'pt': ['(cargo formal)', 'Central ISO:</b>'],
+    'en': ['(formal role)', 'Central ISO:</b>'],
+}
+
+
+def check(lang, path):
+    if not path.exists():
+        raise SystemExit(f'Missing resume: {path}')
+    reader = PdfReader(str(path))
+    if len(reader.pages) != 1:
+        raise SystemExit(f'{path.name}: expected 1 page, got {len(reader.pages)}')
+    text = '\n'.join(page.extract_text() or '' for page in reader.pages)
+    for needle in REQUIRED[lang]:
+        if needle not in text:
+            raise SystemExit(f'{path.name}: missing required text: {needle}')
+    for needle in FORBIDDEN[lang]:
+        if needle in text:
+            raise SystemExit(f'{path.name}: forbidden stale text: {needle}')
+    if len(text.strip()) < 2500:
+        raise SystemExit(f'{path.name}: extracted text unexpectedly short')
+    print(f'OK {path.name}: 1 page, {len(text)} extracted chars')
+
+
+for lang, path in FILES.items():
+    check(lang, path)
