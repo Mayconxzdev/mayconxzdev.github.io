@@ -121,6 +121,9 @@ try {
         const nav = document.querySelector('#main-nav');
         const navLabels = nav ? [...nav.querySelectorAll('a')].map(a => a.textContent.trim().replace(/\s+/g, ' ')) : [];
         const text = document.body.innerText || '';
+        const caseTitle = document.querySelector('.case-identity h1');
+        const caseTitleOverflow = caseTitle ? Math.max(0, caseTitle.scrollWidth - caseTitle.clientWidth) : 0;
+        const caseTitleText = caseTitle ? caseTitle.textContent.trim().replace(/\s+/g, ' ') : '';
         const visibleDeadLinks = [...document.querySelectorAll('a')].filter(anchor => {
           const style = getComputedStyle(anchor);
           const rect = anchor.getBoundingClientRect();
@@ -131,6 +134,8 @@ try {
         }).map(anchor => (anchor.textContent || anchor.getAttribute('aria-label') || '<unnamed>').trim().replace(/\s+/g, ' '));
         return {
           overflow: Math.max(0, root.scrollWidth - root.clientWidth),
+          caseTitleOverflow,
+          caseTitleText,
           broken: imageResults.filter(Boolean),
           visibleDeadLinks,
           text,
@@ -144,6 +149,7 @@ try {
       }, { theme, alias: aliases.has(route) });
 
       if (result.overflow > 2) failures.push(`${route} ${profileName}: horizontal overflow ${result.overflow}px`);
+      if (result.caseTitleOverflow > 2) failures.push(`${route} ${profileName}: case title clips by ${result.caseTitleOverflow}px: ${result.caseTitleText}`);
       if (result.broken.length) failures.push(`${route} ${profileName}: broken images: ${result.broken.map(x => `${x.src} (${x.error})`).join(', ')}`);
       if (result.visibleDeadLinks.length) failures.push(`${route} ${profileName}: visible non-clickable links: ${result.visibleDeadLinks.join(', ')}`);
       for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
