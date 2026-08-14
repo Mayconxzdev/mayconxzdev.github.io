@@ -14,6 +14,7 @@ TRANSFORMATIONS = [
     'scripts/patch_career_visual.py',
     'scripts/patch_skills_current.py',
     'scripts/patch_portfolio_consistency.py',
+    'scripts/patch_case_visual_safety.py',
     'scripts/normalize_site_chrome.py',
     'scripts/patch_navigation_targets.py',
     'scripts/patch_404_language.py',
