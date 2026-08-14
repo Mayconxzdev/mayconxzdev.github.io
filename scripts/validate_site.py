@@ -3,6 +3,7 @@ from __future__ import annotations
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 IGNORED_DIRS = {'.git', '.github', '.venv', 'node_modules', 'artifacts', '__pycache__'}
@@ -49,10 +50,29 @@ def resolve_local(page: Path, ref: str) -> Path | None:
     return target
 
 
+def heading_position(text: str, label: str) -> int:
+    match = re.search(
+        r'<h3\b[^>]*>\s*' + re.escape(label) + r'\s*</h3>',
+        text,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    return match.start() if match else -1
+
+
+def has_data_project(text: str, name: str) -> bool:
+    return bool(
+        re.search(
+            r'data-project\s*=\s*["\']' + re.escape(name) + r'["\']',
+            text,
+            flags=re.IGNORECASE,
+        )
+    )
+
+
 def assert_order(text: str, labels: list[str], surface: str, errors: list[str]) -> None:
     positions = []
     for label in labels:
-        pos = text.find(f'<h3>{label}</h3>')
+        pos = heading_position(text, label)
         if pos < 0:
             errors.append(f'{surface}: missing curated flagship: {label}')
         positions.append(pos)
@@ -112,13 +132,13 @@ for text, surface in [(home, 'PT home'), (en_home, 'EN home')]:
     featured_start = text.find('<section class="featured"')
     featured_end = text.find('</section>', featured_start)
     featured = text[featured_start:featured_end] if featured_start >= 0 and featured_end >= 0 else ''
-    if '<h3>Portal</h3>' in featured:
+    if heading_position(featured, 'Portal') >= 0:
         errors.append(f'{surface}: Portal must stay out of the flagship section while in revalidation')
-    if 'data-project="portal-archive"' not in text:
+    if not has_data_project(text, 'portal-archive'):
         errors.append(f'{surface}: Portal archive status is missing')
-    if 'data-project="central-iso"' not in text:
+    if not has_data_project(text, 'central-iso'):
         errors.append(f'{surface}: Central ISO archive status is missing')
-    if 'data-project="carreira-pessoal"' not in text:
+    if not has_data_project(text, 'carreira-pessoal'):
         errors.append(f'{surface}: CarreiraPessoal flagship marker is missing')
 
 if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
