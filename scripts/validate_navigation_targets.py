@@ -87,6 +87,15 @@ for surface, home in [('PT', ROOT / 'index.html'), ('EN', ROOT / 'en/index.html'
         if anchor not in ids:
             errors.append(f'{surface} home: global navigation anchor missing: #{anchor}')
 
+# The 404 pair has its own language route and should advertise that route in
+# hreflang metadata as well as in the visible switch.
+pt404 = (ROOT / '404.html').read_text(encoding='utf-8')
+en404 = (ROOT / 'en/404.html').read_text(encoding='utf-8')
+if 'hreflang="en" href="https://mayconxzdev.github.io/en/404.html"' not in pt404:
+    errors.append('PT 404: EN hreflang does not point to /en/404.html')
+if 'hreflang="pt-BR" href="https://mayconxzdev.github.io/404.html"' not in en404:
+    errors.append('EN 404: PT hreflang does not point to /404.html')
+
 for path in ROOT.rglob('*.html'):
     if any(part in {'.git', '.github', 'node_modules', 'artifacts', '.site'} for part in path.parts):
         continue
@@ -121,4 +130,4 @@ for path in ROOT.rglob('*.html'):
 
 if errors:
     raise SystemExit('\n'.join(errors[:100]))
-print(f'Navigation labels, href targets and global anchors validated on {checked} canonical pages.')
+print(f'Navigation labels, href targets, global anchors and 404 hreflang validated on {checked} canonical pages.')
