@@ -21,6 +21,12 @@ REPLACEMENTS = {
     'en/cases/compras-vesper/index.html': [
         ('<h1>ComprasVesper</h1>', '<h1>Compras<wbr>Vesper</h1>'),
     ],
+    'cases/central-iso/index.html': [
+        ('<b>30 testes aprovados</b>', '<b>32 testes aprovados</b>'),
+    ],
+    'en/cases/central-iso/index.html': [
+        ('<b>30 passing tests</b>', '<b>32 passing tests</b>'),
+    ],
     'cases/infinity-engine/index.html': [
         (
             '<div class="case-gallery-heading"><p>TELAS E FLUXOS</p><div><h2>Veja o sistema em uso</h2><span>Telas e fluxos que mostram como o sistema funciona na prática.</span></div></div>',
@@ -78,4 +84,4 @@ block = '''\n/* Case title wrapping: prefer semantic breaks over mid-word fragme
 if marker not in text:
     css.write_text(text.rstrip() + '\n' + block, encoding='utf-8')
 
-print('Case title wrapping and confidential evidence labels normalized.')
+print('Case title wrapping, current evidence counts and confidential labels normalized.')
