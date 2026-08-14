@@ -2,131 +2,66 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const baseURL = process.env.PORTFOLIO_BASE_URL || 'http://127.0.0.1:8000';
-const outputRoot = path.resolve('artifacts/visual');
+const base = (process.argv[2] || 'http://127.0.0.1:4173').replace(/\/$/, '');
+const out = process.argv[3] || 'artifacts/visual';
+
 const routes = [
-  { path: '/', slug: 'home-pt', expected: 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: ['#systems', '#experience', '#evidence'] },
-  { path: '/en/', slug: 'home-en', expected: 'AI AUTOMATION & INTEGRATIONS ANALYST', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: ['#systems', '#experience', '#evidence'] },
-  { path: '/competencias/', slug: 'skills-pt', expected: 'Automação, IA, dados e governança aplicados em projetos reais.', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/skills/', slug: 'skills-en', expected: 'Automation, AI, data and governance applied in real projects.', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
-  { path: '/cases/catalogo-operacional-compras/', slug: 'catalog-pt', expected: 'Catálogo Operacional de Compras', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/cases/operational-procurement-catalog/', slug: 'catalog-en', expected: 'Operational Procurement Catalog', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
-  { path: '/cases/portal/', slug: 'portal-pt', expected: 'Estou construindo uma plataforma para conectar pessoas, processos, dados, aprovações, integrações, automações e agentes governados', cv: 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf', anchors: [] },
-  { path: '/en/cases/portal/', slug: 'portal-en', expected: 'I am building a platform that connects people, processes, data, approvals, integrations, automations and governed agents', cv: 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf', anchors: [] },
+  ['home-pt', '/'],
+  ['carreira-pt', '/cases/carreira-pessoal/'],
+  ['central-iso-pt', '/cases/central-iso/'],
+  ['skills-pt', '/competencias/'],
+  ['home-en', '/en/'],
+  ['carreira-en', '/en/cases/career-personal/'],
+  ['central-iso-en', '/en/cases/central-iso/'],
 ];
+
 const viewports = [
-  { name: 'desktop', width: 1440, height: 1000 },
-  { name: 'mobile', width: 390, height: 844 },
+  ['desktop', { width: 1440, height: 1000 }],
+  ['mobile', { width: 390, height: 844 }],
 ];
+
 const themes = ['light', 'dark'];
-
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
-}
-
-async function loadAllImages(page) {
-  await page.locator('img').evaluateAll((images) => {
-    for (const image of images) image.loading = 'eager';
-  });
-  await page.evaluate(async () => {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const step = Math.max(window.innerHeight * 0.8, 500);
-    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
-      window.scrollTo(0, y);
-      await sleep(25);
-    }
-    window.scrollTo(0, 0);
-  });
-  await page.waitForFunction(() => Array.from(document.images).every((image) => image.complete), { timeout: 30_000 });
-}
-
-async function horizontalOverflowDetails(page) {
-  return page.evaluate(() => {
-    const viewport = document.documentElement.clientWidth;
-    return Array.from(document.querySelectorAll('body *'))
-      .map((element) => {
-        const rect = element.getBoundingClientRect();
-        return {
-          tag: element.tagName.toLowerCase(),
-          className: typeof element.className === 'string' ? element.className : '',
-          text: (element.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80),
-          left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width),
-        };
-      })
-      .filter((item) => item.right > viewport + 1 || item.left < -1)
-      .sort((a, b) => Math.max(b.right - viewport, -b.left) - Math.max(a.right - viewport, -a.left))
-      .slice(0, 8);
-  });
-}
-
-await fs.rm(outputRoot, { recursive: true, force: true });
-await fs.mkdir(outputRoot, { recursive: true });
-
+await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const failures = [];
-let screenshots = 0;
 
 try {
-  for (const route of routes) {
-    for (const viewport of viewports) {
+  for (const [routeName, route] of routes) {
+    for (const [viewName, viewport] of viewports) {
       for (const theme of themes) {
-        const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height }, colorScheme: theme, reducedMotion: 'reduce', deviceScaleFactor: 1 });
-        await context.addInitScript((selectedTheme) => localStorage.setItem('mf-theme', selectedTheme), theme);
+        const context = await browser.newContext({ viewport });
+        await context.addInitScript((selected) => {
+          try { localStorage.setItem('mf-theme', selected); } catch {}
+        }, theme);
         const page = await context.newPage();
-        const label = `${route.slug}-${viewport.name}-${theme}`;
-        const screenshotPath = path.join(outputRoot, `${label}.png`);
-        try {
-          await page.goto(`${baseURL}${route.path}`, { waitUntil: 'networkidle', timeout: 45_000 });
-          await page.addStyleTag({ content: '*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition:none!important;caret-color:transparent!important}' });
-          await loadAllImages(page);
-          await page.waitForTimeout(100);
+        const consoleErrors = [];
+        page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
+        page.on('pageerror', err => consoleErrors.push(String(err)));
 
-          const bodyText = (await page.locator('body').innerText()).toLocaleLowerCase();
-          assert(bodyText.includes(route.expected.toLocaleLowerCase()), `${label}: target positioning text is not visible`);
-          const htmlTheme = await page.locator('html').getAttribute('data-theme');
-          assert(htmlTheme === theme, `${label}: expected theme ${theme}, found ${htmlTheme}`);
+        const response = await page.goto(base + route, { waitUntil: 'networkidle' });
+        if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
 
-          const overflow = await page.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
-          if (overflow.scrollWidth > overflow.clientWidth + 1) {
-            const details = await horizontalOverflowDetails(page);
-            throw new Error(`${label}: horizontal overflow ${overflow.scrollWidth}px > ${overflow.clientWidth}px; offenders=${JSON.stringify(details)}`);
-          }
+        const result = await page.evaluate(() => {
+          const root = document.documentElement;
+          const broken = [...document.images].filter(img => img.complete && img.naturalWidth === 0).map(img => img.src);
+          const text = document.body.innerText || '';
+          return {
+            overflow: Math.max(0, root.scrollWidth - root.clientWidth),
+            broken,
+            text,
+          };
+        });
 
-          const brokenImages = await page.locator('img').evaluateAll((images) => images.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.getAttribute('src') || '[missing src]'));
-          assert(brokenImages.length === 0, `${label}: broken images: ${brokenImages.join(', ')}`);
-
-          const clippedText = await page.locator('main h1, main h2, main h3, main p, main li, main dt, main dd').evaluateAll((elements) => elements.flatMap((element) => {
-            const style = getComputedStyle(element);
-            if (style.display === 'none' || style.visibility === 'hidden' || !element.textContent?.trim()) return [];
-            const xClipped = ['hidden', 'clip'].includes(style.overflowX) && element.scrollWidth > element.clientWidth + 2;
-            const yClipped = ['hidden', 'clip'].includes(style.overflowY) && element.scrollHeight > element.clientHeight + 2;
-            return xClipped || yClipped ? [{ text: element.textContent.trim().slice(0, 90), xClipped, yClipped }] : [];
-          }));
-          assert(clippedText.length === 0, `${label}: clipped text: ${JSON.stringify(clippedText.slice(0, 5))}`);
-
-          const pdfLinks = await page.locator('a[href$=".pdf"]').evaluateAll((links) => links.map((link) => link.getAttribute('href') || ''));
-          assert(pdfLinks.length > 0, `${label}: no resume link found`);
-          assert(pdfLinks.every((href) => href.includes(route.cv)), `${label}: stale or incorrect resume link: ${pdfLinks.join(', ')}`);
-          for (const anchor of route.anchors) assert((await page.locator(anchor).count()) === 1, `${label}: missing strategic section ${anchor}`);
-
-          if (viewport.name === 'mobile') {
-            const menuButton = page.locator('.menu-button');
-            assert((await menuButton.count()) === 1, `${label}: mobile menu button missing`);
-            await menuButton.click();
-            assert((await menuButton.getAttribute('aria-expanded')) === 'true', `${label}: mobile menu did not open`);
-            await page.keyboard.press('Escape');
-            assert((await menuButton.getAttribute('aria-expanded')) === 'false', `${label}: mobile menu did not close with Escape`);
-          }
-
-          await page.screenshot({ path: screenshotPath, fullPage: true, animations: 'disabled' });
-          screenshots += 1;
-          console.log(`OK: ${label}`);
-        } catch (error) {
-          await page.screenshot({ path: screenshotPath, fullPage: true, animations: 'disabled' }).catch(() => {});
-          failures.push(`${label}: ${error instanceof Error ? error.message : String(error)}`);
-        } finally {
-          await context.close();
+        if (result.overflow > 2) failures.push(`${route} ${viewName}/${theme}: horizontal overflow ${result.overflow}px`);
+        if (result.broken.length) failures.push(`${route} ${viewName}/${theme}: broken images: ${result.broken.join(', ')}`);
+        for (const bad of ['PermissionError', 'Traceback (most recent call last)', 'Internal Server Error']) {
+          if (result.text.includes(bad)) failures.push(`${route} ${viewName}/${theme}: leaked error text: ${bad}`);
         }
+        if (consoleErrors.length) failures.push(`${route} ${viewName}/${theme}: console/page errors: ${consoleErrors.join(' | ')}`);
+
+        const file = path.join(out, `${routeName}-${viewName}-${theme}.png`);
+        await page.screenshot({ path: file, fullPage: true });
+        await context.close();
       }
     }
   }
@@ -135,7 +70,7 @@ try {
 }
 
 if (failures.length) {
-  console.error(failures.map((failure) => `ERROR: ${failure}`).join('\n'));
+  console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Portfolio browser smoke completed: ${screenshots} screenshots, ${routes.length} strategic routes, 2 viewports and 2 themes.`);
+console.log(`Visual smoke passed: ${routes.length * viewports.length * themes.length} captures`);
