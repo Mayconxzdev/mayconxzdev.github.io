@@ -6,8 +6,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def feature_re(name: str) -> re.Pattern[str]:
+    # Keep every operation inside one feature-card boundary. A plain `.*?` here
+    # can start at an earlier article and accidentally consume several cards.
     return re.compile(
-        rf'<article class="feature-case[^>]*>.*?<h3>{re.escape(name)}</h3>.*?</article>',
+        rf'<article class="feature-case[^>]*>(?:(?!</article>).)*?<h3>\s*{re.escape(name)}\s*</h3>(?:(?!</article>).)*?</article>',
         re.S,
     )
 
