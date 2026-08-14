@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -24,12 +25,26 @@ PAIRS = [
     ("Real v12.5.2 product screens.", "Sanitized v12.5.2 product map."),
 ]
 
+
+def force_eager(tag_match: re.Match[str]) -> str:
+    tag = tag_match.group(0)
+    if re.search(r'\bloading=["\']', tag, flags=re.I):
+        return re.sub(r'\bloading=["\']lazy["\']', 'loading="eager"', tag, flags=re.I)
+    return tag[:-1] + ' loading="eager">'
+
+
 for path in FILES:
     if not path.exists():
         continue
     text = path.read_text(encoding="utf-8")
     for old, new in PAIRS:
         text = text.replace(old, new)
+    text = re.sub(
+        r'<img\b[^>]*carreira-product-overview\.svg[^>]*>',
+        force_eager,
+        text,
+        flags=re.I,
+    )
     path.write_text(text, encoding="utf-8")
 
-print("CarreiraPessoal visual evidence now uses a valid, explicitly sanitized product map.")
+print("CarreiraPessoal visual evidence now uses a valid, explicitly sanitized product map with eager loading.")
