@@ -26,22 +26,26 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - name: Install resume dependencies
+      - name: Install resume and visual-validation dependencies
         run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
       - name: Validate source syntax
         run: python -m compileall -q scripts
       - name: Generate current general resumes
-        run: python scripts/generate_resumes_general.py
-      - name: Apply current portfolio evidence
+        run: |
+          python scripts/generate_resumes_general.py
+          python scripts/add_resume_links.py
+      - name: Apply current portfolio evidence and shared chrome
         run: |
           python scripts/add_carreirapessoal_home.py
+          python scripts/patch_career_visual.py
           python scripts/patch_skills_current.py
           python scripts/patch_portfolio_consistency.py
-      - name: Validate current resume content, ATS text and visual layout
+          python scripts/normalize_site_chrome.py
+      - name: Validate current resume content, links, ATS text and visual layout
         run: |
           python scripts/validate_general_resumes.py
           python scripts/validate_resume_visual.py
-      - name: Validate portfolio structure and links
+      - name: Validate every canonical page, local reference and referenced visual
         run: python scripts/validate_site.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js && node --check scripts/visual_smoke.mjs
@@ -49,7 +53,7 @@ jobs:
         run: |
           npm install --no-save playwright@1.54.2
           npx playwright install --with-deps chromium
-      - name: Run portfolio browser and visual smoke
+      - name: Run full portfolio browser and visual smoke
         run: |
           python -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-http.log 2>&1 &
           SERVER_PID=$!
@@ -68,7 +72,7 @@ jobs:
           path: assets/cv/*.pdf
           if-no-files-found: error
           retention-days: 30
-      - name: Upload visual QA screenshots
+      - name: Upload full visual QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -113,24 +117,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Confirm current portfolio is live
+      - name: Confirm current portfolio, shared chrome and career visual are live
         shell: bash
         run: |
           for attempt in {1..30}; do
             HOME_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/carreira-pessoal/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            PROD_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/producao-operacional/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-overview.webp?build=${GITHUB_SHA}" | head -n 1 || true)"
-            ISO_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/central-iso-overview.webp?build=${GITHUB_SHA}" | head -n 1 || true)"
+            CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
             if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
-              && grep -Fq "CarreiraPessoal" <<<"$HOME_HTML" \
-              && grep -Fq "Central ISO" <<<"$HOME_HTML" \
-              && grep -Fq "DESENVOLVIMENTO / REVALIDAÇÃO" <<<"$HOME_HTML" \
-              && grep -Fq "Eu fiz este aplicativo" <<<"$CAREER_HTML" \
-              && grep -Fq "Este projeto começou conversando" <<<"$ISO_HTML" \
-              && grep -Fq "200" <<<"$CAREER_IMAGE" \
-              && grep -Fq "200" <<<"$ISO_IMAGE"; then
-              echo "Published portfolio, cases and visual evidence match the current build."
+              && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
+              && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
+              && grep -Fq 'data-global-chrome="2026-08"' <<<"$PROD_HTML" \
+              && grep -Fq 'data-global-chrome="2026-08"' <<<"$ISO_HTML" \
+              && grep -Fq "Mapa visual sanitizado" <<<"$CAREER_HTML" \
+              && grep -Fq "200" <<<"$CAREER_IMAGE"; then
+              echo "Published portfolio, cases, shared chrome and visual evidence match the current build."
               exit 0
             fi
             echo "Published content is not current yet (attempt ${attempt}/30)."
