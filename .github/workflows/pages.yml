@@ -57,7 +57,7 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/ >/dev/null
-          PORTFOLIO_BASE_URL=http://127.0.0.1:8000 node scripts/visual_smoke.mjs
+          node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
       - name: Upload audited resumes
         if: always()
         uses: actions/upload-artifact@v4
