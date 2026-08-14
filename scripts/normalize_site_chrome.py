@@ -62,12 +62,12 @@ def lang_target(route: str, english: bool) -> str:
 def global_header(english: bool, lang_href: str) -> str:
     if english:
         labels = [
-            ("/#overview", "Overview"),
-            ("/#systems", "Projects"),
-            ("/#experience", "Experience"),
-            ("/#evidence", "Results"),
+            ("/en/#overview", "Overview"),
+            ("/en/#systems", "Projects"),
+            ("/en/#experience", "Experience"),
+            ("/en/#evidence", "Results"),
             ("/en/skills/", "Skills"),
-            ("/#contact", "Contact"),
+            ("/en/#contact", "Contact"),
         ]
         resume = EN_RESUME
         resume_label = "Resume"
@@ -75,6 +75,8 @@ def global_header(english: bool, lang_href: str) -> str:
         nav_label = "Primary navigation"
         theme_label = "Switch to dark theme"
         sr_theme = "Toggle theme"
+        brand_home = "/en/"
+        brand_subtitle = "Automation · AI · Integrations"
     else:
         labels = [
             ("/#overview", "Visão geral"),
@@ -90,14 +92,16 @@ def global_header(english: bool, lang_href: str) -> str:
         nav_label = "Navegação principal"
         theme_label = "Ativar tema escuro"
         sr_theme = "Alternar tema"
+        brand_home = "/"
+        brand_subtitle = "Automação · IA · Integrações"
 
     links = "".join(f'<a href="{href}">{label}</a>' for href, label in labels)
     return (
         '<header class="site-header" data-global-chrome="2026-08">'
-        '<a class="brand" href="/" aria-label="Maycon Ferreira">'
+        f'<a class="brand" href="{brand_home}" aria-label="Maycon Ferreira">'
         '<span class="brand-mark">MF</span>'
         '<span class="brand-copy"><strong>Maycon Ferreira</strong>'
-        '<small>Automação · IA · Integrações</small></span></a>'
+        f'<small>{brand_subtitle}</small></span></a>'
         '<button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav">'
         '<span></span><span></span><span></span><span class="sr-only">Menu</span></button>'
         f'<nav id="main-nav" aria-label="{nav_label}">{links}'
