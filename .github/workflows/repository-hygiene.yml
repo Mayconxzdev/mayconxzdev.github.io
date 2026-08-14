@@ -1,0 +1,38 @@
+name: Repository hygiene
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repository-hygiene.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove tracked local dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          changed=0
+          if git ls-files 'node_modules/**' | grep -q .; then
+            git rm -r --cached node_modules
+            changed=1
+          fi
+
+          if [ "$changed" -eq 1 ]; then
+            git commit -m "chore: stop tracking node_modules"
+            git push origin HEAD:main
+          else
+            echo "node_modules is not tracked. Nothing to do."
+          fi
