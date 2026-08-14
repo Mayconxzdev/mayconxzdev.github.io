@@ -1,13 +1,18 @@
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 
-def patch(rel,pairs):
+def patch(rel,pairs,normalizations=()):
     p=root/rel; text=p.read_text(encoding='utf-8')
+    for broken,fixed in normalizations:
+        text=text.replace(broken,fixed)
     for old,new in pairs:
+        # Check the synchronized phrase first. Some old phrases are substrings of
+        # the desired wording, so looking for `old` first makes repeated
+        # materialization duplicate prefixes (for example TRACEABILITY).
+        if new in text:
+            continue
         if old in text:
             text=text.replace(old,new,1)
-        elif new in text:
-            continue
         else:
             raise RuntimeError(f'{rel}: neither source nor synchronized phrase found: {old[:90]}')
     p.write_text(text,encoding='utf-8')
@@ -22,6 +27,8 @@ patch('competencias/index.html',[
 ('CONFIABILIDADE E SEGURANÇA','RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA'),
 ('Utilizo logs, alertas, retries, filas de erro, idempotência, backups, migrações, validações e gestão de segredos. Quando uma integração externa falha, procuro isolar o canal e manter o restante da operação disponível.','Utilizo histórico, trilha de auditoria, controle de mudanças, logs, alertas, retries, idempotência, backups, validações e gestão de segredos. Em processos de Qualidade e manutenção, evidências e responsáveis precisam permanecer consultáveis sem sobrescrever execuções anteriores.'),
 ('logs · alertas · retries · idempotência · filas · backups · auditoria · DPAPI · cofre n8n · .env · RLS · sanitização','rastreabilidade · auditoria · logs · alertas · retries · idempotência · backups · gestão de segredos · RLS · sanitização'),
+],normalizations=[
+('RASTREABILIDADE, RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA','RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA'),
 ])
 
 patch('en/skills/index.html',[
@@ -34,5 +41,7 @@ patch('en/skills/index.html',[
 ('RELIABILITY AND SECURITY','TRACEABILITY, RELIABILITY AND SECURITY'),
 ('I use logs, alerts, retries, error queues, idempotency, backups, migrations, validation and secrets management. When an external integration fails, I isolate the channel and keep the rest of the operation available whenever possible.','I use history, audit trails, change control, logs, alerts, retries, idempotency, backups, validation and secrets management. In Quality and maintenance processes, evidence and responsible users remain traceable without overwriting previous executions.'),
 ('logs · alerts · retries · idempotency · queues · backups · auditing · DPAPI · n8n vault · .env · RLS · sanitization','traceability · auditing · logs · alerts · retries · idempotency · backups · secrets management · RLS · sanitization'),
+],normalizations=[
+('TRACEABILITY, TRACEABILITY, RELIABILITY AND SECURITY','TRACEABILITY, RELIABILITY AND SECURITY'),
 ])
-print('Current PT/EN skills evidence applied with core/context depth separated.')
+print('Current PT/EN skills evidence applied idempotently with core/context depth separated.')
