@@ -45,8 +45,6 @@ jobs:
         run: python scripts/validate_site.py
       - name: Validate JavaScript syntax
         run: node --check js/site.js && node --check scripts/visual_smoke.mjs
-      - name: Confirm build-time artifacts
-        run: echo "Current HTML and PDF artifacts are generated and validated in this build before deployment."
       - name: Install browser smoke dependencies
         run: |
           npm install --no-save playwright@1.54.2
@@ -57,9 +55,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill "$SERVER_PID"' EXIT
           for attempt in {1..20}; do
-            if curl -fsS http://127.0.0.1:8000/ >/dev/null; then
-              break
-            fi
+            if curl -fsS http://127.0.0.1:8000/ >/dev/null; then break; fi
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/ >/dev/null
@@ -80,6 +76,12 @@ jobs:
           path: artifacts/visual/
           if-no-files-found: warn
           retention-days: 14
+      - name: Build clean Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          rm -rf .site
+          mkdir .site
+          cp -r index.html 404.html assets cases competencias en css js robots.txt sitemap.xml .nojekyll .site/
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v5
@@ -87,7 +89,7 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: .site
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -115,14 +117,19 @@ jobs:
         shell: bash
         run: |
           for attempt in {1..30}; do
-            HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            if grep -Fq "RESULTADOS EM USO" <<<"$HTML" \
-              && grep -Fq "CarreiraPessoal" <<<"$HTML" \
-              && grep -Fq "Central ISO" <<<"$HTML" \
-              && grep -Fq "40+" <<<"$HTML" \
-              && grep -Fq "RAG/grounding" <<<"$HTML" \
-              && grep -Fq "arquitetura de sistemas" <<<"$HTML"; then
-              echo "Published portfolio matches the current career evidence."
+            HOME_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            CAREER_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/carreira-pessoal/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-overview.webp?build=${GITHUB_SHA}" | head -n 1 || true)"
+            ISO_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/central-iso-overview.webp?build=${GITHUB_SHA}" | head -n 1 || true)"
+            if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
+              && grep -Fq "CarreiraPessoal" <<<"$HOME_HTML" \
+              && grep -Fq "Central ISO" <<<"$HOME_HTML" \
+              && grep -Fq "Eu fiz este aplicativo" <<<"$CAREER_HTML" \
+              && grep -Fq "Este projeto começou conversando" <<<"$ISO_HTML" \
+              && grep -Fq "200" <<<"$CAREER_IMAGE" \
+              && grep -Fq "200" <<<"$ISO_IMAGE"; then
+              echo "Published portfolio, cases and visual evidence match the current build."
               exit 0
             fi
             echo "Published content is not current yet (attempt ${attempt}/30)."
