@@ -58,18 +58,24 @@ try {
         try { localStorage.setItem('mf-theme', selected); } catch {}
       }, theme);
       const page = await context.newPage();
+      page.setDefaultTimeout(6000);
+      page.setDefaultNavigationTimeout(10000);
       const consoleErrors = [];
       page.on('console', msg => { if (msg.type() === 'error') consoleErrors.push(msg.text()); });
       page.on('pageerror', err => consoleErrors.push(String(err)));
 
-      const response = await page.goto(base + route, { waitUntil: 'domcontentloaded' });
+      const response = await page.goto(base + route, { waitUntil: 'domcontentloaded', timeout: 10000 });
       if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
-      await page.waitForLoadState('networkidle').catch(() => {});
+      await page.waitForLoadState('networkidle', { timeout: 4000 }).catch(() => {});
 
       const result = await page.evaluate(async ({ theme, alias }) => {
         const root = document.documentElement;
+        const withTimeout = (promise, ms, label) => Promise.race([
+          promise,
+          new Promise((_, reject) => setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms)),
+        ]);
         const imageResults = await Promise.all([...document.images].map(async img => {
-          try { await img.decode(); } catch (error) {
+          try { await withTimeout(img.decode(), 5000, 'image decode'); } catch (error) {
             return { src: img.currentSrc || img.src, error: String(error) };
           }
           if (!img.naturalWidth || !img.naturalHeight) {
@@ -110,7 +116,7 @@ try {
       }
 
       const file = path.join(out, `${routeName}-${profileName}.png`);
-      await page.screenshot({ path: file, fullPage: true });
+      await page.screenshot({ path: file, fullPage: true, timeout: 10000 });
       captures += 1;
       await context.close();
     }
