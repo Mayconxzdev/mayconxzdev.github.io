@@ -6,10 +6,17 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Keep this order identical to the recruiter-facing transformation block in
+# .github/workflows/pages.yml. The materialized source must match what Pages
+# validates and publishes; otherwise the repository can drift from the live site.
 TRANSFORMATIONS = [
     'scripts/add_carreirapessoal_home.py',
+    'scripts/patch_career_visual.py',
     'scripts/patch_skills_current.py',
     'scripts/patch_portfolio_consistency.py',
+    'scripts/normalize_site_chrome.py',
+    'scripts/patch_navigation_targets.py',
+    'scripts/patch_404_language.py',
 ]
 
 for relative in TRANSFORMATIONS:
@@ -23,4 +30,4 @@ block = '''\n/* Real product evidence used in flagship cards. */\n.portfolio-pro
 if marker not in text:
     css.write_text(text + block, encoding='utf-8')
 
-print('Portfolio source materialization completed.')
+print('Portfolio source materialization completed with the same canonical transformations used by Pages.')
