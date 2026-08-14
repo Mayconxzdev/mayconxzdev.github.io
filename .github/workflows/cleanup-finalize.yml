@@ -1,0 +1,80 @@
+name: Final cleanup and deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-finalize.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for canonical source finalization
+        shell: bash
+        run: |
+          set -euo pipefail
+          ready=0
+          for i in $(seq 1 30); do
+            git fetch origin main
+            git reset --hard origin/main
+            if grep -q 'Build clean Pages artifact' .github/workflows/pages.yml \
+              && grep -q 'portfolio-proof' index.html \
+              && test -f assets/evidence/carreira-overview.webp \
+              && test -f assets/evidence/central-iso-overview.webp; then
+              ready=1
+              break
+            fi
+            echo "Waiting for finalizer ($i/30)..."
+            sleep 10
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo 'Canonical-source finalization did not complete in time.' >&2
+            exit 1
+          fi
+
+      - name: Remove one-time migration workflows and tracked dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git ls-files 'node_modules/**' | grep -q .; then
+            git rm -r --cached node_modules
+          fi
+
+          for f in \
+            .github/workflows/repository-hygiene.yml \
+            .github/workflows/materialize-evidence.yml \
+            .github/workflows/materialize-resumes.yml \
+            .github/workflows/materialize-site-source.yml \
+            .github/workflows/finalize-site-pipeline.yml \
+            .github/workflows/fix-strategic-case-links.yml \
+            .github/workflows/cleanup-finalize.yml; do
+            [ -f "$f" ] && git rm "$f" || true
+          done
+
+          if git diff --cached --quiet; then
+            echo 'No cleanup changes to commit.'
+          else
+            git commit -m 'chore: remove one-time migration workflows'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Dispatch final clean Pages validation and deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run pages.yml --ref main
