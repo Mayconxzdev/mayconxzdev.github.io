@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Case do CarreiraPessoal, aplicativo Windows criado por Maycon Ferreira para descoberta de vagas, evidências, matching e preparação de currículo.">
+  <title>CarreiraPessoal | Maycon Ferreira</title>
+  <link rel="stylesheet" href="../../css/styles.css?v=20260814">
+  <style>
+    .case-wrap{max-width:1180px;margin:0 auto;padding:92px 28px 72px}.case-top{display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:end}.case-kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#667085)}.case-title{font-size:clamp(2.8rem,7vw,6.5rem);line-height:.9;margin:.25em 0}.case-lead{font-size:1.12rem;line-height:1.65;max-width:760px}.case-status{border:1px solid currentColor;border-radius:999px;padding:7px 12px;display:inline-block;font-size:.78rem}.case-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:36px 0}.case-fact{border-top:1px solid currentColor;padding-top:12px}.case-fact strong{display:block;font-size:2rem}.case-fact span{font-size:.82rem;color:var(--muted,#667085)}.case-shot{margin:42px 0}.case-shot img{width:100%;height:auto;border:1px solid rgba(127,127,127,.25);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.10)}.case-shot figcaption{font-size:.78rem;color:var(--muted,#667085);margin-top:10px}.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.case-block{padding:28px;border:1px solid rgba(127,127,127,.22);border-radius:18px}.case-block h2{font-size:1.35rem;margin-top:0}.case-block p,.case-block li{line-height:1.65}.case-block ul{padding-left:1.15rem}.case-wide{margin-top:28px}.case-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.case-links a{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:10px 16px;text-decoration:none}.mini-code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.82rem;line-height:1.6;background:rgba(127,127,127,.08);padding:16px;border-radius:12px;overflow:auto}@media(max-width:760px){.case-wrap{padding:82px 18px 50px}.case-top,.case-grid{grid-template-columns:1fr}.case-facts{grid-template-columns:1fr 1fr}.case-title{font-size:3.2rem}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../../"><span class="brand-mark">MF</span><span class="brand-copy"><strong>Maycon Ferreira</strong><small>Automação · IA · Integrações</small></span></a>
+    <nav aria-label="Navegação"><a href="../../#systems">Projetos</a><a href="../../competencias/">Competências</a><a href="../../assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf">Currículo</a><a href="../../en/cases/career-personal/">EN</a></nav>
+  </header>
+
+  <main class="case-wrap">
+    <section class="case-top">
+      <div>
+        <p class="case-kicker">PRODUTO PESSOAL · WINDOWS · EM USO</p>
+        <h1 class="case-title">Carreira<br>Pessoal</h1>
+        <p class="case-lead">Eu fiz este aplicativo porque estava cansado de procurar as mesmas vagas em lugares diferentes, revisar tudo manualmente e ficar atualizando currículo e evidências toda hora. A ideia foi deixar o trabalho repetitivo por conta do sistema sem entregar a decisão final para uma IA.</p>
+        <div class="case-links"><a href="https://github.com/Mayconxzdev/CarreiraPessoal">Ver repositório ↗</a><a href="../../assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf">Currículo</a></div>
+      </div>
+      <div>
+        <span class="case-status">v12.5.2 · núcleo sem IA obrigatória</span>
+        <div class="case-facts">
+          <div class="case-fact"><strong>283</strong><span>testes Python aprovados</span></div>
+          <div class="case-fact"><strong>102</strong><span>famílias ATS reconhecidas</span></div>
+          <div class="case-fact"><strong>11</strong><span>coletores diretos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <figure class="case-shot">
+      <img src="../../assets/evidence/carreira-overview.webp" alt="Conjunto de telas reais do CarreiraPessoal mostrando início, oportunidades, candidaturas, perfil, fontes e recursos" loading="eager">
+      <figcaption>Telas reais da v12.5.2. O material público evita expor candidaturas, dados pessoais e credenciais.</figcaption>
+    </figure>
+
+    <section class="case-grid">
+      <article class="case-block"><h2>O problema que eu queria resolver</h2><p>Eu tinha vaga vindo de várias fontes, duplicidade, descrições incompletas e muito tempo gasto comparando oportunidade com o que eu realmente queria fazer. Também queria parar de tratar o currículo como um arquivo solto e passar a ligar cada afirmação a uma evidência.</p></article>
+      <article class="case-block"><h2>O que eu construí</h2><ul><li>busca e deduplicação de vagas;</li><li>entrada por link, descrição ou arquivo;</li><li>Career Goal para separar aderência técnica de direção profissional;</li><li>perfil versionado com fatos, projetos e evidências;</li><li>Resume Router/Fitness;</li><li>acompanhamento de candidaturas;</li><li>assistente de navegador com envio final manual.</li></ul></article>
+      <article class="case-block"><h2>IA entra como reforço</h2><p>O núcleo não depende de IA generativa. Matching local, regras de carreira, deduplicação e controles continuam funcionando sem provedor. Ollama, LM Studio, Qdrant, SearXNG e outros recursos podem entrar quando acrescentam capacidade, mas não viram requisito do produto.</p></article>
+      <article class="case-block"><h2>Uma regra que eu mantive</h2><p>O sistema pode ajudar a preparar, mas não pode inventar experiência e nem concluir candidatura sozinho. CAPTCHA, termos do site e o envio final continuam humanos. Em vez de otimizar currículo “a qualquer custo”, o EvidenceGuard bloqueia claim sensível que não tenha suporte suficiente.</p></article>
+    </section>
+
+    <section class="case-block case-wide">
+      <h2>Arquitetura resumida</h2>
+      <div class="mini-code">Fontes / Link / Arquivo → normalização → deduplicação → Career Goal → matching → EvidenceGuard → Resume Router → candidatura → assistente do navegador → envio manual<br><br>Stack: FastAPI · Python · SQLAlchemy · SQLite/WAL/FTS5 · React · TypeScript · Vite · Tauri v2/Rust · extensão MV3</div>
+    </section>
+
+    <section class="case-grid case-wide">
+      <article class="case-block"><h2>Se quiser avaliar o código</h2><p>Eu deixei o repositório público menor de propósito. Os melhores pontos para começar são <code>examples/career_goal.py</code>, <code>examples/evidence_guard.py</code>, <code>examples/resume_router.py</code> e os documentos de arquitetura/testes. Os exemplos são trechos sanitizados e não fingem ser um pacote standalone.</p><p><a href="https://github.com/Mayconxzdev/CarreiraPessoal/blob/main/docs/CODE_REVIEW_GUIDE.md">Abrir guia de revisão técnica ↗</a></p></article>
+      <article class="case-block"><h2>O que eu faria diferente hoje</h2><p>Eu separaria desde o começo o que é núcleo obrigatório, recurso opcional e integração externa. O projeto cresceu muito e essa separação foi o que deixou as versões recentes mais previsíveis. Também criaria o Career Goal antes: vaga tecnicamente compatível não é necessariamente vaga que vale meu tempo.</p></article>
+    </section>
+  </main>
+</body>
+</html>
