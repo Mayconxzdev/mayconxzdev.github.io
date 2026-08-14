@@ -43,7 +43,7 @@ def insert_before_feature(text: str, name: str, block: str) -> str:
     return text[:match.start()] + block + '\n\n        ' + text[match.start():]
 
 
-def append_archive_rows(text: str, rows: list[str]) -> str:
+def append_archive_rows(text: str, rows: list[tuple[str, str]]) -> str:
     marker = '</div>\n      <p class="empty-state"'
     if marker not in text:
         raise RuntimeError('archive end marker missing')
@@ -65,8 +65,8 @@ def apply_copy_sync(text: str, *, english: bool) -> str:
                 '<div><dt>Practice</dt><dd>n8n · Python · FastAPI · REST APIs · SQL/PostgreSQL · Docker · applied AI</dd></div>',
             ),
             (
-                '<div><dt>Applied AI</dt><dd>Social Publishing · StudioCad · Vesper Maintenance · Hubora</dd></div>',
-                '<div><dt>Applied AI</dt><dd>Social Publishing · CarreiraPessoal · StudioCad · RAG/grounding</dd></div>',
+                '<div><dt>Applied AI</dt><dd>Postagem Redes · StudioCad · Vesper Maintenance · Hubora</dd></div>',
+                '<div><dt>Applied AI</dt><dd>Postagem Redes · CarreiraPessoal · StudioCad · RAG/grounding</dd></div>',
             ),
             (
                 '<div><dt>Architecture</dt><dd>Modular monolith · tenant/RLS · Action Envelope · outbox</dd></div>',
@@ -112,7 +112,7 @@ for rel, lang in [('index.html', 'pt'), ('en/index.html', 'en')]:
 
     if english:
         catalog_name = 'Operational Procurement Catalog'
-        social_name = 'Social Publishing'
+        social_name = 'Postagem Redes'
         portal_name = 'Portal'
         career_card = '''<article class="feature-case feature-case--portal-vesper feature-case--reverse" data-project="carreira-pessoal"><div class="feature-case__copy"><div class="case-index"><span>04</span><span class="status status--public">PERSONAL PRODUCT IN USE</span></div><p class="case-category">Windows product, evidence and QA</p><h3>CarreiraPessoal</h3><p class="case-summary">I built this product to unify job discovery, deduplication, career-goal checks, evidence and resume routing without making AI or auto-submit mandatory.</p><div class="case-impact"><small>Engineering evidence</small><strong>v12.5.2 with 283 passing Python tests, 102 ATS/career-platform families and 11 direct collectors.</strong></div><p class="case-stack">FastAPI · React/TypeScript · Tauri/Rust · SQLite/FTS5 · optional AI</p><div class="project-links"><a class="text-link" href="cases/career-personal/">Open case<span aria-hidden="true">↗</span></a><a class="text-link text-link--muted" href="https://github.com/Mayconxzdev/CarreiraPessoal">View code<span aria-hidden="true">↗</span></a></div></div><div class="feature-case__visual"><figure class="portfolio-proof"><img src="../assets/evidence/carreira-overview.webp" alt="Real CarreiraPessoal screens" loading="lazy" decoding="async"><figcaption>Real v12.5.2 product screens.</figcaption></figure></div></article>'''
         central_row = '<article class="archive-row persp-process persp-automation persp-architecture" data-project="central-iso" data-search="central iso quality fastapi n8n docker tauri traceability"><span class="archive-number">18</span><div class="archive-name"><h3>Central ISO</h3><p>Technical pilot based on real Quality requirements, deterministic checks, read-only documents and human review.</p></div><div class="archive-state"><span class="status status--pilot">TECHNICAL PILOT</span><small>not presented as certified compliance</small></div><div class="archive-stack">FastAPI · n8n · Docker · Tauri</div><a class="archive-open" href="cases/central-iso/" aria-label="Open Central ISO">↗</a></article>'
