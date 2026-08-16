@@ -30,6 +30,10 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
             "Automação, sistemas internos, backend, IA, APIs externas e arquitetura de sistemas, sem repetir a mesma competência em todos os cases.",
         )
         text = text.replace(
+            "Automação, sistemas internos, backend, IA, APIs externas e arquitetura full-stack sem repetir a mesma competência em todos os cases.",
+            "Automação, sistemas internos, backend, IA, APIs externas e arquitetura de sistemas sem repetir a mesma competência em todos os cases.",
+        )
+        text = text.replace(
             "<div><dt>Python e desktop</dt><dd>Vesper Propostas · Produção Operacional · ComprasVesper</dd></div>",
             "<div><dt>Python e desktop</dt><dd>Proposta Comercial · Produção Operacional · ComprasVesper</dd></div>",
         )
@@ -38,11 +42,15 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
             "<h3>Vesper Manutenção</h3><p>Ativos, checklists, evidências e histórico rastreável para a manutenção de 40+ equipamentos.</p>",
         )
         old_ld = '"knowsAbout":["n8n","Automação de processos","Low-code","Mapeamento AS-IS/TO-BE","IA generativa","Agentes de IA","Engenharia de prompts","Grounding","JSON Schema","IA multimodal","Geração de mídia","APIs REST","Webhooks","Python","JavaScript","TypeScript","FastAPI","PostgreSQL","SQLite FTS5","Docker","AWS","PySpark","CI/CD","Idempotência","RLS","Transactional outbox"]'
-        new_ld = '"knowsAbout":["n8n","Power Automate","Make","Zapier","CRM","BPMN","Automação de processos","Mapeamento de processos AS-IS/TO-BE","Levantamento de requisitos","Regras de negócio","APIs REST","Webhooks","JSON","OAuth 2.0","Python","FastAPI","PostgreSQL","SQLite FTS5","Docker","Linux","IA generativa","RAG","LangChain","MCP","LangGraph","CrewAI","Human-in-the-loop","Rastreabilidade","Auditoria","GitHub Actions","AWS","PySpark"]'
+        new_ld = '"knowsAbout":["n8n","Automação de processos","BPMN","Mapeamento AS-IS/TO-BE","Levantamento de requisitos","IA aplicada","IA generativa","RAG/grounding","Agentes de IA","Human-in-the-loop","APIs REST","Webhooks","OAuth 2.0","Python","FastAPI","JavaScript","TypeScript","SQL","PostgreSQL","SQLite FTS5","Docker","GitHub Actions","CI/CD","Rastreabilidade","Monitoramento","Retries","Idempotência"]'
     else:
         text = text.replace(
             "Automation, internal systems, backend, AI, external APIs and full-stack architecture, without repeating the same skill set in every case.",
             "Automation, internal systems, backend, AI, external APIs and systems architecture, without repeating the same skill set in every case.",
+        )
+        text = text.replace(
+            "Automation, internal systems, backend, AI, external APIs and full-stack architecture without repeating the same skill in every case.",
+            "Automation, internal systems, backend, AI, external APIs and systems architecture without repeating the same skill in every case.",
         )
         text = text.replace(
             "<div><dt>Python and desktop</dt><dd>Vesper Propostas · Produção Operacional · ComprasVesper</dd></div>",
@@ -53,7 +61,7 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
             "<h3>Vesper Maintenance</h3><p>Assets, checklists, evidence and traceable history for maintenance across 40+ pieces of equipment.</p>",
         )
         old_ld = '"knowsAbout":["n8n","Process automation","Low-code","AS-IS/TO-BE mapping","Generative AI","AI agents","Prompt engineering","Grounding","JSON Schema","Multimodal AI","Media generation","REST APIs","Webhooks","Python","JavaScript","TypeScript","FastAPI","PostgreSQL","SQLite FTS5","Docker","AWS","PySpark","CI/CD","Idempotency","RLS","Transactional outbox"]'
-        new_ld = '"knowsAbout":["n8n","Power Automate","Make","Zapier","CRM","BPMN","Process automation","Process mapping AS-IS/TO-BE","Requirements discovery","Business rules","REST APIs","Webhooks","JSON","OAuth 2.0","Python","FastAPI","PostgreSQL","SQLite FTS5","Docker","Linux","Generative AI","RAG","LangChain","MCP","LangGraph","CrewAI","Human-in-the-loop","Traceability","Auditing","GitHub Actions","AWS","PySpark"]'
+        new_ld = '"knowsAbout":["n8n","Process automation","BPMN","AS-IS/TO-BE mapping","Requirements discovery","Applied AI","Generative AI","RAG/grounding","AI agents","Human-in-the-loop","REST APIs","Webhooks","OAuth 2.0","Python","FastAPI","JavaScript","TypeScript","SQL","PostgreSQL","SQLite FTS5","Docker","GitHub Actions","CI/CD","Traceability","Monitoring","Retries","Idempotency"]'
 
     if old_ld in text:
         text = text.replace(old_ld, new_ld, 1)

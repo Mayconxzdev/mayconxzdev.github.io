@@ -67,9 +67,9 @@ def build(lang='pt'):
         title = 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES'
         contact = CONTACT_PT
         sections = {'summary':'RESUMO PROFISSIONAL','skills':'COMPETÊNCIAS','exp':'EXPERIÊNCIA','projects':'PROJETOS SELECIONADOS','edu':'FORMAÇÃO','courses':'CURSOS E CERTIFICAÇÕES','lang':'IDIOMAS'}
-        summary = ('Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, APIs e sistemas internos. Administro n8n self-hosted com 10 mil+ execuções em produção e transformo necessidades operacionais em soluções com Python, FastAPI, SQL/PostgreSQL e IA aplicada, do mapeamento AS-IS/TO-BE e requisitos à implantação, treinamento e sustentação.')
+        summary = ('Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, APIs e sistemas internos. Administro n8n self-hosted com 10 mil+ execuções em produção e transformo necessidades operacionais em soluções com Python, FastAPI, SQL/PostgreSQL e IA aplicada, do mapeamento BPMN/AS-IS/TO-BE e requisitos à implantação, treinamento e sustentação.')
         skills = [
-            '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate · Make/Zapier · CRM',
+            '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (uso contextual)',
             '<b>Processos e entrega:</b> BPMN · AS-IS/TO-BE · levantamento de requisitos · regras de negócio · testes/homologação · documentação · implantação · treinamento · melhoria contínua',
             '<b>IA aplicada e engenharia:</b> IA generativa · RAG/grounding · agentes de IA · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · testes · logs/monitoramento · retries · idempotência · alertas · backups',
         ]
@@ -99,9 +99,9 @@ def build(lang='pt'):
         title = 'AI, AUTOMATION & INTEGRATIONS ANALYST'
         contact = CONTACT_EN
         sections = {'summary':'PROFESSIONAL SUMMARY','skills':'CORE SKILLS','exp':'EXPERIENCE','projects':'SELECTED PROJECTS','edu':'EDUCATION','courses':'COURSES & CREDENTIALS','lang':'LANGUAGES'}
-        summary = ('Automation, AI & Integrations Analyst working end-to-end across process automation, APIs and internal systems. I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with Python, FastAPI, SQL/PostgreSQL and applied AI, from AS-IS/TO-BE mapping and requirements through deployment, training and support.')
+        summary = ('Automation, AI & Integrations Analyst working end-to-end across process automation, APIs and internal systems. I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with Python, FastAPI, SQL/PostgreSQL and applied AI, from BPMN/AS-IS/TO-BE mapping and requirements through deployment, training and support.')
         skills = [
-            '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST APIs/webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate · Make/Zapier · CRM',
+            '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST APIs/webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (contextual use)',
             '<b>Process & delivery:</b> BPMN · AS-IS/TO-BE · requirements discovery · business rules · testing/UAT · documentation · deployment · training · continuous improvement',
             '<b>Applied AI & engineering:</b> generative AI · RAG/grounding · AI agents · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · testing · logs/monitoring · retries · idempotency · alerts · backups',
         ]
