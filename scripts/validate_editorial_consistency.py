@@ -83,7 +83,7 @@ check_featured(
 )
 check_featured(
     'en/index.html',
-    ['Mala Direta', 'Produção Operacional', 'Vesper Propostas', 'CarreiraPessoal', 'Operational Procurement Catalog', 'Postagem Redes'],
+    ['Mala Direta', 'Production Operations', 'Vesper Propostas', 'CarreiraPessoal', 'Operational Procurement Catalog', 'Postagem Redes'],
     'systems architecture',
 )
 
