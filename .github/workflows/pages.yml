@@ -30,10 +30,11 @@ jobs:
         run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
       - name: Validate source syntax
         run: python -m compileall -q scripts
-      - name: Generate current general resumes
+      - name: Generate current recruiter-facing artifacts
         run: |
           python scripts/generate_resumes_general.py
           python scripts/add_resume_links.py
+          python scripts/generate_social_cover.py
       - name: Apply current portfolio evidence and shared chrome
         run: |
           python scripts/add_carreirapessoal_home.py
@@ -139,6 +140,7 @@ jobs:
             ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             SKILLS_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/competencias/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
+            SOCIAL_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/social/og-cover.png?build=${GITHUB_SHA}" | head -n 1 || true)"
             if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
@@ -152,7 +154,8 @@ jobs:
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
               && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
               && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
-              && grep -Fq "200" <<<"$CAREER_IMAGE"; then
+              && grep -Fq "200" <<<"$CAREER_IMAGE" \
+              && grep -Fq "200" <<<"$SOCIAL_IMAGE"; then
               echo "Published portfolio, cases, shared chrome, skills copy and visual evidence match the current build."
               exit 0
             fi
