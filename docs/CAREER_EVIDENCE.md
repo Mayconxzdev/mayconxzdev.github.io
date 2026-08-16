@@ -42,6 +42,12 @@ Use os estados abaixo de forma consistente:
 
 `n8n self-hosted` · `Python` · `FastAPI` · `APIs REST/webhooks` · `OAuth 2.0` · `SQL/PostgreSQL` · `Docker` · `BPMN` · `AS-IS/TO-BE` · requisitos · testes/homologação · implantação · sustentação
 
+### Ferramentas complementares / contextuais
+
+`Power Automate` · `Make` · `Zapier` · `CRM`
+
+Essas ferramentas podem aparecer em currículo e páginas de competências quando ajudarem o ATS ou explicarem um contexto real, **sempre diferenciadas do núcleo profissional**. Elas não devem ser apresentadas no mesmo nível de profundidade do trabalho comprovado com n8n, Python e APIs.
+
 ### IA aplicada
 
 Pode aparecer no currículo geral como **IA generativa, RAG/grounding, agentes de IA e human-in-the-loop**. Frameworks específicos como **MCP, LangGraph e CrewAI** pertencem ao material detalhado/contextual enquanto não houver razão para tratá-los com a mesma profundidade do núcleo profissional.
@@ -49,6 +55,32 @@ Pode aparecer no currículo geral como **IA generativa, RAG/grounding, agentes d
 ### Confiabilidade e segurança
 
 Valorizar quando sustentado pelo projeto: logs/monitoramento, retries, idempotência, filas, alertas, backups, auditoria, gestão de segredos, sanitização, revisão humana, read-only, hashes e isolamento de falhas.
+
+## Vocabulário de mercado — auditoria 16/08/2026
+
+Os títulos abaixo podem ser usados como famílias de busca e, quando a descrição da vaga for compatível, como variações de posicionamento em candidatura. Eles **não alteram o cargo formal** no Grupo Vesper:
+
+- Analista de Automação e Integrações;
+- Analista de Automação de Processos e IA;
+- Analista de Automação Inteligente;
+- Analista de Processos + Automação/IA;
+- Desenvolvedor de Automação e Integrações — Júnior / Pleno inicial.
+
+A amostra de mercado revisada em agosto de 2026 reforça como sinais recorrentes: **n8n/workflow automation, Python/JavaScript, APIs REST/webhooks, SQL, BPMN/processos, documentação, monitoramento/confiabilidade e IA aplicada**. O posicionamento geral deve continuar centrado nesses elementos porque são sustentados por evidência real.
+
+### Não reivindicar sem evidência suficiente
+
+Mesmo quando aparecerem em vagas relacionadas, não adicionar ao currículo geral ou elevar a “domínio” apenas por keyword matching:
+
+- Process Mining;
+- Camunda e Airflow;
+- SOAP/XML e middleware enterprise;
+- Kafka, RabbitMQ, ActiveMQ ou mensageria/event-driven em produção;
+- UiPath e Automation Anywhere;
+- experiência de produção enterprise em Azure/GCP;
+- LangGraph/CrewAI/MCP como profundidade equivalente ao núcleo profissional.
+
+Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar como **gap da vaga**, não como oportunidade para inflar o currículo.
 
 ## Curadoria por superfície
 
@@ -60,6 +92,8 @@ O currículo não tenta listar todos os projetos. A experiência profissional j�
 2. CarreiraPessoal — produto, arquitetura, evidências e QA;
 3. Catálogo Operacional — backend, busca e integridade de dados;
 4. Postagem Redes — IA aplicada, RAG e APIs externas.
+
+Ferramentas complementares/contextuais só entram no bloco de competências com qualificador de profundidade; não devem deslocar resultados, BPMN, RAG ou confiabilidade para abrir espaço.
 
 ### Portfólio — projetos principais
 
@@ -75,6 +109,8 @@ O **Portal** permanece como recorte de arquitetura em **desenvolvimento/revalida
 ### GitHub
 
 O README do perfil deve apontar primeiro para projetos que provam trabalho real e não apenas amplitude técnica. Recomendação de seis repositórios em destaque: **MalaDireta, ProducaoOperacional, CarreiraPessoal, CatalogoOperacional, PostagemRedes e HelpDesk**.
+
+No README do perfil, separar visualmente **núcleo profissional** de **ferramentas complementares/contextuais**, para que a presença de uma keyword não seja interpretada como profundidade equivalente.
 
 ## Regra de atualização
 
