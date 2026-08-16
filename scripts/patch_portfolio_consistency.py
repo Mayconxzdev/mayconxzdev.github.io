@@ -30,6 +30,10 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
             "Automação, sistemas internos, backend, IA, APIs externas e arquitetura de sistemas, sem repetir a mesma competência em todos os cases.",
         )
         text = text.replace(
+            "Automação, sistemas internos, backend, IA, APIs externas e arquitetura full-stack sem repetir a mesma competência em todos os cases.",
+            "Automação, sistemas internos, backend, IA, APIs externas e arquitetura de sistemas sem repetir a mesma competência em todos os cases.",
+        )
+        text = text.replace(
             "<div><dt>Python e desktop</dt><dd>Vesper Propostas · Produção Operacional · ComprasVesper</dd></div>",
             "<div><dt>Python e desktop</dt><dd>Proposta Comercial · Produção Operacional · ComprasVesper</dd></div>",
         )
@@ -43,6 +47,10 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
         text = text.replace(
             "Automation, internal systems, backend, AI, external APIs and full-stack architecture, without repeating the same skill set in every case.",
             "Automation, internal systems, backend, AI, external APIs and systems architecture, without repeating the same skill set in every case.",
+        )
+        text = text.replace(
+            "Automation, internal systems, backend, AI, external APIs and full-stack architecture without repeating the same skill in every case.",
+            "Automation, internal systems, backend, AI, external APIs and systems architecture without repeating the same skill in every case.",
         )
         text = text.replace(
             "<div><dt>Python and desktop</dt><dd>Vesper Propostas · Produção Operacional · ComprasVesper</dd></div>",
