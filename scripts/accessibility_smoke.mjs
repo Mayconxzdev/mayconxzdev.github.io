@@ -8,21 +8,24 @@ const failures=[];
 
 try{
   for(const route of routes){
-    const page=await browser.newPage({viewport:{width:1440,height:1000}});
-    const response=await page.goto(base+route,{waitUntil:'networkidle'});
-    if(!response?.ok()){
-      failures.push(`${route}: HTTP ${response?.status()}`);
-      await page.close();
-      continue;
+    const context=await browser.newContext({viewport:{width:1440,height:1000}});
+    const page=await context.newPage();
+    try{
+      const response=await page.goto(base+route,{waitUntil:'networkidle'});
+      if(!response?.ok()){
+        failures.push(`${route}: HTTP ${response?.status()}`);
+        continue;
+      }
+      const results=await new AxeBuilder({page}).analyze();
+      const severe=results.violations.filter(item=>['serious','critical'].includes(item.impact||''));
+      if(severe.length){
+        failures.push(`${route}: ${severe.map(item=>`${item.id}(${item.impact}) x${item.nodes.length}`).join(', ')}`);
+      }
+      const moderate=results.violations.filter(item=>item.impact==='moderate').length;
+      console.log(`${route}: ${severe.length} serious/critical; ${moderate} moderate violations`);
+    }finally{
+      await context.close();
     }
-    const results=await new AxeBuilder({page}).analyze();
-    const severe=results.violations.filter(item=>['serious','critical'].includes(item.impact||''));
-    if(severe.length){
-      failures.push(`${route}: ${severe.map(item=>`${item.id}(${item.impact}) x${item.nodes.length}`).join(', ')}`);
-    }
-    const moderate=results.violations.filter(item=>item.impact==='moderate').length;
-    console.log(`${route}: ${severe.length} serious/critical; ${moderate} moderate violations`);
-    await page.close();
   }
 }finally{
   await browser.close();
