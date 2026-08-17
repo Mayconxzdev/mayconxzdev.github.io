@@ -30,10 +30,11 @@ jobs:
         run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
       - name: Validate source syntax
         run: python -m compileall -q scripts
-      - name: Generate current general resumes
+      - name: Generate current recruiter-facing artifacts
         run: |
           python scripts/generate_resumes_general.py
           python scripts/add_resume_links.py
+          python scripts/generate_social_cover.py
       - name: Apply current portfolio evidence and shared chrome
         run: |
           python scripts/add_carreirapessoal_home.py
@@ -78,7 +79,7 @@ jobs:
           node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
       - name: Upload audited resumes
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: audited-resumes-${{ github.run_id }}
           path: assets/cv/*.pdf
@@ -86,7 +87,7 @@ jobs:
           retention-days: 30
       - name: Upload full visual QA screenshots
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: portfolio-visual-qa-${{ github.run_id }}
           path: artifacts/visual/
@@ -100,10 +101,10 @@ jobs:
           cp -r index.html 404.html assets cases competencias en css js robots.txt sitemap.xml .nojekyll .site/
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload validated site
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: .site
 
@@ -121,7 +122,7 @@ jobs:
     steps:
       - name: Deploy GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   verify-live:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
@@ -139,6 +140,7 @@ jobs:
             ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             SKILLS_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/competencias/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
+            SOCIAL_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/social/og-cover.png?build=${GITHUB_SHA}" | head -n 1 || true)"
             if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
@@ -152,7 +154,8 @@ jobs:
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
               && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
               && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
-              && grep -Fq "200" <<<"$CAREER_IMAGE"; then
+              && grep -Fq "200" <<<"$CAREER_IMAGE" \
+              && grep -Fq "200" <<<"$SOCIAL_IMAGE"; then
               echo "Published portfolio, cases, shared chrome, skills copy and visual evidence match the current build."
               exit 0
             fi
