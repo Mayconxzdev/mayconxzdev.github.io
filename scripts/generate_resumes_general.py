@@ -13,23 +13,23 @@ BLACK = colors.HexColor('#111111')
 GRAY = colors.HexColor('#555555')
 LIGHT = colors.HexColor('#D9D9D9')
 
-# Generate annotations directly in the PDF instead of relying on URL auto-detection
-# from individual PDF viewers. Short labels also keep the contact line visually clean.
+# Keep every recruiter contact route both visible to text parsers and clickable for humans.
+# Two compact lines are more robust than hyperlink-only labels and remain readable in one page.
 CONTACT_PT = (
     'Rio de Janeiro - RJ · '
     '<link href="tel:+5521964810480" color="#555555">+55 (21) 96481-0480</link> · '
-    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555"><b>E-mail</b></link> · '
-    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555"><b>LinkedIn</b></link> · '
-    '<link href="https://github.com/Mayconxzdev" color="#555555"><b>GitHub</b></link> · '
-    '<link href="https://mayconxzdev.github.io/" color="#555555"><b>Portfólio</b></link>'
+    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555">mayconxz00dev@gmail.com</link><br/>'
+    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555">linkedin.com/in/maycon-ferreira-7bb870231</link> · '
+    '<link href="https://github.com/Mayconxzdev" color="#555555">github.com/Mayconxzdev</link> · '
+    '<link href="https://mayconxzdev.github.io/" color="#555555">mayconxzdev.github.io</link>'
 )
 CONTACT_EN = (
     'Rio de Janeiro, Brazil · '
     '<link href="tel:+5521964810480" color="#555555">+55 (21) 96481-0480</link> · '
-    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555"><b>Email</b></link> · '
-    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555"><b>LinkedIn</b></link> · '
-    '<link href="https://github.com/Mayconxzdev" color="#555555"><b>GitHub</b></link> · '
-    '<link href="https://mayconxzdev.github.io/" color="#555555"><b>Portfolio</b></link>'
+    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555">mayconxz00dev@gmail.com</link><br/>'
+    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555">linkedin.com/in/maycon-ferreira-7bb870231</link> · '
+    '<link href="https://github.com/Mayconxzdev" color="#555555">github.com/Mayconxzdev</link> · '
+    '<link href="https://mayconxzdev.github.io/" color="#555555">mayconxzdev.github.io</link>'
 )
 
 
@@ -38,7 +38,7 @@ def styles():
     return {
         'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.3, textColor=BLACK, spaceAfter=1.6*mm),
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.3, textColor=BLACK, spaceAfter=1.25*mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.15, leading=9.5, textColor=GRAY, spaceAfter=3.7*mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.3, leading=10.0, textColor=GRAY, spaceAfter=3.25*mm),
         'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.6, leading=11.2, textColor=BLACK, spaceBefore=3.55*mm, spaceAfter=1.75*mm),
         'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.35, leading=12.15, textColor=BLACK, spaceAfter=1.55*mm),
         'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.0, leading=12.25, textColor=BLACK, spaceAfter=1.15*mm),
@@ -69,9 +69,9 @@ def build(lang='pt'):
         sections = {'summary':'RESUMO PROFISSIONAL','skills':'COMPETÊNCIAS','exp':'EXPERIÊNCIA','projects':'PROJETOS SELECIONADOS','edu':'FORMAÇÃO','courses':'CURSOS E CERTIFICAÇÕES','lang':'IDIOMAS'}
         summary = ('Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, APIs e sistemas internos. Administro n8n self-hosted com 10 mil+ execuções em produção e transformo necessidades operacionais em soluções com Python, FastAPI, SQL/PostgreSQL e IA aplicada, do mapeamento BPMN/AS-IS/TO-BE e requisitos à implantação, treinamento e sustentação.')
         skills = [
-            '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (uso contextual)',
+            '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/JSON · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (uso contextual)',
             '<b>Processos e entrega:</b> BPMN · AS-IS/TO-BE · levantamento de requisitos · regras de negócio · testes/homologação · documentação · implantação · treinamento · melhoria contínua',
-            '<b>IA aplicada e engenharia:</b> IA generativa · RAG/grounding · agentes de IA · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · testes · logs/monitoramento · retries · idempotência · alertas · backups',
+            '<b>IA aplicada e engenharia:</b> IA generativa · RAG/grounding · agentes de IA · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · logs/monitoramento · retries · idempotência · alertas · backups · gestão de segredos',
         ]
         vesper_role = 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual'
         vesper_meta = 'Vesper Equipamentos EX / Vent Rio · automação, IA aplicada, integrações e sistemas internos'
@@ -85,13 +85,13 @@ def build(lang='pt'):
         compass_meta = 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas'
         compass_bullets = ['Construí pipeline em Python/SQL/Docker/AWS: ingestão CSV/TMDB API → S3 → Lambda/boto3 → Glue/PySpark → Parquet Raw/Trusted/Refined → Athena → QuickSight; pratiquei Linux, Git, ETL/Data Lake e modelagem.']
         projects = [
-            '<b>Mala Direta:</b> 6 campanhas sobre base de 1.020 contatos, uma com 900+; 2 workflows n8n, principal com 158 nós e 9 Data Tables, filas, deduplicação, cancelamento, retry e auditoria.',
+            '<b>Mala Direta:</b> 6 campanhas sobre base de 1.020 contatos, uma com 900+; 2 workflows n8n com fila por destinatário, deduplicação, cancelamento revalidado, retry e auditoria.',
             '<b>CarreiraPessoal:</b> produto Windows em uso próprio (FastAPI + React/TS + Tauri/Rust) para descoberta, deduplicação, Career Goal, evidências e roteamento de currículo; v12.5.2 com 283 testes Python aprovados.',
-            '<b>Catálogo Operacional:</b> FastAPI + SQLite FTS5, 24 categorias e 480+ códigos, busca unificada, controle de revisão, histórico de preço, backups e uso diário.',
+            '<b>Catálogo Operacional:</b> FastAPI + SQLite FTS5, 24 categorias e 480+ códigos, busca unificada, controle de revisão, histórico de preço e backups; uso diário por 3 pessoas.',
             '<b>Postagem Redes:</b> n8n + Meta Graph + IA opcional (OpenAI/Gemini/Ollama), RAG/grounding com LangChain, revisão humana, idempotência e falha isolada por canal; Facebook/Instagram validados em teste.',
         ]
         edu = ['<b>Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026', '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025']
-        courses = ['FIRJAN SENAI — Agentes de IA e Automações (40h) · Google AI Essentials · ENAP RPA (25h) · ENAP Mapeamento e Automação de Processos (20h)']
+        courses = ['FIRJAN SENAI — Agentes de IA e Automações (40h) · Google AI Essentials · ENAP RPA (25h) · ENAP Mapeamento e Automação de Processos (20h) · ENAP Introdução à LGPD (10h)']
         languages = ['Português nativo · Inglês: leitura técnica independente; escrita e conversação básicas']
     else:
         path = OUT / 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf'
@@ -101,9 +101,9 @@ def build(lang='pt'):
         sections = {'summary':'PROFESSIONAL SUMMARY','skills':'CORE SKILLS','exp':'EXPERIENCE','projects':'SELECTED PROJECTS','edu':'EDUCATION','courses':'COURSES & CREDENTIALS','lang':'LANGUAGES'}
         summary = ('Automation, AI & Integrations Analyst working end-to-end across process automation, APIs and internal systems. I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with Python, FastAPI, SQL/PostgreSQL and applied AI, from BPMN/AS-IS/TO-BE mapping and requirements through deployment, training and support.')
         skills = [
-            '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST APIs/webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (contextual use)',
+            '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST/JSON APIs · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (contextual use)',
             '<b>Process & delivery:</b> BPMN · AS-IS/TO-BE · requirements discovery · business rules · testing/UAT · documentation · deployment · training · continuous improvement',
-            '<b>Applied AI & engineering:</b> generative AI · RAG/grounding · AI agents · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · testing · logs/monitoring · retries · idempotency · alerts · backups',
+            '<b>Applied AI & engineering:</b> generative AI · RAG/grounding · AI agents · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · logs/monitoring · retries · idempotency · alerts · backups · secret management',
         ]
         vesper_role = 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present'
         vesper_meta = 'Vesper Equipamentos EX / Vent Rio · automation, applied AI, integrations and internal systems'
@@ -117,13 +117,13 @@ def build(lang='pt'):
         compass_meta = 'Data Engineering scholarship · 10 practical sprints'
         compass_bullets = ['Built a Python/SQL/Docker/AWS pipeline: CSV/TMDB API → S3 → Lambda/boto3 → Glue/PySpark → Raw/Trusted/Refined Parquet → Athena → QuickSight; practiced Linux, Git, ETL/Data Lake and data modeling.']
         projects = [
-            '<b>Direct Mail:</b> 6 campaigns over a 1,020-contact base, one with 900+ recipients; 2 n8n workflows, main flow with 158 nodes and 9 Data Tables, queues, deduplication, cancellation, retry and auditing.',
+            '<b>Direct Mail:</b> 6 campaigns over a 1,020-contact base, one with 900+ recipients; 2 n8n workflows with per-recipient queues, deduplication, revalidated cancellation, retry and auditing.',
             '<b>CarreiraPessoal:</b> personal Windows product in active personal use (FastAPI + React/TS + Tauri/Rust) for job discovery, deduplication, career-goal checks, evidence and resume routing; v12.5.2 with 283 passing Python tests.',
-            '<b>Operational Catalog:</b> FastAPI + SQLite FTS5, 24 categories and 480+ codes, unified search, revision control, price history, backups and daily use.',
+            '<b>Operational Catalog:</b> FastAPI + SQLite FTS5, 24 categories and 480+ codes, unified search, revision control, price history and backups; used daily by 3 people.',
             '<b>Social Publishing:</b> n8n + Meta Graph + optional AI (OpenAI/Gemini/Ollama), RAG/grounding with LangChain, human review, idempotency and per-channel failure isolation; Facebook/Instagram validated in testing.',
         ]
         edu = ['<b>Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026', '<b>42 Rio Piscine</b> · intensive Linux/C program · completed Jul. 2025']
-        courses = ['FIRJAN SENAI — AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h) · ENAP Process Mapping & Automation (20h)']
+        courses = ['FIRJAN SENAI — AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h) · ENAP Process Mapping & Automation (20h) · ENAP LGPD / Data Protection (10h)']
         languages = ['Portuguese: native · English: independent technical reading; basic writing and conversation']
 
     doc = SimpleDocTemplate(str(path), pagesize=A4, leftMargin=11*mm, rightMargin=11*mm, topMargin=10*mm, bottomMargin=10*mm, title=name + ' - ' + title, author='Maycon Ferreira', subject='One-page resume for automation, applied AI, integrations, internal systems and process roles')
