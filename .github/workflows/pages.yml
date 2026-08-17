@@ -46,9 +46,11 @@ jobs:
           python scripts/patch_navigation_targets.py
           python scripts/patch_404_language.py
           python scripts/normalize_case_sequence.py
-          # Run the skills patch twice intentionally: this is a regression gate for
-          # idempotence because source materialization can run again after merge.
+          python scripts/patch_recruiter_archive.py
+          # Run idempotent materializers twice intentionally so a future merge cannot
+          # duplicate recruiter-facing labels, controls or skill copy.
           python scripts/patch_skills_current.py
+          python scripts/patch_recruiter_archive.py
       - name: Validate current resume content, links, ATS text and visual layout
         run: |
           python scripts/validate_general_resumes.py
@@ -60,13 +62,19 @@ jobs:
           python scripts/validate_editorial_consistency.py
           python scripts/validate_case_visual_consistency.py
           python scripts/validate_case_sequence.py
+          python scripts/performance_budget.py
       - name: Validate JavaScript syntax
-        run: node --check js/site.js && node --check scripts/visual_smoke.mjs
-      - name: Install browser smoke dependencies
         run: |
-          npm install --no-save playwright@1.54.2
+          node --check js/site.js
+          node --check js/recruiter-audit.js
+          node --check scripts/visual_smoke.mjs
+          node --check scripts/recruiter_surface_smoke.mjs
+          node --check scripts/accessibility_smoke.mjs
+      - name: Install browser and accessibility dependencies
+        run: |
+          npm install --no-save playwright@1.54.2 @axe-core/playwright@4.12.1
           npx playwright install --with-deps chromium
-      - name: Run full portfolio browser and visual smoke
+      - name: Run full portfolio browser, recruiter UX and accessibility smoke
         run: |
           python -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-http.log 2>&1 &
           SERVER_PID=$!
@@ -77,6 +85,8 @@ jobs:
           done
           curl -fsS http://127.0.0.1:8000/ >/dev/null
           node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
+          node scripts/recruiter_surface_smoke.mjs http://127.0.0.1:8000
+          node scripts/accessibility_smoke.mjs http://127.0.0.1:8000
       - name: Upload audited resumes
         if: always()
         uses: actions/upload-artifact@v6
@@ -130,7 +140,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Confirm current portfolio, shared chrome and career visual are live
+      - name: Confirm current portfolio, shared chrome and recruiter controls are live
         shell: bash
         run: |
           for attempt in {1..30}; do
@@ -143,6 +153,7 @@ jobs:
             SOCIAL_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/social/og-cover.png?build=${GITHUB_SHA}" | head -n 1 || true)"
             if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
+              && grep -Fq 'class="archive-expand"' <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
               && grep -Fq 'class="case-page"' <<<"$CAREER_HTML" \
               && grep -Fq '>Competências<' <<<"$CAREER_HTML" \
@@ -156,7 +167,7 @@ jobs:
               && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
               && grep -Fq "200" <<<"$CAREER_IMAGE" \
               && grep -Fq "200" <<<"$SOCIAL_IMAGE"; then
-              echo "Published portfolio, cases, shared chrome, skills copy and visual evidence match the current build."
+              echo "Published portfolio, cases, recruiter controls, skills copy and visual evidence match the current build."
               exit 0
             fi
             echo "Published content is not current yet (attempt ${attempt}/30)."
