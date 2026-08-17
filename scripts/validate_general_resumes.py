@@ -17,14 +17,18 @@ REQUIRED = {
         'Power Automate',
         'uso contextual',
         'BPMN',
+        'REST/JSON',
         'RAG/grounding',
         'agentes de IA',
+        'gestão de segredos',
         'HelpDesk',
         '11 pessoas',
         'CarreiraPessoal',
         '283 testes Python',
         'Catálogo Operacional',
+        'uso diário por 3 pessoas',
         'Postagem Redes',
+        'Introdução à LGPD',
         'CURSOS E CERTIFICAÇÕES',
         'Técnico Júnior em Automação de Processos',
     ],
@@ -34,14 +38,18 @@ REQUIRED = {
         'Power Automate',
         'contextual use',
         'BPMN',
+        'REST/JSON',
         'RAG/grounding',
         'AI agents',
+        'secret management',
         'HelpDesk',
         '11 people',
         'CarreiraPessoal',
         '283 passing Python tests',
         'Operational Catalog',
+        'used daily by 3 people',
         'Social Publishing',
+        'LGPD / Data Protection',
         'COURSES & CREDENTIALS',
         'Junior Process Automation Technician',
     ],
@@ -56,6 +64,7 @@ FORBIDDEN = {
         'LangGraph/CrewAI',
         'IA multimodal',
         'Geração de mídia',
+        '158 nós',
     ],
     'en': [
         '(formal role)',
@@ -65,7 +74,15 @@ FORBIDDEN = {
         'LangGraph/CrewAI',
         'multimodal AI',
         'media generation',
+        '158 nodes',
     ],
+}
+
+VISIBLE_CONTACTS = {
+    'mayconxz00dev@gmail.com',
+    'linkedin.com/in/maycon-ferreira-7bb870231',
+    'github.com/Mayconxzdev',
+    'mayconxzdev.github.io',
 }
 
 EXPECTED_URIS = {
@@ -90,6 +107,9 @@ def check(lang, path):
     for needle in FORBIDDEN[lang]:
         if needle in text:
             raise SystemExit(f'{path.name}: forbidden general-resume text: {needle}')
+    for contact in VISIBLE_CONTACTS:
+        if contact not in text:
+            raise SystemExit(f'{path.name}: ATS-visible contact missing from extracted text: {contact}')
     if len(text.strip()) < 3400:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')
 
@@ -100,7 +120,10 @@ def check(lang, path):
     if missing_links:
         raise SystemExit(f'{path.name}: missing clickable contact links: {sorted(missing_links)}')
 
-    print(f'OK {path.name}: 1 page, {len(text)} extracted chars, {len(EXPECTED_URIS)} clickable contact links')
+    print(
+        f'OK {path.name}: 1 page, {len(text)} extracted chars, '
+        f'{len(VISIBLE_CONTACTS)} ATS-visible contacts, {len(EXPECTED_URIS)} clickable contact links'
+    )
 
 
 for lang, path in FILES.items():
