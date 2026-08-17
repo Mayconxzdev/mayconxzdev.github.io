@@ -19,7 +19,7 @@ Narrativa central: entender o processo e as regras, construir a solução adequa
 | Manutenção | **40+ ativos** | processo interno digitalizado com checklists/evidências/histórico | case de manutenção |
 | Adoção | **30+ pessoas treinadas ou orientadas** | pessoas alcançadas nas soluções implantadas | experiência Grupo Vesper |
 | Mala Direta | **6 campanhas; base de 1.020 contatos; uma com 900+ destinatários** | produção; não atribuir as 10 mil+ execuções somente a este projeto | Mala Direta |
-| Mala Direta — arquitetura | **2 workflows; principal com 158 nós; 9 Data Tables** | snapshot público sanitizado | Mala Direta |
+| Mala Direta — arquitetura | **2 workflows; principal com 158 nós; 9 Data Tables** | snapshot público sanitizado; a contagem de nós é evidência detalhada, não precisa ocupar o currículo geral | Mala Direta |
 | Catálogo Operacional | **24 categorias; 480+ códigos; uso diário por 3 pessoas** | operação interna atual | Catálogo Operacional |
 | CarreiraPessoal | **v12.5.2; 283 testes Python; 102 famílias ATS/plataformas; 11 coletores diretos** | produto pessoal em uso; repositório público é edição sanitizada | CarreiraPessoal |
 | Postagem Redes | **Facebook e Instagram validados em teste** | não chamar de produção; X e LinkedIn dependem de condições externas | Postagem Redes |
@@ -40,7 +40,7 @@ Use os estados abaixo de forma consistente:
 
 ### Núcleo profissional
 
-`n8n self-hosted` · `Python` · `FastAPI` · `APIs REST/webhooks` · `OAuth 2.0` · `SQL/PostgreSQL` · `Docker` · `BPMN` · `AS-IS/TO-BE` · requisitos · testes/homologação · implantação · sustentação
+`n8n self-hosted` · `Python` · `FastAPI` · `APIs REST/JSON` · `webhooks` · `OAuth 2.0` · `SQL/PostgreSQL` · `Docker` · `BPMN` · `AS-IS/TO-BE` · requisitos · testes/homologação · implantação · sustentação
 
 ### Ferramentas complementares / contextuais
 
@@ -55,6 +55,32 @@ Pode aparecer no currículo geral como **IA generativa, RAG/grounding, agentes d
 ### Confiabilidade e segurança
 
 Valorizar quando sustentado pelo projeto: logs/monitoramento, retries, idempotência, filas, alertas, backups, auditoria, gestão de segredos, sanitização, revisão humana, read-only, hashes e isolamento de falhas.
+
+## Formação e credenciais resumíveis
+
+Além da formação principal, podem ser resumidos no currículo geral quando houver espaço e aderência:
+
+- FIRJAN SENAI — Agentes de IA e Automações (40h);
+- Google AI Essentials;
+- ENAP — Automação de Processos através da RPA (25h);
+- ENAP — Mapeamento e Automação de Processos (20h);
+- ENAP — Introdução à LGPD (10h).
+
+Não transformar achievement, curso ou trilha em “certificação profissional” quando a instituição não a classificar dessa forma.
+
+## Regra de contato e parsing ATS
+
+No currículo geral, os caminhos de contato essenciais devem existir **como texto extraível e também como hyperlinks clicáveis**. Não depender somente de rótulos como “E-mail”, “LinkedIn”, “GitHub” ou “Portfólio”.
+
+Expor de forma compacta:
+
+- telefone;
+- endereço de e-mail completo;
+- URL/slug do LinkedIn;
+- URL do GitHub;
+- URL do portfólio.
+
+A apresentação pode usar duas linhas para preservar legibilidade. O validador do currículo deve falhar se e-mail, LinkedIn, GitHub ou portfólio deixarem de aparecer no texto extraído, mesmo que a anotação clicável continue existindo.
 
 ## Vocabulário de mercado — auditoria 16/08/2026
 
@@ -93,6 +119,8 @@ O currículo não tenta listar todos os projetos. A experiência profissional j�
 3. Catálogo Operacional — backend, busca e integridade de dados;
 4. Postagem Redes — IA aplicada, RAG e APIs externas.
 
+No currículo geral, Mala Direta deve priorizar **escala operacional + fila por destinatário + deduplicação + cancelamento + retry + auditoria**. A contagem de 158 nós permanece disponível no GitHub/portfólio como evidência detalhada, sem ser necessária no CV.
+
 Ferramentas complementares/contextuais só entram no bloco de competências com qualificador de profundidade; não devem deslocar resultados, BPMN, RAG ou confiabilidade para abrir espaço.
 
 ### Portfólio — projetos principais
@@ -106,11 +134,15 @@ Ferramentas complementares/contextuais só entram no bloco de competências com 
 
 O **Portal** permanece como recorte de arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até existir nova evidência de maturidade que justifique promoção.
 
+No mobile, os seis projetos principais permanecem integralmente visíveis. O arquivo secundário pode usar progressive disclosure para reduzir fadiga de rolagem, desde que busca e filtros revelem o conjunto completo e o desktop não esconda projetos.
+
 ### GitHub
 
 O README do perfil deve apontar primeiro para projetos que provam trabalho real e não apenas amplitude técnica. Recomendação de seis repositórios em destaque: **MalaDireta, ProducaoOperacional, CarreiraPessoal, CatalogoOperacional, PostagemRedes e HelpDesk**.
 
-No README do perfil, separar visualmente **núcleo profissional** de **ferramentas complementares/contextuais**, para que a presença de uma keyword não seja interpretada como profundidade equivalente.
+No README do perfil, separar visualmente **núcleo profissional** de **ferramentas complementares/contextuais**, para que a presença de uma keyword não seja interpretada como profundidade equivalente. Manter uma versão inglesa dedicada facilita avaliação internacional sem duplicar PT/EN no mesmo fluxo de leitura.
+
+**Nome neutro de repositório:** manter `ComprasProducao` como nome público do repositório para não criar associação desnecessária com a empresa no identificador técnico. Não renomear para `ComprasVesper`. O case do portfólio pode contextualizar a origem profissional de forma controlada, mas a URL/nome do repositório permanece neutra.
 
 ## Regra de atualização
 
