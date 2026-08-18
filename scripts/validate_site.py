@@ -63,6 +63,8 @@ def expected_lang_target(route: str, english: bool) -> str:
             return '/'
         if route == '/en/skills/':
             return '/competencias/'
+        if route == '/en/credentials/':
+            return '/competencias/credenciais/'
         match = re.fullmatch(r'/en/cases/([^/]+)/', route)
         if match:
             return f"/cases/{CASE_PT_SLUG.get(match.group(1), match.group(1))}/"
@@ -71,6 +73,8 @@ def expected_lang_target(route: str, english: bool) -> str:
         return '/en/'
     if route == '/competencias/':
         return '/en/skills/'
+    if route == '/competencias/credenciais/':
+        return '/en/credentials/'
     match = re.fullmatch(r'/cases/([^/]+)/', route)
     if match:
         return f"/en/cases/{CASE_EN_SLUG.get(match.group(1), match.group(1))}/"
@@ -271,6 +275,9 @@ required_routes = [
     ROOT / 'assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
     ROOT / 'assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
     ROOT / 'docs/CAREER_EVIDENCE.md',
+    ROOT / 'docs/CREDENTIALS_EVIDENCE.md',
+    ROOT / 'competencias/credenciais/index.html',
+    ROOT / 'en/credentials/index.html',
 ]
 for route in required_routes:
     if not route.exists():
