@@ -92,8 +92,7 @@ def build(lang='pt'):
         ]
         edu = ['<b>Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026', '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025']
         courses = [
-            '<b>Credenciais práticas:</b> Microsoft Applied Skills — agentes no Microsoft Foundry · Model Context Protocol (MCP) com agentes no Microsoft Foundry · Canvas Apps com Power Apps; n8n Academy — N8N102 Integrations: APIs & Connected Workflows · N8N103 In Practice: AI, Testing & Best Practices; Make Academy — AI Agent Builder.',
-            '<b>Formação complementar:</b> UiPath Academy — Automation Business Analyst Associate Training · FIRJAN SENAI — Agentes de IA e Automações (40h) · Google AI Essentials · ENAP RPA (25h) · Mapeamento e Automação de Processos (20h) · Introdução à LGPD (10h).',
+            '<b>Selecionadas:</b> Microsoft Applied Skills (3) — Microsoft Foundry Agents · MCP Tools with Agents · Power Apps Canvas Apps; n8n Academy — N8N102 APIs & Connected Workflows · N8N103 AI, Testing & Best Practices; Make AI Agent Builder · UiPath Automation Business Analyst Associate Training · FIRJAN SENAI Agentes e Automações (40h) · Google AI Essentials · ENAP RPA (25h), Mapeamento/Automação (20h), LGPD (10h).',
         ]
         languages = ['Português nativo · Inglês: leitura técnica independente; escrita e conversação básicas']
     else:
@@ -127,8 +126,7 @@ def build(lang='pt'):
         ]
         edu = ['<b>Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026', '<b>42 Rio Piscine</b> · intensive Linux/C program · completed Jul. 2025']
         courses = [
-            '<b>Practical credentials:</b> Microsoft Applied Skills — agents in Microsoft Foundry · Model Context Protocol (MCP) tools with agents in Microsoft Foundry · Canvas Apps with Power Apps; n8n Academy — N8N102 Integrations: APIs & Connected Workflows · N8N103 In Practice: AI, Testing & Best Practices; Make Academy — AI Agent Builder.',
-            '<b>Additional training:</b> UiPath Academy — Automation Business Analyst Associate Training · FIRJAN SENAI — AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h) · Process Mapping & Automation (20h) · LGPD / Data Protection (10h).',
+            '<b>Selected:</b> Microsoft Applied Skills (3) — Microsoft Foundry Agents · MCP Tools with Agents · Power Apps Canvas Apps; n8n Academy — N8N102 APIs & Connected Workflows · N8N103 AI, Testing & Best Practices; Make AI Agent Builder · UiPath Automation Business Analyst Associate Training · FIRJAN SENAI AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h), Process Mapping/Automation (20h), LGPD/Data Protection (10h).',
         ]
         languages = ['Portuguese: native · English: independent technical reading; basic writing and conversation']
 
