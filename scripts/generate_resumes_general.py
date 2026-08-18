@@ -66,7 +66,7 @@ def build(lang='pt'):
         name = 'MAYCON FERREIRA'
         title = 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES'
         contact = CONTACT_PT
-        sections = {'summary':'RESUMO PROFISSIONAL','skills':'COMPETÊNCIAS','exp':'EXPERIÊNCIA','projects':'PROJETOS SELECIONADOS','edu':'FORMAÇÃO','courses':'CURSOS E CERTIFICAÇÕES','lang':'IDIOMAS'}
+        sections = {'summary':'RESUMO PROFISSIONAL','skills':'COMPETÊNCIAS','exp':'EXPERIÊNCIA','projects':'PROJETOS SELECIONADOS','edu':'FORMAÇÃO','courses':'CREDENCIAIS E FORMAÇÃO COMPLEMENTAR','lang':'IDIOMAS'}
         summary = ('Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, APIs e sistemas internos. Administro n8n self-hosted com 10 mil+ execuções em produção e transformo necessidades operacionais em soluções com Python, FastAPI, SQL/PostgreSQL e IA aplicada, do mapeamento BPMN/AS-IS/TO-BE e requisitos à implantação, treinamento e sustentação.')
         skills = [
             '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/JSON · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (uso contextual)',
@@ -91,14 +91,17 @@ def build(lang='pt'):
             '<b>Postagem Redes:</b> n8n + Meta Graph + IA opcional (OpenAI/Gemini/Ollama), RAG/grounding com LangChain, revisão humana, idempotência e falha isolada por canal; Facebook/Instagram validados em teste.',
         ]
         edu = ['<b>Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026', '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025']
-        courses = ['FIRJAN SENAI — Agentes de IA e Automações (40h) · Google AI Essentials · ENAP RPA (25h) · ENAP Mapeamento e Automação de Processos (20h) · ENAP Introdução à LGPD (10h)']
+        courses = [
+            '<b>Credenciais práticas:</b> Microsoft Applied Skills — agentes no Microsoft Foundry · Model Context Protocol (MCP) com agentes no Microsoft Foundry · Canvas Apps com Power Apps; n8n Academy — N8N102 Integrations: APIs & Connected Workflows · N8N103 In Practice: AI, Testing & Best Practices; Make Academy — AI Agent Builder.',
+            '<b>Formação complementar:</b> UiPath Academy — Automation Business Analyst Associate Training · FIRJAN SENAI — Agentes de IA e Automações (40h) · Google AI Essentials · ENAP RPA (25h) · Mapeamento e Automação de Processos (20h) · Introdução à LGPD (10h).',
+        ]
         languages = ['Português nativo · Inglês: leitura técnica independente; escrita e conversação básicas']
     else:
         path = OUT / 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf'
         name = 'MAYCON FERREIRA'
         title = 'AI, AUTOMATION & INTEGRATIONS ANALYST'
         contact = CONTACT_EN
-        sections = {'summary':'PROFESSIONAL SUMMARY','skills':'CORE SKILLS','exp':'EXPERIENCE','projects':'SELECTED PROJECTS','edu':'EDUCATION','courses':'COURSES & CREDENTIALS','lang':'LANGUAGES'}
+        sections = {'summary':'PROFESSIONAL SUMMARY','skills':'CORE SKILLS','exp':'EXPERIENCE','projects':'SELECTED PROJECTS','edu':'EDUCATION','courses':'CREDENTIALS & ADDITIONAL TRAINING','lang':'LANGUAGES'}
         summary = ('Automation, AI & Integrations Analyst working end-to-end across process automation, APIs and internal systems. I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with Python, FastAPI, SQL/PostgreSQL and applied AI, from BPMN/AS-IS/TO-BE mapping and requirements through deployment, training and support.')
         skills = [
             '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST/JSON APIs · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (contextual use)',
@@ -123,7 +126,10 @@ def build(lang='pt'):
             '<b>Social Publishing:</b> n8n + Meta Graph + optional AI (OpenAI/Gemini/Ollama), RAG/grounding with LangChain, human review, idempotency and per-channel failure isolation; Facebook/Instagram validated in testing.',
         ]
         edu = ['<b>Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026', '<b>42 Rio Piscine</b> · intensive Linux/C program · completed Jul. 2025']
-        courses = ['FIRJAN SENAI — AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h) · ENAP Process Mapping & Automation (20h) · ENAP LGPD / Data Protection (10h)']
+        courses = [
+            '<b>Practical credentials:</b> Microsoft Applied Skills — agents in Microsoft Foundry · Model Context Protocol (MCP) tools with agents in Microsoft Foundry · Canvas Apps with Power Apps; n8n Academy — N8N102 Integrations: APIs & Connected Workflows · N8N103 In Practice: AI, Testing & Best Practices; Make Academy — AI Agent Builder.',
+            '<b>Additional training:</b> UiPath Academy — Automation Business Analyst Associate Training · FIRJAN SENAI — AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h) · Process Mapping & Automation (20h) · LGPD / Data Protection (10h).',
+        ]
         languages = ['Portuguese: native · English: independent technical reading; basic writing and conversation']
 
     doc = SimpleDocTemplate(str(path), pagesize=A4, leftMargin=11*mm, rightMargin=11*mm, topMargin=10*mm, bottomMargin=10*mm, title=name + ' - ' + title, author='Maycon Ferreira', subject='One-page resume for automation, applied AI, integrations, internal systems and process roles')
