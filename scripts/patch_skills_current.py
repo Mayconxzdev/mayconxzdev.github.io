@@ -38,14 +38,16 @@ patch('competencias/index.html', [
         ),
     ),
     (
-        'Utilizo OpenAI, Gemini e Ollama por APIs de LLM, engenharia de prompts, respostas estruturadas e recuperação de contexto. No Postagem Redes, implementei RAG/grounding com LangChain, Supabase e n8n/Docker para reduzir respostas sem base nas informações da empresa. Em estudos e protótipos, também pratiquei MCP, LangGraph e CrewAI para explorar ferramentas de agentes e orquestração; não apresento essas ferramentas no mesmo nível do meu núcleo em n8n, Python e APIs.',
+        'Utilizo OpenAI, Gemini e Ollama por APIs de LLM, engenharia de prompts, respostas estruturadas e recuperação de contexto. No Postagem Redes, implementei RAG/grounding com LangChain, Supabase e n8n/Docker para reduzir respostas sem base nas informações da empresa. MCP e Microsoft Foundry contam também com validação prática por Microsoft Applied Skills em integração de ferramentas MCP com agentes; LangGraph e CrewAI permanecem em estudos e protótipos. Não apresento essas tecnologias no mesmo nível do meu núcleo profissional em n8n, Python e APIs.',
         (
+            'Utilizo OpenAI, Gemini e Ollama por APIs de LLM, engenharia de prompts, respostas estruturadas e recuperação de contexto. No Postagem Redes, implementei RAG/grounding com LangChain, Supabase e n8n/Docker para reduzir respostas sem base nas informações da empresa. Em estudos e protótipos, também pratiquei MCP, LangGraph e CrewAI para explorar ferramentas de agentes e orquestração; não apresento essas ferramentas no mesmo nível do meu núcleo em n8n, Python e APIs.',
             'Utilizo OpenAI, Gemini, Ollama, OpenRouter e Codex em criação assistida, análise, classificação e recuperação de contexto. Em projetos de mídia, trabalho com texto, imagem e áudio, sempre com revisão humana e fallbacks quando a integração permite.',
         ),
     ),
     (
-        'OpenAI · Gemini · Ollama · APIs de LLM · prompts · RAG/grounding · LangChain · human-in-the-loop · MCP/LangGraph/CrewAI (uso contextual)',
+        'OpenAI · Gemini · Ollama · APIs de LLM · prompts · RAG/grounding · LangChain · human-in-the-loop · MCP/Microsoft Foundry (Microsoft Applied Skills) · LangGraph/CrewAI (uso contextual)',
         (
+            'OpenAI · Gemini · Ollama · APIs de LLM · prompts · RAG/grounding · LangChain · human-in-the-loop · MCP/LangGraph/CrewAI (uso contextual)',
             'OpenAI · Gemini · Ollama · OpenRouter · Codex · APIs de LLM · prompts · grounding · JSON Schema · IA multimodal',
         ),
     ),
@@ -97,14 +99,16 @@ patch('en/skills/index.html', [
         ),
     ),
     (
-        'I use OpenAI, Gemini and Ollama through LLM APIs, prompt engineering, structured outputs and context retrieval. In Postagem Redes, I implemented RAG/grounding with LangChain, Supabase and n8n/Docker to reduce answers that are not grounded in company information. In studies and prototypes, I have also practiced MCP, LangGraph and CrewAI to explore agent tooling and orchestration; I do not present them at the same experience level as my core work with n8n, Python and APIs.',
+        'I use OpenAI, Gemini and Ollama through LLM APIs, prompt engineering, structured outputs and context retrieval. In Postagem Redes, I implemented RAG/grounding with LangChain, Supabase and n8n/Docker to reduce answers that are not grounded in company information. MCP and Microsoft Foundry also have hands-on validation through Microsoft Applied Skills for integrating MCP tools with agents; LangGraph and CrewAI remain study/prototype tools. I do not present these technologies at the same depth as my professional core in n8n, Python and APIs.',
         (
+            'I use OpenAI, Gemini and Ollama through LLM APIs, prompt engineering, structured outputs and context retrieval. In Postagem Redes, I implemented RAG/grounding with LangChain, Supabase and n8n/Docker to reduce answers that are not grounded in company information. In studies and prototypes, I have also practiced MCP, LangGraph and CrewAI to explore agent tooling and orchestration; I do not present them at the same experience level as my core work with n8n, Python and APIs.',
             'I use OpenAI, Gemini, Ollama, OpenRouter and Codex for assisted creation, analysis, classification and context retrieval. In media projects, I work with text, image and audio, with human review and fallbacks when the integration supports them.',
         ),
     ),
     (
-        'OpenAI · Gemini · Ollama · LLM APIs · prompts · RAG/grounding · LangChain · human-in-the-loop · MCP/LangGraph/CrewAI (contextual use)',
+        'OpenAI · Gemini · Ollama · LLM APIs · prompts · RAG/grounding · LangChain · human-in-the-loop · MCP/Microsoft Foundry (Microsoft Applied Skills) · LangGraph/CrewAI (contextual use)',
         (
+            'OpenAI · Gemini · Ollama · LLM APIs · prompts · RAG/grounding · LangChain · human-in-the-loop · MCP/LangGraph/CrewAI (contextual use)',
             'OpenAI · Gemini · Ollama · OpenRouter · Codex · LLM APIs · prompts · grounding · JSON Schema · multimodal AI',
         ),
     ),
