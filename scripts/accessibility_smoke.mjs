@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 
 const base=(process.argv[2]||'http://127.0.0.1:8000').replace(/\/$/,'');
-const routes=['/','/competencias/','/cases/mala-direta/','/cases/carreira-pessoal/','/en/','/en/skills/'];
+const routes=['/','/competencias/','/competencias/credenciais/','/cases/mala-direta/','/cases/carreira-pessoal/','/en/','/en/skills/','/en/credentials/'];
 const browser=await chromium.launch({headless:true});
 const failures=[];
 
@@ -35,4 +35,4 @@ if(failures.length){
   console.error('Accessibility gate failed:\n'+failures.join('\n'));
   process.exit(1);
 }
-console.log('Accessibility gate passed for recruiter-facing PT/EN surfaces.');
+console.log('Accessibility gate passed for recruiter-facing PT/EN surfaces, including credentials.');
