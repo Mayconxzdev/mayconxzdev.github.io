@@ -14,7 +14,7 @@ FILES = {
         "EXPERIÊNCIA",
         "PROJETOS SELECIONADOS",
         "FORMAÇÃO",
-        "CURSOS E CERTIFICAÇÕES",
+        "CREDENCIAIS E FORMAÇÃO COMPLEMENTAR",
         "IDIOMAS",
     ],
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf": [
@@ -23,7 +23,7 @@ FILES = {
         "EXPERIENCE",
         "SELECTED PROJECTS",
         "EDUCATION",
-        "COURSES & CREDENTIALS",
+        "CREDENTIALS & ADDITIONAL TRAINING",
         "LANGUAGES",
     ],
 }

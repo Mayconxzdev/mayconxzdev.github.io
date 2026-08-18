@@ -17,8 +17,10 @@ const aliases = new Set([
 const routes = [
   ['home-pt', '/'],
   ['skills-pt', '/competencias/'],
+  ['credentials-pt', '/competencias/credenciais/'],
   ['home-en', '/en/'],
   ['skills-en', '/en/skills/'],
+  ['credentials-en', '/en/credentials/'],
   ['not-found-pt', '/404.html'],
   ['not-found-en', '/en/404.html'],
 ];

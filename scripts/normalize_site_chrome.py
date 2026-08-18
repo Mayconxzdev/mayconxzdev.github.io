@@ -40,6 +40,8 @@ def lang_target(route: str, english: bool) -> str:
             return "/"
         if route == "/en/skills/":
             return "/competencias/"
+        if route == "/en/credentials/":
+            return "/competencias/credenciais/"
         match = re.fullmatch(r"/en/cases/([^/]+)/", route)
         if match:
             slug = CASE_PT_SLUG.get(match.group(1), match.group(1))
@@ -52,6 +54,8 @@ def lang_target(route: str, english: bool) -> str:
         return "/en/"
     if route == "/competencias/":
         return "/en/skills/"
+    if route == "/competencias/credenciais/":
+        return "/en/credentials/"
     match = re.fullmatch(r"/cases/([^/]+)/", route)
     if match:
         slug = CASE_EN_SLUG.get(match.group(1), match.group(1))

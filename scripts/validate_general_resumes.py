@@ -28,8 +28,16 @@ REQUIRED = {
         'Catálogo Operacional',
         'uso diário por 3 pessoas',
         'Postagem Redes',
-        'Introdução à LGPD',
-        'CURSOS E CERTIFICAÇÕES',
+        'Microsoft Applied Skills',
+        'Microsoft Foundry',
+        'MCP',
+        'Power Apps',
+        'N8N102',
+        'N8N103',
+        'AI Agent Builder',
+        'Automation Business Analyst Associate Training',
+        'LGPD (10h)',
+        'CREDENCIAIS E FORMAÇÃO COMPLEMENTAR',
         'Técnico Júnior em Automação de Processos',
     ],
     'en': [
@@ -49,8 +57,16 @@ REQUIRED = {
         'Operational Catalog',
         'used daily by 3 people',
         'Social Publishing',
-        'LGPD / Data Protection',
-        'COURSES & CREDENTIALS',
+        'Microsoft Applied Skills',
+        'Microsoft Foundry',
+        'MCP',
+        'Power Apps',
+        'N8N102',
+        'N8N103',
+        'AI Agent Builder',
+        'Automation Business Analyst Associate Training',
+        'LGPD/Data Protection (10h)',
+        'CREDENTIALS & ADDITIONAL TRAINING',
         'Junior Process Automation Technician',
     ],
 }
@@ -60,21 +76,21 @@ FORBIDDEN = {
         '(cargo formal)',
         'Central ISO:</b>',
         'Portal:</b>',
-        'MCP',
         'LangGraph/CrewAI',
         'IA multimodal',
         'Geração de mídia',
         '158 nós',
+        '55 certificações',
     ],
     'en': [
         '(formal role)',
         'Central ISO:</b>',
         'Portal:</b>',
-        'MCP',
         'LangGraph/CrewAI',
         'multimodal AI',
         'media generation',
         '158 nodes',
+        '55 certifications',
     ],
 }
 
@@ -110,7 +126,7 @@ def check(lang, path):
     for contact in VISIBLE_CONTACTS:
         if contact not in text:
             raise SystemExit(f'{path.name}: ATS-visible contact missing from extracted text: {contact}')
-    if len(text.strip()) < 3400:
+    if len(text.strip()) < 3600:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')
 
     doc = fitz.open(path)

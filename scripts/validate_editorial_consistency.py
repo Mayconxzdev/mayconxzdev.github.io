@@ -27,6 +27,9 @@ pt_skills = require('competencias/index.html', [
     'RAG/grounding',
     'Power Automate/Make/Zapier/CRM (uso contextual)',
     'não as apresento no mesmo nível de profundidade do meu trabalho com n8n, Python e APIs',
+    'MCP e Microsoft Foundry contam também com validação prática por Microsoft Applied Skills',
+    'MCP/Microsoft Foundry (Microsoft Applied Skills)',
+    'LangGraph/CrewAI (uso contextual)',
     'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA',
 ])
 for phrase in [
@@ -44,6 +47,9 @@ en_skills = require('en/skills/index.html', [
     'RAG/grounding',
     'Power Automate/Make/Zapier/CRM (contextual use)',
     'I do not present them at the same depth as my work with n8n, Python and APIs',
+    'MCP and Microsoft Foundry also have hands-on validation through Microsoft Applied Skills',
+    'MCP/Microsoft Foundry (Microsoft Applied Skills)',
+    'LangGraph/CrewAI (contextual use)',
     'TRACEABILITY, RELIABILITY AND SECURITY',
 ])
 for phrase in [
@@ -89,15 +95,30 @@ check_featured(
 
 career = require('docs/CAREER_EVIDENCE.md', [
     'Ferramentas complementares / contextuais',
+    'Competências práticas credencializadas, ainda contextuais',
     'Vocabulário de mercado — auditoria 16/08/2026',
     'Não reivindicar sem evidência suficiente',
     'Power Automate',
+    'Microsoft Foundry',
+    'MCP com agentes',
     'Process Mining',
 ])
 if 'Portal** permanece' not in career:
     errors.append('docs/CAREER_EVIDENCE.md: Portal status boundary is missing')
 
+credentials = require('docs/CREDENTIALS_EVIDENCE.md', [
+    '55 registros de aprendizagem/credenciais',
+    'não deve ser apresentado como “55 certificações”',
+    'Microsoft Applied Skills — 3',
+    'N8N102',
+    'N8N103',
+    'Automation Business Analyst Associate Training',
+    'Cases e READMEs de repositórios individuais',
+])
+if 'UiPath Certified Professional' not in credentials:
+    errors.append('docs/CREDENTIALS_EVIDENCE.md: UiPath certification boundary is missing')
+
 if errors:
     raise SystemExit('\n'.join(errors))
 
-print('Recruiter consistency guard passed across PT/EN skills, flagship order and canonical evidence.')
+print('Recruiter consistency guard passed across PT/EN skills, credential taxonomy, flagship order and canonical evidence.')

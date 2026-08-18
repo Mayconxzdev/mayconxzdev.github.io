@@ -2,6 +2,8 @@
 
 Este arquivo é a referência editorial para manter **currículo, portfólio e GitHub em sincronia**. Ele não substitui a evidência técnica dos repositórios; define quais afirmações podem ser resumidas publicamente, com qual estado e sem inflar maturidade.
 
+O inventário e a classificação de cursos, badges e credenciais ficam em [`CREDENTIALS_EVIDENCE.md`](CREDENTIALS_EVIDENCE.md). Uma credencial pode validar aprendizagem prática sem transformar automaticamente a tecnologia em experiência profissional de produção.
+
 ## Posicionamento
 
 **Analista de Automação, IA e Integrações**
@@ -48,9 +50,15 @@ Use os estados abaixo de forma consistente:
 
 Essas ferramentas podem aparecer em currículo e páginas de competências quando ajudarem o ATS ou explicarem um contexto real, **sempre diferenciadas do núcleo profissional**. Elas não devem ser apresentadas no mesmo nível de profundidade do trabalho comprovado com n8n, Python e APIs.
 
+### Competências práticas credencializadas, ainda contextuais
+
+`Microsoft Foundry` · `MCP com agentes` · `Power Apps Canvas Apps` · `Make AI Agent Builder`
+
+As três Microsoft Applied Skills validam tarefas práticas em laboratório e o Make AI Agent Builder valida uma trilha com assessment. Isso permite mencionar essas tecnologias como **aprendizagem prática credencializada**, mas não como experiência profissional de produção equivalente ao núcleo.
+
 ### IA aplicada
 
-Pode aparecer no currículo geral como **IA generativa, RAG/grounding, agentes de IA e human-in-the-loop**. Frameworks específicos como **MCP, LangGraph e CrewAI** pertencem ao material detalhado/contextual enquanto não houver razão para tratá-los com a mesma profundidade do núcleo profissional.
+Pode aparecer no currículo geral como **IA generativa, RAG/grounding, agentes de IA e human-in-the-loop**. **MCP** agora possui validação prática externa por Microsoft Applied Skills e Make AI Agent Builder, mas permanece contextual enquanto não houver evidência de produção. **LangGraph e CrewAI** continuam no material de estudo/contexto e não devem ser elevados ao mesmo nível do núcleo profissional.
 
 ### Confiabilidade e segurança
 
@@ -58,15 +66,21 @@ Valorizar quando sustentado pelo projeto: logs/monitoramento, retries, idempotê
 
 ## Formação e credenciais resumíveis
 
-Além da formação principal, podem ser resumidos no currículo geral quando houver espaço e aderência:
+O currículo geral de uma página deve priorizar apenas credenciais de alto sinal e formação diretamente aderente:
 
+- Microsoft Applied Skills — agentes no Microsoft Foundry, MCP com agentes e Canvas Apps com Power Apps;
+- n8n Academy — N8N102 e N8N103, como **certificados de conclusão**, não certificações profissionais;
+- Make Academy — AI Agent Builder;
+- UiPath Academy — Automation Business Analyst Associate Training, como **training badge**, não UiPath Certified Professional;
 - FIRJAN SENAI — Agentes de IA e Automações (40h);
 - Google AI Essentials;
 - ENAP — Automação de Processos através da RPA (25h);
 - ENAP — Mapeamento e Automação de Processos (20h);
 - ENAP — Introdução à LGPD (10h).
 
-Não transformar achievement, curso ou trilha em “certificação profissional” quando a instituição não a classificar dessa forma.
+OpenAI Academy e os demais itens relevantes podem aparecer na página detalhada de credenciais e em versões de currículo orientadas a IA quando houver aderência e espaço. Os 21 badges Microsoft Learn, módulos Google e itens DIO/Santander não devem ocupar o currículo geral.
+
+Não transformar achievement, curso, badge ou trilha em “certificação profissional” quando a instituição não a classificar dessa forma. O agregado público correto é **55 registros de aprendizagem/credenciais**, não “55 certificações”.
 
 ## Regra de contato e parsing ATS
 
@@ -102,11 +116,13 @@ Mesmo quando aparecerem em vagas relacionadas, não adicionar ao currículo gera
 - Camunda e Airflow;
 - SOAP/XML e middleware enterprise;
 - Kafka, RabbitMQ, ActiveMQ ou mensageria/event-driven em produção;
-- UiPath e Automation Anywhere;
+- experiência profissional de desenvolvimento/produção em UiPath ou Automation Anywhere;
+- título **UiPath Certified Professional Automation Business Analyst Associate** sem aprovação no exame correspondente;
 - experiência de produção enterprise em Azure/GCP;
-- LangGraph/CrewAI/MCP como profundidade equivalente ao núcleo profissional.
+- Microsoft Foundry/MCP como profundidade de produção equivalente ao núcleo profissional;
+- LangGraph/CrewAI como profundidade equivalente ao núcleo profissional.
 
-Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar como **gap da vaga**, não como oportunidade para inflar o currículo.
+Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar como **gap da vaga** ou como formação contextual quando houver credencial correspondente, nunca como oportunidade para inflar experiência.
 
 ## Curadoria por superfície
 
@@ -121,7 +137,7 @@ O currículo não tenta listar todos os projetos. A experiência profissional j�
 
 No currículo geral, Mala Direta deve priorizar **escala operacional + fila por destinatário + deduplicação + cancelamento + retry + auditoria**. A contagem de 158 nós permanece disponível no GitHub/portfólio como evidência detalhada, sem ser necessária no CV.
 
-Ferramentas complementares/contextuais só entram no bloco de competências com qualificador de profundidade; não devem deslocar resultados, BPMN, RAG ou confiabilidade para abrir espaço.
+Ferramentas complementares/contextuais só entram no bloco de competências com qualificador de profundidade; não devem deslocar resultados, BPMN, RAG ou confiabilidade para abrir espaço. As credenciais entram em bloco próprio para que ATS/recrutador consigam diferenciá-las de experiência profissional.
 
 ### Portfólio — projetos principais
 
@@ -136,14 +152,20 @@ O **Portal** permanece como recorte de arquitetura em **desenvolvimento/revalida
 
 No mobile, os seis projetos principais permanecem integralmente visíveis. O arquivo secundário pode usar progressive disclosure para reduzir fadiga de rolagem, desde que busca e filtros revelem o conjunto completo e o desktop não esconda projetos.
 
+A homepage mostra apenas credenciais selecionadas de alto sinal; o inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
+
 ### GitHub
 
 O README do perfil deve apontar primeiro para projetos que provam trabalho real e não apenas amplitude técnica. Recomendação de seis repositórios em destaque: **MalaDireta, ProducaoOperacional, CarreiraPessoal, CatalogoOperacional, PostagemRedes e HelpDesk**.
 
-No README do perfil, separar visualmente **núcleo profissional** de **ferramentas complementares/contextuais**, para que a presença de uma keyword não seja interpretada como profundidade equivalente. Manter uma versão inglesa dedicada facilita avaliação internacional sem duplicar PT/EN no mesmo fluxo de leitura.
+No README do perfil, separar visualmente **núcleo profissional**, **ferramentas complementares/contextuais** e uma lista curta de **credenciais selecionadas**, para que a presença de uma keyword não seja interpretada como profundidade equivalente. Manter uma versão inglesa dedicada facilita avaliação internacional sem duplicar PT/EN no mesmo fluxo de leitura.
 
 **Nome neutro de repositório:** manter `ComprasProducao` como nome público do repositório para não criar associação desnecessária com a empresa no identificador técnico. Não renomear para `ComprasVesper`. O case do portfólio pode contextualizar a origem profissional de forma controlada, mas a URL/nome do repositório permanece neutra.
 
+### Cases e READMEs individuais
+
+Não transformar projetos em mural de certificados. O case deve continuar provando problema, decisões, arquitetura, resultado, segurança/confiabilidade e estado real. Uma credencial só entra em um case ou README individual quando explicar um contexto específico que o próprio projeto não comunica sozinho.
+
 ## Regra de atualização
 
-Uma nova métrica ou mudança de estado deve ser atualizada primeiro na evidência do projeto. Depois, este registro e as superfícies públicas podem ser sincronizados. Nunca promover status, métrica, senioridade ou tecnologia apenas para melhorar a apresentação.
+Uma nova métrica ou mudança de estado deve ser atualizada primeiro na evidência do projeto. Uma nova credencial deve ser classificada primeiro em `CREDENTIALS_EVIDENCE.md`. Depois, este registro e as superfícies públicas podem ser sincronizados. Nunca promover status, métrica, senioridade ou tecnologia apenas para melhorar a apresentação.
