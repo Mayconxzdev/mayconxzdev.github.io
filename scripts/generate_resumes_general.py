@@ -67,11 +67,11 @@ def build(lang='pt'):
         title = 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES'
         contact = CONTACT_PT
         sections = {'summary':'RESUMO PROFISSIONAL','skills':'COMPETÊNCIAS','exp':'EXPERIÊNCIA','projects':'PROJETOS SELECIONADOS','edu':'FORMAÇÃO','courses':'CREDENCIAIS E FORMAÇÃO COMPLEMENTAR','lang':'IDIOMAS'}
-        summary = ('Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, APIs e sistemas internos. Administro n8n self-hosted com 10 mil+ execuções em produção e transformo necessidades operacionais em soluções com Python, FastAPI, SQL/PostgreSQL e IA aplicada, do mapeamento BPMN/AS-IS/TO-BE e requisitos à implantação, treinamento e sustentação.')
+        summary = ('Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, integrações, APIs e sistemas internos. Administro n8n self-hosted com 10 mil+ execuções em produção e transformo necessidades operacionais em soluções com Python, FastAPI, SQL/PostgreSQL e IA aplicada, do mapeamento BPMN/AS-IS/TO-BE e requisitos à implantação, treinamento e sustentação.')
         skills = [
-            '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/JSON · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (uso contextual)',
-            '<b>Processos e entrega:</b> BPMN · AS-IS/TO-BE · levantamento de requisitos · regras de negócio · testes/homologação · documentação · implantação · treinamento · melhoria contínua',
-            '<b>IA aplicada e engenharia:</b> IA generativa · RAG/grounding · agentes de IA · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · logs/monitoramento · retries · idempotência · alertas · backups · gestão de segredos',
+            '<b>Automação e integrações:</b> n8n self-hosted · low-code/no-code · Python · FastAPI · APIs REST/JSON · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Platform/Make/Zapier/CRM (uso contextual)',
+            '<b>Processos e entrega:</b> BPMN · AS-IS/TO-BE · levantamento de requisitos · stakeholders · regras de negócio · testes · UAT/homologação · documentação · implantação · treinamento · melhoria contínua',
+            '<b>IA aplicada e engenharia:</b> IA generativa/LLMs · agentes de IA · RAG/grounding · human-in-the-loop · JavaScript/TypeScript · Git/GitHub Actions · CI/CD · logs/monitoramento · troubleshooting · tratamento de erros · retries · idempotência · segurança de integrações · gestão de segredos',
         ]
         vesper_role = 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual'
         vesper_meta = 'Vesper Equipamentos EX / Vent Rio · automação, IA aplicada, integrações e sistemas internos'
@@ -79,7 +79,7 @@ def build(lang='pt'):
             '<b>n8n e integrações:</b> administro ambiente self-hosted Windows/Docker com 10 mil+ execuções de workflows em produção, integrando APIs, webhooks, PostgreSQL e SMTP com logs, retries, alertas, backups e auditoria.',
             '<b>Proposta Comercial:</b> desenvolvi e sustento o fluxo com ODT/PDF, IMAP/SMTP e revisão humana; propostas simples passaram de 2–4 min para &lt;30 s, com uso diário por 4 profissionais.',
             '<b>Produção e manutenção:</b> implantei a Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores e digitalizei manutenção de 40+ ativos com checklists, fotos/evidências, histórico e consulta da Qualidade.',
-            '<b>HelpDesk e adoção:</b> sistema interno em uso por 11 pessoas; levanto requisitos, modelo AS-IS/TO-BE/BPMN, testo/homologo e implanto soluções com usuários e gestão; já treinei/orientei 30+ pessoas e acompanho sustentação e melhoria contínua.',
+            '<b>HelpDesk e adoção:</b> sistema interno em uso por 11 pessoas; levanto requisitos, modelo AS-IS/TO-BE/BPMN, testo/homologo e implanto soluções com usuários, stakeholders e gestão; já treinei/orientei 30+ pessoas e acompanho sustentação e melhoria contínua.',
         ]
         compass_role = 'COMPASS UOL — Estagiário TI/Dados | out. 2024 – mar. 2025'
         compass_meta = 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas'
@@ -88,11 +88,11 @@ def build(lang='pt'):
             '<b>Mala Direta:</b> 6 campanhas sobre base de 1.020 contatos, uma com 900+; 2 workflows n8n com fila por destinatário, deduplicação, cancelamento revalidado, retry e auditoria.',
             '<b>CarreiraPessoal:</b> produto Windows em uso próprio (FastAPI + React/TS + Tauri/Rust) para descoberta, deduplicação, Career Goal, evidências e roteamento de currículo; v12.5.2 com 283 testes Python aprovados.',
             '<b>Catálogo Operacional:</b> FastAPI + SQLite FTS5, 24 categorias e 480+ códigos, busca unificada, controle de revisão, histórico de preço e backups; uso diário por 3 pessoas.',
-            '<b>Postagem Redes:</b> n8n + Meta Graph + IA opcional (OpenAI/Gemini/Ollama), RAG/grounding com LangChain, revisão humana, idempotência e falha isolada por canal; Facebook/Instagram validados em teste.',
+            '<b>Postagem Redes:</b> n8n + Meta Graph API com IA aplicada, RAG/grounding, human-in-the-loop, evals offline reproduzíveis, idempotência e isolamento de falhas por canal; Facebook/Instagram validados em teste.',
         ]
         edu = ['<b>Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026', '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025']
         courses = [
-            '<b>Selecionadas:</b> Microsoft Applied Skills (3) — Microsoft Foundry Agents · MCP Tools with Agents · Power Apps Canvas Apps; n8n Academy — N8N102 APIs & Connected Workflows · N8N103 AI, Testing & Best Practices; Make AI Agent Builder · UiPath Automation Business Analyst Associate Training · FIRJAN SENAI Agentes e Automações (40h) · Google AI Essentials · ENAP RPA (25h), Mapeamento/Automação (20h), LGPD (10h).',
+            '<b>Selecionadas:</b> Microsoft Applied Skills (3) — Microsoft Foundry Agents · MCP Tools with Agents · Power Apps Canvas Apps; UiPath Academy — Automation Business Analyst Professional Training; n8n Academy — N8N102/N8N103; Make Academy — AI Agent Builder; FIRJAN SENAI — Agentes e Automações (40h).',
         ]
         languages = ['Português nativo · Inglês: leitura técnica independente; escrita e conversação básicas']
     else:
@@ -101,11 +101,11 @@ def build(lang='pt'):
         title = 'AI, AUTOMATION & INTEGRATIONS ANALYST'
         contact = CONTACT_EN
         sections = {'summary':'PROFESSIONAL SUMMARY','skills':'CORE SKILLS','exp':'EXPERIENCE','projects':'SELECTED PROJECTS','edu':'EDUCATION','courses':'CREDENTIALS & ADDITIONAL TRAINING','lang':'LANGUAGES'}
-        summary = ('Automation, AI & Integrations Analyst working end-to-end across process automation, APIs and internal systems. I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with Python, FastAPI, SQL/PostgreSQL and applied AI, from BPMN/AS-IS/TO-BE mapping and requirements through deployment, training and support.')
+        summary = ('Automation, AI & Integrations Analyst working end to end across process automation, integrations, APIs and internal systems. I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with Python, FastAPI, SQL/PostgreSQL and applied AI, from BPMN/AS-IS/TO-BE mapping and requirements through deployment, training and support.')
         skills = [
-            '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST/JSON APIs · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Automate/Make/Zapier/CRM (contextual use)',
-            '<b>Process & delivery:</b> BPMN · AS-IS/TO-BE · requirements discovery · business rules · testing/UAT · documentation · deployment · training · continuous improvement',
-            '<b>Applied AI & engineering:</b> generative AI · RAG/grounding · AI agents · human-in-the-loop · JavaScript/TypeScript · Linux · Git/GitHub Actions · CI/CD · logs/monitoring · retries · idempotency · alerts · backups · secret management',
+            '<b>Automation & integrations:</b> self-hosted n8n · low-code/no-code · Python · FastAPI · REST/JSON APIs · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · Power Platform/Make/Zapier/CRM (contextual use)',
+            '<b>Process & delivery:</b> BPMN · AS-IS/TO-BE · requirements discovery · stakeholders · business rules · testing · UAT · documentation · deployment · training · continuous improvement',
+            '<b>Applied AI & engineering:</b> generative AI/LLMs · AI agents · RAG/grounding · human-in-the-loop · JavaScript/TypeScript · Git/GitHub Actions · CI/CD · logs/monitoring · troubleshooting · error handling · retries · idempotency · integration security · secret management',
         ]
         vesper_role = 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present'
         vesper_meta = 'Vesper Equipamentos EX / Vent Rio · automation, applied AI, integrations and internal systems'
@@ -113,7 +113,7 @@ def build(lang='pt'):
             '<b>n8n & integrations:</b> administer a self-hosted Windows/Docker environment with 10k+ production workflow executions, integrating APIs, webhooks, PostgreSQL and SMTP with logs, retries, alerts, backups and auditability.',
             '<b>Commercial Proposals:</b> built and support an ODT/PDF + IMAP/SMTP workflow with human review; simple proposals went from 2–4 min to &lt;30 sec and are used daily by 4 professionals.',
             '<b>Production & maintenance:</b> deployed Production Operations to 10+ PCs and 1 TV supporting 20+ professionals across 9 sectors; digitized maintenance for 40+ assets with checklists, evidence, history and Quality visibility.',
-            '<b>HelpDesk & adoption:</b> internal system used by 11 people; gather requirements, map AS-IS/TO-BE/BPMN, test/UAT and deploy solutions with users and management; trained/guided 30+ people and follow support and continuous improvement.',
+            '<b>HelpDesk & adoption:</b> internal system used by 11 people; gather requirements, map AS-IS/TO-BE/BPMN, test/UAT and deploy solutions with users, stakeholders and management; trained/guided 30+ people and follow support and continuous improvement.',
         ]
         compass_role = 'COMPASS UOL — IT/Data Intern | Oct. 2024 – Mar. 2025'
         compass_meta = 'Data Engineering scholarship · 10 practical sprints'
@@ -122,11 +122,11 @@ def build(lang='pt'):
             '<b>Direct Mail:</b> 6 campaigns over a 1,020-contact base, one with 900+ recipients; 2 n8n workflows with per-recipient queues, deduplication, revalidated cancellation, retry and auditing.',
             '<b>CarreiraPessoal:</b> personal Windows product in active personal use (FastAPI + React/TS + Tauri/Rust) for job discovery, deduplication, career-goal checks, evidence and resume routing; v12.5.2 with 283 passing Python tests.',
             '<b>Operational Catalog:</b> FastAPI + SQLite FTS5, 24 categories and 480+ codes, unified search, revision control, price history and backups; used daily by 3 people.',
-            '<b>Social Publishing:</b> n8n + Meta Graph + optional AI (OpenAI/Gemini/Ollama), RAG/grounding with LangChain, human review, idempotency and per-channel failure isolation; Facebook/Instagram validated in testing.',
+            '<b>Social Publishing:</b> n8n + Meta Graph API with applied AI, RAG/grounding, human-in-the-loop, reproducible offline evals, idempotency and per-channel failure isolation; Facebook/Instagram validated in testing.',
         ]
         edu = ['<b>Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026', '<b>42 Rio Piscine</b> · intensive Linux/C program · completed Jul. 2025']
         courses = [
-            '<b>Selected:</b> Microsoft Applied Skills (3) — Microsoft Foundry Agents · MCP Tools with Agents · Power Apps Canvas Apps; n8n Academy — N8N102 APIs & Connected Workflows · N8N103 AI, Testing & Best Practices; Make AI Agent Builder · UiPath Automation Business Analyst Associate Training · FIRJAN SENAI AI Agents & Automations (40h) · Google AI Essentials · ENAP RPA (25h), Process Mapping/Automation (20h), LGPD/Data Protection (10h).',
+            '<b>Selected:</b> Microsoft Applied Skills (3) — Microsoft Foundry Agents · MCP Tools with Agents · Power Apps Canvas Apps; UiPath Academy — Automation Business Analyst Professional Training; n8n Academy — N8N102/N8N103; Make Academy — AI Agent Builder; FIRJAN SENAI — AI Agents & Automations (40h).',
         ]
         languages = ['Portuguese: native · English: independent technical reading; basic writing and conversation']
 
