@@ -130,6 +130,11 @@ EXPECTED_URIS = {
 }
 
 
+def normalize_text(value: str) -> str:
+    """Normalize visual line wrapping while preserving wording for ATS assertions."""
+    return ' '.join(value.split())
+
+
 def check(lang, path):
     if not path.exists():
         raise SystemExit(f'Missing resume: {path}')
@@ -137,14 +142,15 @@ def check(lang, path):
     if len(reader.pages) != 1:
         raise SystemExit(f'{path.name}: expected 1 page, got {len(reader.pages)}')
     text = '\n'.join(page.extract_text() or '' for page in reader.pages)
+    normalized = normalize_text(text)
     for needle in REQUIRED[lang]:
-        if needle not in text:
+        if normalize_text(needle) not in normalized:
             raise SystemExit(f'{path.name}: missing required text: {needle}')
     for needle in FORBIDDEN[lang]:
-        if needle in text:
+        if normalize_text(needle) in normalized:
             raise SystemExit(f'{path.name}: forbidden general-resume text: {needle}')
     for contact in VISIBLE_CONTACTS:
-        if contact not in text:
+        if contact not in normalized:
             raise SystemExit(f'{path.name}: ATS-visible contact missing from extracted text: {contact}')
     if len(text.strip()) < 3500:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')

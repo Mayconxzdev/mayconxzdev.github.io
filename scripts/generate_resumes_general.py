@@ -39,11 +39,11 @@ def styles():
         'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.3, textColor=BLACK, spaceAfter=1.6*mm),
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.3, textColor=BLACK, spaceAfter=1.25*mm),
         'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.3, leading=10.0, textColor=GRAY, spaceAfter=3.25*mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.6, leading=11.2, textColor=BLACK, spaceBefore=3.55*mm, spaceAfter=1.75*mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.35, leading=12.15, textColor=BLACK, spaceAfter=1.55*mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.0, leading=12.25, textColor=BLACK, spaceAfter=1.15*mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.35, leading=11.8, textColor=BLACK, spaceAfter=0.9*mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.35, leading=10.5, textColor=GRAY, spaceAfter=1.15*mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.6, leading=11.2, textColor=BLACK, spaceBefore=3.4*mm, spaceAfter=1.65*mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.25, leading=11.85, textColor=BLACK, spaceAfter=1.35*mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=8.85, leading=11.75, textColor=BLACK, spaceAfter=1.0*mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.2, leading=11.5, textColor=BLACK, spaceAfter=0.8*mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.2, leading=10.2, textColor=GRAY, spaceAfter=1.0*mm),
     }
 
 
@@ -142,7 +142,7 @@ def build(lang='pt'):
     sec(sections['exp'])
     story.extend([Paragraph(vesper_role, s['role']), Paragraph(vesper_meta, s['meta'])])
     for item in vesper_bullets: story.append(bullet(item, s['small']))
-    story.extend([Spacer(1,1.6*mm), Paragraph(compass_role, s['role']), Paragraph(compass_meta, s['meta'])])
+    story.extend([Spacer(1,1.4*mm), Paragraph(compass_role, s['role']), Paragraph(compass_meta, s['meta'])])
     for item in compass_bullets: story.append(bullet(item, s['small']))
     sec(sections['projects'])
     for item in projects: story.append(bullet(item, s['small']))

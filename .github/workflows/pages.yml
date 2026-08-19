@@ -109,6 +109,9 @@ jobs:
           rm -rf .site
           mkdir .site
           cp -r index.html 404.html assets cases competencias en css js robots.txt sitemap.xml .nojekyll .site/
+          RELEASE_TOKEN="${GITHUB_SHA:0:12}"
+          python scripts/version_resume_links.py .site "$RELEASE_TOKEN"
+          printf '%s\n' "$GITHUB_SHA" > .site/build.txt
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v6
@@ -138,12 +141,22 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: deploy
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
-      - name: Confirm current portfolio, shared chrome and recruiter controls are live
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install live-release verification dependency
+        run: python -m pip install --disable-pip-version-check pypdf==5.9.0
+      - name: Confirm exact portfolio build and current resumes are live
         shell: bash
         run: |
-          for attempt in {1..30}; do
+          RELEASE_TOKEN="${GITHUB_SHA:0:12}"
+          for attempt in {1..36}; do
+            BUILD_SHA="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/build.txt?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             HOME_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/carreira-pessoal/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             PROD_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/producao-operacional/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
@@ -151,9 +164,28 @@ jobs:
             SKILLS_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/competencias/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
             SOCIAL_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/social/og-cover.png?build=${GITHUB_SHA}" | head -n 1 || true)"
-            if grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
+
+            rm -f /tmp/resume-pt.pdf /tmp/resume-en.pdf
+            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
+              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
+              -o /tmp/resume-pt.pdf || true
+            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
+              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
+              -o /tmp/resume-en.pdf || true
+
+            RESUMES_OK=false
+            if [[ -s /tmp/resume-pt.pdf && -s /tmp/resume-en.pdf ]]; then
+              if python scripts/verify_live_resumes.py /tmp/resume-pt.pdf /tmp/resume-en.pdf; then
+                RESUMES_OK=true
+              fi
+            fi
+
+            if [[ "$BUILD_SHA" == "$GITHUB_SHA" ]] \
+              && grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
               && grep -Fq 'class="archive-expand"' <<<"$HOME_HTML" \
+              && grep -Fq "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}" <<<"$HOME_HTML" \
+              && grep -Fq 'Automation Business Analyst Professional Training' <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
               && grep -Fq 'class="case-page"' <<<"$CAREER_HTML" \
               && grep -Fq '>Competências<' <<<"$CAREER_HTML" \
@@ -166,12 +198,13 @@ jobs:
               && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
               && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
               && grep -Fq "200" <<<"$CAREER_IMAGE" \
-              && grep -Fq "200" <<<"$SOCIAL_IMAGE"; then
-              echo "Published portfolio, cases, recruiter controls, skills copy and visual evidence match the current build."
+              && grep -Fq "200" <<<"$SOCIAL_IMAGE" \
+              && [[ "$RESUMES_OK" == true ]]; then
+              echo "Published Pages SHA, recruiter surfaces and both live resumes match this exact build."
               exit 0
             fi
-            echo "Published content is not current yet (attempt ${attempt}/30)."
+            echo "Published release is not fully current yet (attempt ${attempt}/36; live build=${BUILD_SHA:-missing}; expected=${GITHUB_SHA})."
             sleep 10
           done
-          echo "The Pages deployment completed, but the public URL did not expose the current portfolio within the verification window."
+          echo "Pages deployed, but exact build/resume verification did not converge within the verification window."
           exit 1
