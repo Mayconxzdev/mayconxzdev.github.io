@@ -23,13 +23,19 @@ def forbid(relative: str, phrases: list[str]):
 
 pt_skills = require('competencias/index.html', [
     'Automação, IA, integrações e processos aplicados em projetos reais.',
+    'low-code/no-code',
     'BPMN',
+    'requisitos/stakeholders',
     'RAG/grounding',
-    'Power Automate/Make/Zapier/CRM (uso contextual)',
+    'evals offline',
+    'Power Platform/Make/Zapier/CRM (uso contextual)',
     'não as apresento no mesmo nível de profundidade do meu trabalho com n8n, Python e APIs',
     'MCP e Microsoft Foundry contam também com validação prática por Microsoft Applied Skills',
     'MCP/Microsoft Foundry (Microsoft Applied Skills)',
     'LangGraph/CrewAI (uso contextual)',
+    'troubleshooting',
+    'tratamento de erros',
+    'segurança de integrações',
     'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA',
 ])
 for phrase in [
@@ -43,13 +49,19 @@ for phrase in [
 
 en_skills = require('en/skills/index.html', [
     'Automation, AI, integrations and processes applied in real projects.',
+    'low-code/no-code',
     'BPMN',
+    'requirements/stakeholders',
     'RAG/grounding',
-    'Power Automate/Make/Zapier/CRM (contextual use)',
+    'offline evals',
+    'Power Platform/Make/Zapier/CRM (contextual use)',
     'I do not present them at the same depth as my work with n8n, Python and APIs',
     'MCP and Microsoft Foundry also have hands-on validation through Microsoft Applied Skills',
     'MCP/Microsoft Foundry (Microsoft Applied Skills)',
     'LangGraph/CrewAI (contextual use)',
+    'troubleshooting',
+    'error handling',
+    'integration security',
     'TRACEABILITY, RELIABILITY AND SECURITY',
 ])
 for phrase in [
@@ -96,27 +108,50 @@ check_featured(
 career = require('docs/CAREER_EVIDENCE.md', [
     'Ferramentas complementares / contextuais',
     'Competências práticas credencializadas, ainda contextuais',
-    'Vocabulário de mercado — auditoria 16/08/2026',
+    'Vocabulário de mercado — auditoria 19/08/2026',
     'Não reivindicar sem evidência suficiente',
-    'Power Automate',
+    'Power Platform',
     'Microsoft Foundry',
     'MCP com agentes',
-    'Process Mining',
+    'Automation Business Analyst Professional Training',
+    'evals offline reproduzíveis',
+    'Correções de pesquisas externas recebidas em 19/08/2026',
+    'Manter **um único currículo geral**',
 ])
 if 'Portal** permanece' not in career:
     errors.append('docs/CAREER_EVIDENCE.md: Portal status boundary is missing')
 
 credentials = require('docs/CREDENTIALS_EVIDENCE.md', [
-    '55 registros de aprendizagem/credenciais',
-    'não deve ser apresentado como “55 certificações”',
+    '55+ registros de aprendizagem/credenciais',
+    'não deve ser apresentado como “55+ certificações”',
     'Microsoft Applied Skills — 3',
     'N8N102',
     'N8N103',
+    'Automation Business Analyst Professional Training',
     'Automation Business Analyst Associate Training',
-    'Cases e READMEs de repositórios individuais',
+    'Cases e READMEs individuais',
 ])
-if 'UiPath Certified Professional' not in credentials:
-    errors.append('docs/CREDENTIALS_EVIDENCE.md: UiPath certification boundary is missing')
+if 'UiPath Certified Automation Business Analyst Professional' not in credentials:
+    errors.append('docs/CREDENTIALS_EVIDENCE.md: UiPath exam-certification boundary is missing')
+
+pt_credentials = require('competencias/credenciais/index.html', [
+    '55+ registros',
+    'Automation Business Analyst Professional Training',
+    'certificação profissional separada por exame',
+])
+en_credentials = require('en/credentials/index.html', [
+    '55+ records',
+    'Automation Business Analyst Professional Training',
+    'separate exam-based professional certification',
+])
+
+for relative, text in [
+    ('competencias/credenciais/index.html', pt_credentials),
+    ('en/credentials/index.html', en_credentials),
+]:
+    if '55+ certifications' in text or '55+ certificações' in text:
+        # Allowed only in explicit negation explaining classification.
+        pass
 
 if errors:
     raise SystemExit('\n'.join(errors))
