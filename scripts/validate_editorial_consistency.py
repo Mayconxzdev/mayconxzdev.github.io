@@ -106,17 +106,20 @@ check_featured(
 )
 
 career = require('docs/CAREER_EVIDENCE.md', [
+    'Atualizado em **24/08/2026**',
     'Ferramentas complementares / contextuais',
     'Competências práticas credencializadas, ainda contextuais',
-    'Vocabulário de mercado — auditoria 19/08/2026',
+    'Vocabulário de mercado — auditoria 24/08/2026',
     'Não reivindicar sem evidência suficiente',
-    'Power Platform',
+    'Power Apps',
+    'Power Automate',
     'Microsoft Foundry',
     'MCP com agentes',
     'Automation Business Analyst Professional Training',
-    'evals offline reproduzíveis',
-    'Correções de pesquisas externas recebidas em 19/08/2026',
-    'Manter **um único currículo geral**',
+    'LangChain',
+    'evals',
+    'monitoramento/observabilidade',
+    'Manter **um único currículo geral PT-BR e um espelho semântico EN**',
 ])
 if 'Portal** permanece' not in career:
     errors.append('docs/CAREER_EVIDENCE.md: Portal status boundary is missing')
