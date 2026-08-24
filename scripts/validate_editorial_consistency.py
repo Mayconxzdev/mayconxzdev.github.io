@@ -26,13 +26,17 @@ pt_skills = require('competencias/index.html', [
     'low-code/no-code',
     'BPMN',
     'requisitos/stakeholders',
+    'métricas de impacto',
+    'Power Apps',
+    'Power Automate',
     'RAG/grounding',
-    'evals offline',
-    'Power Platform/Make/Zapier/CRM (uso contextual)',
+    'LangChain',
+    'evals',
     'não as apresento no mesmo nível de profundidade do meu trabalho com n8n, Python e APIs',
     'MCP e Microsoft Foundry contam também com validação prática por Microsoft Applied Skills',
     'MCP/Microsoft Foundry (Microsoft Applied Skills)',
     'LangGraph/CrewAI (uso contextual)',
+    'monitoramento/observabilidade',
     'troubleshooting',
     'tratamento de erros',
     'segurança de integrações',
@@ -43,6 +47,7 @@ for phrase in [
     'CONFIABILIDADE, CONFIABILIDADE',
     'SEGURANÇA, SEGURANÇA',
     'Meu núcleo é n8n self-hosted, mas também uso Power Automate',
+    'Power Platform/Make/Zapier/CRM (uso contextual)',
 ]:
     if phrase in pt_skills:
         errors.append(f'competencias/index.html: duplicated or depth-ambiguous phrase: {phrase}')
@@ -52,13 +57,17 @@ en_skills = require('en/skills/index.html', [
     'low-code/no-code',
     'BPMN',
     'requirements/stakeholders',
+    'impact metrics',
+    'Power Apps',
+    'Power Automate',
     'RAG/grounding',
-    'offline evals',
-    'Power Platform/Make/Zapier/CRM (contextual use)',
+    'LangChain',
+    'evals',
     'I do not present them at the same depth as my work with n8n, Python and APIs',
     'MCP and Microsoft Foundry also have hands-on validation through Microsoft Applied Skills',
     'MCP/Microsoft Foundry (Microsoft Applied Skills)',
     'LangGraph/CrewAI (contextual use)',
+    'monitoring/observability',
     'troubleshooting',
     'error handling',
     'integration security',
@@ -69,6 +78,7 @@ for phrase in [
     'RELIABILITY, RELIABILITY',
     'SECURITY, SECURITY',
     'My core platform is self-hosted n8n, but I also use Power Automate',
+    'Power Platform/Make/Zapier/CRM (contextual use)',
 ]:
     if phrase in en_skills:
         errors.append(f'en/skills/index.html: duplicated or depth-ambiguous phrase: {phrase}')
@@ -106,17 +116,20 @@ check_featured(
 )
 
 career = require('docs/CAREER_EVIDENCE.md', [
+    'Atualizado em **24/08/2026**',
     'Ferramentas complementares / contextuais',
     'Competências práticas credencializadas, ainda contextuais',
-    'Vocabulário de mercado — auditoria 19/08/2026',
+    'Vocabulário de mercado — auditoria 24/08/2026',
     'Não reivindicar sem evidência suficiente',
-    'Power Platform',
+    'Power Apps',
+    'Power Automate',
     'Microsoft Foundry',
     'MCP com agentes',
     'Automation Business Analyst Professional Training',
-    'evals offline reproduzíveis',
-    'Correções de pesquisas externas recebidas em 19/08/2026',
-    'Manter **um único currículo geral**',
+    'LangChain',
+    'evals',
+    'monitoramento/observabilidade',
+    'Manter **um único currículo geral PT-BR e um espelho semântico EN**',
 ])
 if 'Portal** permanece' not in career:
     errors.append('docs/CAREER_EVIDENCE.md: Portal status boundary is missing')

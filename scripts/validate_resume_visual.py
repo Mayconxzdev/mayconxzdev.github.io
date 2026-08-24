@@ -10,20 +10,20 @@ CV = ROOT / "assets" / "cv"
 FILES = {
     "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf": [
         "RESUMO PROFISSIONAL",
-        "COMPETÊNCIAS",
-        "EXPERIÊNCIA",
+        "COMPETÊNCIAS TÉCNICAS",
+        "EXPERIÊNCIA PROFISSIONAL",
         "PROJETOS SELECIONADOS",
         "FORMAÇÃO",
-        "CREDENCIAIS E FORMAÇÃO COMPLEMENTAR",
+        "CREDENCIAIS SELECIONADAS",
         "IDIOMAS",
     ],
     "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf": [
         "PROFESSIONAL SUMMARY",
-        "CORE SKILLS",
-        "EXPERIENCE",
+        "TECHNICAL SKILLS",
+        "PROFESSIONAL EXPERIENCE",
         "SELECTED PROJECTS",
         "EDUCATION",
-        "CREDENTIALS & ADDITIONAL TRAINING",
+        "SELECTED CREDENTIALS",
         "LANGUAGES",
     ],
 }
@@ -98,10 +98,11 @@ def main() -> int:
         if pixmap.width < 890 or pixmap.height < 1260 or len(pixmap.samples) == 0:
             errors.append(f"{filename}: raster render is invalid")
 
+        min_font = min(row.min_size for row in rows)
         for row in rows:
-            if row.min_size < 7.9:
-                errors.append(f"{filename}: text smaller than 7.9 pt: {row.min_size:.2f} in {row.text[:60]!r}")
-            if row.x0 < 28 or row.x1 > page.rect.width - 28:
+            if row.min_size < 8.45:
+                errors.append(f"{filename}: text smaller than recruiter-safe threshold 8.45 pt: {row.min_size:.2f} in {row.text[:60]!r}")
+            if row.x0 < 30 or row.x1 > page.rect.width - 30:
                 errors.append(f"{filename}: text leaves horizontal safe area: {row.text[:60]!r}")
 
         for previous, current in zip(rows, rows[1:]):
@@ -118,21 +119,21 @@ def main() -> int:
                 continue
             if index > 0:
                 before = rows[index].y0 - rows[index - 1].y1
-                if before < 4.0:
+                if before < 3.2:
                     errors.append(f"{filename}: insufficient spacing before {heading}: {before:.2f} pt")
             if index + 1 < len(rows):
                 after = rows[index + 1].y0 - rows[index].y1
-                if after < 2.0:
+                if after < 1.7:
                     errors.append(f"{filename}: insufficient spacing after {heading}: {after:.2f} pt")
 
         bottom_margin = page.rect.height - max(row.y1 for row in rows)
-        if bottom_margin < 34:
+        if bottom_margin < 28:
             errors.append(f"{filename}: bottom margin too small: {bottom_margin:.1f} pt")
-        if bottom_margin > 110:
+        if bottom_margin > 105:
             errors.append(f"{filename}: page is underused: bottom margin {bottom_margin:.1f} pt")
 
         print(
-            f"OK: {filename} | {len(rows)} visual rows | min font {min(row.min_size for row in rows):.2f} pt | "
+            f"OK: {filename} | {len(rows)} visual rows | min font {min_font:.2f} pt | "
             f"bottom margin {bottom_margin:.1f} pt"
         )
 

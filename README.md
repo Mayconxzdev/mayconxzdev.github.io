@@ -17,7 +17,7 @@ A vitrine segue uma ordem deliberada, sem repetir a mesma competência em todos 
 | [Proposta Comercial](cases/vesper-propostas/) | documentos/e-mail e redução de 2–4 min para menos de 30 s em propostas simples |
 | [CarreiraPessoal](cases/carreira-pessoal/) | produto Windows em uso, arquitetura full-stack, evidências, QA e IA opcional |
 | [Catálogo Operacional](cases/catalogo-operacional-compras/) | FastAPI, FTS5, integridade de dados, revisão/histórico e uso diário |
-| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/grounding, APIs externas, idempotência e revisão humana |
+| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/LangChain, APIs externas, human-in-the-loop, evals e idempotência |
 
 ## Outros recortes importantes
 
@@ -46,18 +46,27 @@ O portfólio segue regras explícitas para impedir que uma apresentação bonita
 
 O registro editorial usado para essa sincronização está em [`docs/CAREER_EVIDENCE.md`](docs/CAREER_EVIDENCE.md).
 
-## Currículo
+## Currículo geral
 
-O portfólio publica currículos gerais de **uma página** em PT-BR e EN. Eles são gerados por `scripts/generate_resumes_general.py` e validados automaticamente antes do deploy.
+O portfólio publica **um currículo geral de uma página em PT-BR e seu espelho semântico em inglês**. Não existem versões artificiais por vaga: o documento concentra o núcleo transferível que mais se repete em automação, integrações, processos e IA aplicada.
 
 - [Currículo PT-BR](assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf)
 - [Resume EN](assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf)
 
-O currículo geral prioriza experiência, impacto e competências transferíveis. Projetos já demonstrados na experiência profissional não são repetidos desnecessariamente na seção de projetos; essa seção complementa a narrativa com automação robusta, produto/QA, backend/dados e IA aplicada.
+Os PDFs são gerados por `scripts/generate_resumes_general.py` e priorizam:
+
+- **automação, integrações e backend:** n8n, Python, FastAPI, REST/JSON, webhooks, OAuth 2.0, SQL/PostgreSQL, Docker e exposição contextual a Power Apps/Power Automate/Make/Zapier;
+- **processos e entrega:** BPMN, AS-IS/TO-BE, requisitos, UAT, documentação, métricas de impacto, implantação, treinamento e sustentação;
+- **IA aplicada e engenharia:** LLM APIs, agentes, RAG/grounding, LangChain, human-in-the-loop, evals, CI/CD, logs, monitoramento/observabilidade, retries e idempotência;
+- **evidência:** resultados, adoção e estados verificáveis em vez de listas extensas de cursos ou buzzwords.
+
+Projetos já demonstrados na experiência profissional não são repetidos desnecessariamente na seção de projetos; essa seção complementa a narrativa com automação robusta, produto/QA, backend/dados e IA aplicada.
 
 ## Validação
 
-O pipeline do GitHub Pages executa geração e validação dos currículos, checagem de links e rotas, sintaxe JavaScript, smoke de navegador e verificação visual. Os PDFs gerados também são validados para permanecerem em uma página e conterem a narrativa profissional canônica.
+O pipeline do GitHub Pages executa geração e validação dos currículos, checagem de links e rotas, sintaxe JavaScript, smoke de navegador, acessibilidade e verificação visual. Os PDFs precisam permanecer em uma página, textuais/selecionáveis, com contatos ATS-visíveis e clicáveis, e sem fonte abaixo do limite de legibilidade definido pelo projeto.
+
+O deploy também verifica a versão publicada após o GitHub Pages concluir a publicação, reduzindo o risco de o portfólio e os PDFs servirem builds diferentes.
 
 ## Privacidade
 
