@@ -7,20 +7,33 @@ from pypdf import PdfReader
 REQUIRED = {
     'pt': [
         'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES',
+        'COMPETÊNCIAS TÉCNICAS',
         'low-code/no-code',
+        'Power Automate',
         'UAT/homologação',
+        'métricas de impacto',
         'IA generativa/LLMs',
-        'evals offline reproduzíveis',
+        'LangChain',
+        'evals',
+        'monitoramento/observabilidade',
         'Automation Business Analyst Professional Training',
-        'N8N102/N8N103',
+        'N8N102',
+        'N8N103',
     ],
     'en': [
-        'AI, AUTOMATION & INTEGRATIONS ANALYST',
+        'AUTOMATION, AI & INTEGRATIONS ANALYST',
+        'TECHNICAL SKILLS',
         'low-code/no-code',
+        'Power Automate',
+        'UAT',
+        'impact metrics',
         'generative AI/LLMs',
-        'reproducible offline evals',
+        'LangChain',
+        'evals',
+        'monitoring/observability',
         'Automation Business Analyst Professional Training',
-        'N8N102/N8N103',
+        'N8N102',
+        'N8N103',
     ],
 }
 
@@ -31,6 +44,7 @@ FORBIDDEN = {
         '158 nós',
         'CERTIFICAÇÕES',
         'OpenAI/Gemini/Ollama/OpenRouter',
+        '55 certificações',
     ],
     'en': [
         'Automation Business Analyst Associate Training',
@@ -38,6 +52,7 @@ FORBIDDEN = {
         '158 nodes',
         'CERTIFICATIONS',
         'OpenAI/Gemini/Ollama/OpenRouter',
+        '55 certifications',
     ],
 }
 
@@ -58,7 +73,7 @@ def check(lang: str, path: Path) -> None:
     for phrase in FORBIDDEN[lang]:
         if normalized(phrase) in flat:
             raise SystemExit(f'{path.name}: stale/forbidden live resume text found: {phrase!r}')
-    print(f'OK live {lang} resume: one page, current August 2026 content verified.')
+    print(f'OK live {lang} resume: one page, current candidature-ready content verified.')
 
 
 def main() -> None:
