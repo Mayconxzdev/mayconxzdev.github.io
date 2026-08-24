@@ -35,14 +35,14 @@ CONTACT_EN = (
 def styles():
     base = getSampleStyleSheet()
     return {
-        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=18.8, leading=20.0, textColor=BLACK, spaceAfter=1.35*mm),
-        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.8, leading=12.0, textColor=BLACK, spaceAfter=1.1*mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.7, leading=9.9, textColor=GRAY, spaceAfter=2.6*mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.55, leading=10.7, textColor=BLACK, spaceBefore=2.65*mm, spaceAfter=1.15*mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.45, leading=11.15, textColor=BLACK, spaceAfter=1.05*mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.15, leading=10.7, textColor=BLACK, spaceAfter=0.75*mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.45, leading=10.85, textColor=BLACK, spaceAfter=0.55*mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.7, leading=9.8, textColor=GRAY, spaceAfter=0.75*mm),
+        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.6*mm),
+        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.3*mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=11.3, textColor=GRAY, spaceAfter=3.0*mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.8, leading=11.2, textColor=BLACK, spaceBefore=3.5*mm, spaceAfter=2.0*mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.8, leading=12.0, textColor=BLACK, spaceAfter=1.4*mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.5, leading=11.9, textColor=BLACK, spaceAfter=1.0*mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.7, leading=11.5, textColor=BLACK, spaceAfter=0.7*mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=10.8, textColor=GRAY, spaceAfter=0.9*mm),
     }
 
 
@@ -50,7 +50,7 @@ def line(canvas, doc):
     canvas.saveState()
     canvas.setStrokeColor(LIGHT)
     canvas.setLineWidth(0.45)
-    canvas.line(doc.leftMargin, A4[1]-18.0*mm, A4[0]-doc.rightMargin, A4[1]-18.0*mm)
+    canvas.line(doc.leftMargin, A4[1]-18.5*mm, A4[0]-doc.rightMargin, A4[1]-18.5*mm)
     canvas.restoreState()
 
 
@@ -170,10 +170,10 @@ def build(lang='pt'):
     doc = SimpleDocTemplate(
         str(path),
         pagesize=A4,
-        leftMargin=11.5*mm,
-        rightMargin=11.5*mm,
-        topMargin=9.5*mm,
-        bottomMargin=9.5*mm,
+        leftMargin=12*mm,
+        rightMargin=12*mm,
+        topMargin=10.5*mm,
+        bottomMargin=10.5*mm,
         title=name + ' - ' + title,
         author='Maycon Ferreira',
         subject='One-page general resume for automation, applied AI, integrations, internal systems and process roles',
@@ -192,7 +192,7 @@ def build(lang='pt'):
     story.extend([Paragraph(vesper_role, s['role']), Paragraph(vesper_meta, s['meta'])])
     for item in vesper_bullets:
         story.append(bullet(item, s['small']))
-    story.extend([Spacer(1, 1.0*mm), Paragraph(compass_role, s['role']), Paragraph(compass_meta, s['meta'])])
+    story.extend([Spacer(1, 1.2*mm), Paragraph(compass_role, s['role']), Paragraph(compass_meta, s['meta'])])
     for item in compass_bullets:
         story.append(bullet(item, s['small']))
     sec(sections['projects'])
