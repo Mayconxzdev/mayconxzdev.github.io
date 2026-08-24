@@ -37,12 +37,12 @@ def styles():
     return {
         'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.6 * mm),
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.3 * mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=11.3, textColor=GRAY, spaceAfter=3.0 * mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.8, leading=11.2, textColor=BLACK, spaceBefore=3.5 * mm, spaceAfter=2.0 * mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.8, leading=12.0, textColor=BLACK, spaceAfter=1.4 * mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.5, leading=11.9, textColor=BLACK, spaceAfter=1.0 * mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.7, leading=11.5, textColor=BLACK, spaceAfter=0.7 * mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=10.8, textColor=GRAY, spaceAfter=0.9 * mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=11.3, textColor=GRAY, spaceAfter=2.8 * mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.8, leading=11.2, textColor=BLACK, spaceBefore=3.15 * mm, spaceAfter=1.8 * mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.8, leading=12.0, textColor=BLACK, spaceAfter=1.2 * mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.5, leading=11.9, textColor=BLACK, spaceAfter=0.8 * mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.7, leading=11.5, textColor=BLACK, spaceAfter=0.6 * mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=10.8, textColor=GRAY, spaceAfter=0.8 * mm),
     }
 
 
@@ -176,7 +176,7 @@ def build(lang='pt'):
     story.extend([Paragraph(data['vesper_role'], s['role']), Paragraph(data['vesper_meta'], s['meta'])])
     for item in data['vesper_bullets']:
         story.append(bullet(item, s['small']))
-    story.extend([Spacer(1, 1.2 * mm), Paragraph(data['compass_role'], s['role']), Paragraph(data['compass_meta'], s['meta'])])
+    story.extend([Spacer(1, 1.0 * mm), Paragraph(data['compass_role'], s['role']), Paragraph(data['compass_meta'], s['meta'])])
     for item in data['compass_bullets']:
         story.append(bullet(item, s['small']))
     section(data['sections'][3])
