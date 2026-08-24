@@ -164,6 +164,7 @@ patch('en/skills/index.html', [
         'I build projects from the initial need, present demos, capture feedback, install, configure and teach people how to use them. Then I follow errors, impact metrics, monitoring and improvements until the solution is stable in day-to-day use.',
         (
             'I build projects from the initial need, present demos, capture feedback, install, configure and teach people how to use them. Then I follow errors and improvements until the solution is stable in day-to-day use.',
+            'I build projects from the initial need, present demos, record feedback, install, configure and train people to use them. I then monitor errors and improvements until the solution becomes stable in the daily routine.',
         ),
     ),
     (
