@@ -258,9 +258,9 @@ for text, surface in [(home, 'PT home'), (en_home, 'EN home')]:
 
 if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
     errors.append('home pages must expose RAG/grounding as applied AI evidence')
-if 'n8n self-hosted, Python, FastAPI, APIs REST, SQL/PostgreSQL e Docker' not in home:
+if 'n8n e Power Automate, Python/APIs, Power BI/Power Query, SQL/PostgreSQL/Redis' not in home:
     errors.append('PT home core positioning drifted')
-if 'self-hosted n8n, Python, FastAPI, REST APIs, SQL/PostgreSQL and Docker' not in en_home:
+if 'self-hosted n8n and Power Automate, Python/APIs, Power BI/Power Query, SQL/PostgreSQL/Redis' not in en_home:
     errors.append('EN home core positioning drifted')
 if 'carreira-overview.webp' in home or 'carreira-overview.webp' in en_home:
     errors.append('home pages still reference the known corrupt CarreiraPessoal WebP')

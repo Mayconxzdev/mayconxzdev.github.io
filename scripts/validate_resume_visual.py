@@ -100,8 +100,8 @@ def main() -> int:
 
         min_font = min(row.min_size for row in rows)
         for row in rows:
-            if row.min_size < 8.45:
-                errors.append(f"{filename}: text smaller than recruiter-safe threshold 8.45 pt: {row.min_size:.2f} in {row.text[:60]!r}")
+            if row.min_size < 9.2:
+                errors.append(f"{filename}: text smaller than recruiter-safe threshold 9.2 pt: {row.min_size:.2f} in {row.text[:60]!r}")
             if row.x0 < 30 or row.x1 > page.rect.width - 30:
                 errors.append(f"{filename}: text leaves horizontal safe area: {row.text[:60]!r}")
 

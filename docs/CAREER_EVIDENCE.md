@@ -22,6 +22,8 @@ O posicionamento prioriza vagas de **automação e IA aplicada** sem inflar seni
 | HelpDesk | **11 usuários** | uso interno; não inventar redução percentual de tempo | HelpDesk |
 | Manutenção | **40+ ativos** | processo interno digitalizado com checklists/evidências/histórico | case de manutenção |
 | Adoção | **30+ pessoas treinadas ou orientadas** | pessoas alcançadas; não converter em “30 treinamentos” | experiência Grupo Vesper |
+| Instrutor freelancer | **aulas pagas de informática desde out. 2024; rotina atual semanal de ~3h** | públicos de diferentes idades/níveis; não inventar quantidade total de alunos | relato profissional do autor |
+| Dados e BI | **Power BI/Excel/Power Query usados em dashboards e análises para produção, compras e estoque** | uso profissional atual; não inventar número de dashboards/usuários sem nova evidência | experiência Grupo Vesper |
 | Mala Direta | **6 campanhas; base de 1.020 contatos; uma com 900+ destinatários** | produção; 10 mil+ execuções pertencem ao ambiente n8n, não a este projeto | Mala Direta |
 | Mala Direta — arquitetura | **2 workflows; principal com 158 nós; 9 Data Tables** | snapshot sanitizado; evidência detalhada, não necessária no CV | Mala Direta |
 | Catálogo Operacional | **24 categorias; 480+ códigos; uso diário por 3 pessoas** | operação interna atual | Catálogo Operacional |
@@ -42,31 +44,35 @@ O posicionamento prioriza vagas de **automação e IA aplicada** sem inflar seni
 
 ### Núcleo profissional
 
-`n8n self-hosted` · `low-code/no-code` · `Python` · `FastAPI` · backend · `APIs REST` · `JSON` · `webhooks` · `OAuth 2.0` · `SQL` · `PostgreSQL` · `Docker` · `BPMN` · `AS-IS/TO-BE` · levantamento de requisitos · stakeholders · regras de negócio · documentação · testes · `UAT/homologação` · métricas de impacto · implantação · treinamento · sustentação/melhoria contínua
+`n8n self-hosted` · `Power Automate Cloud/Desktop` · `Python` · `FastAPI` · `APIs REST/JSON` · `webhooks` · `OAuth 2.0` · `WhatsApp Cloud API` · `SQL` · `PostgreSQL` · `Redis` · `Docker` · `Power BI` · `DAX` · `Power Query` · `Excel/Google Sheets` · `VBA` · `BPMN` · `AS-IS/TO-BE` · levantamento de requisitos · stakeholders · testes/UAT · implantação · treinamento · sustentação/melhoria contínua
 
-O termo **low-code/no-code** descreve a camada de orquestração visual já comprovada por n8n e não rebaixa a profundidade em Python/APIs. **Logs, monitoramento/observabilidade, troubleshooting, tratamento de erros, retries, idempotência, backups e auditoria** podem aparecer quando sustentados pela evidência do projeto.
+n8n, Power Automate e Python/APIs formam o núcleo de automação. Power BI/Power Query/Excel/VBA formam o núcleo de dados/BI. **Logs, monitoramento/observabilidade, troubleshooting, tratamento de erros, retries, idempotência, backups e auditoria** podem aparecer quando sustentados pela evidência do projeto.
 
 ### Ferramentas complementares / contextuais
 
-`Power Apps` · `Power Automate` · `Make` · `Zapier`
+`Power Apps` · `Make` · `Zapier` · `Selenium` · `Playwright` · `Puppeteer` · `PyAutoGUI` · `UiPath`
 
-Podem aparecer no currículo e páginas de competências para explicar contexto e melhorar clareza de ATS, **sempre diferenciadas do núcleo profissional**. Power Apps é capacidade validada em laboratório; Power Automate, Make e Zapier permanecem contextuais quando não há evidência equivalente de produção.
+Podem aparecer no portfólio/LinkedIn quando relevantes. No currículo principal, entram somente quando a vaga justificar ou quando houver espaço sem competir com o núcleo. Power Apps possui validação prática por Microsoft Applied Skills; as ferramentas de automação web/RPA foram relatadas como já utilizadas, mas não recebem claim de produção específico sem evidência pública adicional.
 
 Não usar `CRM` isoladamente como skill do currículo geral: é amplo demais sem produto/plataforma específica. A palavra pode aparecer dentro de cases reais quando a integração correspondente exigir.
 
-### Competências práticas credencializadas, ainda contextuais
+### Competências práticas e credencializadas
 
 `Microsoft Foundry` · `MCP com agentes` · `Power Apps Canvas Apps` · `Make AI Agent Builder` · `UiPath Automation Business Analysis`
 
-As Microsoft Applied Skills validam tarefas práticas em laboratório. Make AI Agent Builder inclui assessment. UiPath Automation Business Analyst Professional Training valida formação estruturada no ciclo de análise/implementação. Isso permite mencionar **aprendizagem prática credencializada**, mas não produção equivalente ao núcleo.
+Além das Microsoft Applied Skills, o autor relata prática própria com **servidor MCP, cliente MCP, tools e integração com agentes**. MCP pode aparecer como competência prática; não atribuir escala/produção específica sem evidência de projeto. Make/UiPath/Power Apps continuam úteis como ferramentas complementares quando não houver case profissional equivalente.
 
 ### IA aplicada
 
-No currículo principal podem aparecer, porque existe base verificável: **IA generativa/LLMs · APIs de LLM · agentes de IA · RAG/grounding · LangChain · human-in-the-loop · evals**.
+No currículo principal podem aparecer, porque existe base verificável ou prática declarada: **IA generativa/LLMs · APIs de LLM · Prompt Engineering · agentes de IA · RAG/grounding · LangChain · MCP · human-in-the-loop · evals**.
 
-Postagem Redes fornece evidência pública de grounding com LangChain/Supabase/n8n, revisão humana, guardrails e evals sintéticos/reproduzíveis. **MCP** possui validação prática por Microsoft Applied Skills e permanece contextual enquanto não houver evidência de produção equivalente. **LangGraph e CrewAI** ficam como estudo/protótipo e não entram no currículo geral como profundidade profissional.
+Postagem Redes fornece evidência pública de grounding com LangChain/Supabase/n8n, revisão humana, guardrails, Prompt Engineering e evals sintéticos/reproduzíveis. O autor também relata uso de **Supabase e Qdrant** em RAG e prática completa de MCP. **LangGraph e CrewAI** ficam como estudo/protótipo e não entram no currículo principal como profundidade profissional.
 
-Não afirmar sem evidência que o RAG atual usa `pgvector`, Pinecone, Qdrant, reranker customizado, multi-agent supervisor, Redis ou filas distribuídas.
+Não afirmar sem evidência que o RAG atual usa `pgvector`, Pinecone, reranker customizado ou multi-agent supervisor. `Qdrant` e `Redis` podem aparecer como competências práticas, sem atribuir produção/escala específica quando não houver case público.
+
+### Dados, BI e ensino
+
+O autor relata uso profissional e ensino pago desde out. 2024 de **Power BI, DAX, Power Query, Excel/Google Sheets e VBA**, além de Word, PowerPoint, Outlook, Windows e fundamentos de Linux. Na Vesper, Power BI/Excel/Power Query apoiam dashboards e análises de produção, compras e estoque. O currículo pode apresentar a experiência como **Instrutor de Informática (Freelancer)** em paralelo à experiência principal.
 
 ### Confiabilidade e segurança
 
@@ -106,10 +112,10 @@ Regras de release:
 - headline PT: **ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs**;
 - headline EN: **AUTOMATION & AI ANALYST | n8n · Python · APIs**;
 - seções explícitas `COMPETÊNCIAS TÉCNICAS / TECHNICAL SKILLS` e `EXPERIÊNCIA PROFISSIONAL / PROFESSIONAL EXPERIENCE`;
-- três projetos complementares, sem repetir a experiência;
+- dois projetos públicos de maior aderência, sem repetir a experiência;
 - nenhuma soft-skill list, foto, barra de progresso, tabela visual ou buzzword sem prova;
 - validação automática de uma página, texto extraído, links, renderização, área segura e legibilidade;
-- fonte do conteúdo principal deve ficar em torno de 9,5 pt ou acima; metadados/contato não podem cair abaixo do limite visual de release;
+- fonte do conteúdo principal deve ficar em torno de 10 pt; metadados/contato devem permanecer legíveis e nunca forçar compressão desnecessária;
 - cortar conteúdo secundário antes de reduzir fonte.
 
 ## Vocabulário de mercado — auditoria 24/08/2026
@@ -125,7 +131,7 @@ Famílias de busca relevantes, sem alterar o cargo formal no Grupo Vesper:
 - Automation Business Analyst / Business Process Automation Analyst;
 - Desenvolvedor de Automação e Integrações — Júnior / Pleno inicial.
 
-Sinais transversais que devem estar cobertos pelo documento geral quando sustentados por evidência: **n8n/workflow automation, low-code/no-code, Python, FastAPI/backend, APIs REST, JSON, webhooks, OAuth, SQL/PostgreSQL, BPMN/AS-IS/TO-BE, requisitos/stakeholders, documentação, UAT, métricas de impacto, IA generativa/LLMs, agentes, RAG/grounding, LangChain, evals, Git/CI-CD, logs, monitoramento/observabilidade, retries, idempotência e segurança de integrações**.
+Sinais transversais que devem estar cobertos pelo documento geral quando sustentados por evidência: **n8n/workflow automation, Power Automate, Python, FastAPI, APIs REST/JSON, webhooks, OAuth, WhatsApp API, SQL/PostgreSQL, Redis, Power BI/Power Query, Excel/VBA, BPMN/AS-IS/TO-BE, requisitos/stakeholders, UAT, IA generativa/LLMs, Prompt Engineering, agentes, RAG/grounding, LangChain, MCP, evals, Git/CI-CD, logs, retries e idempotência**.
 
 Empresas maiores tendem a adicionar governança, compliance, segurança, observabilidade e ferramentas enterprise; startups tendem a enfatizar autonomia, ponta a ponta, APIs, n8n/Make, Python/JS, agentes e troubleshooting. O currículo geral cobre o **núcleo comum**, sem copiar a cauda específica de cada vaga.
 
@@ -139,15 +145,14 @@ Mesmo quando aparecerem em vagas, não adicionar ao currículo geral ou elevar a
 - Camunda e Airflow;
 - SOAP/XML e middleware enterprise;
 - Kafka, RabbitMQ, ActiveMQ ou mensageria distribuída em produção;
-- Redis/queue mode/workers distribuídos sem evidência;
 - SLI/SLO, OpenTelemetry, Datadog ou Grafana como observabilidade enterprise sem evidência;
 - SAP/OIC/OFS/TOTVS ou ERP específico como domínio;
 - multi-agent supervisor/arquitetura multiagente em produção;
-- `pgvector`, Pinecone, Qdrant, Weaviate ou outro vector DB específico sem evidência direta;
+- `pgvector`, Pinecone, Weaviate ou outro vector DB específico sem evidência direta;
 - experiência profissional de desenvolvimento/produção em UiPath;
 - título **UiPath Certified Automation Business Analyst Professional** sem aprovação no exame separado;
 - experiência enterprise em Azure/GCP;
-- Microsoft Foundry/MCP como profundidade de produção equivalente ao núcleo;
+- Microsoft Foundry como profundidade de produção equivalente ao núcleo sem case específico;
 - LangGraph/CrewAI como profundidade equivalente ao núcleo;
 - senioridade “Pleno”, “Sênior”, “Especialista”, “Engineer” ou “Consultor” como cargo atual sem base formal.
 
@@ -159,11 +164,10 @@ Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar co
 
 Manter **um único currículo principal PT-BR e um espelho semântico EN**, direcionados a automação e IA aplicada. A experiência profissional aparece antes da lista de competências para maximizar sinal de entrega real.
 
-A experiência profissional já carrega n8n, Proposta Comercial, Produção/Manutenção, HelpDesk e adoção. A seção de projetos complementa:
+A experiência profissional passa a carregar n8n/Power Automate, Proposta Comercial, sistemas internos, BI/dados, adoção e o trabalho paralelo como instrutor. A seção de projetos complementa:
 
 1. Mala Direta — automação n8n, filas e confiabilidade em produção;
-2. Postagem Redes — IA aplicada, RAG/LangChain, human-in-the-loop, evals e APIs externas;
-3. CarreiraPessoal — produto, arquitetura, evidências e QA.
+2. Postagem Redes — IA aplicada, Prompt Engineering, RAG/LangChain, human-in-the-loop, evals e APIs externas.
 
 Mala Direta prioriza escala operacional, fila/deduplicação/cancelamento/retry/auditoria; a contagem de 158 nós fica no portfólio. Postagem Redes prioriza RAG/LangChain, human-in-the-loop, evals, idempotência e isolamento de falhas.
 
