@@ -165,17 +165,23 @@ jobs:
             CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
             SOCIAL_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/social/og-cover.png?build=${GITHUB_SHA}" | head -n 1 || true)"
 
-            rm -f /tmp/resume-pt.pdf /tmp/resume-en.pdf
+            rm -f /tmp/resume-pt.pdf /tmp/resume-en.pdf /tmp/resume-ai.pdf /tmp/resume-bi.pdf
             curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
               "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
               -o /tmp/resume-pt.pdf || true
             curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
               "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
               -o /tmp/resume-en.pdf || true
+            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
+              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
+              -o /tmp/resume-ai.pdf || true
+            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
+              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
+              -o /tmp/resume-bi.pdf || true
 
             RESUMES_OK=false
-            if [[ -s /tmp/resume-pt.pdf && -s /tmp/resume-en.pdf ]]; then
-              if python scripts/verify_live_resumes.py /tmp/resume-pt.pdf /tmp/resume-en.pdf; then
+            if [[ -s /tmp/resume-pt.pdf && -s /tmp/resume-en.pdf && -s /tmp/resume-ai.pdf && -s /tmp/resume-bi.pdf ]]; then
+              if python scripts/verify_live_resumes.py /tmp/resume-pt.pdf /tmp/resume-en.pdf /tmp/resume-ai.pdf /tmp/resume-bi.pdf; then
                 RESUMES_OK=true
               fi
             fi
@@ -200,7 +206,7 @@ jobs:
               && grep -Fq "200" <<<"$CAREER_IMAGE" \
               && grep -Fq "200" <<<"$SOCIAL_IMAGE" \
               && [[ "$RESUMES_OK" == true ]]; then
-              echo "Published Pages SHA, recruiter surfaces and both live resumes match this exact build."
+              echo "Published Pages SHA, recruiter surfaces and all four live resumes match this exact build."
               exit 0
             fi
             echo "Published release is not fully current yet (attempt ${attempt}/36; live build=${BUILD_SHA:-missing}; expected=${GITHUB_SHA})."
