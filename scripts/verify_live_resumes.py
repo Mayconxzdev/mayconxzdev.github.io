@@ -6,7 +6,7 @@ from pypdf import PdfReader
 
 REQUIRED = {
     'pt': [
-        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs',
+        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
         'Power Automate',
         'Power BI',
         'Power Query',
@@ -17,13 +17,13 @@ REQUIRED = {
         'MCP',
         'INSTRUTOR DE INFORMÁTICA (FREELANCER)',
         'Mala Direta',
-        'Postagem Redes',
+        'HelpDesk & IT Operations',
         'Automation Business Analyst Professional Training',
         'N8N102',
         'N8N103',
     ],
     'en': [
-        'AUTOMATION & AI ANALYST | n8n · Python · APIs',
+        'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
         'Power Automate',
         'Power BI',
         'Power Query',
