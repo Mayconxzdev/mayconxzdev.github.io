@@ -107,12 +107,12 @@ def check_featured(relative: str, expected_titles: list[str], architecture_phras
 check_featured(
     'index.html',
     ['Mala Direta', 'Postagem Redes', 'Vesper Propostas', 'CarreiraPessoal', 'Produção Operacional', 'Catálogo Operacional de Compras'],
-    'arquitetura de sistemas',
+    'Projetos que provam automação, IA e entrega real.',
 )
 check_featured(
     'en/index.html',
     ['Mala Direta', 'Postagem Redes', 'Vesper Propostas', 'CarreiraPessoal', 'Production Operations', 'Operational Procurement Catalog'],
-    'systems architecture',
+    'Projects proving automation, AI and real delivery.',
 )
 
 career = require('docs/CAREER_EVIDENCE.md', [
