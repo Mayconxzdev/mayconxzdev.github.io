@@ -21,7 +21,8 @@ REQUIRED = {
     'en': [
         'AUTOMATION & AI ANALYST | n8n · Python · APIs',
         'TECHNICAL SKILLS',
-        'low-code/no-code',
+        'REST/JSON APIs',
+        'SMTP/IMAP',
         'Power Automate',
         'testing/UAT',
         'generative AI/LLMs',
