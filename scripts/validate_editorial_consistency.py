@@ -81,7 +81,7 @@ for phrase in [
 
 
 def check_featured(relative: str, expected_titles: list[str], architecture_phrase: str):
-    text = require(relative, ['data-project="carreira-pessoal"', architecture_phrase])
+    text = require(relative, [architecture_phrase])
     start = text.find('<section class="featured" id="systems">')
     end = text.find('<section class="experience" id="experience">', start)
     if start < 0 or end < 0:
@@ -102,13 +102,13 @@ def check_featured(relative: str, expected_titles: list[str], architecture_phras
 
 check_featured(
     'index.html',
-    ['Mala Direta', 'Postagem Redes', 'Vesper Propostas', 'CarreiraPessoal', 'Produção Operacional', 'Catálogo Operacional de Compras'],
-    'Projetos que provam automação, IA e entrega real.',
+    ['Mala Direta', 'Vesper Propostas', 'HelpDesk & IT Operations', 'Postagem Redes'],
+    'Quatro provas rápidas de automação, IA e entrega real.',
 )
 check_featured(
     'en/index.html',
-    ['Mala Direta', 'Postagem Redes', 'Vesper Propostas', 'CarreiraPessoal', 'Production Operations', 'Operational Procurement Catalog'],
-    'Projects proving automation, AI and real delivery.',
+    ['Mala Direta', 'Vesper Propostas', 'HelpDesk & IT Operations', 'Postagem Redes'],
+    'Four fast proofs of automation, AI and real delivery.',
 )
 
 career = require('docs/CAREER_EVIDENCE.md', [
