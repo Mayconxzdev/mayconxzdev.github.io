@@ -106,12 +106,12 @@ def check_featured(relative: str, expected_titles: list[str], architecture_phras
 
 check_featured(
     'index.html',
-    ['Mala Direta', 'Produção Operacional', 'Vesper Propostas', 'CarreiraPessoal', 'Catálogo Operacional de Compras', 'Postagem Redes'],
+    ['Mala Direta', 'Postagem Redes', 'Vesper Propostas', 'CarreiraPessoal', 'Produção Operacional', 'Catálogo Operacional de Compras'],
     'arquitetura de sistemas',
 )
 check_featured(
     'en/index.html',
-    ['Mala Direta', 'Production Operations', 'Vesper Propostas', 'CarreiraPessoal', 'Operational Procurement Catalog', 'Postagem Redes'],
+    ['Mala Direta', 'Postagem Redes', 'Vesper Propostas', 'CarreiraPessoal', 'Production Operations', 'Operational Procurement Catalog'],
     'systems architecture',
 )
 
@@ -129,7 +129,7 @@ career = require('docs/CAREER_EVIDENCE.md', [
     'LangChain',
     'evals',
     'monitoramento/observabilidade',
-    'Manter **um único currículo geral PT-BR e um espelho semântico EN**',
+    'Manter **um único currículo principal PT-BR e um espelho semântico EN**, direcionados a automação e IA aplicada.',
 ])
 if 'Portal** permanece' not in career:
     errors.append('docs/CAREER_EVIDENCE.md: Portal status boundary is missing')
