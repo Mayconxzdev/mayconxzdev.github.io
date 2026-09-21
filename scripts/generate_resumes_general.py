@@ -39,10 +39,10 @@ def styles():
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.3 * mm),
         'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=9.4, leading=11.5, textColor=GRAY, spaceAfter=2.6 * mm),
         'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.1, leading=11.6, textColor=BLACK, spaceBefore=2.75 * mm, spaceAfter=1.55 * mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.9, leading=11.5, textColor=BLACK, spaceAfter=1.2 * mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.9, leading=11.6, textColor=BLACK, spaceAfter=0.8 * mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.0, leading=11.8, textColor=BLACK, spaceAfter=0.6 * mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=9.3, leading=10.5, textColor=GRAY, spaceAfter=0.8 * mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.9, leading=12.2, textColor=BLACK, spaceAfter=1.2 * mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.9, leading=12.2, textColor=BLACK, spaceAfter=0.8 * mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.0, leading=12.4, textColor=BLACK, spaceAfter=0.6 * mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=9.3, leading=11.1, textColor=GRAY, spaceAfter=0.8 * mm),
     }
 
 
