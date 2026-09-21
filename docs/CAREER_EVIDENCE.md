@@ -6,11 +6,11 @@ O inventário e a classificação de cursos, badges e credenciais ficam em [`CRE
 
 ## Posicionamento
 
-**Analista de Automação, IA e Integrações**
+**Analista de Automação e IA**
 
 Narrativa central: entender o processo e as regras, conversar com usuários/stakeholders, construir a solução adequada, integrar sistemas, testar/UAT/homologar, implantar, treinar, monitorar/observar falhas, medir impacto e sustentar a operação.
 
-O posicionamento é deliberadamente amplo sem inflar senioridade. Ele cobre o núcleo que se repete nas vagas de agosto/2026: automação de processos, integrações/APIs, sistemas internos, processos/BPMN e IA aplicada/agentes.
+O posicionamento prioriza vagas de **automação e IA aplicada** sem inflar senioridade. Integrações/APIs, sistemas internos e processos/BPMN aparecem como competências que sustentam esse foco, não como um terceiro posicionamento concorrente.
 
 ## Claims quantitativos aprovados
 
@@ -62,7 +62,7 @@ As Microsoft Applied Skills validam tarefas práticas em laboratório. Make AI A
 
 ### IA aplicada
 
-No currículo geral podem aparecer, porque existe base verificável: **IA generativa/LLMs · APIs de LLM · agentes de IA · RAG/grounding · LangChain · human-in-the-loop · evals**.
+No currículo principal podem aparecer, porque existe base verificável: **IA generativa/LLMs · APIs de LLM · agentes de IA · RAG/grounding · LangChain · human-in-the-loop · evals**.
 
 Postagem Redes fornece evidência pública de grounding com LangChain/Supabase/n8n, revisão humana, guardrails e evals sintéticos/reproduzíveis. **MCP** possui validação prática por Microsoft Applied Skills e permanece contextual enquanto não houver evidência de produção equivalente. **LangGraph e CrewAI** ficam como estudo/protótipo e não entram no currículo geral como profundidade profissional.
 
@@ -72,17 +72,17 @@ Não afirmar sem evidência que o RAG atual usa `pgvector`, Pinecone, Qdrant, re
 
 Valorizar quando sustentado pelo projeto: rastreabilidade, auditoria, logs, monitoramento/observabilidade, troubleshooting, tratamento de erros, retries, idempotência, alertas, backups, gestão de segredos, sanitização, revisão humana, read-only, hashes e isolamento de falhas.
 
-No currículo geral, a forma prioritária é: **logs · monitoramento/observabilidade · tratamento de erros · retries · idempotência · segurança de integrações/segredos**. Detalhes como alertas, backups, hashes e filas ficam na experiência/cases quando agregarem evidência.
+No currículo principal, a forma prioritária é: **logs/monitoramento · tratamento de erros · retries · idempotência**. Detalhes como alertas, backups, hashes, filas e gestão de segredos ficam na experiência/cases quando agregarem evidência.
 
 ### Cloud e engenharia de software
 
 A experiência Compass comprova prática com **AWS S3, Lambda, Glue/PySpark, Athena e QuickSight**, além de Python/SQL/Docker/ETL/Data Lake. Não classificar cloud como ausente; também não elevar isso a experiência enterprise atual em AWS.
 
-FastAPI tem evidência independente em **Catálogo Operacional** e **CarreiraPessoal**, portanto `backend` é um descritor defensável no currículo geral.
+FastAPI tem evidência independente em **Catálogo Operacional** e **CarreiraPessoal**; no currículo principal, porém, ele aparece como suporte técnico à automação e IA, sem disputar o posicionamento principal.
 
 ## Formação e credenciais resumíveis
 
-No currículo geral de uma página, priorizar somente a camada de maior sinal e cortar antes de reduzir legibilidade:
+No currículo principal de uma página, priorizar somente a camada de maior sinal e cortar antes de reduzir legibilidade:
 
 - Microsoft Applied Skills — Foundry Agents, MCP Tools with Agents e Canvas Apps with Power Apps;
 - UiPath Academy — **Automation Business Analyst Professional Training**, como training/badge, não UiPath Certified Professional;
@@ -103,10 +103,10 @@ Regras de release:
 - uma coluna;
 - PDF textual/selecionável;
 - PT-BR e EN como espelhos semânticos;
-- headline PT: **ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES**;
-- headline EN: **AUTOMATION, AI & INTEGRATIONS ANALYST**;
+- headline PT: **ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs**;
+- headline EN: **AUTOMATION & AI ANALYST | n8n · Python · APIs**;
 - seções explícitas `COMPETÊNCIAS TÉCNICAS / TECHNICAL SKILLS` e `EXPERIÊNCIA PROFISSIONAL / PROFESSIONAL EXPERIENCE`;
-- quatro projetos complementares, sem repetir a experiência;
+- três projetos complementares, sem repetir a experiência;
 - nenhuma soft-skill list, foto, barra de progresso, tabela visual ou buzzword sem prova;
 - validação automática de uma página, texto extraído, links, renderização, área segura e legibilidade;
 - fonte do conteúdo principal deve ficar em torno de 9,5 pt ou acima; metadados/contato não podem cair abaixo do limite visual de release;
@@ -155,27 +155,26 @@ Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar co
 
 ## Curadoria por superfície
 
-### Currículo geral — uma página
+### Currículo principal — uma página
 
-Manter **um único currículo geral PT-BR e um espelho semântico EN**. Não criar versões A/B/C por família de vaga.
+Manter **um único currículo principal PT-BR e um espelho semântico EN**, direcionados a automação e IA aplicada. A experiência profissional aparece antes da lista de competências para maximizar sinal de entrega real.
 
 A experiência profissional já carrega n8n, Proposta Comercial, Produção/Manutenção, HelpDesk e adoção. A seção de projetos complementa:
 
-1. Mala Direta — automação/n8n e confiabilidade;
-2. CarreiraPessoal — produto, arquitetura, evidências e QA;
-3. Catálogo Operacional — backend, busca e integridade de dados;
-4. Postagem Redes — IA aplicada, RAG/LangChain, human-in-the-loop, evals e APIs externas.
+1. Mala Direta — automação n8n, filas e confiabilidade em produção;
+2. Postagem Redes — IA aplicada, RAG/LangChain, human-in-the-loop, evals e APIs externas;
+3. CarreiraPessoal — produto, arquitetura, evidências e QA.
 
 Mala Direta prioriza escala operacional, fila/deduplicação/cancelamento/retry/auditoria; a contagem de 158 nós fica no portfólio. Postagem Redes prioriza RAG/LangChain, human-in-the-loop, evals, idempotência e isolamento de falhas.
 
 ### Portfólio — projetos principais
 
 1. Mala Direta;
-2. Produção Operacional;
+2. Postagem Redes;
 3. Vesper Propostas;
 4. CarreiraPessoal;
-5. Catálogo Operacional;
-6. Postagem Redes.
+5. Produção Operacional;
+6. Catálogo Operacional.
 
 O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. No mobile, seis projetos principais ficam visíveis; o arquivo secundário pode usar progressive disclosure desde que busca/filtros revelem todo o conjunto. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
 
@@ -184,10 +183,10 @@ O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fo
 O README do perfil deve conduzir primeiro a cinco projetos:
 
 1. MalaDireta;
-2. ProducaoOperacional;
+2. PostagemRedes;
 3. CarreiraPessoal;
-4. CatalogoOperacional;
-5. PostagemRedes.
+4. ProducaoOperacional;
+5. CatalogoOperacional.
 
 HelpDesk é a sexta opção natural para pin. O README deve diferenciar **núcleo profissional**, **ferramentas contextuais** e **credenciais**. A versão inglesa permanece dedicada.
 
