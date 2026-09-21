@@ -127,7 +127,7 @@ career = require('docs/CAREER_EVIDENCE.md', [
     'Power BI',
     'Redis',
     'Prompt Engineering',
-    'Manter **um único currículo principal PT-BR e um espelho semântico EN**, direcionados a automação e IA aplicada.',
+    'Manter **um currículo-base PT-BR**, duas variações direcionadas (IA/agentes e Power Platform/BI) e um espelho semântico EN do currículo-base.',
 ])
 if 'Portal** permanece' not in career:
     errors.append('docs/CAREER_EVIDENCE.md: Portal status boundary is missing')
