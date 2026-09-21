@@ -13,11 +13,11 @@ A vitrine segue uma ordem deliberada, sem repetir a mesma competência em todos 
 | Projeto | Principal evidência |
 | --- | --- |
 | [Mala Direta](cases/mala-direta/) | n8n em produção, filas, deduplicação, retry, cancelamento e auditoria |
-| [Produção Operacional](cases/producao-operacional/) | implantação em 10+ PCs + 1 TV, apoiando 20+ profissionais em 9 setores |
+| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/LangChain, APIs externas, human-in-the-loop, evals e idempotência |
 | [Proposta Comercial](cases/vesper-propostas/) | documentos/e-mail e redução de 2–4 min para menos de 30 s em propostas simples |
 | [CarreiraPessoal](cases/carreira-pessoal/) | produto Windows em uso, arquitetura full-stack, evidências, QA e IA opcional |
+| [Produção Operacional](cases/producao-operacional/) | implantação em 10+ PCs + 1 TV, apoiando 20+ profissionais em 9 setores |
 | [Catálogo Operacional](cases/catalogo-operacional-compras/) | FastAPI, FTS5, integridade de dados, revisão/histórico e uso diário |
-| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/LangChain, APIs externas, human-in-the-loop, evals e idempotência |
 
 ## Outros recortes importantes
 
