@@ -34,7 +34,7 @@ REQUIRED = {
         'PostgreSQL',
         'Docker',
         'Prompt Engineering',
-        'agentes de IA',
+        'agentes',
         'RAG/grounding',
         'LangChain',
         'MCP',
