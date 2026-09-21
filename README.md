@@ -1,6 +1,6 @@
 # Portfólio — Maycon Ferreira
 
-Código-fonte do meu portfólio profissional como **Analista de Automação, IA e Integrações**.
+Código-fonte do meu portfólio profissional como **Analista de Automação e IA**, com integrações e sistemas internos como parte do núcleo técnico.
 
 O site é organizado para responder rapidamente a três perguntas: **qual problema eu resolvi, qual foi o resultado e qual evidência existe**. Em vez de exibir o maior número possível de tecnologias, cada case prova uma parte diferente da minha atuação: processo, automação, integrações, implantação, dados, IA aplicada, confiabilidade e produto.
 
@@ -46,21 +46,21 @@ O portfólio segue regras explícitas para impedir que uma apresentação bonita
 
 O registro editorial usado para essa sincronização está em [`docs/CAREER_EVIDENCE.md`](docs/CAREER_EVIDENCE.md).
 
-## Currículo geral
+## Currículo principal — Automação e IA
 
-O portfólio publica **um currículo geral de uma página em PT-BR e seu espelho semântico em inglês**. Não existem versões artificiais por vaga: o documento concentra o núcleo transferível que mais se repete em automação, integrações, processos e IA aplicada.
+O portfólio publica **um currículo principal de uma página em PT-BR e seu espelho semântico em inglês**, direcionado a vagas de automação e IA aplicada. O documento mantém somente competências sustentadas por evidência e prioriza experiência real, resultados e projetos alinhados a esse foco.
 
 - [Currículo PT-BR](assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf)
 - [Resume EN](assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf)
 
 Os PDFs são gerados por `scripts/generate_resumes_general.py` e priorizam:
 
-- **automação, integrações e backend:** n8n, Python, FastAPI, REST/JSON, webhooks, OAuth 2.0, SQL/PostgreSQL, Docker e exposição contextual a Power Apps/Power Automate/Make/Zapier;
-- **processos e entrega:** BPMN, AS-IS/TO-BE, requisitos, UAT, documentação, métricas de impacto, implantação, treinamento e sustentação;
-- **IA aplicada e engenharia:** LLM APIs, agentes, RAG/grounding, LangChain, human-in-the-loop, evals, CI/CD, logs, monitoramento/observabilidade, retries e idempotência;
-- **evidência:** resultados, adoção e estados verificáveis em vez de listas extensas de cursos ou buzzwords.
+- **automação e integrações:** n8n, Python, FastAPI, REST/JSON, webhooks, OAuth 2.0, SQL/PostgreSQL, Docker e SMTP/IMAP;
+- **IA aplicada:** LLM APIs, agentes, RAG/grounding, LangChain, human-in-the-loop e evals;
+- **processos e confiabilidade:** BPMN, AS-IS/TO-BE, requisitos, UAT, implantação, logs/monitoramento, retries e idempotência;
+- **evidência:** resultados, adoção e estados verificáveis antes de listas de ferramentas.
 
-Projetos já demonstrados na experiência profissional não são repetidos desnecessariamente na seção de projetos; essa seção complementa a narrativa com automação robusta, produto/QA, backend/dados e IA aplicada.
+Projetos já demonstrados na experiência profissional não são repetidos desnecessariamente. A seção de projetos complementa a narrativa com automação n8n robusta, IA aplicada/RAG e engenharia de produto/QA.
 
 ## Validação
 
@@ -75,5 +75,5 @@ Quando um case nasceu de um problema corporativo, publico somente o que pode ser
 ## Contato
 
 **Maycon Ferreira**  
-Analista de Automação, IA e Integrações  
+Analista de Automação e IA  
 [LinkedIn](https://www.linkedin.com/in/maycon-ferreira-7bb870231/) · [GitHub](https://github.com/Mayconxzdev) · [Portfólio](https://mayconxzdev.github.io/)

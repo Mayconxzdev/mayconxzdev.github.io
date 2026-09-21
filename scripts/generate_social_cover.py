@@ -47,7 +47,7 @@ draw.line((split, 55, split, 535), fill=LINE, width=1)
 draw.text((55, 78), "AUTOMAÇÃO · IA APLICADA · INTEGRAÇÕES · 2026", font=mono, fill=ORANGE)
 draw.text((55, 145), "MAYCON", font=name_font, fill=BLACK)
 draw.text((55, 225), "FERREIRA", font=name_font, fill=BLACK)
-draw.text((55, 340), "ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES", font=title_font, fill=BLACK)
+draw.text((55, 340), "ANALISTA DE AUTOMAÇÃO E IA", font=title_font, fill=BLACK)
 draw.text((55, 388), "n8n · Python · FastAPI · APIs REST · RAG/grounding", font=tech_font, fill=BLUE)
 
 # End-to-end delivery narrative.

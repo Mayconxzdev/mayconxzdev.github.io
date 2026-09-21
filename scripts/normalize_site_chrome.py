@@ -80,7 +80,7 @@ def global_header(english: bool, lang_href: str) -> str:
         theme_label = "Switch to dark theme"
         sr_theme = "Toggle theme"
         brand_home = "/en/"
-        brand_subtitle = "Automation · AI · Integrations"
+        brand_subtitle = "Automation · Applied AI"
     else:
         labels = [
             ("/#overview", "Visão geral"),
@@ -97,7 +97,7 @@ def global_header(english: bool, lang_href: str) -> str:
         theme_label = "Ativar tema escuro"
         sr_theme = "Alternar tema"
         brand_home = "/"
-        brand_subtitle = "Automação · IA · Integrações"
+        brand_subtitle = "Automação · IA aplicada"
 
     links = "".join(f'<a href="{href}">{label}</a>' for href, label in labels)
     return (

@@ -37,8 +37,8 @@ def styles():
     return {
         'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.6 * mm),
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.3 * mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=11.3, textColor=GRAY, spaceAfter=2.8 * mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.8, leading=11.2, textColor=BLACK, spaceBefore=3.15 * mm, spaceAfter=1.8 * mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=8.9, leading=11.3, textColor=GRAY, spaceAfter=3.4 * mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.8, leading=11.2, textColor=BLACK, spaceBefore=3.75 * mm, spaceAfter=2.05 * mm),
         'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.8, leading=12.0, textColor=BLACK, spaceAfter=1.2 * mm),
         'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.5, leading=11.9, textColor=BLACK, spaceAfter=0.8 * mm),
         'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=9.7, leading=11.5, textColor=BLACK, spaceAfter=0.6 * mm),
@@ -62,21 +62,22 @@ def content(lang):
     if lang == 'pt':
         return {
             'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
-            'title': 'ANALISTA DE AUTOMAÇÃO, IA E INTEGRAÇÕES',
+            'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs',
             'contact': CONTACT_PT,
-            'sections': ['RESUMO PROFISSIONAL', 'COMPETÊNCIAS TÉCNICAS', 'EXPERIÊNCIA PROFISSIONAL', 'PROJETOS SELECIONADOS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
+            'sections': ['RESUMO PROFISSIONAL', 'EXPERIÊNCIA PROFISSIONAL', 'COMPETÊNCIAS TÉCNICAS', 'PROJETOS SELECIONADOS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
             'summary': (
-                'Analista de Automação, IA e Integrações com atuação ponta a ponta em automação de processos, integrações, APIs e sistemas internos. '
-                'Administro ambiente n8n self-hosted com 10 mil+ execuções de workflows em produção e transformo necessidades operacionais em soluções com '
-                'Python, FastAPI, APIs REST, SQL/PostgreSQL e IA aplicada, do mapeamento BPMN/AS-IS/TO-BE e requisitos à implantação, monitoramento, treinamento e sustentação.'
+                'Analista de Automação e IA com experiência prática em automação de processos, integrações e sistemas internos em produção. '
+                'Administro ambiente n8n self-hosted com 10 mil+ execuções de workflows e desenvolvo soluções com Python, FastAPI, APIs REST, '
+                'SQL/PostgreSQL, Docker e IA generativa/LLMs. Atuo do levantamento de requisitos e mapeamento de processos à construção, testes/UAT, '
+                'implantação, monitoramento e sustentação.'
             ),
             'skills': [
-                '<b>Automação, integrações e backend:</b> n8n self-hosted · low-code/no-code · Python · FastAPI · APIs REST · JSON · webhooks · OAuth 2.0 · SQL · PostgreSQL · Docker · contexto: Power Platform (Power Apps/Power Automate) · Make · Zapier',
-                '<b>Processos e entrega:</b> BPMN · AS-IS/TO-BE · levantamento de requisitos · stakeholders · regras de negócio · documentação · testes · UAT/homologação · métricas de impacto · implantação · treinamento · sustentação/melhoria contínua',
-                '<b>IA aplicada e engenharia:</b> IA generativa/LLMs · APIs de LLM · agentes de IA · RAG/grounding · LangChain · human-in-the-loop · evals · JavaScript/TypeScript · Git/GitHub Actions · CI/CD · logs · monitoramento/observabilidade · tratamento de erros · retries · idempotência · segurança de integrações · gestão de segredos',
+                '<b>Automação e integrações:</b> n8n self-hosted · Python · FastAPI · APIs REST/JSON · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · SMTP/IMAP · Git/GitHub Actions',
+                '<b>IA aplicada:</b> IA generativa/LLMs · APIs de LLM · agentes de IA · RAG/grounding · LangChain · human-in-the-loop · evals',
+                '<b>Processos e confiabilidade:</b> BPMN · AS-IS/TO-BE · levantamento de requisitos · testes/UAT · implantação · logs/monitoramento · tratamento de erros · retries · idempotência · Power Automate/Power Apps (contexto)',
             ],
             'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
-            'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · automação, IA aplicada, integrações e sistemas internos',
+            'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · automação de processos, IA aplicada, integrações e sistemas internos',
             'vesper_bullets': [
                 '<b>n8n e integrações:</b> administro ambiente self-hosted Windows/Docker com 10 mil+ execuções de workflows em produção, integrando APIs, webhooks, PostgreSQL e SMTP com logs, alertas, retries, backups e auditoria.',
                 '<b>Proposta Comercial:</b> desenvolvi e sustento fluxo com ODT/PDF, IMAP/SMTP e revisão humana; propostas simples passaram de 2–4 min para &lt;30 s, com uso diário por 4 profissionais.',
@@ -87,10 +88,9 @@ def content(lang):
             'compass_meta': 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas',
             'compass_bullets': ['Construí pipeline em Python/SQL/Docker/AWS: CSV/TMDB API → S3 → Lambda/boto3 → Glue/PySpark → Parquet Raw/Trusted/Refined → Athena → QuickSight; pratiquei Linux, Git, ETL/Data Lake e modelagem.'],
             'projects': [
-                '<b>Mala Direta:</b> 6 campanhas sobre base de 1.020 contatos, uma com 900+ destinatários; 2 workflows n8n com fila, deduplicação, cancelamento revalidado, retry e auditoria.',
-                '<b>CarreiraPessoal:</b> produto Windows com FastAPI, React/TypeScript e Tauri/Rust; v12.5.2 com 283 testes Python, 102 famílias ATS e 11 coletores diretos.',
-                '<b>Catálogo Operacional de Compras:</b> FastAPI + SQLite FTS5; 24 categorias, 480+ códigos, controle de revisão, histórico/backups e uso diário por 3 pessoas.',
+                '<b>Mala Direta:</b> automação n8n em produção para 6 campanhas sobre base de 1.020 contatos; fila por destinatário, deduplicação, cancelamento revalidado, retry e auditoria.',
                 '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + human-in-the-loop + evals; Facebook/Instagram exercitados em teste, com idempotência e isolamento de falhas.',
+                '<b>CarreiraPessoal:</b> produto Windows com FastAPI, React/TypeScript e Tauri/Rust; v12.5.2 com 283 testes Python, 102 famílias ATS e 11 coletores diretos.',
             ],
             'education': [
                 '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026',
@@ -106,21 +106,22 @@ def content(lang):
 
     return {
         'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
-        'title': 'AUTOMATION, AI & INTEGRATIONS ANALYST',
+        'title': 'AUTOMATION & AI ANALYST | n8n · Python · APIs',
         'contact': CONTACT_EN,
-        'sections': ['PROFESSIONAL SUMMARY', 'TECHNICAL SKILLS', 'PROFESSIONAL EXPERIENCE', 'SELECTED PROJECTS', 'EDUCATION', 'SELECTED CREDENTIALS', 'LANGUAGES'],
+        'sections': ['PROFESSIONAL SUMMARY', 'PROFESSIONAL EXPERIENCE', 'TECHNICAL SKILLS', 'SELECTED PROJECTS', 'EDUCATION', 'SELECTED CREDENTIALS', 'LANGUAGES'],
         'summary': (
-            'Automation, AI & Integrations Analyst working end to end across process automation, integrations, APIs and internal systems. '
-            'I administer a self-hosted n8n environment with 10k+ production workflow executions and turn operational needs into solutions with '
-            'Python, FastAPI, REST APIs, SQL/PostgreSQL and applied AI, from BPMN/AS-IS/TO-BE mapping and requirements through deployment, monitoring, training and production support.'
+            'Automation & AI Analyst with hands-on experience in process automation, integrations and internal systems running in production. '
+            'I administer a self-hosted n8n environment with 10k+ workflow executions and build solutions with Python, FastAPI, REST APIs, '
+            'SQL/PostgreSQL, Docker and generative AI/LLMs. I work from requirements and process mapping through implementation, testing/UAT, '
+            'deployment, monitoring and production support.'
         ),
         'skills': [
-            '<b>Automation, integrations & backend:</b> self-hosted n8n · low-code/no-code · Python · FastAPI · REST APIs · JSON · webhooks · OAuth 2.0 · SQL · PostgreSQL · Docker · contextual: Power Platform (Power Apps/Power Automate) · Make · Zapier',
-            '<b>Process & delivery:</b> BPMN · AS-IS/TO-BE · requirements discovery · stakeholders · business rules · documentation · testing · UAT · impact metrics · deployment · training · production support/continuous improvement',
-            '<b>Applied AI & engineering:</b> generative AI/LLMs · LLM APIs · AI agents · RAG/grounding · LangChain · human-in-the-loop · evals · JavaScript/TypeScript · Git/GitHub Actions · CI/CD · logs · monitoring/observability · error handling · retries · idempotency · integration security · secrets management',
+            '<b>Automation & integrations:</b> self-hosted n8n · Python · FastAPI · REST/JSON APIs · webhooks · OAuth 2.0 · SQL/PostgreSQL · Docker · SMTP/IMAP · Git/GitHub Actions',
+            '<b>Applied AI:</b> generative AI/LLMs · LLM APIs · AI agents · RAG/grounding · LangChain · human-in-the-loop · evals',
+            '<b>Process & reliability:</b> BPMN · AS-IS/TO-BE · requirements discovery · testing/UAT · deployment · logs/monitoring · error handling · retries · idempotency · Power Automate/Power Apps (context)',
         ],
         'vesper_role': 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · automation, applied AI, integrations and internal systems',
+        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · process automation, applied AI, integrations and internal systems',
         'vesper_bullets': [
             '<b>n8n & integrations:</b> administer a self-hosted Windows/Docker environment with 10k+ production workflow executions, integrating APIs, webhooks, PostgreSQL and SMTP with logs, alerts, retries, backups and auditability.',
             '<b>Commercial Proposals:</b> built and support an ODT/PDF + IMAP/SMTP workflow with human review; simple proposals went from 2–4 min to &lt;30 sec and are used daily by 4 professionals.',
@@ -131,10 +132,9 @@ def content(lang):
         'compass_meta': 'Data Engineering scholarship · 10 practical sprints',
         'compass_bullets': ['Built a Python/SQL/Docker/AWS pipeline: CSV/TMDB API → S3 → Lambda/boto3 → Glue/PySpark → Raw/Trusted/Refined Parquet → Athena → QuickSight; practiced Linux, Git, ETL/Data Lake and data modeling.'],
         'projects': [
-            '<b>Mala Direta:</b> 6 campaigns over a 1,020-contact base, one with 900+ recipients; 2 n8n workflows with queues, deduplication, revalidated cancellation, retry and auditing.',
-            '<b>CarreiraPessoal:</b> Windows product with FastAPI, React/TypeScript and Tauri/Rust; v12.5.2 with 283 Python tests, 102 ATS role families and 11 direct collectors.',
-            '<b>Operational Procurement Catalog:</b> FastAPI + SQLite FTS5; 24 categories, 480+ codes, revision control, history/backups and daily use by 3 people.',
+            '<b>Mala Direta:</b> production n8n automation for 6 campaigns over a 1,020-contact base; per-recipient queue, deduplication, revalidated cancellation, retry and auditing.',
             '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + human-in-the-loop + evals; Facebook/Instagram exercised in testing, with idempotency and per-channel failure isolation.',
+            '<b>CarreiraPessoal:</b> Windows product with FastAPI, React/TypeScript and Tauri/Rust; v12.5.2 with 283 Python tests, 102 ATS role families and 11 direct collectors.',
         ],
         'education': [
             '<b>Technology Degree in Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026',
@@ -160,7 +160,7 @@ def build(lang='pt'):
         topMargin=10.5 * mm, bottomMargin=10.5 * mm,
         title=name + ' - ' + data['title'],
         author='Maycon Ferreira',
-        subject='One-page general resume for automation, applied AI, integrations, internal systems and process roles',
+        subject='One-page resume focused on automation, applied AI, integrations and production-ready internal systems',
     )
     story = [Paragraph(name, s['name']), Paragraph(data['title'], s['title']), Paragraph(data['contact'], s['contact'])]
 
@@ -170,15 +170,15 @@ def build(lang='pt'):
     section(data['sections'][0])
     story.append(Paragraph(data['summary'], s['body']))
     section(data['sections'][1])
-    for item in data['skills']:
-        story.append(Paragraph(item, s['small']))
-    section(data['sections'][2])
     story.extend([Paragraph(data['vesper_role'], s['role']), Paragraph(data['vesper_meta'], s['meta'])])
     for item in data['vesper_bullets']:
         story.append(bullet(item, s['small']))
     story.extend([Spacer(1, 1.0 * mm), Paragraph(data['compass_role'], s['role']), Paragraph(data['compass_meta'], s['meta'])])
     for item in data['compass_bullets']:
         story.append(bullet(item, s['small']))
+    section(data['sections'][2])
+    for item in data['skills']:
+        story.append(Paragraph(item, s['small']))
     section(data['sections'][3])
     for item in data['projects']:
         story.append(bullet(item, s['small']))
