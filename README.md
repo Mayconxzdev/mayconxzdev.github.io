@@ -13,15 +13,12 @@ A vitrine segue uma ordem deliberada, sem repetir a mesma competência em todos 
 | Projeto | Principal evidência |
 | --- | --- |
 | [Mala Direta](cases/mala-direta/) | n8n em produção, filas, deduplicação, retry, cancelamento e auditoria |
-| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/LangChain, APIs externas, human-in-the-loop, evals e idempotência |
-| [Proposta Comercial](cases/vesper-propostas/) | documentos/e-mail e redução de 2–4 min para menos de 30 s em propostas simples |
-| [CarreiraPessoal](cases/carreira-pessoal/) | produto Windows em uso, arquitetura full-stack, evidências, QA e IA opcional |
-| [Produção Operacional](cases/producao-operacional/) | implantação em 10+ PCs + 1 TV, apoiando 20+ profissionais em 9 setores |
-| [Catálogo Operacional](cases/catalogo-operacional-compras/) | FastAPI, FTS5, integridade de dados, revisão/histórico e uso diário |
+| [Proposta Comercial](cases/vesper-propostas/) | redução de 2–4 min para menos de 30 s em propostas simples |
+| [HelpDesk](cases/helpdesk/) | 11 usuários, operação de TI, agente contextual, Redis e rastreabilidade |
+| [Postagem Redes](cases/postagem-redes/) | IA aplicada, RAG/LangChain, Prompt Engineering, human-in-the-loop e evals |
 
 ## Outros recortes importantes
 
-- [HelpDesk](cases/helpdesk/) — sistema interno em uso por 11 pessoas, tempo real, ativos, acessos e segurança;
 - [ComprasVesper](cases/compras-vesper/) — desktop, SMTP/IMAP, fila durável, backoff e idempotência;
 - [Central ISO](cases/central-iso/) — Qualidade, regras determinísticas, read-only, rastreabilidade e piloto técnico;
 - [StudioCad](cases/studiocad/) — IA aplicada, conversão/visualização técnica, hashes e segurança de arquivos;
@@ -46,21 +43,16 @@ O portfólio segue regras explícitas para impedir que uma apresentação bonita
 
 O registro editorial usado para essa sincronização está em [`docs/CAREER_EVIDENCE.md`](docs/CAREER_EVIDENCE.md).
 
-## Currículo principal — Automação e IA
+## Currículos — base e variações direcionadas
 
-O portfólio publica **um currículo principal de uma página em PT-BR e seu espelho semântico em inglês**, direcionado a vagas de automação e IA aplicada. O documento mantém somente competências sustentadas por evidência e prioriza experiência real, resultados e projetos alinhados a esse foco.
+O portfólio mantém um currículo-base de uma página e duas variações PT-BR para adaptar a primeira leitura à família da vaga, sem alterar fatos, datas ou métricas.
 
-- [Currículo PT-BR](assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf)
+- [Currículo geral — Automação e IA](assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf) — n8n · Power Automate · Python
+- [Currículo IA/agentes](assets/cv/Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf) — n8n · Python · LLMs/RAG
+- [Currículo Power Platform/BI](assets/cv/Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf) — Power Automate · Power BI · Python
 - [Resume EN](assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf)
 
-Os PDFs são gerados por `scripts/generate_resumes_general.py` e priorizam:
-
-- **automação e integrações:** n8n, Python, FastAPI, REST/JSON, webhooks, OAuth 2.0, SQL/PostgreSQL, Docker e SMTP/IMAP;
-- **IA aplicada:** LLM APIs, agentes, RAG/grounding, LangChain, human-in-the-loop e evals;
-- **processos e confiabilidade:** BPMN, AS-IS/TO-BE, requisitos, UAT, implantação, logs/monitoramento, retries e idempotência;
-- **evidência:** resultados, adoção e estados verificáveis antes de listas de ferramentas.
-
-Projetos já demonstrados na experiência profissional não são repetidos desnecessariamente. A seção de projetos complementa a narrativa com automação n8n robusta, IA aplicada/RAG e engenharia de produto/QA.
+O currículo-base prioriza experiência real, resultados e duas provas complementares: **Mala Direta** (automação em produção) e **HelpDesk** (sistema interno + agente operacional). A variação de IA troca a ênfase para HelpDesk/Postagem Redes; a de BI destaca automação, Power Platform, dados e Catálogo Operacional.
 
 ## Validação
 
