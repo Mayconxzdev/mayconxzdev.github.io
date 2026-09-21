@@ -201,3 +201,13 @@ Cada case deve provar problema, estado real, decisões, arquitetura quando útil
 ## Regra de atualização
 
 Uma nova métrica ou mudança de estado deve nascer primeiro na evidência do projeto. Uma nova credencial deve ser classificada primeiro em `CREDENTIALS_EVIDENCE.md`. Depois, este registro e as superfícies públicas podem ser sincronizados. Nunca promover status, métrica, senioridade ou tecnologia apenas para melhorar apresentação ou ATS.
+
+
+### Projeto de laboratório — Auditoria e Aprovação de Contratos
+
+O sistema descrito com **Microsoft Forms → SharePoint → Approvals → HTTP → Power Automate Desktop → ERP legado**, incluindo tratamento Try/Catch e roteamento multinível, foi um **projeto de laboratório/estudo**.
+
+Pode ser citado apenas como evidência de prática técnica em **Power Automate Cloud/Desktop, Approvals, SharePoint, WDL, HTTP e RPA**.  
+**Não publicar como experiência profissional, implantação em cliente/empresa ou resultado real de negócio.**  
+O claim **“12 dias → menos de 4 horas”** não deve aparecer em currículo, LinkedIn, portfólio ou bio como métrica real.
+
