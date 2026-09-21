@@ -226,19 +226,15 @@ en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 
 pt_flagships = [
     'Mala Direta',
-    'Postagem Redes',
     'Vesper Propostas',
-    'CarreiraPessoal',
-    'Produção Operacional',
-    'Catálogo Operacional de Compras',
+    'HelpDesk & IT Operations',
+    'Postagem Redes',
 ]
 en_flagships = [
     'Mala Direta',
-    'Postagem Redes',
     'Vesper Propostas',
-    'CarreiraPessoal',
-    'Production Operations',
-    'Operational Procurement Catalog',
+    'HelpDesk & IT Operations',
+    'Postagem Redes',
 ]
 assert_order(home, pt_flagships, 'PT home', errors)
 assert_order(en_home, en_flagships, 'EN home', errors)
@@ -253,8 +249,6 @@ for text, surface in [(home, 'PT home'), (en_home, 'EN home')]:
         errors.append(f'{surface}: Portal archive status is missing')
     if not has_data_project(text, 'central-iso'):
         errors.append(f'{surface}: Central ISO archive status is missing')
-    if not has_data_project(text, 'carreira-pessoal'):
-        errors.append(f'{surface}: CarreiraPessoal flagship marker is missing')
 
 if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
     errors.append('home pages must expose RAG/grounding as applied AI evidence')
@@ -274,6 +268,8 @@ required_routes = [
     ROOT / 'assets/evidence/central-iso-overview.webp',
     ROOT / 'assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
     ROOT / 'assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
+    ROOT / 'assets/cv/Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
+    ROOT / 'assets/cv/Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
     ROOT / 'docs/CAREER_EVIDENCE.md',
     ROOT / 'docs/CREDENTIALS_EVIDENCE.md',
     ROOT / 'competencias/credenciais/index.html',
