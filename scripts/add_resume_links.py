@@ -6,6 +6,8 @@ CV = ROOT / "assets" / "cv"
 
 FILES = [
     CV / "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf",
+    CV / "Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf",
+    CV / "Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf",
     CV / "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf",
 ]
 
