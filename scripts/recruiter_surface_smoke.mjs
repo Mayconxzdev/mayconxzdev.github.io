@@ -26,7 +26,7 @@ try{
   await button.click();
   await waitForClass(mobile,'archive-expanded',true);
   const expanded=await visibleRows(mobile);
-  if(expanded!==13)failures.push(`PT mobile: expected all 13 secondary projects after expand, got ${expanded}`);
+  if(expanded!==15)failures.push(`PT mobile: expected all 15 secondary projects after expand, got ${expanded}`);
   if(await button.getAttribute('aria-expanded')!=='true')failures.push('PT mobile: expand control aria-expanded did not become true');
 
   const processFilter=mobile.locator('.filter-button[data-filter="process"]');
@@ -34,7 +34,7 @@ try{
   await waitForClass(mobile,'archive-filtering',true);
   await button.waitFor({state:'hidden',timeout:2000});
   const filtered=await visibleRows(mobile);
-  if(filtered<1||filtered>=13)failures.push(`PT mobile: process filter returned suspicious row count ${filtered}`);
+  if(filtered<1||filtered>=15)failures.push(`PT mobile: process filter returned suspicious row count ${filtered}`);
 
   await mobile.locator('.filter-button[data-filter="all"]').click();
   await waitForClass(mobile,'archive-filtering',false);
@@ -52,12 +52,12 @@ try{
   if(await visibleRows(en)!==6)failures.push(`EN mobile: expected 6 secondary projects by default, got ${await visibleRows(en)}`);
   await en.locator('.archive-expand').click();
   await waitForClass(en,'archive-expanded',true);
-  if(await visibleRows(en)!==13)failures.push(`EN mobile: expected 13 secondary projects after expand, got ${await visibleRows(en)}`);
+  if(await visibleRows(en)!==15)failures.push(`EN mobile: expected 15 secondary projects after expand, got ${await visibleRows(en)}`);
 
   const desktop=await browser.newPage({viewport:{width:1440,height:1000}});
   await desktop.goto(base+'/',{waitUntil:'networkidle'});
   if(await desktop.locator('.archive-expand').isVisible())failures.push('Desktop: archive expand control should remain hidden');
-  if(await visibleRows(desktop)!==13)failures.push(`Desktop: expected all 13 secondary projects, got ${await visibleRows(desktop)}`);
+  if(await visibleRows(desktop)!==15)failures.push(`Desktop: expected all 15 secondary projects, got ${await visibleRows(desktop)}`);
 }finally{
   await browser.close();
 }
