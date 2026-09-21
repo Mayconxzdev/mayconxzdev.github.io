@@ -35,14 +35,14 @@ CONTACT_EN = (
 def styles():
     base = getSampleStyleSheet()
     return {
-        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.6 * mm),
-        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.3 * mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=9.4, leading=11.5, textColor=GRAY, spaceAfter=2.6 * mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.1, leading=11.6, textColor=BLACK, spaceBefore=2.75 * mm, spaceAfter=1.55 * mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=9.9, leading=12.2, textColor=BLACK, spaceAfter=1.2 * mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=9.9, leading=12.2, textColor=BLACK, spaceAfter=0.8 * mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.0, leading=12.4, textColor=BLACK, spaceAfter=0.6 * mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=9.3, leading=11.1, textColor=GRAY, spaceAfter=0.8 * mm),
+        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.5 * mm),
+        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.2 * mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=9.6, leading=11.7, textColor=GRAY, spaceAfter=2.4 * mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.2, leading=11.8, textColor=BLACK, spaceBefore=2.55 * mm, spaceAfter=1.45 * mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=1.0 * mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=0.65 * mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.15, leading=12.45, textColor=BLACK, spaceAfter=0.5 * mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=9.55, leading=11.35, textColor=GRAY, spaceAfter=0.7 * mm),
     }
 
 
@@ -58,67 +58,40 @@ def bullet(text, style):
     return Paragraph('• ' + text, style)
 
 
-def content(lang):
-    if lang == 'pt':
-        return {
-            'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
-            'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs',
-            'contact': CONTACT_PT,
-            'sections': ['RESUMO PROFISSIONAL', 'EXPERIÊNCIA PROFISSIONAL', 'PROJETOS SELECIONADOS', 'COMPETÊNCIAS TÉCNICAS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
-            'summary': (
-                'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Platform, Python/APIs, dados/BI e IA aplicada. '
-                'Administro ambiente n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s. '
-                'Experiência com Power Automate, Power BI/Power Query, LLMs/agentes/RAG, SQL/PostgreSQL, Redis e Docker, do levantamento à sustentação.'
-            ),
-            'skills': [
-                '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
-                '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/grounding · LangChain · MCP · human-in-the-loop · evals',
-                '<b>Dados, BI e processos:</b> Power BI · DAX · Power Query · Excel/Google Sheets · VBA · SQL · BPMN · AS-IS/TO-BE · testes/UAT · retries/idempotência · Git/GitHub Actions',
-            ],
-            'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
-            'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · único analista/desenvolvedor interno de automação, dados/BI e IA',
-            'vesper_bullets': [
-                '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e uso n8n/Power Automate conforme o processo, integrando APIs, webhooks, PostgreSQL e controles de erro.',
-                '<b>Proposta Comercial:</b> desenvolvi e sustento fluxo com ODT/PDF, IMAP/SMTP e revisão humana; propostas simples passaram de 2–4 min para &lt;30 s, com uso diário por 4 profissionais.',
-                '<b>Sistemas e operação:</b> implantei a Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores e mantenho HelpDesk utilizado por 11 usuários.',
-                '<b>Dados e BI:</b> crio dashboards e análises em Power BI/Excel/Power Query para produção, compras e estoque.',
-                '<b>Processos:</b> conduzo requisitos, AS-IS/TO-BE/BPMN, testes/UAT, implantação e treinamento; já treinei/orientei 30+ pessoas.',
-            ],
-            'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
-            'freelance_meta': 'Aulas pagas semanais (~3h) para públicos de diferentes idades e níveis',
-            'freelance_bullets': ['Ensino Excel/Google Sheets, Power BI, Power Query, VBA, Pacote Office, Windows e fundamentos de Linux para públicos de diferentes idades e níveis.'],
-            'compass_role': 'COMPASS UOL — Estagiário TI/Dados | out. 2024 – mar. 2025',
-            'compass_meta': 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas',
-            'compass_bullets': ['Desenvolvi pipeline de dados com Python/SQL/Docker/AWS: CSV/TMDB API → S3 → Lambda/boto3 → Glue/PySpark → Parquet Raw/Trusted/Refined → Athena → QuickSight, com ETL/Data Lake e modelagem.'],
-            'projects': [
-                '<b>Mala Direta:</b> automação n8n em produção para 6 campanhas sobre base de 1.020 contatos; fila por destinatário, deduplicação, cancelamento revalidado, retry e auditoria.',
-                '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; Facebook/Instagram exercitados em teste, com idempotência e falhas isoladas por canal.',
-            ],
-            'education': [
-                '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026',
-                '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025',
-            ],
-            'credentials': [
-                '<b>Microsoft Applied Skills:</b> Foundry Agents · MCP Tools with Agents · Power Apps; <b>n8n Academy:</b> N8N102 · N8N103; <b>UiPath Academy:</b> Automation Business Analyst Professional Training.'
-            ],
-            'languages': ['Português nativo · Inglês: leitura técnica intermediária; escrita e conversação básicas'],
-        }
-
+def pt_common():
     return {
-        'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
-        'title': 'AUTOMATION & AI ANALYST | n8n · Python · APIs',
+        'contact': CONTACT_PT,
+        'sections': ['RESUMO PROFISSIONAL', 'EXPERIÊNCIA PROFISSIONAL', 'PROJETOS SELECIONADOS', 'COMPETÊNCIAS TÉCNICAS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
+        'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
+        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · único analista/desenvolvedor interno de automação, dados/BI e IA',
+        'vesper_bullets': [
+            '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e uso n8n/Power Automate conforme o processo, integrando APIs, webhooks, PostgreSQL e controles de erro.',
+            '<b>Proposta Comercial:</b> desenvolvi e sustento fluxo com ODT/PDF, IMAP/SMTP e revisão humana; propostas simples passaram de 2–4 min para &lt;30 s, com uso diário por 4 profissionais.',
+            '<b>Sistemas e operação:</b> implantei a Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores e mantenho HelpDesk utilizado por 11 usuários.',
+            '<b>Dados e BI:</b> crio dashboards e análises em Power BI/Excel/Power Query para produção, compras e estoque.',
+            '<b>Processos:</b> conduzo requisitos, AS-IS/TO-BE/BPMN, testes/UAT, implantação e treinamento; já treinei/orientei 30+ pessoas.',
+        ],
+        'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
+        'freelance_meta': 'Aulas pagas semanais (~3h) para públicos de diferentes idades e níveis',
+        'freelance_bullets': ['Ensino Excel/Google Sheets, Power BI, Power Query, VBA, Pacote Office, Windows e fundamentos de Linux.'],
+        'compass_role': 'COMPASS UOL — Estagiário TI/Dados | out. 2024 – mar. 2025',
+        'compass_meta': 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas',
+        'compass_bullets': ['Desenvolvi pipeline com Python/SQL/Docker/AWS, integrando CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena e QuickSight em fluxo ETL/Data Lake.'],
+        'education': [
+            '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026',
+            '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025',
+        ],
+        'credentials': [
+            '<b>Microsoft Applied Skills:</b> Foundry Agents · MCP Tools with Agents · Power Apps; <b>n8n Academy:</b> N8N102 · N8N103; <b>UiPath:</b> Automation Business Analyst Professional Training.'
+        ],
+        'languages': ['Português nativo · Inglês: leitura técnica intermediária; escrita e conversação básicas'],
+    }
+
+
+def en_common():
+    return {
         'contact': CONTACT_EN,
         'sections': ['PROFESSIONAL SUMMARY', 'PROFESSIONAL EXPERIENCE', 'SELECTED PROJECTS', 'TECHNICAL SKILLS', 'EDUCATION', 'SELECTED CREDENTIALS', 'LANGUAGES'],
-        'summary': (
-            'Automation & AI Analyst working end to end across n8n, Power Platform, Python/APIs, data/BI and applied AI. '
-            'I administer a self-hosted n8n environment with 10k+ production executions and delivered automations that reduced processes from 2–4 min to <30 sec. '
-            'Hands-on with Power Automate, Power BI/Power Query, LLMs/agents/RAG, SQL/PostgreSQL, Redis and Docker, from discovery through production support.'
-        ),
-        'skills': [
-            '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
-            '<b>Applied AI:</b> Prompt Engineering · LLM APIs · AI agents · RAG/grounding · LangChain · MCP · human-in-the-loop · evals',
-            '<b>Data, BI & process:</b> Power BI · DAX · Power Query · Excel/Google Sheets · VBA · SQL · BPMN · AS-IS/TO-BE · testing/UAT · retries/idempotency · Git/GitHub Actions',
-        ],
         'vesper_role': 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present',
         'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · sole internal analyst/developer across automation, data/BI and AI',
         'vesper_bullets': [
@@ -130,27 +103,107 @@ def content(lang):
         ],
         'freelance_role': 'IT INSTRUCTOR (FREELANCE) | Oct. 2024 – Present',
         'freelance_meta': 'Paid weekly classes (~3h) for learners of different ages and skill levels',
-        'freelance_bullets': ['Teach Excel/Google Sheets, Power BI, Power Query, VBA, Office, Windows and Linux fundamentals to learners of different ages and skill levels.'],
+        'freelance_bullets': ['Teach Excel/Google Sheets, Power BI, Power Query, VBA, Office, Windows and Linux fundamentals.'],
         'compass_role': 'COMPASS UOL — IT/Data Intern | Oct. 2024 – Mar. 2025',
         'compass_meta': 'Data Engineering scholarship · 10 practical sprints',
-        'compass_bullets': ['Built a data pipeline with Python/SQL/Docker/AWS: CSV/TMDB API → S3 → Lambda/boto3 → Glue/PySpark → Raw/Trusted/Refined Parquet → Athena → QuickSight, covering ETL/Data Lake and data modeling.'],
-        'projects': [
-            '<b>Mala Direta:</b> production n8n automation for 6 campaigns over a 1,020-contact base; per-recipient queue, deduplication, revalidated cancellation, retry and auditing.',
-            '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; Facebook/Instagram exercised in testing, with idempotency and per-channel failure isolation.',
-        ],
+        'compass_bullets': ['Built a Python/SQL/Docker/AWS pipeline integrating CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena and QuickSight in an ETL/Data Lake flow.'],
         'education': [
             '<b>Technology Degree in Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026',
             '<b>42 Rio Piscine</b> · intensive Linux/C program · completed Jul. 2025',
         ],
         'credentials': [
-            '<b>Microsoft Applied Skills:</b> Foundry Agents · MCP Tools with Agents · Power Apps; <b>n8n Academy:</b> N8N102 · N8N103; <b>UiPath Academy:</b> Automation Business Analyst Professional Training.'
+            '<b>Microsoft Applied Skills:</b> Foundry Agents · MCP Tools with Agents · Power Apps; <b>n8n Academy:</b> N8N102 · N8N103; <b>UiPath:</b> Automation Business Analyst Professional Training.'
         ],
         'languages': ['Portuguese: native · English: intermediate technical reading; basic writing and conversation'],
     }
 
 
-def build(lang='pt'):
-    data = content(lang)
+def content(lang='pt', track='general'):
+    if lang == 'pt':
+        data = pt_common()
+        tracks = {
+            'general': {
+                'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
+                'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
+                'summary': (
+                    'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e dados/BI. '
+                    'Administro n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s. '
+                    'Experiência com Power BI/Power Query, LLMs/agentes/RAG, PostgreSQL/Redis e Docker.'
+                ),
+                'projects': [
+                    '<b>Mala Direta:</b> automação n8n em produção para 6 campanhas sobre base de 1.020 contatos; fila por destinatário, deduplicação, cancelamento revalidado, retry e auditoria.',
+                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; agente operacional cruza contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico.',
+                ],
+                'skills': [
+                    '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
+                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · MCP · human-in-the-loop · evals',
+                    '<b>Dados e BI:</b> Power BI · DAX · Power Query · Excel/Google Sheets · VBA · SQL',
+                ],
+            },
+            'ai': {
+                'filename': 'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
+                'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
+                'summary': (
+                    'Analista de Automação e IA com experiência em n8n, Python/APIs e soluções com LLMs/agentes. '
+                    'Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo integrações com Prompt Engineering, RAG/LangChain, MCP, evals e revisão humana. '
+                    'Também atuo com PostgreSQL/Redis, Docker e sustentação ponta a ponta.'
+                ),
+                'projects': [
+                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; agente operacional cruza contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico.',
+                    '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; Facebook/Instagram validados em ambiente de teste.',
+                ],
+                'skills': [
+                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · MCP · human-in-the-loop · evals · Supabase/Qdrant',
+                    '<b>Automação e backend:</b> n8n self-hosted · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
+                    '<b>Dados e BI:</b> SQL · Power BI · Power Query · Excel/Google Sheets',
+                ],
+            },
+            'bi': {
+                'filename': 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
+                'title': 'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
+                'summary': (
+                    'Analista de Automação e BI com atuação em Power Automate, Python/APIs, Power BI/Power Query e melhoria de processos. '
+                    'Administro automações em produção, crio dashboards e análises para produção, compras e estoque e entreguei fluxos que reduziram processos de 2–4 min para <30 s. '
+                    'Experiência com SQL/PostgreSQL, ETL, Excel/VBA, requisitos e sustentação.'
+                ),
+                'projects': [
+                    '<b>Mala Direta:</b> automação n8n em produção para 6 campanhas sobre base de 1.020 contatos, com fila, deduplicação, retry e auditoria.',
+                    '<b>Catálogo Operacional:</b> busca e controle de dados para 24 categorias e 480+ códigos, com uso diário, histórico, integridade e revisão de edição.',
+                ],
+                'skills': [
+                    '<b>Automação e BI:</b> Power Automate Cloud/Desktop · Power BI · DAX · Power Query · Python · Excel/Google Sheets · VBA · SQL',
+                    '<b>Integrações e dados:</b> REST/Webhooks/OAuth · PostgreSQL · MySQL · Redis · ETL/Data Lake · Docker',
+                    '<b>Processos:</b> requisitos · BPMN/AS-IS/TO-BE · testes/UAT · implantação · treinamento · sustentação',
+                ],
+            },
+        }
+        data.update(tracks[track])
+        return data
+
+    data = en_common()
+    data.update({
+        'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
+        'title': 'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
+        'summary': (
+            'Automation & AI Analyst working end to end across n8n, Power Automate, Python/APIs and data/BI. '
+            'I administer self-hosted n8n with 10k+ production executions and delivered automations that reduced processes from 2–4 min to <30 sec. '
+            'Hands-on with Power BI/Power Query, LLMs/agents/RAG, PostgreSQL/Redis and Docker.'
+        ),
+        'projects': [
+            '<b>Mala Direta:</b> production n8n automation for 6 campaigns over a 1,020-contact base; per-recipient queue, deduplication, revalidated cancellation, retry and auditing.',
+            '<b>HelpDesk & IT Operations:</b> internal system used by 11 people; an operational agent combines workstation, inventory, ticket and expiration context to enrich alerts and diagnosis.',
+        ],
+        'skills': [
+            '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
+            '<b>Applied AI:</b> Prompt Engineering · LLM APIs · agents · RAG/LangChain · MCP · human-in-the-loop · evals',
+            '<b>Data & BI:</b> Power BI · DAX · Power Query · Excel/Google Sheets · VBA · SQL',
+        ],
+    })
+    return data
+
+
+def build(lang='pt', track='general'):
+    data = content(lang, track)
     s = styles()
     path = OUT / data['filename']
     name = 'MAYCON FERREIRA'
@@ -173,10 +226,10 @@ def build(lang='pt'):
     story.extend([Paragraph(data['vesper_role'], s['role']), Paragraph(data['vesper_meta'], s['meta'])])
     for item in data['vesper_bullets']:
         story.append(bullet(item, s['small']))
-    story.extend([Spacer(1, 0.8 * mm), Paragraph(data['freelance_role'], s['role']), Paragraph(data['freelance_meta'], s['meta'])])
+    story.extend([Spacer(1, 0.6 * mm), Paragraph(data['freelance_role'], s['role']), Paragraph(data['freelance_meta'], s['meta'])])
     for item in data['freelance_bullets']:
         story.append(bullet(item, s['small']))
-    story.extend([Spacer(1, 0.8 * mm), Paragraph(data['compass_role'], s['role']), Paragraph(data['compass_meta'], s['meta'])])
+    story.extend([Spacer(1, 0.6 * mm), Paragraph(data['compass_role'], s['role']), Paragraph(data['compass_meta'], s['meta'])])
     for item in data['compass_bullets']:
         story.append(bullet(item, s['small']))
     section(data['sections'][2])
@@ -200,5 +253,7 @@ def build(lang='pt'):
 
 
 if __name__ == '__main__':
-    print(build('pt'))
-    print(build('en'))
+    print(build('pt', 'general'))
+    print(build('pt', 'ai'))
+    print(build('pt', 'bi'))
+    print(build('en', 'general'))
