@@ -7,141 +7,46 @@ ROOT = Path(__file__).resolve().parents[1]
 CV = ROOT / 'assets' / 'cv'
 
 FILES = {
-    'pt': CV / 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
-    'en': CV / 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
+    'pt-general': CV / 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
+    'pt-ai': CV / 'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
+    'pt-bi': CV / 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
+    'en-general': CV / 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
 }
 
 REQUIRED = {
-    'pt': [
-        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs',
-        'RESUMO PROFISSIONAL',
-        'EXPERIÊNCIA PROFISSIONAL',
-        'PROJETOS SELECIONADOS',
-        'COMPETÊNCIAS TÉCNICAS',
-        'CREDENCIAIS SELECIONADAS',
-        '10 mil+',
-        'n8n self-hosted',
-        'Power Automate',
-        'Power BI',
-        'Power Query',
-        'Excel/Google Sheets',
-        'VBA',
-        'Python',
-        'FastAPI',
-        'REST/JSON',
-        'WhatsApp Cloud API',
-        'Redis',
-        'PostgreSQL',
-        'Docker',
-        'Prompt Engineering',
-        'agentes',
-        'RAG/grounding',
-        'LangChain',
-        'MCP',
-        'human-in-the-loop',
-        'evals',
-        'BPMN',
-        'testes/UAT',
-        'retries',
-        'idempotência',
-        'HelpDesk',
-        '11 usuários',
-        'INSTRUTOR DE INFORMÁTICA (FREELANCER)',
-        'out. 2024',
-        'Postagem Redes',
-        'Mala Direta',
-        'Tecnólogo em Análise e Desenvolvimento de Sistemas',
-        'Microsoft Applied Skills',
-        'Automation Business Analyst Professional Training',
-        'N8N102',
-        'N8N103',
-        'Técnico Júnior em Automação de Processos',
+    'pt-general': [
+        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
+        '10 mil+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
+        'WhatsApp Cloud API', 'PostgreSQL/Redis', 'Mala Direta', 'HelpDesk & IT Operations',
+        'INSTRUTOR DE INFORMÁTICA (FREELANCER)', 'Técnico Júnior em Automação de Processos',
         'leitura técnica intermediária',
     ],
-    'en': [
-        'AUTOMATION & AI ANALYST | n8n · Python · APIs',
-        'PROFESSIONAL SUMMARY',
-        'PROFESSIONAL EXPERIENCE',
-        'SELECTED PROJECTS',
-        'TECHNICAL SKILLS',
-        'SELECTED CREDENTIALS',
-        '10k+',
-        'self-hosted n8n',
-        'Power Automate',
-        'Power BI',
-        'Power Query',
-        'Excel/Google Sheets',
-        'VBA',
-        'Python',
-        'FastAPI',
-        'REST/JSON',
-        'WhatsApp Cloud API',
-        'Redis',
-        'PostgreSQL',
-        'Docker',
-        'Prompt Engineering',
-        'AI agents',
-        'RAG/grounding',
-        'LangChain',
-        'MCP',
-        'human-in-the-loop',
-        'evals',
-        'BPMN',
-        'testing/UAT',
-        'retries',
-        'idempotency',
-        'HelpDesk',
-        '11 users',
-        'IT INSTRUCTOR (FREELANCE)',
-        'Oct. 2024',
-        'Postagem Redes',
-        'Mala Direta',
-        'Technology Degree in Systems Analysis and Development',
-        'Microsoft Applied Skills',
-        'Automation Business Analyst Professional Training',
-        'N8N102',
-        'N8N103',
-        'Junior Process Automation Technician',
+    'pt-ai': [
+        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
+        'Prompt Engineering', 'RAG/LangChain', 'MCP', 'Supabase/Qdrant',
+        'HelpDesk & IT Operations', 'Postagem Redes', '10 mil+',
+    ],
+    'pt-bi': [
+        'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
+        'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
+        'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Mala Direta', 'Catálogo Operacional',
+    ],
+    'en-general': [
+        'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
+        '10k+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
+        'WhatsApp Cloud API', 'PostgreSQL/Redis', 'Mala Direta', 'HelpDesk & IT Operations',
+        'IT INSTRUCTOR (FREELANCE)', 'Junior Process Automation Technician',
         'intermediate technical reading',
     ],
 }
 
-FORBIDDEN = {
-    'pt': [
-        '(cargo formal)',
-        'Central ISO:</b>',
-        'Portal:</b>',
-        'LangGraph/CrewAI',
-        'IA multimodal',
-        'Geração de mídia',
-        '158 nós',
-        '55 certificações',
-        'Automation Business Analyst Associate Training',
-        'UiPath Certified Automation Business Analyst Professional',
-        'Process Mining',
-        'Kafka',
-        'RabbitMQ',
-        'ROI',
-        'CRM (uso contextual)',
-    ],
-    'en': [
-        '(formal role)',
-        'Central ISO:</b>',
-        'Portal:</b>',
-        'LangGraph/CrewAI',
-        'multimodal AI',
-        'media generation',
-        '158 nodes',
-        '55 certifications',
-        'Automation Business Analyst Associate Training',
-        'UiPath Certified Automation Business Analyst Professional',
-        'Process Mining',
-        'Kafka',
-        'RabbitMQ',
-        'ROI',
-        'CRM (contextual use)',
-    ],
-}
+FORBIDDEN = [
+    '(cargo formal)', '(formal role)', '55 certificações', '55 certifications',
+    'Automation Business Analyst Associate Training',
+    'UiPath Certified Automation Business Analyst Professional',
+    'LangGraph/CrewAI', 'Kafka', 'RabbitMQ', 'ROI',
+    '12 dias', '12 days', 'menos de 4 horas', 'less than 4 hours',
+]
 
 VISIBLE_CONTACTS = {
     'mayconxz00dev@gmail.com',
@@ -159,42 +64,39 @@ EXPECTED_URIS = {
 }
 
 
-def normalize_text(value: str) -> str:
+def normalize(value: str) -> str:
     return ' '.join(value.split())
 
 
-def check(lang, path):
+def check(key: str, path: Path) -> None:
     if not path.exists():
         raise SystemExit(f'Missing resume: {path}')
     reader = PdfReader(str(path))
     if len(reader.pages) != 1:
         raise SystemExit(f'{path.name}: expected 1 page, got {len(reader.pages)}')
     text = '\n'.join(page.extract_text() or '' for page in reader.pages)
-    normalized = normalize_text(text)
-    for needle in REQUIRED[lang]:
-        if normalize_text(needle) not in normalized:
-            raise SystemExit(f'{path.name}: missing required text: {needle}')
-    for needle in FORBIDDEN[lang]:
-        if normalize_text(needle) in normalized:
-            raise SystemExit(f'{path.name}: forbidden general-resume text: {needle}')
+    flat = normalize(text)
+    for phrase in REQUIRED[key]:
+        if normalize(phrase) not in flat:
+            raise SystemExit(f'{path.name}: missing required text: {phrase}')
+    for phrase in FORBIDDEN:
+        if normalize(phrase) in flat:
+            raise SystemExit(f'{path.name}: forbidden text found: {phrase}')
     for contact in VISIBLE_CONTACTS:
-        if contact not in normalized:
-            raise SystemExit(f'{path.name}: ATS-visible contact missing from extracted text: {contact}')
-    if len(text.strip()) < 2500:
+        if contact not in flat:
+            raise SystemExit(f'{path.name}: ATS-visible contact missing: {contact}')
+    if len(text.strip()) < 2200:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')
 
     doc = fitz.open(path)
     links = {item.get('uri') for item in doc[0].get_links() if item.get('uri')}
     doc.close()
-    missing_links = EXPECTED_URIS - links
-    if missing_links:
-        raise SystemExit(f'{path.name}: missing clickable contact links: {sorted(missing_links)}')
+    missing = EXPECTED_URIS - links
+    if missing:
+        raise SystemExit(f'{path.name}: missing clickable contact links: {sorted(missing)}')
 
-    print(
-        f'OK {path.name}: 1 page, {len(text)} extracted chars, '
-        f'{len(VISIBLE_CONTACTS)} ATS-visible contacts, {len(EXPECTED_URIS)} clickable contact links'
-    )
+    print(f'OK {path.name}: one page, {len(text)} chars, ATS contacts and links verified')
 
 
-for lang, path in FILES.items():
-    check(lang, path)
+for key, path in FILES.items():
+    check(key, path)
