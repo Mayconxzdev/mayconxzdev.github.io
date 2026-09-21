@@ -109,8 +109,8 @@ Regras de release:
 - uma coluna;
 - PDF textual/selecionável;
 - PT-BR e EN como espelhos semânticos;
-- headline PT: **ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · APIs**;
-- headline EN: **AUTOMATION & AI ANALYST | n8n · Python · APIs**;
+- headline PT geral: **ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python**;
+- headline EN geral: **AUTOMATION & AI ANALYST | n8n · Power Automate · Python**;
 - seções explícitas `COMPETÊNCIAS TÉCNICAS / TECHNICAL SKILLS` e `EXPERIÊNCIA PROFISSIONAL / PROFESSIONAL EXPERIENCE`;
 - dois projetos públicos de maior aderência, sem repetir a experiência;
 - nenhuma soft-skill list, foto, barra de progresso, tabela visual ou buzzword sem prova;
@@ -162,37 +162,43 @@ Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar co
 
 ### Currículo principal — uma página
 
-Manter **um único currículo principal PT-BR e um espelho semântico EN**, direcionados a automação e IA aplicada. A experiência profissional aparece antes da lista de competências para maximizar sinal de entrega real.
+Manter **um currículo-base PT-BR**, duas variações direcionadas (IA/agentes e Power Platform/BI) e um espelho semântico EN do currículo-base. As variações mudam apenas headline, resumo, ordem/seleção de projetos e skills; fatos, datas e métricas permanecem idênticos.
 
 A experiência profissional passa a carregar n8n/Power Automate, Proposta Comercial, sistemas internos, BI/dados, adoção e o trabalho paralelo como instrutor. A seção de projetos complementa:
 
+Currículo-base:
 1. Mala Direta — automação n8n, filas e confiabilidade em produção;
-2. Postagem Redes — IA aplicada, Prompt Engineering, RAG/LangChain, human-in-the-loop, evals e APIs externas.
+2. HelpDesk — uso interno por 11 pessoas, agente operacional e contexto técnico.
 
-Mala Direta prioriza escala operacional, fila/deduplicação/cancelamento/retry/auditoria; a contagem de 158 nós fica no portfólio. Postagem Redes prioriza RAG/LangChain, human-in-the-loop, evals, idempotência e isolamento de falhas.
+Variação IA/agentes:
+1. HelpDesk;
+2. Postagem Redes — Prompt Engineering, RAG/LangChain, human-in-the-loop, evals e APIs externas.
+
+Variação Power Platform/BI:
+1. Mala Direta;
+2. Catálogo Operacional — dados, busca, integridade e uso diário.
 
 ### Portfólio — projetos principais
 
 1. Mala Direta;
-2. Postagem Redes;
-3. Vesper Propostas;
-4. CarreiraPessoal;
-5. Produção Operacional;
-6. Catálogo Operacional.
+2. Vesper Propostas;
+3. HelpDesk;
+4. Postagem Redes.
 
-O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. No mobile, seis projetos principais ficam visíveis; o arquivo secundário pode usar progressive disclosure desde que busca/filtros revelem todo o conjunto. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
+O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. No mobile, apenas quatro projetos principais ficam visíveis antes da experiência; o arquivo secundário usa progressive disclosure. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
 
 ### GitHub
 
 O README do perfil deve conduzir primeiro a cinco projetos:
 
 1. MalaDireta;
-2. PostagemRedes;
-3. CarreiraPessoal;
+2. HelpDesk;
+3. PostagemRedes;
 4. ProducaoOperacional;
-5. CatalogoOperacional.
+5. CatalogoOperacional;
+6. Central-ISO.
 
-HelpDesk é a sexta opção natural para pin. O README deve diferenciar **núcleo profissional**, **ferramentas contextuais** e **credenciais**. A versão inglesa permanece dedicada.
+CarreiraPessoal continua como prova de engenharia/QA, mas não antecede HelpDesk na narrativa de Automação + IA. O README deve diferenciar **núcleo profissional**, **ferramentas contextuais** e **credenciais**. A versão inglesa permanece dedicada.
 
 ### Cases e READMEs individuais
 
