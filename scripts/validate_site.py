@@ -226,19 +226,19 @@ en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 
 pt_flagships = [
     'Mala Direta',
-    'Produção Operacional',
+    'Postagem Redes',
     'Vesper Propostas',
     'CarreiraPessoal',
+    'Produção Operacional',
     'Catálogo Operacional de Compras',
-    'Postagem Redes',
 ]
 en_flagships = [
     'Mala Direta',
-    'Production Operations',
+    'Postagem Redes',
     'Vesper Propostas',
     'CarreiraPessoal',
+    'Production Operations',
     'Operational Procurement Catalog',
-    'Postagem Redes',
 ]
 assert_order(home, pt_flagships, 'PT home', errors)
 assert_order(en_home, en_flagships, 'EN home', errors)
@@ -258,9 +258,9 @@ for text, surface in [(home, 'PT home'), (en_home, 'EN home')]:
 
 if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
     errors.append('home pages must expose RAG/grounding as applied AI evidence')
-if 'FastAPI · APIs REST · SQL/PostgreSQL' not in home:
+if 'n8n self-hosted, Python, FastAPI, APIs REST, SQL/PostgreSQL e Docker' not in home:
     errors.append('PT home core positioning drifted')
-if 'FastAPI · REST APIs · SQL/PostgreSQL' not in en_home:
+if 'self-hosted n8n, Python, FastAPI, REST APIs, SQL/PostgreSQL and Docker' not in en_home:
     errors.append('EN home core positioning drifted')
 if 'carreira-overview.webp' in home or 'carreira-overview.webp' in en_home:
     errors.append('home pages still reference the known corrupt CarreiraPessoal WebP')
