@@ -7,7 +7,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 # This is the canonical materialization order for recruiter-facing source.
-# Keep it synchronized with .github/workflows/pages.yml.
+# Keep it synchronized with .github/workflows/pages.yml; the source-drift guard relies on this exact sequence.
 COMMANDS = [
     "scripts/generate_resumes_general.py",
     "scripts/add_resume_links.py",
