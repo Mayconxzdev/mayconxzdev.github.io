@@ -118,7 +118,7 @@ check_featured(
 )
 
 career = require('docs/CAREER_EVIDENCE.md', [
-    'Atualizado em **21/09/2026**',
+    'Atualizado em **22/09/2026**',
     'Ferramentas complementares / contextuais',
     'Competências práticas e credencializadas',
     'Vocabulário de mercado — auditoria 24/08/2026',
