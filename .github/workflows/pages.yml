@@ -51,6 +51,7 @@ jobs:
           # duplicate recruiter-facing labels, controls or skill copy.
           python scripts/patch_skills_current.py
           python scripts/patch_recruiter_archive.py
+          python scripts/curate_recruiter_portfolio.py
       - name: Validate current resume content, links, ATS text and visual layout
         run: |
           python scripts/validate_general_resumes.py
