@@ -188,7 +188,7 @@ Variação Power Platform/BI:
 3. Postagem Redes — IA aplicada/RAG/evals;
 4. Produção Operacional — implantação e adoção.
 
-O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. No mobile, apenas quatro projetos principais ficam visíveis antes da experiência; o arquivo secundário usa progressive disclosure. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
+O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. O bloco inicial de resultados usa somente quatro métricas de alto sinal da atuação profissional atual (**10 mil+ execuções**, **<30 s em propostas simples**, **20+ profissionais apoiados** e **30+ pessoas treinadas/orientadas**), evitando recolocar cases secundários na primeira leitura. No mobile, apenas quatro projetos principais ficam visíveis antes da experiência; o arquivo secundário usa progressive disclosure. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
 
 ### GitHub
 
