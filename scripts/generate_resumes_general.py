@@ -37,12 +37,12 @@ def styles():
     return {
         'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.5 * mm),
         'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.2 * mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=9.6, leading=11.7, textColor=GRAY, spaceAfter=2.4 * mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.2, leading=11.8, textColor=BLACK, spaceBefore=3.0 * mm, spaceAfter=1.65 * mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=10.0, leading=11.8, textColor=GRAY, spaceAfter=2.4 * mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.2, leading=11.8, textColor=BLACK, spaceBefore=3.1 * mm, spaceAfter=1.65 * mm),
         'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=1.0 * mm),
         'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=0.65 * mm),
         'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.15, leading=12.45, textColor=BLACK, spaceAfter=0.5 * mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=9.55, leading=11.35, textColor=GRAY, spaceAfter=0.7 * mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=10.0, leading=11.6, textColor=GRAY, spaceAfter=0.7 * mm),
     }
 
 
@@ -63,13 +63,12 @@ def pt_common():
         'contact': CONTACT_PT,
         'sections': ['RESUMO PROFISSIONAL', 'EXPERIÊNCIA PROFISSIONAL', 'PROJETOS SELECIONADOS', 'COMPETÊNCIAS TÉCNICAS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
         'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · único analista/desenvolvedor interno de automação, dados/BI e IA',
+        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · atuação interna em automação, sistemas, dados/BI e IA',
         'vesper_bullets': [
-            '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e uso n8n/Power Automate conforme o processo, integrando APIs, webhooks, PostgreSQL e controles de erro.',
-            '<b>Proposta Comercial:</b> desenvolvi e sustento fluxo com ODT/PDF, IMAP/SMTP e revisão humana; propostas simples passaram de 2–4 min para &lt;30 s, com uso diário por 4 profissionais.',
-            '<b>Sistemas e operação:</b> implantei a Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores e mantenho HelpDesk utilizado por 11 usuários.',
-            '<b>Dados e BI:</b> crio dashboards e análises em Power BI/Excel/Power Query para produção, compras e estoque.',
-            '<b>Processos:</b> conduzo requisitos, AS-IS/TO-BE/BPMN, testes/UAT, implantação e treinamento; já treinei/orientei 30+ pessoas.',
+            '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
+            '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial (ODT/PDF + IMAP/SMTP), reduzindo propostas simples de 2–4 min para &lt;30 s; implantei Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores.',
+            '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
+            '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento; 30+ pessoas já orientadas.',
         ],
         'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
         'freelance_meta': 'Aulas pagas semanais (~3h) para públicos de diferentes idades e níveis',
@@ -93,13 +92,12 @@ def en_common():
         'contact': CONTACT_EN,
         'sections': ['PROFESSIONAL SUMMARY', 'PROFESSIONAL EXPERIENCE', 'SELECTED PROJECTS', 'TECHNICAL SKILLS', 'EDUCATION', 'SELECTED CREDENTIALS', 'LANGUAGES'],
         'vesper_role': 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · sole internal analyst/developer across automation, data/BI and AI',
+        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · internal work across automation, systems, data/BI and AI',
         'vesper_bullets': [
-            '<b>Automation:</b> administer self-hosted n8n with 10k+ production executions and use n8n/Power Automate according to the process, integrating APIs, webhooks, PostgreSQL and error controls.',
-            '<b>Commercial Proposals:</b> built and support an ODT/PDF + IMAP/SMTP workflow with human review; simple proposals went from 2–4 min to &lt;30 sec and are used daily by 4 professionals.',
-            '<b>Systems & operations:</b> deployed Production Operations to 10+ PCs and 1 TV for 20+ professionals across 9 sectors and maintain a HelpDesk used by 11 users.',
-            '<b>Data & BI:</b> build Power BI/Excel/Power Query dashboards and analyses for production, procurement and inventory.',
-            '<b>Process:</b> lead requirements, AS-IS/TO-BE/BPMN, testing/UAT, deployment and training; trained/guided 30+ people.',
+            '<b>Automation:</b> administer self-hosted n8n with 10k+ production executions and build workflows with n8n/Power Automate, Python, APIs/webhooks, PostgreSQL and error handling.',
+            '<b>Operational impact:</b> built and support Commercial Proposal (ODT/PDF + IMAP/SMTP), reducing simple proposals from 2–4 min to &lt;30 sec; deployed Production Operations to 10+ PCs and 1 TV for 20+ professionals across 9 areas.',
+            '<b>Engineering:</b> co-develop Belarc Inventory, in internal use, with a Rust/Tokio Windows agent, Axum/SQLite server and PowerShell/CIM collection.',
+            '<b>Data & process:</b> build Power BI/Excel/Power Query dashboards for production, procurement and inventory and work across requirements, BPMN/AS-IS/TO-BE, UAT, deployment and training; 30+ people guided.',
         ],
         'freelance_role': 'IT INSTRUCTOR (FREELANCE) | Oct. 2024 – Present',
         'freelance_meta': 'Paid weekly classes (~3h) for learners of different ages and skill levels',
@@ -126,18 +124,18 @@ def content(lang='pt', track='general'):
                 'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
                 'summary': (
-                    'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e dados/BI. '
+                    'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e sistemas internos. '
                     'Administro n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s. '
-                    'Experiência com Power BI/Power Query, LLMs/agentes/RAG, PostgreSQL/Redis e Docker.'
+                    'Experiência com Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker e engenharia Windows/Rust.'
                 ),
                 'projects': [
-                    '<b>Mala Direta:</b> automação n8n em produção para 6 campanhas sobre base de 1.020 contatos; fila por destinatário, deduplicação, cancelamento revalidado, retry e auditoria.',
-                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; agente operacional cruza contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico.',
+                    '<b>Postagem Redes:</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; OAuth2, idempotência e falha isolada por canal.',
+                    '<b>Hubora:</b> produto web local-first com React/TypeScript, Supabase/RLS, PWA, IndexedDB, testes E2E e validação de acessibilidade.',
                 ],
                 'skills': [
-                    '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
+                    '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
                     '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · MCP · human-in-the-loop · evals',
-                    '<b>Dados e BI:</b> Power BI · DAX · Power Query · Excel/Google Sheets · VBA · SQL',
+                    '<b>Engenharia, dados e BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
                 ],
             },
             'ai': {
@@ -167,8 +165,8 @@ def content(lang='pt', track='general'):
                     'Experiência com SQL/PostgreSQL, ETL, Excel/VBA, requisitos e sustentação.'
                 ),
                 'projects': [
-                    '<b>Mala Direta:</b> automação n8n em produção para 6 campanhas sobre base de 1.020 contatos, com fila, deduplicação, retry e auditoria.',
-                    '<b>Catálogo Operacional:</b> busca e controle de dados para 24 categorias e 480+ códigos, com uso diário, histórico, integridade e revisão de edição.',
+                    '<b>Catálogo Operacional:</b> busca e controle de dados para 24 categorias e 480+ códigos, com uso diário, histórico, integridade e revisão otimista.',
+                    '<b>ComprasVesper:</b> aplicação interna de compras/cotações com Python/PySide6, SQLite WAL, IMAP/SMTP, fila persistente, backoff, idempotência e tracking.',
                 ],
                 'skills': [
                     '<b>Automação e BI:</b> Power Automate Cloud/Desktop · Power BI · DAX · Power Query · Python · Excel/Google Sheets · VBA · SQL',
@@ -185,18 +183,18 @@ def content(lang='pt', track='general'):
         'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
         'title': 'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
         'summary': (
-            'Automation & AI Analyst working end to end across n8n, Power Automate, Python/APIs and data/BI. '
+            'Automation & AI Analyst working end to end across n8n, Power Automate, Python/APIs and internal systems. '
             'I administer self-hosted n8n with 10k+ production executions and delivered automations that reduced processes from 2–4 min to <30 sec. '
-            'Hands-on with Power BI/Power Query, LLMs/agents/RAG, PostgreSQL/Redis and Docker.'
+            'Hands-on with Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker and Windows/Rust engineering.'
         ),
         'projects': [
-            '<b>Mala Direta:</b> production n8n automation for 6 campaigns over a 1,020-contact base; per-recipient queue, deduplication, revalidated cancellation, retry and auditing.',
-            '<b>HelpDesk & IT Operations:</b> internal system used by 11 people; an operational agent combines workstation, inventory, ticket and expiration context to enrich alerts and diagnosis.',
+            '<b>Postagem Redes:</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals, with OAuth2, idempotency and channel-isolated failures.',
+            '<b>Hubora:</b> local-first web product with React/TypeScript, Supabase/RLS, PWA, IndexedDB, E2E tests and accessibility validation.',
         ],
         'skills': [
-            '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
+            '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
             '<b>Applied AI:</b> Prompt Engineering · LLM APIs · agents · RAG/LangChain · MCP · human-in-the-loop · evals',
-            '<b>Data & BI:</b> Power BI · DAX · Power Query · Excel/Google Sheets · VBA · SQL',
+            '<b>Engineering, data & BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
         ],
     })
     return data

@@ -17,9 +17,9 @@ REQUIRED = {
     'pt-general': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
         '10 mil+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
-        'WhatsApp Cloud API', 'PostgreSQL/Redis', 'Mala Direta', 'HelpDesk & IT Operations',
+        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Hubora',
         'INSTRUTOR DE INFORMÁTICA (FREELANCER)', 'Técnico Júnior em Automação de Processos',
-        'leitura técnica intermediária',
+        'Belarc Inventory', 'leitura técnica intermediária',
     ],
     'pt-ai': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
@@ -29,14 +29,14 @@ REQUIRED = {
     'pt-bi': [
         'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
         'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
-        'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Mala Direta', 'Catálogo Operacional',
+        'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Catálogo Operacional', 'ComprasVesper',
     ],
     'en-general': [
         'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
         '10k+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
-        'WhatsApp Cloud API', 'PostgreSQL/Redis', 'Mala Direta', 'HelpDesk & IT Operations',
+        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Hubora',
         'IT INSTRUCTOR (FREELANCE)', 'Junior Process Automation Technician',
-        'intermediate technical reading',
+        'Belarc Inventory', 'intermediate technical reading',
     ],
 }
 

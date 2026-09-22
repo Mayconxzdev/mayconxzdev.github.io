@@ -1,6 +1,6 @@
 # Registro canônico de evidências profissionais
 
-Atualizado em **21/09/2026**. Este arquivo é a referência editorial para manter **currículo, portfólio e GitHub em sincronia**. Ele não substitui a evidência técnica dos repositórios; define quais afirmações podem ser resumidas publicamente, com qual estado e sem inflar maturidade.
+Atualizado em **22/09/2026**. Este arquivo é a referência editorial para manter **currículo, portfólio e GitHub em sincronia**. Ele não substitui a evidência técnica dos repositórios; define quais afirmações podem ser resumidas publicamente, com qual estado e sem inflar maturidade.
 
 O inventário e a classificação de cursos, badges e credenciais ficam em [`CREDENTIALS_EVIDENCE.md`](CREDENTIALS_EVIDENCE.md). Uma credencial pode validar aprendizagem prática sem transformar automaticamente a tecnologia em experiência profissional de produção.
 
@@ -20,6 +20,7 @@ O posicionamento prioriza vagas de **automação e IA aplicada** sem inflar seni
 | Proposta Comercial | **2–4 min → menos de 30 s em propostas simples; uso diário por 4 profissionais** | métrica do fluxo operacional já utilizado | case Vesper Propostas |
 | Produção Operacional | **10+ PCs + 1 TV; 20+ profissionais; 9 setores** | implantação interna em produção | Produção Operacional |
 | HelpDesk | **11 usuários** | uso interno; não inventar redução percentual de tempo | HelpDesk |
+| Belarc Inventory | **em uso interno na empresa atual** | co-desenvolvido; agente Windows em Rust/Tokio, servidor Axum/SQLite, PowerShell/CIM; screenshots públicos são sanitizados/fictícios; não apresentar o agente como IA/LLM | Belarc Inventory |
 | Manutenção | **40+ ativos** | processo interno digitalizado com checklists/evidências/histórico | case de manutenção |
 | Adoção | **30+ pessoas treinadas ou orientadas** | pessoas alcançadas; não converter em “30 treinamentos” | experiência Grupo Vesper |
 | Instrutor freelancer | **aulas pagas de informática desde out. 2024; rotina atual semanal de ~3h** | públicos de diferentes idades/níveis; não inventar quantidade total de alunos | relato profissional do autor |
@@ -167,38 +168,39 @@ Manter **um currículo-base PT-BR**, duas variações direcionadas (IA/agentes e
 A experiência profissional passa a carregar n8n/Power Automate, Proposta Comercial, sistemas internos, BI/dados, adoção e o trabalho paralelo como instrutor. A seção de projetos complementa:
 
 Currículo-base:
-1. Mala Direta — automação n8n, filas e confiabilidade em produção;
-2. HelpDesk — uso interno por 11 pessoas, agente operacional e contexto técnico.
+1. Postagem Redes — Prompt Engineering, RAG/LangChain, human-in-the-loop, evals e APIs externas;
+2. Hubora — produto full-stack verificável, local-first, testes E2E e acessibilidade.
+
+O Belarc Inventory entra na experiência profissional como sistema real em uso interno, evitando repetir o mesmo projeto na seção selecionada.
 
 Variação IA/agentes:
 1. HelpDesk;
 2. Postagem Redes — Prompt Engineering, RAG/LangChain, human-in-the-loop, evals e APIs externas.
 
 Variação Power Platform/BI:
-1. Mala Direta;
-2. Catálogo Operacional — dados, busca, integridade e uso diário.
+1. Catálogo Operacional — dados, busca, integridade e uso diário;
+2. ComprasVesper — automação empresarial, fila persistente, e-mail, tracking e confiabilidade.
 
 ### Portfólio — projetos principais
 
-1. Mala Direta;
-2. Vesper Propostas;
-3. HelpDesk;
-4. Postagem Redes.
+1. Vesper Propostas — impacto de negócio;
+2. Belarc Inventory — engenharia de sistemas/Windows;
+3. Postagem Redes — IA aplicada/RAG/evals;
+4. Produção Operacional — implantação e adoção.
 
-O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. No mobile, apenas quatro projetos principais ficam visíveis antes da experiência; o arquivo secundário usa progressive disclosure. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
+O **Portal** permanece como arquitetura em **desenvolvimento/revalidação**, fora da vitrine principal até nova evidência justificar promoção. O bloco inicial de resultados usa somente quatro métricas de alto sinal da atuação profissional atual (**10 mil+ execuções**, **<30 s em propostas simples**, **20+ profissionais apoiados** e **30+ pessoas treinadas/orientadas**), evitando recolocar cases secundários na primeira leitura. No mobile, apenas quatro projetos principais ficam visíveis antes da experiência; o arquivo secundário usa progressive disclosure. A homepage mostra apenas credenciais selecionadas; inventário completo fica em `/competencias/credenciais/` e `/en/credentials/`.
 
 ### GitHub
 
 O README do perfil deve conduzir primeiro a cinco projetos:
 
-1. MalaDireta;
-2. HelpDesk;
-3. PostagemRedes;
-4. ProducaoOperacional;
-5. CatalogoOperacional;
-6. Central-ISO.
+1. Belarc-Inventory;
+2. ProducaoOperacional;
+3. ComprasProducao;
+4. PostagemRedes;
+5. Hubora.
 
-CarreiraPessoal continua como prova de engenharia/QA, mas não antecede HelpDesk na narrativa de Automação + IA. O README deve diferenciar **núcleo profissional**, **ferramentas contextuais** e **credenciais**. A versão inglesa permanece dedicada.
+Os seis pins recomendados são **Belarc-Inventory, ProducaoOperacional, ComprasProducao, PostagemRedes, Hubora e Central-ISO**. MalaDireta, HelpDesk, Catálogo Operacional e CarreiraPessoal permanecem como evidências complementares. O README deve diferenciar **núcleo profissional**, **ferramentas contextuais** e **credenciais**. A versão inglesa permanece dedicada.
 
 ### Cases e READMEs individuais
 
