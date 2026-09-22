@@ -77,7 +77,7 @@ def ensure_sitemap() -> None:
         text = text[:line_end+1] + en + "\n" + text[line_end+1:]
     path.write_text(text, encoding="utf-8")
 
-patch_home(ROOT / "index.html", "featured_pt.html", "archive_pt.html", False)
-patch_home(ROOT / "en" / "index.html", "featured_en.html", "archive_en.html", True)
+patch_home(ROOT / "index.html", "featured_pt.fragment", "archive_pt.fragment", False)
+patch_home(ROOT / "en" / "index.html", "featured_en.fragment", "archive_en.fragment", True)
 ensure_sitemap()
 print("Recruiter curation enforced: 4 flagships, 12 secondary cases, Belarc routing and metadata.")
