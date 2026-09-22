@@ -147,7 +147,7 @@ def content(lang='pt', track='general'):
                     'Também atuo com PostgreSQL/Redis, Docker e sustentação ponta a ponta.'
                 ),
                 'projects': [
-                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; agente operacional cruza contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico.',
+                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; integra contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico, com assistência local opcional.',
                     '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; Facebook/Instagram validados em ambiente de teste.',
                 ],
                 'skills': [
