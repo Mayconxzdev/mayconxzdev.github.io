@@ -22,7 +22,7 @@ def forbid(relative: str, phrases: list[str]):
 
 
 pt_skills = require('competencias/index.html', [
-    'Automação, IA, integrações e processos aplicados em projetos reais.',
+    'Automação, IA e engenharia aplicadas em sistemas reais.',
     'Power Automate Cloud/Desktop',
     'Power BI',
     'DAX',
@@ -37,6 +37,9 @@ pt_skills = require('competencias/index.html', [
     'MCP',
     'evals',
     'BPMN',
+    'Rust',
+    'Axum',
+    'PowerShell/CIM',
     'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA',
     'DADOS, BI E PRODUTIVIDADE',
 ])
@@ -51,7 +54,7 @@ for phrase in [
         errors.append(f'competencias/index.html: duplicated or depth-ambiguous phrase: {phrase}')
 
 en_skills = require('en/skills/index.html', [
-    'Automation, AI, integrations and processes applied in real projects.',
+    'Automation, AI and engineering applied in real systems.',
     'Power Automate Cloud/Desktop',
     'Power BI',
     'DAX',
@@ -66,6 +69,9 @@ en_skills = require('en/skills/index.html', [
     'MCP',
     'evals',
     'BPMN',
+    'Rust',
+    'Axum',
+    'PowerShell/CIM',
     'TRACEABILITY, RELIABILITY AND SECURITY',
     'DATA, BI AND PRODUCTIVITY',
 ])
@@ -102,13 +108,13 @@ def check_featured(relative: str, expected_titles: list[str], architecture_phras
 
 check_featured(
     'index.html',
-    ['Mala Direta', 'Vesper Propostas', 'HelpDesk & IT Operations', 'Postagem Redes'],
-    'Quatro provas rápidas de automação, IA e entrega real.',
+    ['Vesper Propostas', 'Belarc Inventory', 'Postagem Redes', 'Produção Operacional'],
+    'Quatro provas diferentes de resultado, engenharia, IA e implantação.',
 )
 check_featured(
     'en/index.html',
-    ['Mala Direta', 'Vesper Propostas', 'HelpDesk & IT Operations', 'Postagem Redes'],
-    'Four fast proofs of automation, AI and real delivery.',
+    ['Commercial Proposal', 'Belarc Inventory', 'Postagem Redes', 'Production Operations'],
+    'Four different proofs of impact, engineering, AI and deployment.',
 )
 
 career = require('docs/CAREER_EVIDENCE.md', [
