@@ -1,0 +1,38 @@
+name: One-shot materialize recruiter source
+
+on:
+  push:
+    branches: [source-of-truth-sync-2026-09]
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install materialization dependencies
+        run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
+      - name: Materialize the exact pre-release source
+        run: python scripts/materialize_portfolio_source.py
+      - name: Remove one-shot workflow and commit generated source
+        shell: bash
+        run: |
+          rm -f .github/workflows/materialize-source-sync.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to materialize."
+            exit 0
+          fi
+          git commit -m "Materialize recruiter-facing source [skip ci]"
+          git push origin HEAD:source-of-truth-sync-2026-09
