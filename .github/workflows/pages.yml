@@ -161,6 +161,7 @@ jobs:
             HOME_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/carreira-pessoal/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             PROD_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/producao-operacional/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            BELARC_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/belarc-inventory/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             SKILLS_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/competencias/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
@@ -199,6 +200,10 @@ jobs:
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$PROD_HTML" \
               && grep -Fq '>Competências<' <<<"$PROD_HTML" \
               && grep -Fq 'Produção<br>Operacional' <<<"$PROD_HTML" \
+              && grep -Fq 'Belarc Inventory' <<<"$HOME_HTML" \
+              && grep -Fq 'EM USO INTERNO' <<<"$BELARC_HTML" \
+              && grep -Fq 'Rust · Axum · Tokio · SQLite' <<<"$BELARC_HTML" \
+              && grep -Fq 'data-global-chrome="2026-08"' <<<"$BELARC_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$ISO_HTML" \
               && grep -Fq 'class="case-page"' <<<"$ISO_HTML" \
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
