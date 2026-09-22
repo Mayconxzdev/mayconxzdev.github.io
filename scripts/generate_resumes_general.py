@@ -63,7 +63,7 @@ def pt_common():
         'contact': CONTACT_PT,
         'sections': ['RESUMO PROFISSIONAL', 'EXPERIÊNCIA PROFISSIONAL', 'PROJETOS SELECIONADOS', 'COMPETÊNCIAS TÉCNICAS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
         'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · único analista/desenvolvedor interno de automação, dados/BI e IA',
+        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · atuação interna em automação, sistemas, dados/BI e IA',
         'vesper_bullets': [
             '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
             '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial (ODT/PDF + IMAP/SMTP), reduzindo propostas simples de 2–4 min para &lt;30 s; implantei Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores.',
@@ -92,7 +92,7 @@ def en_common():
         'contact': CONTACT_EN,
         'sections': ['PROFESSIONAL SUMMARY', 'PROFESSIONAL EXPERIENCE', 'SELECTED PROJECTS', 'TECHNICAL SKILLS', 'EDUCATION', 'SELECTED CREDENTIALS', 'LANGUAGES'],
         'vesper_role': 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · sole internal analyst/developer across automation, data/BI and AI',
+        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · internal work across automation, systems, data/BI and AI',
         'vesper_bullets': [
             '<b>Automation:</b> administer self-hosted n8n with 10k+ production executions and build workflows with n8n/Power Automate, Python, APIs/webhooks, PostgreSQL and error handling.',
             '<b>Operational impact:</b> built and support Commercial Proposal (ODT/PDF + IMAP/SMTP), reducing simple proposals from 2–4 min to &lt;30 sec; deployed Production Operations to 10+ PCs and 1 TV for 20+ professionals across 9 areas.',
@@ -124,9 +124,9 @@ def content(lang='pt', track='general'):
                 'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
                 'summary': (
-                    'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e dados/BI. '
+                    'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e sistemas internos. '
                     'Administro n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s. '
-                    'Experiência com Power BI/Power Query, LLMs/agentes/RAG, PostgreSQL/Redis e Docker.'
+                    'Experiência com Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker e engenharia Windows/Rust.'
                 ),
                 'projects': [
                     '<b>Postagem Redes:</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; OAuth2, idempotência e falha isolada por canal.',
@@ -183,9 +183,9 @@ def content(lang='pt', track='general'):
         'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
         'title': 'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
         'summary': (
-            'Automation & AI Analyst working end to end across n8n, Power Automate, Python/APIs and data/BI. '
+            'Automation & AI Analyst working end to end across n8n, Power Automate, Python/APIs and internal systems. '
             'I administer self-hosted n8n with 10k+ production executions and delivered automations that reduced processes from 2–4 min to <30 sec. '
-            'Hands-on with Power BI/Power Query, LLMs/agents/RAG, PostgreSQL/Redis and Docker.'
+            'Hands-on with Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker and Windows/Rust engineering.'
         ),
         'projects': [
             '<b>Postagem Redes:</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals, with OAuth2, idempotency and channel-isolated failures.',
