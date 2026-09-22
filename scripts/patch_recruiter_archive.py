@@ -61,10 +61,10 @@ def patch(path: Path, cfg: dict[str, str]) -> None:
         text = text.replace('</body>', f'  {script}\n</body>', 1)
 
     if 'class="archive-expand"' not in text:
-        anchor = cfg['empty_anchor']
-        if anchor not in text:
-            raise SystemExit(f'{path}: archive insertion anchor not found')
-        text = text.replace(anchor, f"      </div>\n{cfg['button']}      <p class=\"empty-state\" id=\"empty-state\" hidden>", 1)
+        empty_pos = text.find('<p class="empty-state"')
+        if empty_pos < 0:
+            raise SystemExit(f'{path}: archive empty-state not found')
+        text = text[:empty_pos] + cfg['button'] + text[empty_pos:]
 
     text = text.replace(cfg['maintenance_public_old'], cfg['maintenance_public_new'])
     text = text.replace(cfg['maintenance_private_old'], cfg['maintenance_private_new'])
