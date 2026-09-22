@@ -24,6 +24,7 @@ EN_NAV = ['Overview', 'Projects', 'Experience', 'Results', 'Skills', 'Contact', 
 CASE_EN_SLUG = {
     'carreira-pessoal': 'career-personal',
     'catalogo-operacional-compras': 'operational-procurement-catalog',
+    'belarc-inventory': 'belarc-inventory',
 }
 CASE_PT_SLUG = {v: k for k, v in CASE_EN_SLUG.items()}
 
@@ -225,16 +226,16 @@ home = (ROOT / 'index.html').read_text(encoding='utf-8')
 en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 
 pt_flagships = [
-    'Mala Direta',
     'Vesper Propostas',
-    'HelpDesk & IT Operations',
+    'Belarc Inventory',
     'Postagem Redes',
+    'Produção Operacional',
 ]
 en_flagships = [
-    'Mala Direta',
-    'Vesper Propostas',
-    'HelpDesk & IT Operations',
+    'Commercial Proposal',
+    'Belarc Inventory',
     'Postagem Redes',
+    'Production Operations',
 ]
 assert_order(home, pt_flagships, 'PT home', errors)
 assert_order(en_home, en_flagships, 'EN home', errors)
@@ -260,6 +261,9 @@ if 'carreira-overview.webp' in home or 'carreira-overview.webp' in en_home:
     errors.append('home pages still reference the known corrupt CarreiraPessoal WebP')
 
 required_routes = [
+    ROOT / 'cases/belarc-inventory/index.html',
+    ROOT / 'en/cases/belarc-inventory/index.html',
+    ROOT / 'assets/evidence/belarc-frota.jpg',
     ROOT / 'cases/carreira-pessoal/index.html',
     ROOT / 'en/cases/career-personal/index.html',
     ROOT / 'cases/central-iso/index.html',

@@ -7,11 +7,11 @@ from pypdf import PdfReader
 REQUIRED = {
     'pt-general': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
-        'Power Automate', 'Power BI', 'Prompt Engineering', 'HelpDesk & IT Operations', 'Mala Direta',
+        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'Hubora', 'Belarc Inventory',
     ],
     'en-general': [
         'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
-        'Power Automate', 'Power BI', 'Prompt Engineering', 'HelpDesk & IT Operations', 'Mala Direta',
+        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'Hubora', 'Belarc Inventory',
     ],
     'pt-ai': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
@@ -21,7 +21,7 @@ REQUIRED = {
     'pt-bi': [
         'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
         'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
-        'Excel/Google Sheets', 'Mala Direta', 'Catálogo Operacional',
+        'Excel/Google Sheets', 'Catálogo Operacional', 'ComprasVesper',
     ],
 }
 
