@@ -1,7 +1,7 @@
 """Compatibility entry point for resume validation.
 
-The canonical recruiter-facing resume checks live in:
-- validate_general_resumes.py (ATS/content/links/one-page)
+The canonical resume checks for the published portfolio live in:
+- validate_general_resumes.py (text, links and one-page content)
 - validate_resume_visual.py (rendering/readability/layout)
 
 Keeping this lightweight entry point avoids a second, stale source of truth.
