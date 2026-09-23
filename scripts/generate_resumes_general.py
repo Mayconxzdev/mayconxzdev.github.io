@@ -83,6 +83,7 @@ def pt_common():
             '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
             '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento; 30+ pessoas já orientadas.',
         ],
+        'vesper_ops_bullet': '<b>Operação de TI:</b> presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes orientam melhorias e automações que implanto e sustento.',
         'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
         'freelance_meta': 'Aulas pagas semanais (~3h) para públicos de diferentes idades e níveis',
         'freelance_bullets': ['Ensino Excel/Google Sheets, Power BI, Power Query, VBA, Pacote Office, Windows e fundamentos de Linux.'],
@@ -90,7 +91,7 @@ def pt_common():
         'compass_meta': 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas',
         'compass_bullets': ['Desenvolvi pipeline com Python/SQL/Docker/AWS, integrando CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena e QuickSight em fluxo ETL/Data Lake.'],
         'education': [
-            '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · conclusão prevista dez. 2026',
+            '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · previsão: dez/2026',
             '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025',
         ],
         'credentials': [
@@ -138,8 +139,7 @@ def content(lang='pt', track='general'):
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
                 'summary': (
                     'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e sistemas internos. '
-                    'Administro n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s. '
-                    'Experiência com Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker e engenharia Windows/Rust.'
+                    'Administro n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s.'
                 ),
                 'projects': [
                     '<b>Postagem Redes (validado em teste):</b> n8n + APIs + RAG/LangChain + Prompt Engineering + revisão humana + evals; OAuth2, idempotência e falha isolada por canal.',
@@ -152,12 +152,12 @@ def content(lang='pt', track='general'):
                 ],
             },
             'ai': {
+                'vesper_ops_bullet': '<b>Operação:</b> presto suporte a usuários, endpoints Windows e sistemas internos; demandas recorrentes alimentam melhorias e automações.',
                 'filename': 'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
                 'summary': (
                     'Analista de Automação e IA com experiência em n8n, Python/APIs e soluções com LLMs/agentes. '
-                    'Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo integrações com Prompt Engineering, RAG/LangChain, evals e revisão humana. '
-                    'Também atuo com PostgreSQL/Redis, Docker e sustentação ponta a ponta.'
+                    'Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo integrações com Prompt Engineering, RAG/LangChain, evals e revisão humana.'
                 ),
                 'projects': [
                     '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; integra contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico, com assistência local experimental.',
@@ -170,6 +170,7 @@ def content(lang='pt', track='general'):
                 ],
             },
             'bi': {
+                'vesper_ops_bullet': '<b>Processos e operação:</b> dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes ajudam a priorizar melhorias e ferramentas.',
                 'filename': 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
                 'summary': (
@@ -189,6 +190,7 @@ def content(lang='pt', track='general'):
             },
         }
         data.update(tracks[track])
+        data['vesper_bullets'].append(data['vesper_ops_bullet'])
         return data
 
     data = en_common()
@@ -210,6 +212,11 @@ def content(lang='pt', track='general'):
             '<b>Engineering, data & BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
         ],
     })
+    data['vesper_ops_bullet'] = (
+        '<b>IT operations:</b> provide hands-on support for users, Windows endpoints and internal systems in an industrial environment, '
+        'turning recurring operational issues into improvements and automation opportunities.'
+    )
+    data['vesper_bullets'].append(data['vesper_ops_bullet'])
     return data
 
 
