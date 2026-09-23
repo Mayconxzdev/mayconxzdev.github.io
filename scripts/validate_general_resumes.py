@@ -20,16 +20,19 @@ REQUIRED = {
         'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'ComprasVesper', 'MCP Tools with Agents',
         'INSTRUTOR DE INFORMÁTICA (FREELANCER)', 'Técnico Júnior em Automação de Processos',
         'Belarc Inventory', 'leitura técnica intermediária',
+        'presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial',
     ],
     'pt-ai': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
         'Prompt Engineering', 'RAG/LangChain', 'MCP Tools with Agents', 'Supabase/Qdrant',
         'HelpDesk & IT Operations', 'Postagem Redes', '10 mil+',
+        'presto suporte a usuários, endpoints Windows e sistemas internos',
     ],
     'pt-bi': [
         'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
         'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
         'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Catálogo Operacional', 'ComprasVesper',
+        'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial',
     ],
     'en-general': [
         'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
@@ -37,14 +40,15 @@ REQUIRED = {
         'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'ComprasVesper', 'MCP Tools with Agents',
         'IT INSTRUCTOR (FREELANCE)', 'Junior Process Automation Technician',
         'Belarc Inventory', 'intermediate technical reading',
+        'provide hands-on support for users, Windows endpoints and internal systems in an industrial environment',
     ],
 }
 
 PARSER_REQUIRED = {
-    'pt-general': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'PROPOSTA COMERCIAL', 'Postagem Redes', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
-    'pt-ai': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'HelpDesk & IT Operations', 'Postagem Redes', 'FORMAÇÃO', 'IDIOMAS'],
-    'pt-bi': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'Catálogo Operacional', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
-    'en-general': ['MAYCON FERREIRA', 'Junior Process Automation Technician', 'Postagem Redes', 'ComprasVesper', 'EDUCATION', 'LANGUAGES'],
+    'pt-general': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'PROPOSTA COMERCIAL', 'presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Postagem Redes', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
+    'pt-ai': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'presto suporte a usuários, endpoints Windows e sistemas internos', 'HelpDesk & IT Operations', 'Postagem Redes', 'FORMAÇÃO', 'IDIOMAS'],
+    'pt-bi': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Catálogo Operacional', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
+    'en-general': ['MAYCON FERREIRA', 'Junior Process Automation Technician', 'provide hands-on support for users, Windows endpoints and internal systems in an industrial environment', 'Postagem Redes', 'ComprasVesper', 'EDUCATION', 'LANGUAGES'],
 }
 
 FORBIDDEN = [
