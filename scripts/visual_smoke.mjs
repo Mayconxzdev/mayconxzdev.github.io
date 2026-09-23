@@ -37,24 +37,35 @@ async function addCaseRoutes(root, prefix, labelPrefix) {
 
 await addCaseRoutes('cases', '/cases/', 'case-pt');
 await addCaseRoutes('en/cases', '/en/cases/', 'case-en');
+const routeFilter = process.env.PORTFOLIO_SMOKE_ROUTES?.split(',').map(route => route.trim()).filter(Boolean);
+const selectedRoutes = routeFilter?.length ? routes.filter(([, route]) => routeFilter.includes(route)) : routes;
+if (routeFilter?.length && selectedRoutes.length !== routeFilter.length) {
+  throw new Error(`Unknown visual smoke route(s): ${routeFilter.filter(route => !routes.some(([, candidate]) => candidate === route)).join(', ')}`);
+}
 
 const profiles = [
   ['desktop-light', { width: 1440, height: 1000 }, 'light'],
   ['desktop-dark', { width: 1440, height: 1000 }, 'dark'],
+  ['laptop-light', { width: 1366, height: 768 }, 'light'],
+  ['tablet-light', { width: 768, height: 1024 }, 'light'],
   ['mobile-light', { width: 390, height: 844 }, 'light'],
+  ['mobile-dark', { width: 390, height: 844 }, 'dark'],
+  ['small-mobile-light', { width: 320, height: 640 }, 'light'],
 ];
 
 const PT_NAV = ['Visão geral', 'Projetos', 'Experiência', 'Resultados', 'Competências', 'Contato', 'Currículo', 'EN'];
 const EN_NAV = ['Overview', 'Projects', 'Experience', 'Results', 'Skills', 'Contact', 'Resume', 'PT'];
 
 await fs.mkdir(out, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const launchOptions = { headless: true };
+if (process.env.PORTFOLIO_CHROMIUM_PATH) launchOptions.executablePath = process.env.PORTFOLIO_CHROMIUM_PATH;
+const browser = await chromium.launch(launchOptions);
 const failures = [];
 let captures = 0;
 let interactionChecks = 0;
 
 try {
-  for (const [routeName, route] of routes) {
+  for (const [routeName, route] of selectedRoutes) {
     const routeProfiles = aliases.has(route) ? profiles.slice(0, 1) : profiles;
     for (const [profileName, viewport, theme] of routeProfiles) {
       const context = await browser.newContext({ viewport });
@@ -71,6 +82,17 @@ try {
       const response = await page.goto(base + route, { waitUntil: 'domcontentloaded', timeout: 10000 });
       if (!response || !response.ok()) failures.push(`${route} returned ${response?.status?.()}`);
       await page.waitForLoadState('networkidle', { timeout: 4000 }).catch(() => {});
+      if (!aliases.has(route)) {
+        await page.keyboard.press('Tab');
+        const focusedTarget = await page.evaluate(() => ({
+          href: document.activeElement?.getAttribute('href') || '',
+          visible: Boolean(document.activeElement?.getClientRects().length),
+        }));
+        if (focusedTarget.href !== '#main' || !focusedTarget.visible) {
+          failures.push(`${route} ${profileName}: keyboard focus did not expose the visible skip link first`);
+        }
+        await page.evaluate(() => document.activeElement?.blur());
+      }
 
       // Full-page screenshots can otherwise capture an unloaded lazy-image placeholder even
       // when the file itself is healthy. Force every image into the loading pipeline, visit
@@ -156,6 +178,10 @@ try {
           footer: alias ? true : Boolean(document.querySelector('[data-global-footer="2026-08"]')),
           themeToggle: alias ? true : Boolean(document.querySelector('.theme-toggle')),
           menuButton: alias ? true : Boolean(document.querySelector('.menu-button')),
+          headerControls: alias ? null : Object.fromEntries(['.menu-button', '.theme-toggle'].map(selector => {
+            const rect = document.querySelector(selector)?.getBoundingClientRect();
+            return [selector, rect ? { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom } : null];
+          })),
           navLabels,
         };
       }, { theme, alias: aliases.has(route) });
@@ -176,6 +202,15 @@ try {
         if (JSON.stringify(result.navLabels) !== JSON.stringify(expectedNav)) {
           failures.push(`${route} ${profileName}: nav labels drifted: ${JSON.stringify(result.navLabels)}`);
         }
+        if (viewport.width <= 500) {
+          const [menu, theme] = ['.menu-button', '.theme-toggle'].map(selector => result.headerControls?.[selector]);
+          if (!menu || !theme || menu.left < theme.right && theme.left < menu.right && menu.top < theme.bottom && theme.top < menu.bottom) {
+            failures.push(`${route} ${profileName}: mobile header controls overlap: ${JSON.stringify(result.headerControls)}`);
+          }
+        }
+
+        await page.locator('.brand').hover({ timeout: 3000 });
+        interactionChecks += 1;
 
         // Verify the visible controls are functional, not merely present in markup.
         const initialTheme = await page.locator('html').getAttribute('data-theme');
@@ -211,7 +246,7 @@ try {
       }
 
       const file = path.join(out, `${routeName}-${profileName}.png`);
-      await page.screenshot({ path: file, fullPage: true, animations: 'disabled', timeout: 10000 });
+      await page.screenshot({ path: file, fullPage: true, animations: 'disabled', timeout: 30000 });
       captures += 1;
       await context.close();
     }
@@ -224,4 +259,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Visual smoke passed: ${captures} captures across ${routes.length} routes; ${interactionChecks} theme/menu interaction checks`);
+console.log(`Visual smoke passed: ${captures} captures across ${selectedRoutes.length} routes; ${interactionChecks} theme/menu interaction checks`);

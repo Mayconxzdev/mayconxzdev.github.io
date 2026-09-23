@@ -1,6 +1,6 @@
 # Registro canônico de evidências profissionais
 
-Atualizado em **22/09/2026**. Este arquivo é a referência editorial para manter **currículo, portfólio e GitHub em sincronia**. Ele não substitui a evidência técnica dos repositórios; define quais afirmações podem ser resumidas publicamente, com qual estado e sem inflar maturidade.
+Atualizado em **23/09/2026**. Este arquivo é a referência editorial para manter **currículo, portfólio e GitHub em sincronia**. Ele não substitui a evidência técnica dos repositórios; define quais afirmações podem ser resumidas publicamente, com qual estado e sem inflar maturidade.
 
 O inventário e a classificação de cursos, badges e credenciais ficam em [`CREDENTIALS_EVIDENCE.md`](CREDENTIALS_EVIDENCE.md). Uma credencial pode validar aprendizagem prática sem transformar automaticamente a tecnologia em experiência profissional de produção.
 
@@ -59,15 +59,15 @@ Não usar `CRM` isoladamente como skill do currículo geral: é amplo demais sem
 
 ### Competências práticas e credencializadas
 
-`Microsoft Foundry` · `MCP com agentes` · `Power Apps Canvas Apps` · `Make AI Agent Builder` · `UiPath Automation Business Analysis`
+`Microsoft Foundry` · `MCP Tools with Agents (Microsoft Applied Skills)` · `Power Apps Canvas Apps` · `Make AI Agent Builder` · `UiPath Automation Business Analyst Professional Training`
 
-Além das Microsoft Applied Skills, o autor relata prática própria com **servidor MCP, cliente MCP, tools e integração com agentes**. MCP pode aparecer como competência prática; não atribuir escala/produção específica sem evidência de projeto. Make/UiPath/Power Apps continuam úteis como ferramentas complementares quando não houver case profissional equivalente.
+O perfil, o histórico de conversas e os projetos locais foram cruzados com busca direcionada por implementação, documentação e commits. A evidência disponível confirma a Microsoft Applied Skill **MCP Tools with Agents**, mas não um servidor/cliente MCP próprio nem um projeto de tools MCP. Portanto, não afirmar autoria ou implementação MCP independente. Make/UiPath/Power Apps continuam contextualizados às credenciais e formação, sem equivalência automática com uso profissional em produção.
 
 ### IA aplicada
 
-No currículo principal podem aparecer, porque existe base verificável ou prática declarada: **IA generativa/LLMs · APIs de LLM · Prompt Engineering · agentes de IA · RAG/grounding · LangChain · MCP · human-in-the-loop · evals**.
+No currículo principal podem aparecer com o estado adequado: **IA generativa/LLMs · APIs de LLM · Prompt Engineering · agentes de IA · RAG/grounding · LangChain · human-in-the-loop · evals**. MCP aparece na lista de credenciais como Microsoft Applied Skill, não como tecnologia de produção ou sistema próprio.
 
-Postagem Redes fornece evidência pública de grounding com LangChain/Supabase/n8n, revisão humana, guardrails, Prompt Engineering e evals sintéticos/reproduzíveis. O autor também relata uso de **Supabase e Qdrant** em RAG e prática completa de MCP. **LangGraph e CrewAI** ficam como estudo/protótipo e não entram no currículo principal como profundidade profissional.
+Postagem Redes fornece evidência pública de grounding com LangChain/Supabase/n8n, revisão humana, guardrails, Prompt Engineering e evals sintéticos/reproduzíveis, em estado validado em teste. **LangGraph e CrewAI** ficam como estudo/protótipo e não entram no currículo principal como profundidade profissional. A Microsoft Applied Skill valida aprendizagem guiada de MCP Tools with Agents, sem comprovar implementação própria.
 
 Não afirmar sem evidência que o RAG atual usa `pgvector`, Pinecone, reranker customizado ou multi-agent supervisor. `Qdrant` e `Redis` podem aparecer como competências práticas, sem atribuir produção/escala específica quando não houver case público.
 
@@ -132,7 +132,7 @@ Famílias de busca relevantes, sem alterar o cargo formal no Grupo Vesper:
 - Automation Business Analyst / Business Process Automation Analyst;
 - Desenvolvedor de Automação e Integrações — Júnior / Pleno inicial.
 
-Sinais transversais que devem estar cobertos pelo documento geral quando sustentados por evidência: **n8n/workflow automation, Power Automate, Python, FastAPI, APIs REST/JSON, webhooks, OAuth, WhatsApp API, SQL/PostgreSQL, Redis, Power BI/Power Query, Excel/VBA, BPMN/AS-IS/TO-BE, requisitos/stakeholders, UAT, IA generativa/LLMs, Prompt Engineering, agentes, RAG/grounding, LangChain, MCP, evals, Git/CI-CD, logs, retries e idempotência**.
+Sinais transversais que devem estar cobertos pelo documento geral quando sustentados por evidência: **n8n/workflow automation, Power Automate, Python, FastAPI, APIs REST/JSON, webhooks, OAuth, WhatsApp API, SQL/PostgreSQL, Redis, Power BI/Power Query, Excel/VBA, BPMN/AS-IS/TO-BE, requisitos/stakeholders, UAT, IA generativa/LLMs, Prompt Engineering, agentes, RAG/grounding, LangChain, evals, Git/CI-CD, logs, retries e idempotência**. MCP é listado somente como Microsoft Applied Skill — MCP Tools with Agents — quando a candidatura exigir essa credencial.
 
 Empresas maiores tendem a adicionar governança, compliance, segurança, observabilidade e ferramentas enterprise; startups tendem a enfatizar autonomia, ponta a ponta, APIs, n8n/Make, Python/JS, agentes e troubleshooting. O currículo geral cobre o **núcleo comum**, sem copiar a cauda específica de cada vaga.
 
@@ -169,7 +169,7 @@ A experiência profissional passa a carregar n8n/Power Automate, Proposta Comerc
 
 Currículo-base:
 1. Postagem Redes — Prompt Engineering, RAG/LangChain, human-in-the-loop, evals e APIs externas;
-2. Hubora — produto full-stack verificável, local-first, testes E2E e acessibilidade.
+2. ComprasVesper — integração de e-mail, fila persistente e confiabilidade numa aplicação Python de uso interno, com demonstração pública bloqueando rede/e-mail.
 
 O Belarc Inventory entra na experiência profissional como sistema real em uso interno, evitando repetir o mesmo projeto na seção selecionada.
 
@@ -198,9 +198,9 @@ O README do perfil deve conduzir primeiro a cinco projetos:
 2. ProducaoOperacional;
 3. ComprasProducao;
 4. PostagemRedes;
-5. Hubora.
+5. Central-ISO.
 
-Os seis pins recomendados são **Belarc-Inventory, ProducaoOperacional, ComprasProducao, PostagemRedes, Hubora e Central-ISO**. MalaDireta, HelpDesk, Catálogo Operacional e CarreiraPessoal permanecem como evidências complementares. O README deve diferenciar **núcleo profissional**, **ferramentas contextuais** e **credenciais**. A versão inglesa permanece dedicada.
+Os cinco projetos apresentados em primeiro plano no README são **Belarc-Inventory, ProducaoOperacional, ComprasProducao, PostagemRedes e Central-ISO**. O pin de Hubora deve ser removido para manter a mesma curadoria, com cinco repositórios diretamente ligados ao eixo profissional. MalaDireta, HelpDesk, Catálogo Operacional, CarreiraPessoal e Hubora permanecem como evidências complementares. O README diferencia **núcleo profissional**, **evidência adjacente** e **credenciais**. A versão inglesa mantém os mesmos fatos e estados em redação natural.
 
 ### Cases e READMEs individuais
 

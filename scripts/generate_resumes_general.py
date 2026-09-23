@@ -1,9 +1,12 @@
 from pathlib import Path
 
+import reportlab
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +16,16 @@ OUT.mkdir(parents=True, exist_ok=True)
 BLACK = colors.HexColor('#111111')
 GRAY = colors.HexColor('#555555')
 LIGHT = colors.HexColor('#D9D9D9')
+
+# ReportLab's built-in Type 1 fonts render Portuguese glyphs, but the generated
+# PDFs lacked reliable Unicode text maps in common extractors. Bundled Vera TTF
+# fonts provide an embedded ToUnicode map for ATS-readable accented text.
+REPORTLAB_FONTS = Path(reportlab.__file__).resolve().parent / 'fonts'
+pdfmetrics.registerFont(TTFont('Vera', str(REPORTLAB_FONTS / 'Vera.ttf')))
+pdfmetrics.registerFont(TTFont('VeraBd', str(REPORTLAB_FONTS / 'VeraBd.ttf')))
+pdfmetrics.registerFont(TTFont('VeraIt', str(REPORTLAB_FONTS / 'VeraIt.ttf')))
+pdfmetrics.registerFont(TTFont('VeraBI', str(REPORTLAB_FONTS / 'VeraBI.ttf')))
+pdfmetrics.registerFontFamily('Vera', normal='Vera', bold='VeraBd', italic='VeraIt', boldItalic='VeraBI')
 
 CONTACT_PT = (
     'Rio de Janeiro - RJ · '
@@ -35,14 +48,14 @@ CONTACT_EN = (
 def styles():
     base = getSampleStyleSheet()
     return {
-        'name': ParagraphStyle('name', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.5 * mm),
-        'title': ParagraphStyle('title', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.2 * mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Helvetica', fontSize=10.0, leading=11.8, textColor=GRAY, spaceAfter=2.4 * mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.2, leading=11.8, textColor=BLACK, spaceBefore=3.1 * mm, spaceAfter=1.65 * mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Helvetica', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=1.0 * mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Helvetica', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=0.65 * mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='Helvetica-Bold', fontSize=10.15, leading=12.45, textColor=BLACK, spaceAfter=0.5 * mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Helvetica', fontSize=10.0, leading=11.6, textColor=GRAY, spaceAfter=0.7 * mm),
+        'name': ParagraphStyle('name', parent=base['Normal'], fontName='VeraBd', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.5 * mm),
+        'title': ParagraphStyle('title', parent=base['Normal'], fontName='VeraBd', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.2 * mm),
+        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Vera', fontSize=10.0, leading=11.8, textColor=GRAY, spaceAfter=2.4 * mm),
+        'section': ParagraphStyle('section', parent=base['Normal'], fontName='VeraBd', fontSize=10.2, leading=11.8, textColor=BLACK, spaceBefore=3.1 * mm, spaceAfter=1.65 * mm),
+        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Vera', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=1.0 * mm),
+        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Vera', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=0.65 * mm),
+        'role': ParagraphStyle('role', parent=base['Normal'], fontName='VeraBd', fontSize=10.15, leading=12.45, textColor=BLACK, spaceAfter=0.5 * mm),
+        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Vera', fontSize=10.0, leading=11.6, textColor=GRAY, spaceAfter=0.7 * mm),
     }
 
 
@@ -129,12 +142,12 @@ def content(lang='pt', track='general'):
                     'Experiência com Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker e engenharia Windows/Rust.'
                 ),
                 'projects': [
-                    '<b>Postagem Redes:</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; OAuth2, idempotência e falha isolada por canal.',
-                    '<b>Hubora:</b> produto web local-first com React/TypeScript, Supabase/RLS, PWA, IndexedDB, testes E2E e validação de acessibilidade.',
+                    '<b>Postagem Redes (validado em teste):</b> n8n + APIs + RAG/LangChain + Prompt Engineering + revisão humana + evals; OAuth2, idempotência e falha isolada por canal.',
+                    '<b>ComprasVesper:</b> aplicação interna Python/PySide6 para cotações e acompanhamento, com SQLite WAL, fila persistente, IMAP/SMTP e idempotência; demo pública bloqueia rede e e-mail.',
                 ],
                 'skills': [
                     '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
-                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · MCP · human-in-the-loop · evals',
+                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · human-in-the-loop · evals',
                     '<b>Engenharia, dados e BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
                 ],
             },
@@ -143,15 +156,15 @@ def content(lang='pt', track='general'):
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
                 'summary': (
                     'Analista de Automação e IA com experiência em n8n, Python/APIs e soluções com LLMs/agentes. '
-                    'Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo integrações com Prompt Engineering, RAG/LangChain, MCP, evals e revisão humana. '
+                    'Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo integrações com Prompt Engineering, RAG/LangChain, evals e revisão humana. '
                     'Também atuo com PostgreSQL/Redis, Docker e sustentação ponta a ponta.'
                 ),
                 'projects': [
-                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; integra contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico, com assistência local opcional.',
+                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; integra contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico, com assistência local experimental.',
                     '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; Facebook/Instagram validados em ambiente de teste.',
                 ],
                 'skills': [
-                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · MCP · human-in-the-loop · evals · Supabase/Qdrant',
+                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · human-in-the-loop · evals · Supabase/Qdrant',
                     '<b>Automação e backend:</b> n8n self-hosted · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
                     '<b>Dados e BI:</b> SQL · Power BI · Power Query · Excel/Google Sheets',
                 ],
@@ -188,12 +201,12 @@ def content(lang='pt', track='general'):
             'Hands-on with Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker and Windows/Rust engineering.'
         ),
         'projects': [
-            '<b>Postagem Redes:</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals, with OAuth2, idempotency and channel-isolated failures.',
-            '<b>Hubora:</b> local-first web product with React/TypeScript, Supabase/RLS, PWA, IndexedDB, E2E tests and accessibility validation.',
+            '<b>Postagem Redes (validated in testing):</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human review + evals, with OAuth2, idempotency and channel-isolated failures.',
+            '<b>ComprasVesper:</b> internal Python/PySide6 quotation and tracking app with SQLite WAL, a persistent queue, IMAP/SMTP and idempotency; the public demo blocks network and email.',
         ],
         'skills': [
             '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
-            '<b>Applied AI:</b> Prompt Engineering · LLM APIs · agents · RAG/LangChain · MCP · human-in-the-loop · evals',
+            '<b>Applied AI:</b> Prompt Engineering · LLM APIs · agents · RAG/LangChain · human-in-the-loop · evals',
             '<b>Engineering, data & BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
         ],
     })

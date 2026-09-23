@@ -17,13 +17,13 @@ REQUIRED = {
     'pt-general': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
         '10 mil+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
-        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Hubora',
+        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'ComprasVesper', 'MCP Tools with Agents',
         'INSTRUTOR DE INFORMÁTICA (FREELANCER)', 'Técnico Júnior em Automação de Processos',
         'Belarc Inventory', 'leitura técnica intermediária',
     ],
     'pt-ai': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
-        'Prompt Engineering', 'RAG/LangChain', 'MCP', 'Supabase/Qdrant',
+        'Prompt Engineering', 'RAG/LangChain', 'MCP Tools with Agents', 'Supabase/Qdrant',
         'HelpDesk & IT Operations', 'Postagem Redes', '10 mil+',
     ],
     'pt-bi': [
@@ -34,10 +34,17 @@ REQUIRED = {
     'en-general': [
         'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
         '10k+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
-        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Hubora',
+        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'ComprasVesper', 'MCP Tools with Agents',
         'IT INSTRUCTOR (FREELANCE)', 'Junior Process Automation Technician',
         'Belarc Inventory', 'intermediate technical reading',
     ],
+}
+
+PARSER_REQUIRED = {
+    'pt-general': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'PROPOSTA COMERCIAL', 'Postagem Redes', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
+    'pt-ai': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'HelpDesk & IT Operations', 'Postagem Redes', 'FORMAÇÃO', 'IDIOMAS'],
+    'pt-bi': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'Catálogo Operacional', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
+    'en-general': ['MAYCON FERREIRA', 'Junior Process Automation Technician', 'Postagem Redes', 'ComprasVesper', 'EDUCATION', 'LANGUAGES'],
 }
 
 FORBIDDEN = [
@@ -65,7 +72,7 @@ EXPECTED_URIS = {
 
 
 def normalize(value: str) -> str:
-    return ' '.join(value.split())
+    return ' '.join(value.split()).casefold()
 
 
 def check(key: str, path: Path) -> None:
@@ -76,14 +83,33 @@ def check(key: str, path: Path) -> None:
         raise SystemExit(f'{path.name}: expected 1 page, got {len(reader.pages)}')
     text = '\n'.join(page.extract_text() or '' for page in reader.pages)
     flat = normalize(text)
+    if '\ufffd' in text:
+        raise SystemExit(f'{path.name}: pypdf extraction contains Unicode replacement characters')
     for phrase in REQUIRED[key]:
         if normalize(phrase) not in flat:
             raise SystemExit(f'{path.name}: missing required text: {phrase}')
+
+    # Check semantic extraction with a second independent PDF parser and ensure
+    # that ATS-relevant sections and project names remain present and ordered.
+    doc = fitz.open(path)
+    fitz_text = '\n'.join(page.get_text('text') for page in doc)
+    doc.close()
+    fitz_flat = normalize(fitz_text)
+    if '\ufffd' in fitz_text:
+        raise SystemExit(f'{path.name}: PyMuPDF extraction contains Unicode replacement characters')
+    for phrase in PARSER_REQUIRED[key]:
+        if normalize(phrase) not in fitz_flat:
+            raise SystemExit(f'{path.name}: PyMuPDF extraction is missing required text: {phrase}')
+    for before, after in zip(PARSER_REQUIRED[key], PARSER_REQUIRED[key][1:]):
+        if fitz_flat.index(normalize(before)) > fitz_flat.index(normalize(after)):
+            raise SystemExit(f'{path.name}: PyMuPDF extraction order drifted: {before} before {after}')
+    if len(fitz_text.strip()) < 2200:
+        raise SystemExit(f'{path.name}: PyMuPDF extracted text unexpectedly short')
     for phrase in FORBIDDEN:
         if normalize(phrase) in flat:
             raise SystemExit(f'{path.name}: forbidden text found: {phrase}')
     for contact in VISIBLE_CONTACTS:
-        if contact not in flat:
+        if normalize(contact) not in flat:
             raise SystemExit(f'{path.name}: ATS-visible contact missing: {contact}')
     if len(text.strip()) < 2200:
         raise SystemExit(f'{path.name}: extracted text unexpectedly short')
