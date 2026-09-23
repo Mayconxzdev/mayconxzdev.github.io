@@ -33,8 +33,7 @@ pt_skills = require('competencias/index.html', [
     'Prompt Engineering',
     'RAG/grounding',
     'LangChain',
-    'Qdrant',
-    'MCP',
+    'MCP Tools with Agents',
     'evals',
     'BPMN',
     'Rust',
@@ -65,8 +64,7 @@ en_skills = require('en/skills/index.html', [
     'Prompt Engineering',
     'RAG/grounding',
     'LangChain',
-    'Qdrant',
-    'MCP',
+    'MCP Tools with Agents',
     'evals',
     'BPMN',
     'Rust',
@@ -84,6 +82,11 @@ for phrase in [
 ]:
     if phrase in en_skills:
         errors.append(f'en/skills/index.html: duplicated or depth-ambiguous phrase: {phrase}')
+
+for relative, text in [('competencias/index.html', pt_skills), ('en/skills/index.html', en_skills)]:
+    for unsupported in ['desenvolvi servidor e cliente MCP', 'built MCP servers and clients', 'MCP servers and clients, tools']:
+        if unsupported in text:
+            errors.append(f'{relative}: unsupported MCP implementation claim remains')
 
 
 def check_featured(relative: str, expected_titles: list[str], architecture_phrase: str):
@@ -150,8 +153,11 @@ check_metrics(
 for relative in ['en/index.html', 'en/cases/belarc-inventory/index.html']:
     forbid(relative, ['IN INTERNAL USE'])
 
+for relative in ['index.html', 'en/index.html']:
+    forbid(relative, ['RAG/MCP', 'LLMs/RAG/MCP', '"MCP"'])
+
 career = require('docs/CAREER_EVIDENCE.md', [
-    'Atualizado em **22/09/2026**',
+    'Atualizado em **23/09/2026**',
     'Ferramentas complementares / contextuais',
     'Competências práticas e credencializadas',
     'Vocabulário de mercado — auditoria 24/08/2026',
@@ -159,7 +165,7 @@ career = require('docs/CAREER_EVIDENCE.md', [
     'Power Apps',
     'Power Automate',
     'Microsoft Foundry',
-    'MCP com agentes',
+    'não um servidor/cliente MCP próprio',
     'Automation Business Analyst Professional Training',
     'LangChain',
     'evals',

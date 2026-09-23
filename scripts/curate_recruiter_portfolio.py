@@ -37,8 +37,8 @@ def patch_home(path: Path, featured_name: str, archive_name: str, english: bool)
             "I turn operational processes into internal systems, automations and AI solutions that work in the daily routine.",
         )
         text = text.replace(
-            "Portfolio of Maycon Ferreira, Automation & AI Analyst. Production automation with n8n, Power Automate, Python, Power BI, agents, RAG/MCP and internal systems.",
-            "Portfolio of Maycon Ferreira, Automation & AI Analyst. Internal systems, production automation and applied AI with Python, Power Automate, n8n, Rust/Windows, Power BI and RAG/MCP.",
+            "Portfolio of Maycon Ferreira, Automation & AI Analyst. Internal systems, production automation, integrations and applied AI with Python, Power Automate and n8n.",
+            "Portfolio of Maycon Ferreira, Automation & AI Analyst. Internal systems, production automation, integrations and applied AI with Python, Power Automate and n8n.",
         )
     else:
         text = text.replace(
@@ -46,13 +46,8 @@ def patch_home(path: Path, featured_name: str, archive_name: str, english: bool)
             "Transformo processos e rotinas operacionais em sistemas, automações e soluções com IA que funcionam no dia a dia.",
         )
         text = text.replace(
-            "Portfólio de Maycon Ferreira, Analista de Automação e IA. Automação em produção com n8n, Power Automate, Python, Power BI, agentes, RAG/MCP e sistemas internos.",
-            "Portfólio de Maycon Ferreira, Analista de Automação e IA. Sistemas internos, automação em produção e IA aplicada com Python, Power Automate, n8n, Rust/Windows, Power BI e RAG/MCP.",
-        )
-    if '"Rust"' not in text and '"MCP","Human-in-the-loop"' in text:
-        text = text.replace(
-            '"MCP","Human-in-the-loop"',
-            '"MCP","Rust","Axum","PowerShell","Windows Services","Human-in-the-loop"',
+            "Portfólio de Maycon Ferreira, Analista de Automação e IA. Sistemas internos, automação em produção, integrações e IA aplicada com Python, Power Automate e n8n.",
+            "Portfólio de Maycon Ferreira, Analista de Automação e IA. Sistemas internos, automação em produção, integrações e IA aplicada com Python, Power Automate e n8n.",
         )
     path.write_text(text, encoding="utf-8")
 
