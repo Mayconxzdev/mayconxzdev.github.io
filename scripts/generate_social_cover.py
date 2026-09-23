@@ -15,14 +15,30 @@ MUTED = (98, 95, 87)
 WHITE = (250, 250, 247)
 LINE = (184, 180, 170)
 
-FONT_DIR = Path("/usr/share/fonts/truetype/dejavu")
+FONT_DIRS = (
+    Path("/usr/share/fonts/truetype/dejavu"),
+    Path("C:/Windows/Fonts"),
+)
+FONT_FALLBACKS = {
+    "DejaVuSansMono.ttf": ("consola.ttf", "arial.ttf"),
+    "DejaVuSansMono-Bold.ttf": ("consolab.ttf", "arialbd.ttf"),
+    "DejaVuSansCondensed-Bold.ttf": ("arialbd.ttf", "ARIALNB.TTF"),
+    "DejaVuSans-Bold.ttf": ("arialbd.ttf", "ARIALNB.TTF"),
+    "DejaVuSans.ttf": ("arial.ttf", "ARIALN.TTF"),
+}
 
 
 def font(name: str, size: int):
-    path = FONT_DIR / name
-    if path.exists():
-        return ImageFont.truetype(str(path), size=size)
-    return ImageFont.load_default()
+    candidates = [directory / name for directory in FONT_DIRS]
+    candidates.extend(
+        directory / fallback
+        for directory in FONT_DIRS
+        for fallback in FONT_FALLBACKS.get(name, ())
+    )
+    for path in candidates:
+        if path.exists():
+            return ImageFont.truetype(str(path), size=size)
+    raise RuntimeError(f"No Unicode TrueType font available for {name}; refusing a broken social cover")
 
 
 mono = font("DejaVuSansMono.ttf", 15)

@@ -7,15 +7,15 @@ from pypdf import PdfReader
 REQUIRED = {
     'pt-general': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
-        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'Hubora', 'Belarc Inventory',
+        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'ComprasVesper', 'Belarc Inventory', 'MCP Tools with Agents',
     ],
     'en-general': [
         'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
-        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'Hubora', 'Belarc Inventory',
+        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'ComprasVesper', 'Belarc Inventory', 'MCP Tools with Agents',
     ],
     'pt-ai': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
-        'Prompt Engineering', 'RAG/LangChain', 'MCP', 'Supabase/Qdrant',
+        'Prompt Engineering', 'RAG/LangChain', 'MCP Tools with Agents', 'Supabase/Qdrant',
         'HelpDesk & IT Operations', 'Postagem Redes',
     ],
     'pt-bi': [
