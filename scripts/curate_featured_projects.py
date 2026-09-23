@@ -75,4 +75,4 @@ def ensure_sitemap() -> None:
 patch_home(ROOT / "index.html", "featured_pt.fragment", "archive_pt.fragment", False)
 patch_home(ROOT / "en" / "index.html", "featured_en.fragment", "archive_en.fragment", True)
 ensure_sitemap()
-print("Recruiter curation enforced: 4 flagships, 12 secondary cases, Belarc routing and metadata.")
+print("Featured project content applied: 4 flagships, 12 secondary cases, Belarc routing and metadata.")

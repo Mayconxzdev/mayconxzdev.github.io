@@ -35,12 +35,12 @@ jobs:
           rm -rf /tmp/tracked-cv
           mkdir -p /tmp/tracked-cv
           cp assets/cv/*.pdf /tmp/tracked-cv/
-      - name: Generate current recruiter-facing artifacts
+      - name: Generate current site artifacts
         run: |
           python scripts/generate_resumes_general.py
           python scripts/add_resume_links.py
           python scripts/generate_social_cover.py
-      - name: Apply current portfolio evidence and shared chrome
+      - name: Apply current project content and shared layout
         run: |
           python scripts/add_carreirapessoal_home.py
           python scripts/patch_career_visual.py
@@ -51,21 +51,21 @@ jobs:
           python scripts/patch_navigation_targets.py
           python scripts/patch_404_language.py
           python scripts/normalize_case_sequence.py
-          python scripts/patch_recruiter_archive.py
+          python scripts/patch_project_archive.py
           # Run idempotent materializers twice intentionally so a future merge cannot
-          # duplicate recruiter-facing labels, controls or skill copy.
+          # duplicate site labels, controls or skill copy.
           python scripts/patch_skills_current.py
-          python scripts/patch_recruiter_archive.py
-          python scripts/curate_recruiter_portfolio.py
-      - name: Ensure tracked source matches generated recruiter output
+          python scripts/patch_project_archive.py
+          python scripts/curate_featured_projects.py
+      - name: Ensure tracked source matches generated site output
         run: |
           python scripts/validate_tracked_resume_equivalence.py /tmp/tracked-cv assets/cv
           if ! git diff --exit-code -- index.html 404.html assets/social cases competencias en css sitemap.xml; then
-            echo "::error::Tracked recruiter-facing source differs from the materialized build. Run python scripts/materialize_portfolio_source.py and commit the results."
+            echo "::error::Tracked published source differs from the materialized build. Run python scripts/materialize_portfolio_source.py and commit the results."
             git diff --stat -- index.html 404.html assets/social cases competencias en css sitemap.xml
             exit 1
           fi
-      - name: Validate current resume content, links, ATS text and visual layout
+      - name: Validate resume content, links and visual layout
         run: |
           python scripts/validate_general_resumes.py
           python scripts/validate_resume_visual.py
@@ -81,15 +81,15 @@ jobs:
       - name: Validate JavaScript syntax
         run: |
           node --check js/site.js
-          node --check js/recruiter-audit.js
+          node --check js/project-archive.js
           node --check scripts/visual_smoke.mjs
-          node --check scripts/recruiter_surface_smoke.mjs
+          node --check scripts/site_interaction_smoke.mjs
           node --check scripts/accessibility_smoke.mjs
       - name: Install browser and accessibility dependencies
         run: |
           npm install --no-save playwright@1.54.2 @axe-core/playwright@4.12.1
           npx playwright install --with-deps chromium
-      - name: Run full portfolio browser, recruiter UX and accessibility smoke
+      - name: Run browser interactions and accessibility checks
         run: |
           python -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-http.log 2>&1 &
           SERVER_PID=$!
@@ -100,13 +100,13 @@ jobs:
           done
           curl -fsS http://127.0.0.1:8000/ >/dev/null
           node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
-          node scripts/recruiter_surface_smoke.mjs http://127.0.0.1:8000
+          node scripts/site_interaction_smoke.mjs http://127.0.0.1:8000
           node scripts/accessibility_smoke.mjs http://127.0.0.1:8000
-      - name: Upload audited resumes
+      - name: Upload validated resumes
         if: always()
         uses: actions/upload-artifact@v6
         with:
-          name: audited-resumes-${{ github.run_id }}
+          name: validated-resumes-${{ github.run_id }}
           path: assets/cv/*.pdf
           if-no-files-found: error
           retention-days: 30
@@ -226,7 +226,7 @@ jobs:
               && grep -Fq "200" <<<"$CAREER_IMAGE" \
               && grep -Fq "200" <<<"$SOCIAL_IMAGE" \
               && [[ "$RESUMES_OK" == true ]]; then
-              echo "Published Pages SHA, recruiter surfaces and all four live resumes match this exact build."
+              echo "Published Pages SHA, public pages and all four live resumes match this exact build."
               exit 0
             fi
             echo "Published release is not fully current yet (attempt ${attempt}/36; live build=${BUILD_SHA:-missing}; expected=${GITHUB_SHA})."

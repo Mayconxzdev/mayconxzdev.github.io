@@ -74,4 +74,4 @@ if (failures.length) {
   console.error('Accessibility gate failed:\n' + failures.join('\n'));
   process.exit(1);
 }
-console.log(`Accessibility gate passed: ${scans} axe scans across ${routes.length} canonical PT/EN pages; all cases desktop and selected recruiter routes also mobile; no moderate-or-higher violations.`);
+console.log(`Accessibility gate passed: ${scans} axe scans across ${routes.length} canonical PT/EN pages; all cases desktop and selected key routes also mobile; no moderate-or-higher violations.`);

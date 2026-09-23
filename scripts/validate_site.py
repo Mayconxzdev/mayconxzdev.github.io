@@ -274,8 +274,6 @@ required_routes = [
     ROOT / 'assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
     ROOT / 'assets/cv/Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
     ROOT / 'assets/cv/Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
-    ROOT / 'docs/CAREER_EVIDENCE.md',
-    ROOT / 'docs/CREDENTIALS_EVIDENCE.md',
     ROOT / 'competencias/credenciais/index.html',
     ROOT / 'en/credentials/index.html',
 ]

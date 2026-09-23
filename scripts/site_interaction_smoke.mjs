@@ -66,4 +66,4 @@ if(failures.length){
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log('Recruiter surface smoke passed: responsive archive, expand/collapse, filter and search behaviors are coherent.');
+console.log('Site interaction smoke passed: responsive archive, expand/collapse, filter and search behaviors are coherent.');

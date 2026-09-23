@@ -59,7 +59,7 @@ draw.rectangle((0, 0, W, 18), fill=ORANGE)
 split = 830
 draw.line((split, 55, split, 535), fill=LINE, width=1)
 
-# Positioning and stack. Keep these claims synchronized with CAREER_EVIDENCE.md.
+# Positioning and stack. Keep these claims aligned with the public project pages.
 draw.text((55, 78), "AUTOMAÇÃO · IA APLICADA · INTEGRAÇÕES · 2026", font=mono, fill=ORANGE)
 draw.text((55, 145), "MAYCON", font=name_font, fill=BLACK)
 draw.text((55, 225), "FERREIRA", font=name_font, fill=BLACK)

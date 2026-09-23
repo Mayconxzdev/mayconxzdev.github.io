@@ -13,13 +13,13 @@ Código-fonte do portfólio profissional de **Automação e IA aplicada**. O sit
 | [Postagem Redes](cases/postagem-redes/) | grounding/RAG, revisão humana e evals reproduzíveis | validado em teste; não é produção |
 | [Produção Operacional](cases/producao-operacional/) | implantação em 10+ computadores e uma TV, apoiando 20+ pessoas em 9 setores | produção |
 
-Outros recortes ficam no arquivo de projetos da página inicial: [ComprasVesper](cases/compras-vesper/) demonstra integração de e-mail e fila persistente; [Mala Direta](cases/mala-direta/) cobre automação n8n em produção; [Central ISO](cases/central-iso/) é um piloto técnico. Esses cases não são promovidos ao destaque principal para evitar repetição de competências.
+Outros projetos aparecem no arquivo da página inicial: [ComprasVesper](cases/compras-vesper/) integra e-mail e fila persistente; [Mala Direta](cases/mala-direta/) automatiza campanhas com n8n; [Central ISO](cases/central-iso/) é um piloto técnico.
 
 ## Currículos
 
 O repositório mantém quatro PDFs de uma página: currículo geral PT-BR, variação PT-BR para automação e IA, variação PT-BR para Power Platform/BI e espelho geral em inglês. A fonte editável é [`scripts/generate_resumes_general.py`](scripts/generate_resumes_general.py); os PDFs em [`assets/cv/`](assets/cv/) são regenerados, nunca editados manualmente.
 
-Os projetos selecionados complementam a experiência: Postagem Redes evidencia IA aplicada em teste; ComprasVesper acrescenta integração e confiabilidade para automação/backend. As variações de IA e BI mudam ênfase, mantendo fatos, datas e métricas consistentes. Não há evidência que justifique outra variante Python separada.
+Os PDFs são gerados a partir da fonte Python e mantêm os mesmos fatos, datas e métricas. As variações destacam experiências diferentes sem alterar o histórico profissional.
 
 ## Estrutura
 
@@ -27,7 +27,7 @@ Os projetos selecionados complementam a experiência: Postagem Redes evidencia I
 - `cases/`, `en/cases/` — narrativas dos projetos e seus estados reais;
 - `assets/` — identidade visual, evidências sanitizadas e PDFs;
 - `css/`, `js/` — estilos e interações do site;
-- `docs/CAREER_EVIDENCE.md` — registro editorial canônico de claims e limites;
+- `docs/VALIDATION.md` — comandos e verificações de manutenção do site;
 - `scripts/` — geração de currículos, materialização do site e validadores.
 
 O portfólio é estático, publicado no GitHub Pages. Código empresarial e dados reais não são publicados; cases internos usam descrições, capturas e dados sanitizados.
@@ -61,11 +61,11 @@ python scripts/validate_case_visual_consistency.py
 python scripts/validate_case_sequence.py
 python scripts/performance_budget.py
 node scripts/visual_smoke.mjs http://127.0.0.1:8000 work/qa-visual
-node scripts/recruiter_surface_smoke.mjs http://127.0.0.1:8000
+node scripts/site_interaction_smoke.mjs http://127.0.0.1:8000
 node scripts/accessibility_smoke.mjs http://127.0.0.1:8000
 ```
 
-O CI também confere consistência entre fontes versionadas e materializadores, gera e inspeciona PDFs, percorre páginas/cases com Playwright, executa axe e valida a publicação. Isso verifica critérios definidos no repositório; não garante aprovação em todo ATS proprietário nem substitui homologação humana.
+O CI também confere consistência entre fontes versionadas e materializadores, gera e inspeciona PDFs, percorre páginas e cases com Playwright, executa axe e valida a publicação. Essas verificações cobrem os critérios definidos no repositório e complementam a revisão humana.
 
 ## Publicação
 

@@ -1,4 +1,4 @@
-function initRecruiterArchive(){
+function initProjectArchive(){
   const archive=document.querySelector('.archive');
   const button=document.querySelector('.archive-expand');
   const search=document.querySelector('#project-search');
@@ -31,7 +31,7 @@ function initRecruiterArchive(){
 }
 
 if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',initRecruiterArchive,{once:true});
+  document.addEventListener('DOMContentLoaded',initProjectArchive,{once:true});
 }else{
-  initRecruiterArchive();
+  initProjectArchive();
 }
