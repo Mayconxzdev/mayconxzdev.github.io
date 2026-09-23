@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import html
 from pathlib import Path
+import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,6 +119,13 @@ REQUIRED = {
     ],
 }
 
+ENGLISH_CASE_METADATA = {
+    "en/cases/vesper-propostas/index.html": "Commercial Proposal | Maycon Ferreira",
+    "en/cases/manutencao-campo/index.html": "Field Maintenance | Maycon Ferreira",
+    "en/cases/whatsapp/index.html": "WhatsApp Notifications | Maycon Ferreira",
+    "en/cases/portfolio-2026/index.html": "Systems in Operation — Portfolio | Maycon Ferreira",
+}
+
 
 def main() -> int:
     errors: list[str] = []
@@ -168,6 +177,27 @@ def main() -> int:
         for phrase in phrases:
             if phrase not in text:
                 errors.append(f"{relative}: required current wording missing: {phrase}")
+
+    for relative, expected_title in ENGLISH_CASE_METADATA.items():
+        path = ROOT / relative
+        text = path.read_text(encoding="utf-8")
+        lang = re.search(r"<html\b[^>]*\blang=[\"']([^\"']+)", text, re.IGNORECASE)
+        title = re.search(r"<title>(.*?)</title>", text, re.IGNORECASE | re.DOTALL)
+        og_title = re.search(
+            r"<meta\b(?=[^>]*\bproperty=[\"']og:title[\"'])(?=[^>]*\bcontent=[\"']([^\"']*)[\"'])[^>]*>",
+            text,
+            re.IGNORECASE,
+        )
+        heading = re.search(r"<h1\b[^>]*>(.*?)</h1>", text, re.IGNORECASE | re.DOTALL)
+        plain_heading = html.unescape(re.sub(r"<[^>]+>", "", heading.group(1))).strip() if heading else ""
+        if not lang or lang.group(1).lower() != "en":
+            errors.append(f"{relative}: page language must be English")
+        if not title or html.unescape(title.group(1)).strip() != expected_title:
+            errors.append(f"{relative}: page title must match approved English title")
+        if not og_title or html.unescape(og_title.group(1)).strip() != expected_title:
+            errors.append(f"{relative}: Open Graph title must match approved English title")
+        if plain_heading != expected_title.split(" | ", 1)[0]:
+            errors.append(f"{relative}: H1 must match approved English title")
 
     if errors:
         for error in errors:
