@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -88,29 +89,29 @@ REQUIRED = {
         "Alguns números da minha atuação atual.",
         "10+ PCs · 1 TV · 9 setores",
         "base de 1.020 contatos",
-        "Catálogo Operacional de Compras",
-        "revalidação técnica antes do piloto interno",
+        "Catálogo Operacional",
+        "produto atual permanece em revalidação",
     ],
     "en/index.html": [
         "RESULTS IN USE",
         "MAIN PROJECTS",
         "A few numbers from my current work.",
-        "10+ PCs · 1 TV · 9 areas",
+        "10+ PCs · 1 TV · 9 departments",
         "1,020-contact base",
         "Operational Procurement Catalog",
-        "technical revalidation before an internal pilot",
+        "current product remains under revalidation",
     ],
     "competencias/index.html": [
         "COMPETÊNCIAS E EXPERIÊNCIA PRÁTICA",
         "ONDE APLICO NA ROTINA",
-        "IA multimodal",
+        "multimodalidade",
         "10 mil execuções de workflows em produção",
         "AWS",
     ],
     "en/skills/index.html": [
         "SKILLS AND PRACTICAL EXPERIENCE",
         "WHERE I USE IT IN PRACTICE",
-        "multimodal AI",
+        "multimodal workflows",
         "10,000 workflow executions in production",
         "AWS",
     ],
@@ -119,9 +120,34 @@ REQUIRED = {
 
 def main() -> int:
     errors: list[str] = []
-    public_files = [ROOT / "README.md"] + [
-        path for path in ROOT.rglob("*.html") if "artifacts" not in path.parts
+    tracked = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(ROOT),
+            "ls-files",
+            "-z",
+            "--",
+            "README.md",
+            "index.html",
+            "404.html",
+            "cases",
+            "competencias",
+            "en",
+        ],
+        check=True,
+        capture_output=True,
+    )
+    tracked_files = [
+        ROOT / item.decode("utf-8")
+        for item in tracked.stdout.split(b"\0")
+        if item
     ]
+    public_files = sorted(
+        path
+        for path in tracked_files
+        if path.name == "README.md" or path.suffix.lower() == ".html"
+    )
 
     for path in sorted(public_files):
         text = path.read_text(encoding="utf-8")

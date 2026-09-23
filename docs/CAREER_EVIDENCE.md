@@ -49,6 +49,10 @@ O posicionamento prioriza vagas de **automação e IA aplicada** sem inflar seni
 
 n8n, Power Automate e Python/APIs formam o núcleo de automação. Power BI/Power Query/Excel/VBA formam o núcleo de dados/BI. **Logs, monitoramento/observabilidade, troubleshooting, tratamento de erros, retries, idempotência, backups e auditoria** podem aparecer quando sustentados pela evidência do projeto.
 
+### Suporte e IT Operations — contexto adjacente
+
+O autor relata atuação prática de suporte a usuários e operação cotidiana de TI em ambiente industrial. Apresentar como contexto adjacente: suporte operacional, endpoints Windows, sistemas corporativos e internos, inventário/ativos, conectividade LAN aplicada e uso de compartilhamentos/UNC/NAS. Produção Operacional, HelpDesk e Belarc Inventory mostram soluções que rodam nesse contexto. O volume atendido não está quantificado; não converter essa experiência em administração avançada de rede, identidade, segurança ou infraestrutura.
+
 ### Ferramentas complementares / contextuais
 
 `Power Apps` · `Make` · `Zapier` · `Selenium` · `Playwright` · `Puppeteer` · `PyAutoGUI` · `UiPath`
@@ -155,6 +159,7 @@ Mesmo quando aparecerem em vagas, não adicionar ao currículo geral ou elevar a
 - experiência enterprise em Azure/GCP;
 - Microsoft Foundry como profundidade de produção equivalente ao núcleo sem case específico;
 - LangGraph/CrewAI como profundidade equivalente ao núcleo;
+- Platform / IaC: **Nível 0 — planejamento/ideia, sem evidência prática; não apresentar como experiência profissional**. Não adicionar OpenTofu/Terraform prático, Terrateam, Trivy operacional, GitOps ou Platform Engineering sem nova implementação e evidência verificável;
 - senioridade “Pleno”, “Sênior”, “Especialista”, “Engineer” ou “Consultor” como cargo atual sem base formal.
 
 Se uma vaga exigir uma dessas tecnologias como requisito obrigatório, tratar como **gap da vaga**, contexto de aprendizado ou direção futura; nunca inflar experiência.
