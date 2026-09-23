@@ -44,8 +44,8 @@ PAGES = {
     },
 }
 
-STYLE = '<link rel="stylesheet" href="{prefix}css/recruiter-audit.css">'
-SCRIPT = '<script defer src="{prefix}js/recruiter-audit.js"></script>'
+STYLE = '<link rel="stylesheet" href="{prefix}css/project-archive.css">'
+SCRIPT = '<script defer src="{prefix}js/project-archive.js"></script>'
 
 
 def patch(path: Path, cfg: dict[str, str]) -> None:
@@ -79,4 +79,4 @@ def patch(path: Path, cfg: dict[str, str]) -> None:
 for page, config in PAGES.items():
     patch(page, config)
 
-print('Recruiter archive and selected credentials applied to PT/EN homepages.')
+print('Project archive and selected credentials applied to PT/EN homepages.')

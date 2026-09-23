@@ -96,8 +96,8 @@ REQUIRED = {
     ],
     "en/index.html": [
         "RESULTS IN USE",
-        "MAIN PROJECTS",
-        "A few numbers from my current work.",
+        "FEATURED PROJECTS",
+        "A few results from my current work.",
         "10+ PCs · 1 TV · 9 departments",
         "1,020-contact base",
         "Operational Procurement Catalog",

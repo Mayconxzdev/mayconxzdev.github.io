@@ -68,7 +68,7 @@ for rel, english in [('index.html', False), ('en/index.html', True)]:
     path = ROOT / rel
     text = path.read_text(encoding='utf-8')
 
-    # Recruiter homepage is intentionally limited to four flagship cases.
+    # Homepage features four projects; the archive keeps the rest.
     for name in (
         'CarreiraPessoal',
         'Produção Operacional' if not english else 'Production Operations',
@@ -100,4 +100,4 @@ for rel, english in [('index.html', False), ('en/index.html', True)]:
 
 runpy.run_path(str(ROOT / 'scripts' / 'patch_maintenance_case.py'), run_name='__main__')
 runpy.run_path(str(ROOT / 'scripts' / 'patch_proposal_case_pt.py'), run_name='__main__')
-print('Recruiter homepage kept at four flagships; remaining cases preserved in the archive.')
+print('Homepage keeps four featured projects; remaining cases preserved in the archive.')
