@@ -25,6 +25,8 @@ CASE_EN_SLUG = {
     'carreira-pessoal': 'career-personal',
     'catalogo-operacional-compras': 'operational-procurement-catalog',
     'belarc-inventory': 'belarc-inventory',
+    'tradutor-documental': 'offline-document-translator',
+    'scanner-documentos': 'tablet-document-scanner',
 }
 CASE_PT_SLUG = {v: k for k, v in CASE_EN_SLUG.items()}
 
@@ -226,14 +228,14 @@ home = (ROOT / 'index.html').read_text(encoding='utf-8')
 en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 
 pt_flagships = [
-    'Vesper Propostas',
-    'Belarc Inventory',
+    'Proposta Comercial',
+    'Tradutor documental offline',
     'Postagem Redes',
     'Produção Operacional',
 ]
 en_flagships = [
     'Commercial Proposal',
-    'Belarc Inventory',
+    'Offline Document Translator',
     'Postagem Redes',
     'Production Operations',
 ]
@@ -266,6 +268,12 @@ required_routes = [
     ROOT / 'assets/evidence/belarc-frota.jpg',
     ROOT / 'cases/carreira-pessoal/index.html',
     ROOT / 'en/cases/career-personal/index.html',
+    ROOT / 'cases/tradutor-documental/index.html',
+    ROOT / 'en/cases/offline-document-translator/index.html',
+    ROOT / 'cases/scanner-documentos/index.html',
+    ROOT / 'en/cases/tablet-document-scanner/index.html',
+    ROOT / 'cases/appscontrol/index.html',
+    ROOT / 'en/cases/appscontrol/index.html',
     ROOT / 'cases/central-iso/index.html',
     ROOT / 'en/cases/central-iso/index.html',
     ROOT / 'assets/evidence/carreira-product-overview.svg',

@@ -82,26 +82,35 @@ STALE = [
     "surpassed 10,000 production executions",
     "portal-dev-only",
     "vesper_admin",
+    "283 testes Python",
+    "283 Python tests",
+    "v12.5.2",
+    "1128 passed",
+    "1,128 passed",
+    "RC60",
+    "pytest -q",
+    "hash SHA-256",
+    "sha256:",
+    "283 passing Python tests",
+    "283 testes python aprovados",
+    "the complete v12.5.2 build",
+    "versão completa v12.5.2",
 ]
 
 REQUIRED = {
     "index.html": [
-        "RESULTADOS EM USO",
         "PROJETOS PRINCIPAIS",
-        "Alguns números da minha atuação atual.",
-        "10+ PCs · 1 TV · 9 setores",
-        "base de 1.020 contatos",
-        "Catálogo Operacional",
-        "produto atual permanece em revalidação",
+        "Cada projeto começa por uma necessidade concreta e mostra como transformei o fluxo em uma solução usada na prática.",
+        "Plataforma SaaS B2B",
+        "Desenvolvimento colaborativo desde a concepção",
+        "atendendo usuários e acompanhando as soluções no ambiente industrial",
     ],
     "en/index.html": [
-        "RESULTS IN USE",
         "FEATURED PROJECTS",
-        "A few results from my current work.",
-        "10+ PCs · 1 TV · 9 departments",
-        "1,020-contact base",
-        "Operational Procurement Catalog",
-        "current product remains under revalidation",
+        "Each project starts with a real need and shows how I turned the workflow into a solution people can use.",
+        "B2B SaaS platform",
+        "Collaborative development from the beginning",
+        "take part in IT operations by supporting users",
     ],
     "competencias/index.html": [
         "COMPETÊNCIAS E EXPERIÊNCIA PRÁTICA",
@@ -121,9 +130,33 @@ REQUIRED = {
 
 ENGLISH_CASE_METADATA = {
     "en/cases/vesper-propostas/index.html": "Commercial Proposal | Maycon Ferreira",
+    "en/cases/offline-document-translator/index.html": "Offline Document Translator | Maycon Ferreira",
+    "en/cases/tablet-document-scanner/index.html": "Tablet Document Scanner | Maycon Ferreira",
+    "en/cases/appscontrol/index.html": "Application Control | Maycon Ferreira",
     "en/cases/manutencao-campo/index.html": "Field Maintenance | Maycon Ferreira",
     "en/cases/whatsapp/index.html": "WhatsApp Notifications | Maycon Ferreira",
     "en/cases/portfolio-2026/index.html": "Systems in Operation — Portfolio | Maycon Ferreira",
+}
+
+PUBLIC_STORY_REQUIRED = {
+    "cases/tradutor-documental/index.html": [
+        "Tradutor documental offline", "O que desenvolvi", "Quem usa", "Word", "ODT", "PDF bilíngue",
+    ],
+    "en/cases/offline-document-translator/index.html": [
+        "Offline Document Translator", "What I built", "Who uses it", "Word", "ODT", "bilingual PDF",
+    ],
+    "cases/scanner-documentos/index.html": [
+        "Scanner de documentos", "tablet", "versão anterior", "nova geração está em desenvolvimento",
+    ],
+    "en/cases/tablet-document-scanner/index.html": [
+        "Tablet Document Scanner", "tablet", "earlier version", "new generation is in development",
+    ],
+    "cases/appscontrol/index.html": [
+        "A empresa já mantinha uma planilha oficial", "Criei um aplicativo Windows", "Python", "Tkinter",
+    ],
+    "en/cases/appscontrol/index.html": [
+        "The company already had an official spreadsheet", "I built a Windows app", "Python", "Tkinter",
+    ],
 }
 
 
@@ -177,6 +210,16 @@ def main() -> int:
         for phrase in phrases:
             if phrase not in text:
                 errors.append(f"{relative}: required current wording missing: {phrase}")
+
+    for relative, phrases in PUBLIC_STORY_REQUIRED.items():
+        path = ROOT / relative
+        if not path.exists():
+            errors.append(f"missing public project story: {relative}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for phrase in phrases:
+            if phrase.casefold() not in text.casefold():
+                errors.append(f"{relative}: human story detail missing: {phrase}")
 
     for relative, expected_title in ENGLISH_CASE_METADATA.items():
         path = ROOT / relative

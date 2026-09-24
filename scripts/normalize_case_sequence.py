@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 PT = [
     ('vesper-propostas', 'Proposta Comercial'),
+    ('tradutor-documental', 'Tradutor documental offline'),
     ('belarc-inventory', 'Belarc Inventory'),
     ('postagem-redes', 'Postagem Redes'),
     ('producao-operacional', 'Produção Operacional'),
@@ -26,10 +27,13 @@ PT = [
     ('infinity-engine', 'Vesper Infinity Engine'),
     ('whatsapp', 'Notificações por WhatsApp'),
     ('portfolio-2026', 'Este portfólio'),
+    ('scanner-documentos', 'Scanner de documentos'),
+    ('appscontrol', 'Controle de Aplicativos'),
 ]
 
 EN = [
     ('vesper-propostas', 'Commercial Proposal'),
+    ('offline-document-translator', 'Offline Document Translator'),
     ('belarc-inventory', 'Belarc Inventory'),
     ('postagem-redes', 'Postagem Redes'),
     ('producao-operacional', 'Production Operations'),
@@ -49,6 +53,8 @@ EN = [
     ('infinity-engine', 'Vesper Infinity Engine'),
     ('whatsapp', 'WhatsApp Notifications'),
     ('portfolio-2026', 'This portfolio'),
+    ('tablet-document-scanner', 'Tablet Document Scanner'),
+    ('appscontrol', 'Application Control'),
 ]
 
 # Case pages were created across several iterations, so the inner markup may use

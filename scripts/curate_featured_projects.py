@@ -70,6 +70,17 @@ def ensure_sitemap() -> None:
             raise RuntimeError("EN sitemap insertion anchor not found")
         line_end = text.find("\n", pos)
         text = text[:line_end+1] + en + "\n" + text[line_end+1:]
+    routes = [
+        '  <url><loc>https://mayconxzdev.github.io/cases/tradutor-documental/</loc><lastmod>2026-09-24</lastmod></url>',
+        '  <url><loc>https://mayconxzdev.github.io/en/cases/offline-document-translator/</loc><lastmod>2026-09-24</lastmod></url>',
+        '  <url><loc>https://mayconxzdev.github.io/cases/scanner-documentos/</loc><lastmod>2026-09-24</lastmod></url>',
+        '  <url><loc>https://mayconxzdev.github.io/en/cases/tablet-document-scanner/</loc><lastmod>2026-09-24</lastmod></url>',
+        '  <url><loc>https://mayconxzdev.github.io/cases/appscontrol/</loc><lastmod>2026-09-24</lastmod></url>',
+        '  <url><loc>https://mayconxzdev.github.io/en/cases/appscontrol/</loc><lastmod>2026-09-24</lastmod></url>',
+    ]
+    for route in routes:
+        if route not in text:
+            text = text.replace('</urlset>', route + '\n</urlset>', 1)
     path.write_text(text, encoding="utf-8")
 
 patch_home(ROOT / "index.html", "featured_pt.fragment", "archive_pt.fragment", False)
