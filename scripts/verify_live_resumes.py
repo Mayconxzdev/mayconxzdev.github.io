@@ -7,21 +7,23 @@ from pypdf import PdfReader
 REQUIRED = {
     'pt-general': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
-        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'ComprasVesper', 'Belarc Inventory', 'MCP Tools with Agents',
+        'Power Automate', 'APIs', 'Tradutor documental offline',
+        'Postagem Redes', 'Produção Operacional', 'Belarc Inventory',
     ],
     'en-general': [
         'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
-        'Power Automate', 'Power BI', 'Prompt Engineering', 'Rust/Axum', 'Postagem Redes', 'ComprasVesper', 'Belarc Inventory', 'MCP Tools with Agents',
+        'Power Automate', 'APIs', 'Offline Document Translator',
+        'Production Operations', 'IT operations', 'Belarc Inventory',
     ],
     'pt-ai': [
         'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
-        'Prompt Engineering', 'RAG/LangChain', 'MCP Tools with Agents', 'Supabase/Qdrant',
-        'HelpDesk & IT Operations', 'Postagem Redes',
+        'Power Automate', 'RAG/LangChain', 'Supabase/Qdrant',
+        'Plataforma SaaS B2B', 'Postagem Redes',
     ],
     'pt-bi': [
         'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
         'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
-        'Excel/Google Sheets', 'Catálogo Operacional', 'ComprasVesper',
+        'Excel/Google Sheets', 'Catálogo Operacional',
     ],
 }
 
