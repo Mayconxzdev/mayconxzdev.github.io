@@ -111,44 +111,26 @@ def check_featured(relative: str, expected_titles: list[str], architecture_phras
 
 check_featured(
     'index.html',
-    ['Vesper Propostas', 'Belarc Inventory', 'Postagem Redes', 'Produção Operacional'],
-    'Cada case apresenta o problema, o que foi construído, as evidências disponíveis e seu estado atual.',
+    ['Proposta Comercial', 'Tradutor documental offline', 'Postagem Redes', 'Produção Operacional'],
+    'Cada projeto começa por uma necessidade concreta e mostra como transformei o fluxo em uma solução usada na prática.',
 )
 check_featured(
     'en/index.html',
-    ['Commercial Proposal', 'Belarc Inventory', 'Postagem Redes', 'Production Operations'],
-    'Each case describes the problem, what I built, the available evidence and its current status.',
+    ['Commercial Proposal', 'Offline Document Translator', 'Postagem Redes', 'Production Operations'],
+    'Each project starts with a real need and shows how I turned the workflow into a solution people can use.',
 )
 
 
-def check_metrics(relative: str, required: list[str], forbidden: list[str]):
+for relative in ['index.html', 'en/index.html']:
     text = (ROOT / relative).read_text(encoding='utf-8')
-    start = text.find('<section class="proof-strip"')
-    end = text.find('<section class="featured"', start)
-    if start < 0 or end < 0:
-        errors.append(f'{relative}: unable to isolate proof strip')
-        return
-    block = text[start:end]
-    if block.count('class="metric-link"') != 4:
-        errors.append(f'{relative}: proof strip must contain exactly four high-signal metrics')
-    for phrase in required:
-        if phrase not in block:
-            errors.append(f'{relative}: proof strip missing required metric: {phrase}')
-    for phrase in forbidden:
-        if phrase in block:
-            errors.append(f'{relative}: secondary-project metric leaked into first-read proof strip: {phrase}')
-
-
-check_metrics(
-    'index.html',
-    ['10 mil+', '&lt; 30s', '20+', '30+'],
-    ['campanhas operacionais', 'códigos no catálogo', 'usuários no HelpDesk'],
-)
-check_metrics(
-    'en/index.html',
-    ['10k+', '&lt; 30s', '20+', '30+'],
-    ['operational campaigns', 'codes in the catalog', 'HelpDesk users'],
-)
+    if '<section class="proof-strip"' in text:
+        errors.append(f'{relative}: first-read homepage must lead with project stories, not a metrics panel')
+    featured_start = text.find('<section class="featured"')
+    featured_end = text.find('</section>', featured_start)
+    first_read = text[featured_start:featured_end] if featured_start >= 0 and featured_end >= 0 else ''
+    for phrase in ['pytest', 'SHA-', 'passed', 'skipped', 'deselected', 'testes aprovados', 'ZIP', 'RC60']:
+        if phrase.casefold() in first_read.casefold():
+            errors.append(f'{relative}: internal verification detail leaked into the first project view: {phrase}')
 
 for relative in ['en/index.html', 'en/cases/belarc-inventory/index.html']:
     forbid(relative, ['IN INTERNAL USE'])
