@@ -17,7 +17,7 @@ PATCHES = {
             "The n8n environment I administer has surpassed 10,000 workflow executions in production.",
         ),
     ],
-    "cases/compras-vesper/index.html": [
+    "cases/compras-e-cotacoes/index.html": [
         (
             "../../assets/evidence/compras-menu.webp",
             "https://raw.githubusercontent.com/Mayconxzdev/ComprasProducao/main/docs/assets/ui-dashboard-real.png",

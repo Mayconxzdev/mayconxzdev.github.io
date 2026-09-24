@@ -57,14 +57,14 @@ def ensure_sitemap() -> None:
     pt = '  <url><loc>https://mayconxzdev.github.io/cases/belarc-inventory/</loc><lastmod>2026-09-22</lastmod></url>'
     en = '  <url><loc>https://mayconxzdev.github.io/en/cases/belarc-inventory/</loc><lastmod>2026-09-22</lastmod></url>'
     if pt not in text:
-        anchor = '  <url><loc>https://mayconxzdev.github.io/cases/vesper-propostas/</loc>'
+        anchor = '  <url><loc>https://mayconxzdev.github.io/cases/proposta-comercial/</loc>'
         pos = text.find(anchor)
         if pos < 0:
             raise RuntimeError("PT sitemap insertion anchor not found")
         line_end = text.find("\n", pos)
         text = text[:line_end+1] + pt + "\n" + text[line_end+1:]
     if en not in text:
-        anchor = '  <url><loc>https://mayconxzdev.github.io/en/cases/vesper-propostas/</loc>'
+        anchor = '  <url><loc>https://mayconxzdev.github.io/en/cases/commercial-proposal/</loc>'
         pos = text.find(anchor)
         if pos < 0:
             raise RuntimeError("EN sitemap insertion anchor not found")

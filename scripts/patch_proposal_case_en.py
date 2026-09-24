@@ -1,5 +1,5 @@
 from pathlib import Path
-p=Path(__file__).resolve().parents[1]/'en/cases/vesper-propostas/index.html'
+p=Path(__file__).resolve().parents[1]/'en/cases/commercial-proposal/index.html'
 t=p.read_text(encoding='utf-8')
 # The human-story materializer owns the current public proposal copy. Older
 # maintenance passes still invoke this legacy patch, so leave an already
@@ -8,9 +8,9 @@ if '<h1>Commercial Proposal</h1>' in t and 'I built an application that brings t
     print('EN proposal case already uses the human public story')
     raise SystemExit(0)
 pairs=[
-('<meta property="og:title" content="Vesper Propostas | Maycon Ferreira">','<meta property="og:title" content="Commercial Proposal | Maycon Ferreira">'),
-('<title>Vesper Propostas | Maycon Ferreira</title>','<title>Commercial Proposal | Maycon Ferreira</title>'),
-('<h1>Vesper Propostas</h1>','<h1>Commercial Proposal</h1>'),
+('<meta property="og:title" content="Proposta Comercial | Maycon Ferreira">','<meta property="og:title" content="Commercial Proposal | Maycon Ferreira">'),
+('<title>Proposta Comercial | Maycon Ferreira</title>','<title>Commercial Proposal | Maycon Ferreira</title>'),
+('<h1>Proposta Comercial</h1>','<h1>Commercial Proposal</h1>'),
 ('I built an application that brings together request data, customer and equipment identification, template selection, ODT/PDF generation, document review and email preparation.','I evolved the proposal workflow into a controlled internal application for request data, customer and template selection, ODT/PDF generation, review, approval, email preparation and history.'),
 ('Discovery, full development, deployment on four computers, training, user review and support.','I observed the existing process, gathered requirements with Commercial users, then developed, deployed, trained and supported the solution used by four professionals.'),
 ('Finding templates, copying information from email, reusing documents and preparing messages created manual steps and risked mixing customer data.','Finding templates, copying email data, reusing documents and preparing messages created manual steps and risked using the wrong customer, template, attachment or document version.'),

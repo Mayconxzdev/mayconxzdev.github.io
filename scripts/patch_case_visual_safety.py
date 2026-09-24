@@ -15,17 +15,11 @@ REPLACEMENTS = {
     'en/cases/career-personal/index.html': [
         ('<h1>CarreiraPessoal</h1>', '<h1>Carreira<wbr>Pessoal</h1>'),
     ],
-    'cases/compras-vesper/index.html': [
-        ('<h1>ComprasVesper</h1>', '<h1>Compras<wbr>Vesper</h1>'),
-    ],
-    'en/cases/compras-vesper/index.html': [
-        ('<h1>ComprasVesper</h1>', '<h1>Compras<wbr>Vesper</h1>'),
-    ],
     'cases/central-iso/index.html': [
-        ('<b>30 testes aprovados</b>', '<b>32 testes aprovados</b>'),
+        ('<b>32 testes aprovados</b>', '<b>Regras determinísticas</b>'),
     ],
     'en/cases/central-iso/index.html': [
-        ('<b>30 passing tests</b>', '<b>32 passing tests</b>'),
+        ('<b>32 passing tests</b>', '<b>Deterministic rules</b>'),
     ],
     'cases/infinity-engine/index.html': [
         (

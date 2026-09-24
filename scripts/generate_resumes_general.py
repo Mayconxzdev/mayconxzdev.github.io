@@ -176,7 +176,7 @@ def content(lang='pt', track='general'):
                 ),
                 'projects': [
                     '<b>Catálogo Operacional:</b> busca e controle de dados para 24 categorias e 480+ códigos, com uso diário, histórico, integridade e revisão otimista.',
-                    '<b>ComprasVesper:</b> aplicação interna de compras/cotações com Python/PySide6, SQLite WAL, IMAP/SMTP, fila persistente, backoff, idempotência e tracking.',
+                    '<b>Compras e Cotações:</b> aplicação interna de compras/cotações com Python/PySide6, SQLite WAL, IMAP/SMTP, fila persistente, backoff, idempotência e tracking.',
                 ],
                 'skills': [
                     '<b>Automação e BI:</b> Power Automate Cloud/Desktop · Power BI · DAX · Power Query · Python · Excel/Google Sheets · VBA · SQL',

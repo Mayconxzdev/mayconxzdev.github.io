@@ -129,7 +129,8 @@ REQUIRED = {
 }
 
 ENGLISH_CASE_METADATA = {
-    "en/cases/vesper-propostas/index.html": "Commercial Proposal | Maycon Ferreira",
+    "en/cases/commercial-proposal/index.html": "Commercial Proposal | Maycon Ferreira",
+    "en/cases/purchasing-and-quotes/index.html": "Purchasing and Quotes | Maycon Ferreira",
     "en/cases/offline-document-translator/index.html": "Offline Document Translator | Maycon Ferreira",
     "en/cases/tablet-document-scanner/index.html": "Tablet Document Scanner | Maycon Ferreira",
     "en/cases/appscontrol/index.html": "Application Control | Maycon Ferreira",
@@ -156,6 +157,12 @@ PUBLIC_STORY_REQUIRED = {
     ],
     "en/cases/appscontrol/index.html": [
         "The company already had an official spreadsheet", "I built a Windows app", "Python", "Tkinter",
+    ],
+    "cases/compras-e-cotacoes/index.html": [
+        "Compras e Cotações", "O que desenvolvi", "Quem usa", "fornecedores", "respostas",
+    ],
+    "en/cases/purchasing-and-quotes/index.html": [
+        "Purchasing and Quotes", "What I built", "Who uses it", "suppliers", "replies",
     ],
 }
 

@@ -10,6 +10,10 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 IGNORED_DIRS = {'.git', '.github', '.venv', 'node_modules', 'artifacts', '__pycache__', '.site'}
 ALIASES = {
+    'en/cases/compras-vesper/index.html',
+    'cases/compras-vesper/index.html',
+    'en/cases/vesper-propostas/index.html',
+    'cases/vesper-propostas/index.html',
     'cases/compass-automation/index.html',
     'cases/portal-vesper/index.html',
     'cases/procureflow/index.html',
@@ -22,6 +26,8 @@ PT_NAV = ['Visão geral', 'Projetos', 'Experiência', 'Resultados', 'Competênci
 EN_NAV = ['Overview', 'Projects', 'Experience', 'Results', 'Skills', 'Contact', 'Resume', 'PT']
 
 CASE_EN_SLUG = {
+    'compras-e-cotacoes': 'purchasing-and-quotes',
+    'proposta-comercial': 'commercial-proposal',
     'carreira-pessoal': 'career-personal',
     'catalogo-operacional-compras': 'operational-procurement-catalog',
     'belarc-inventory': 'belarc-inventory',
@@ -228,16 +234,16 @@ home = (ROOT / 'index.html').read_text(encoding='utf-8')
 en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 
 pt_flagships = [
-    'Proposta Comercial',
     'Tradutor documental offline',
-    'Postagem Redes',
     'Produção Operacional',
+    'Proposta Comercial',
+    'Postagem Redes',
 ]
 en_flagships = [
-    'Commercial Proposal',
     'Offline Document Translator',
-    'Postagem Redes',
     'Production Operations',
+    'Commercial Proposal',
+    'Postagem Redes',
 ]
 assert_order(home, pt_flagships, 'PT home', errors)
 assert_order(en_home, en_flagships, 'EN home', errors)
@@ -263,6 +269,10 @@ if 'carreira-overview.webp' in home or 'carreira-overview.webp' in en_home:
     errors.append('home pages still reference the known corrupt CarreiraPessoal WebP')
 
 required_routes = [
+    ROOT / 'en/cases/purchasing-and-quotes/index.html',
+    ROOT / 'cases/compras-e-cotacoes/index.html',
+    ROOT / 'en/cases/commercial-proposal/index.html',
+    ROOT / 'cases/proposta-comercial/index.html',
     ROOT / 'cases/belarc-inventory/index.html',
     ROOT / 'en/cases/belarc-inventory/index.html',
     ROOT / 'assets/evidence/belarc-frota.jpg',
