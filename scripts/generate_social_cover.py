@@ -99,7 +99,7 @@ for (value, label), (mx, my) in zip(metrics, positions):
 
 # Evidence-first footer.
 draw.line((55, 545, 1145, 545), fill=BLACK, width=2)
-draw.text((55, 570), "EVIDÊNCIAS · ESTADOS DECLARADOS · LIMITES EXPLÍCITOS", font=footer_font, fill=BLACK)
+draw.text((55, 570), "PROCESSOS REAIS · SISTEMAS · AUTOMAÇÃO", font=footer_font, fill=BLACK)
 draw.text((905, 570), "mayconxzdev.github.io", font=footer_font, fill=BLUE)
 
 image.save(OUT, optimize=True)

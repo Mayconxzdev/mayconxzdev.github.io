@@ -34,8 +34,8 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
             "Automação, sistemas internos, backend, IA, APIs externas e arquitetura de sistemas sem repetir a mesma competência em todos os cases.",
         )
         text = text.replace(
-            "<div><dt>Python e desktop</dt><dd>Vesper Propostas · Produção Operacional · ComprasVesper</dd></div>",
-            "<div><dt>Python e desktop</dt><dd>Proposta Comercial · Produção Operacional · ComprasVesper</dd></div>",
+            "<div><dt>Python e desktop</dt><dd>Proposta Comercial · Produção Operacional · Compras e Cotações</dd></div>",
+            "<div><dt>Python e desktop</dt><dd>Proposta Comercial · Produção Operacional · Compras e Cotações</dd></div>",
         )
         text = text.replace(
             "<h3>Vesper Manutenção</h3><p>Documentos, áudios, histórico e busca de conhecimento técnico.</p>",
@@ -53,8 +53,8 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
             "Automation, internal systems, backend, AI, external APIs and systems architecture without repeating the same skill in every case.",
         )
         text = text.replace(
-            "<div><dt>Python and desktop</dt><dd>Vesper Propostas · Produção Operacional · ComprasVesper</dd></div>",
-            "<div><dt>Python and desktop</dt><dd>Proposta Comercial · Produção Operacional · ComprasVesper</dd></div>",
+            "<div><dt>Python and desktop</dt><dd>Proposta Comercial · Produção Operacional · Compras e Cotações</dd></div>",
+            "<div><dt>Python and desktop</dt><dd>Proposta Comercial · Produção Operacional · Compras e Cotações</dd></div>",
         )
         text = text.replace(
             "<h3>Vesper Maintenance</h3><p>Documents, audio, history and technical-knowledge search.</p>",
@@ -88,7 +88,7 @@ for rel, lang in (("index.html", "pt"), ("en/index.html", "en")):
 for rel in ("competencias/index.html", "en/skills/index.html"):
     path = ROOT / rel
     text = path.read_text(encoding="utf-8")
-    text = text.replace("Vesper Propostas", "Proposta Comercial")
+    text = text.replace("Proposta Comercial", "Proposta Comercial")
     path.write_text(text, encoding="utf-8")
 
 print("Portfolio numbering, naming, structured data and archive evidence are consistent.")

@@ -6,12 +6,12 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 
 PT = [
-    ('vesper-propostas', 'Proposta Comercial'),
+    ('proposta-comercial', 'Proposta Comercial'),
     ('tradutor-documental', 'Tradutor documental offline'),
     ('belarc-inventory', 'Belarc Inventory'),
     ('postagem-redes', 'Postagem Redes'),
     ('producao-operacional', 'Produção Operacional'),
-    ('compras-vesper', 'ComprasVesper'),
+    ('compras-e-cotacoes', 'Compras e Cotações'),
     ('hubora', 'Hubora'),
     ('mala-direta', 'Mala Direta'),
     ('helpdesk', 'HelpDesk'),
@@ -32,12 +32,12 @@ PT = [
 ]
 
 EN = [
-    ('vesper-propostas', 'Commercial Proposal'),
+    ('commercial-proposal', 'Commercial Proposal'),
     ('offline-document-translator', 'Offline Document Translator'),
     ('belarc-inventory', 'Belarc Inventory'),
     ('postagem-redes', 'Postagem Redes'),
     ('producao-operacional', 'Production Operations'),
-    ('compras-vesper', 'ComprasVesper'),
+    ('purchasing-and-quotes', 'Purchasing and Quotes'),
     ('hubora', 'Hubora'),
     ('mala-direta', 'Mala Direta'),
     ('helpdesk', 'HelpDesk'),

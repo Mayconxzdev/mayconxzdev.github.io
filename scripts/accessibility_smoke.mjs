@@ -29,9 +29,9 @@ await addCaseRoutes('en/cases', '/en/cases/');
 const routes = [...routeSet].sort();
 const mobileRoutes = new Set([
   '/', '/competencias/', '/competencias/credenciais/',
-  '/cases/vesper-propostas/', '/cases/belarc-inventory/', '/cases/postagem-redes/', '/cases/producao-operacional/',
+  '/cases/proposta-comercial/', '/cases/compras-e-cotacoes/', '/cases/tradutor-documental/', '/cases/belarc-inventory/', '/cases/postagem-redes/', '/cases/producao-operacional/',
   '/en/', '/en/skills/', '/en/credentials/',
-  '/en/cases/vesper-propostas/', '/en/cases/belarc-inventory/', '/en/cases/postagem-redes/', '/en/cases/producao-operacional/',
+  '/en/cases/commercial-proposal/', '/en/cases/purchasing-and-quotes/', '/en/cases/offline-document-translator/', '/en/cases/belarc-inventory/', '/en/cases/postagem-redes/', '/en/cases/producao-operacional/',
 ]);
 const launchOptions = { headless: true };
 if (process.env.PORTFOLIO_CHROMIUM_PATH) launchOptions.executablePath = process.env.PORTFOLIO_CHROMIUM_PATH;

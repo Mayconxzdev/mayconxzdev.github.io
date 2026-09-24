@@ -2,6 +2,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ALIASES = {
+    'en/cases/compras-vesper/index.html',
+    'cases/compras-vesper/index.html',
+    'en/cases/vesper-propostas/index.html',
+    'cases/vesper-propostas/index.html',
     'en/cases/compass-automation/index.html',
     'en/cases/portal-vesper/index.html',
     'en/cases/procureflow/index.html',

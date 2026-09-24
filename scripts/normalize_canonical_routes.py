@@ -13,10 +13,10 @@ REPLACEMENTS: dict[str, list[tuple[str, str]]] = {
         ('href="../../cases/procureflow/"', 'href="../cases/operational-procurement-catalog/"'),
         ('href="../../cases/portal-vesper/"', 'href="../cases/portal/"'),
     ],
-    "cases/compras-vesper/index.html": [
+    "cases/compras-e-cotacoes/index.html": [
         ('href="../../cases/procureflow/">ProcureFlow', 'href="../catalogo-operacional-compras/">Catálogo Operacional de Compras'),
     ],
-    "en/cases/compras-vesper/index.html": [
+    "en/cases/purchasing-and-quotes/index.html": [
         ('href="../../../en/cases/procureflow/">ProcureFlow', 'href="../operational-procurement-catalog/">Operational Procurement Catalog'),
     ],
     "cases/postagem-redes/index.html": [

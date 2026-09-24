@@ -10,6 +10,10 @@ EN_RESUME = "/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf"
 THEME_INIT = """<script>(function(){try{var t=localStorage.getItem('mf-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}}())</script>"""
 
 ALIASES = {
+    "en/cases/compras-vesper/index.html",
+    "cases/compras-vesper/index.html",
+    "en/cases/vesper-propostas/index.html",
+    "cases/vesper-propostas/index.html",
     "cases/compass-automation/index.html",
     "cases/portal-vesper/index.html",
     "cases/procureflow/index.html",
@@ -19,6 +23,8 @@ ALIASES = {
 }
 
 CASE_EN_SLUG = {
+    "compras-e-cotacoes": "purchasing-and-quotes",
+    "proposta-comercial": "commercial-proposal",
     "carreira-pessoal": "career-personal",
     "catalogo-operacional-compras": "operational-procurement-catalog",
     "tradutor-documental": "offline-document-translator",

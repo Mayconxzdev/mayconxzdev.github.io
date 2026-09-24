@@ -31,7 +31,7 @@ REQUIRED = {
     'pt-bi': [
         'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
         'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
-        'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Catálogo Operacional', 'ComprasVesper',
+        'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Catálogo Operacional', 'Compras e Cotações',
         'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial',
     ],
     'en-general': [
@@ -47,7 +47,7 @@ REQUIRED = {
 PARSER_REQUIRED = {
     'pt-general': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'PROPOSTA COMERCIAL', 'presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Postagem Redes', 'Tradutor documental offline', 'FORMAÇÃO', 'IDIOMAS'],
     'pt-ai': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'presto suporte a usuários, endpoints Windows e sistemas internos', 'Plataforma SaaS B2B', 'Postagem Redes', 'FORMAÇÃO', 'IDIOMAS'],
-    'pt-bi': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Catálogo Operacional', 'ComprasVesper', 'FORMAÇÃO', 'IDIOMAS'],
+    'pt-bi': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Catálogo Operacional', 'Compras e Cotações', 'FORMAÇÃO', 'IDIOMAS'],
     'en-general': ['MAYCON FERREIRA', 'Junior Process Automation Technician', 'provide hands-on support for users, Windows endpoints and internal systems in an industrial environment', 'Postagem Redes', 'Offline Document Translator', 'EDUCATION', 'LANGUAGES'],
 }
 

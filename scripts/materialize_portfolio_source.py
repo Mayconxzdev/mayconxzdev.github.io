@@ -18,6 +18,7 @@ COMMANDS = [
     "scripts/patch_portfolio_consistency.py",
     "scripts/patch_case_visual_safety.py",
     "scripts/patch_human_project_stories.py",
+    "scripts/patch_public_narrative_media.py",
     "scripts/normalize_site_chrome.py",
     "scripts/patch_navigation_targets.py",
     "scripts/patch_404_language.py",
