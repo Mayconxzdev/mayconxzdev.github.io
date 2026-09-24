@@ -218,7 +218,7 @@ jobs:
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$PROD_HTML" \
               && grep -Fq '>Competências<' <<<"$PROD_HTML" \
               && grep -Fq 'Produção<br>Operacional' <<<"$PROD_HTML" \
-              && grep -Fq 'Belarc Inventory' <<<"$HOME_HTML" \
+              && grep -Fq 'Belarc Inventory' <<<"$BELARC_HTML" \
               && grep -Fq 'EM USO INTERNO' <<<"$BELARC_HTML" \
               && grep -Fq 'Rust · Axum · Tokio · SQLite' <<<"$BELARC_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$BELARC_HTML" \
@@ -226,7 +226,7 @@ jobs:
               && grep -Fq 'class="case-page"' <<<"$ISO_HTML" \
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
               && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
-              && grep -Fq "MAPA VISUAL SANITIZADO" <<<"$CAREER_HTML" \
+              && grep -Fq "VISÃO DO FLUXO" <<<"$CAREER_HTML" \
               && grep -Fq "200" <<<"$CAREER_IMAGE" \
               && grep -Fq "200" <<<"$SOCIAL_IMAGE" \
               && [[ "$RESUMES_OK" == true ]]; then

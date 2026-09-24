@@ -234,15 +234,15 @@ home = (ROOT / 'index.html').read_text(encoding='utf-8')
 en_home = (ROOT / 'en' / 'index.html').read_text(encoding='utf-8')
 
 pt_flagships = [
-    'Tradutor documental offline',
+    'Belarc Inventory',
     'Produção Operacional',
-    'Proposta Comercial',
+    'Manutenção em Campo',
     'Postagem Redes',
 ]
 en_flagships = [
-    'Offline Document Translator',
+    'Belarc Inventory',
     'Production Operations',
-    'Commercial Proposal',
+    'Field Maintenance',
     'Postagem Redes',
 ]
 assert_order(home, pt_flagships, 'PT home', errors)
