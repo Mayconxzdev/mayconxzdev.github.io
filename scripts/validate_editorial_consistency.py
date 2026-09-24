@@ -111,13 +111,13 @@ def check_featured(relative: str, expected_titles: list[str], architecture_phras
 
 check_featured(
     'index.html',
-    ['Tradutor documental offline', 'Produção Operacional', 'Proposta Comercial', 'Postagem Redes'],
-    'Cada projeto começa por uma necessidade concreta e mostra como transformei o fluxo em uma solução usada na prática.',
+    ['Belarc Inventory', 'Produção Operacional', 'Manutenção em Campo', 'Postagem Redes'],
+    'Sistemas e automações que desenvolvi para resolver necessidades reais da operação, da TI e da indústria.',
 )
 check_featured(
     'en/index.html',
-    ['Offline Document Translator', 'Production Operations', 'Commercial Proposal', 'Postagem Redes'],
-    'Each project starts with a real need and shows how I turned the workflow into a solution people can use.',
+    ['Belarc Inventory', 'Production Operations', 'Field Maintenance', 'Postagem Redes'],
+    'Systems and automations I built to solve real needs in IT, manufacturing and day-to-day operations.',
 )
 
 

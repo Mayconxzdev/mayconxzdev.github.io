@@ -100,14 +100,14 @@ STALE = [
 REQUIRED = {
     "index.html": [
         "PROJETOS PRINCIPAIS",
-        "Cada projeto começa por uma necessidade concreta e mostra como transformei o fluxo em uma solução usada na prática.",
+        "Sistemas e automações que desenvolvi para resolver necessidades reais da operação, da TI e da indústria.",
         "Plataforma SaaS B2B",
         "Desenvolvimento colaborativo desde a concepção",
         "atendendo usuários e acompanhando as soluções no ambiente industrial",
     ],
     "en/index.html": [
         "FEATURED PROJECTS",
-        "Each project starts with a real need and shows how I turned the workflow into a solution people can use.",
+        "Systems and automations I built to solve real needs in IT, manufacturing and day-to-day operations.",
         "B2B SaaS platform",
         "Collaborative development from the beginning",
         "take part in IT operations by supporting users",
@@ -217,6 +217,17 @@ def main() -> int:
         for phrase in phrases:
             if phrase not in text:
                 errors.append(f"{relative}: required current wording missing: {phrase}")
+
+    # The internal product is used at work, while this public repository is a
+    # separate synthetic-data demonstration. Keep both facts visible.
+    maintenance_pt = (ROOT / "cases/manutencao-campo/index.html").read_text(encoding="utf-8")
+    maintenance_en = (ROOT / "en/cases/manutencao-campo/index.html").read_text(encoding="utf-8")
+    for phrase in ["EM USO NA EMPRESA", "repositório público mostra uma demonstração independente", "não são a instalação empresarial"]:
+        if phrase not in maintenance_pt:
+            errors.append(f"cases/manutencao-campo/index.html: current work/demo distinction missing: {phrase}")
+    for phrase in ["IN USE AT WORK", "public repository shows an independent demonstration", "are not the company installation"]:
+        if phrase not in maintenance_en:
+            errors.append(f"en/cases/manutencao-campo/index.html: current work/demo distinction missing: {phrase}")
 
     for relative, phrases in PUBLIC_STORY_REQUIRED.items():
         path = ROOT / relative

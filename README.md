@@ -6,12 +6,12 @@ O [portfólio publicado](https://mayconxzdev.github.io/) reúne projetos de auto
 
 ## Por onde começar
 
-- [Proposta Comercial](cases/proposta-comercial/) — um aplicativo que reúne pedidos, modelos, documentos, revisão e envio de propostas.
-- [Tradutor documental offline](cases/tradutor-documental/) — aplicativo desktop para preparar versões em português e inglês de documentos Word e ODT, mantendo sua estrutura.
-- [Postagem Redes](cases/postagem-redes/) — automação que prepara rascunhos com contexto aprovado e inclui revisão humana antes da publicação.
+- [Belarc Inventory](cases/belarc-inventory/) — sistema de inventário de estações Windows com contexto para apoiar suporte e manutenção.
 - [Produção Operacional](cases/producao-operacional/) — aplicação Windows usada para acompanhar ordens entre escritório, fábrica e painel de produção.
+- [Manutenção em Campo](cases/manutencao-campo/) — sistema usado na empresa para registrar manutenções em máquinas e equipamentos. O código público é uma demonstração independente com dados fictícios.
+- [Postagem Redes](cases/postagem-redes/) — automação que prepara rascunhos com contexto aprovado e inclui revisão humana antes da publicação.
 
-Outros projetos estão no [arquivo do portfólio](https://mayconxzdev.github.io/#archive), incluindo inventário de estações, compras, suporte e consulta documental. Cases de sistemas internos explicam o funcionamento sem publicar código ou informações empresariais.
+Também desenvolvi o [Tradutor documental offline](cases/tradutor-documental/) para preparar versões em português e inglês de documentos Word e ODT mantendo sua estrutura, e a [Proposta Comercial](cases/proposta-comercial/), que reúne pedidos, modelos, documentos, revisão e envio. Outros projetos estão no [arquivo do portfólio](https://mayconxzdev.github.io/#archive). Cases de sistemas internos explicam o trabalho sem publicar código ou informações empresariais.
 
 ## Currículos
 
