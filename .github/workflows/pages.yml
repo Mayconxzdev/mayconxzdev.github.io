@@ -39,7 +39,7 @@ jobs:
         run: |
           python scripts/generate_resumes_general.py
           python scripts/add_resume_links.py
-          python scripts/generate_social_cover.py
+          python scripts/validate_social_cover.py
       - name: Apply current project content and shared layout
         run: |
           python scripts/add_carreirapessoal_home.py
