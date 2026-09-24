@@ -178,6 +178,7 @@ jobs:
             CAREER_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/carreira-pessoal/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             PROD_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/producao-operacional/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             BELARC_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/belarc-inventory/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
+            MAINT_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/manutencao-campo/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             SKILLS_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/competencias/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
             CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
@@ -206,8 +207,11 @@ jobs:
 
             if [[ "$BUILD_SHA" == "$GITHUB_SHA" ]] \
               && grep -Fq "PROJETOS PRINCIPAIS" <<<"$HOME_HTML" \
-              && grep -Fq "Tradutor documental offline" <<<"$HOME_HTML" \
-              && grep -Fq "Proposta Comercial" <<<"$HOME_HTML" \
+              && grep -Fq '<h3>Belarc Inventory</h3>' <<<"$HOME_HTML" \
+              && grep -Fq '<h3>Produção Operacional</h3>' <<<"$HOME_HTML" \
+              && grep -Fq '<h3>Manutenção em Campo</h3>' <<<"$HOME_HTML" \
+              && grep -Fq '<h3>Postagem Redes</h3>' <<<"$HOME_HTML" \
+              && ! grep -Eq 'PR #[0-9]+' <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
               && grep -Fq 'class="archive-expand"' <<<"$HOME_HTML" \
               && grep -Fq "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}" <<<"$HOME_HTML" \
@@ -222,6 +226,8 @@ jobs:
               && grep -Fq 'EM USO INTERNO' <<<"$BELARC_HTML" \
               && grep -Fq 'Rust · Axum · Tokio · SQLite' <<<"$BELARC_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$BELARC_HTML" \
+              && grep -Fq 'EM USO NA EMPRESA' <<<"$MAINT_HTML" \
+              && grep -Fq 'demonstração pública independente' <<<"$MAINT_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$ISO_HTML" \
               && grep -Fq 'class="case-page"' <<<"$ISO_HTML" \
               && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
