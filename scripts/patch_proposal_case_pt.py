@@ -1,6 +1,12 @@
 from pathlib import Path
 p=Path(__file__).resolve().parents[1]/'cases/vesper-propostas/index.html'
 t=p.read_text(encoding='utf-8')
+# The human-story materializer owns the current public proposal copy. Older
+# maintenance passes still invoke this legacy patch, so leave an already
+# humanized case alone instead of treating its newer wording as source drift.
+if '<h1>Proposta Comercial</h1>' in t and 'Desenvolvi uma aplicação que reúne pedidos, modelos comerciais reais' in t:
+    print('PT proposal case already uses the human public story')
+    raise SystemExit(0)
 pairs=[
 ('<h1>Vesper Propostas</h1>','<h1>Proposta Comercial</h1>'),
 ('Desenvolvi uma aplicação para reunir os dados do pedido, identificar cliente e equipamento, selecionar modelos, gerar ODT/PDF, revisar o documento e preparar o envio por e-mail.','Evoluí o fluxo de propostas para reunir pedido, cliente, seleção de modelo, geração ODT/PDF, revisão, aprovação, preparação de e-mail e histórico em uma aplicação interna controlada.'),

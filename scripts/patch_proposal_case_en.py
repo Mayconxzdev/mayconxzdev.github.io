@@ -1,6 +1,12 @@
 from pathlib import Path
 p=Path(__file__).resolve().parents[1]/'en/cases/vesper-propostas/index.html'
 t=p.read_text(encoding='utf-8')
+# The human-story materializer owns the current public proposal copy. Older
+# maintenance passes still invoke this legacy patch, so leave an already
+# humanized case alone instead of treating its newer wording as source drift.
+if '<h1>Commercial Proposal</h1>' in t and 'I built an application that brings together requests, real commercial templates' in t:
+    print('EN proposal case already uses the human public story')
+    raise SystemExit(0)
 pairs=[
 ('<meta property="og:title" content="Vesper Propostas | Maycon Ferreira">','<meta property="og:title" content="Commercial Proposal | Maycon Ferreira">'),
 ('<title>Vesper Propostas | Maycon Ferreira</title>','<title>Commercial Proposal | Maycon Ferreira</title>'),

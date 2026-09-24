@@ -47,6 +47,7 @@ jobs:
           python scripts/patch_skills_current.py
           python scripts/patch_portfolio_consistency.py
           python scripts/patch_case_visual_safety.py
+          python scripts/patch_human_project_stories.py
           python scripts/normalize_site_chrome.py
           python scripts/patch_navigation_targets.py
           python scripts/patch_404_language.py
@@ -203,7 +204,9 @@ jobs:
             fi
 
             if [[ "$BUILD_SHA" == "$GITHUB_SHA" ]] \
-              && grep -Fq "RESULTADOS EM USO" <<<"$HOME_HTML" \
+              && grep -Fq "PROJETOS PRINCIPAIS" <<<"$HOME_HTML" \
+              && grep -Fq "Tradutor documental offline" <<<"$HOME_HTML" \
+              && grep -Fq "Proposta Comercial" <<<"$HOME_HTML" \
               && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
               && grep -Fq 'class="archive-expand"' <<<"$HOME_HTML" \
               && grep -Fq "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}" <<<"$HOME_HTML" \

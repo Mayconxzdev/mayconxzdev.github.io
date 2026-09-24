@@ -138,12 +138,11 @@ def content(lang='pt', track='general'):
                 'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
                 'summary': (
-                    'Analista de Automação e IA com atuação ponta a ponta em n8n, Power Automate, Python/APIs e sistemas internos. '
-                    'Administro n8n self-hosted com 10 mil+ execuções em produção e entreguei automações que reduziram processos de 2–4 min para <30 s.'
+                    'Analista de Automação e IA. Transformo rotinas repetitivas em fluxos com n8n e Power Automate, conecto sistemas com Python e APIs e acompanho implantação e sustentação.'
                 ),
                 'projects': [
-                    '<b>Postagem Redes (validado em teste):</b> n8n + APIs + RAG/LangChain + Prompt Engineering + revisão humana + evals; OAuth2, idempotência e falha isolada por canal.',
-                    '<b>ComprasVesper:</b> aplicação interna Python/PySide6 para cotações e acompanhamento, com SQLite WAL, fila persistente, IMAP/SMTP e idempotência; demo pública bloqueia rede e e-mail.',
+                    '<b>Postagem Redes:</b> automação n8n que prepara rascunhos com contexto aprovado e pede revisão antes da publicação; integra APIs, RAG e tratamento de falhas por canal.',
+                    '<b>Tradutor documental offline:</b> aplicativo desktop usado internamente para traduzir arquivos Word/ODT localmente, preservar sua estrutura e preparar versões bilíngues para revisão.',
                 ],
                 'skills': [
                     '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
@@ -156,12 +155,11 @@ def content(lang='pt', track='general'):
                 'filename': 'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
                 'summary': (
-                    'Analista de Automação e IA com experiência em n8n, Python/APIs e soluções com LLMs/agentes. '
-                    'Administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo integrações com Prompt Engineering, RAG/LangChain, evals e revisão humana.'
+                    'Atuo com automação e IA aplicada: integro APIs com Python, construo fluxos com n8n e valido soluções com contexto recuperado, revisão humana e testes.'
                 ),
                 'projects': [
-                    '<b>HelpDesk & IT Operations:</b> sistema interno usado por 11 pessoas; integra contexto de estação, inventário, chamados e vencimentos para enriquecer alertas e diagnóstico, com assistência local experimental.',
-                    '<b>Postagem Redes:</b> n8n + Meta Graph API + RAG/LangChain + Prompt Engineering + human-in-the-loop + evals; Facebook/Instagram validados em ambiente de teste.',
+                    '<b>Plataforma SaaS B2B:</b> participo com um colaborador desde a concepção de uma plataforma multiempresa já usada por empresas, trabalhando nos fluxos do produto, permissões e isolamento das informações.',
+                    '<b>Postagem Redes:</b> construí uma automação que prepara conteúdo com contexto aprovado e mantém revisão humana antes das ações externas.',
                 ],
                 'skills': [
                     '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · human-in-the-loop · evals · Supabase/Qdrant',
@@ -174,9 +172,7 @@ def content(lang='pt', track='general'):
                 'filename': 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
                 'summary': (
-                    'Analista de Automação e BI com atuação em Power Automate, Python/APIs, Power BI/Power Query e melhoria de processos. '
-                    'Administro automações em produção, crio dashboards e análises para produção, compras e estoque e entreguei fluxos que reduziram processos de 2–4 min para <30 s. '
-                    'Experiência com SQL/PostgreSQL, ETL, Excel/VBA, requisitos e sustentação.'
+                    'Transformo dados e rotinas de produção, compras e estoque em automações e painéis com Power Automate, Power BI, Python e SQL.'
                 ),
                 'projects': [
                     '<b>Catálogo Operacional:</b> busca e controle de dados para 24 categorias e 480+ códigos, com uso diário, histórico, integridade e revisão otimista.',
@@ -198,13 +194,11 @@ def content(lang='pt', track='general'):
         'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
         'title': 'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
         'summary': (
-            'Automation & AI Analyst working end to end across n8n, Power Automate, Python/APIs and internal systems. '
-            'I administer self-hosted n8n with 10k+ production executions and delivered automations that reduced processes from 2–4 min to <30 sec. '
-            'Hands-on with Power BI/Power Query, LLMs/RAG, PostgreSQL/Redis, Docker and Windows/Rust engineering.'
+            'Automation & AI Analyst. I turn repetitive work into n8n and Power Automate flows, connect systems with Python and APIs, and support rollout and ongoing use.'
         ),
         'projects': [
-            '<b>Postagem Redes (validated in testing):</b> n8n + APIs + RAG/LangChain + Prompt Engineering + human review + evals, with OAuth2, idempotency and channel-isolated failures.',
-            '<b>ComprasVesper:</b> internal Python/PySide6 quotation and tracking app with SQLite WAL, a persistent queue, IMAP/SMTP and idempotency; the public demo blocks network and email.',
+            '<b>Postagem Redes:</b> an n8n automation that drafts content from approved context and asks for review before publication; it connects APIs, retrieval and channel-level failure handling.',
+            '<b>Offline Document Translator:</b> an internally used desktop app that translates Word/ODT files locally, preserves their structure and prepares bilingual versions for review.',
         ],
         'skills': [
             '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',

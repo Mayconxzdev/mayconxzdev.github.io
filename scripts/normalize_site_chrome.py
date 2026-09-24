@@ -21,6 +21,8 @@ ALIASES = {
 CASE_EN_SLUG = {
     "carreira-pessoal": "career-personal",
     "catalogo-operacional-compras": "operational-procurement-catalog",
+    "tradutor-documental": "offline-document-translator",
+    "scanner-documentos": "tablet-document-scanner",
 }
 CASE_PT_SLUG = {v: k for k, v in CASE_EN_SLUG.items()}
 
