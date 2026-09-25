@@ -15,7 +15,7 @@ FILES = {
 
 REQUIRED = {
     'pt-general': [
-        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
+        'ANALISTA DE AUTOMAÇÃO E INTEGRAÇÕES | Python · n8n · IA APLICADA',
         '10 mil+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
         'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Tradutor documental offline', 'MCP Tools with Agents',
         'INSTRUTOR DE INFORMÁTICA (FREELANCER)', 'Técnico Júnior em Automação de Processos',
@@ -35,7 +35,7 @@ REQUIRED = {
         'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial',
     ],
     'en-general': [
-        'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
+        'AUTOMATION & INTEGRATIONS ANALYST | Python · n8n · APPLIED AI',
         '10k+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
         'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Offline Document Translator', 'MCP Tools with Agents',
         'IT INSTRUCTOR (FREELANCE)', 'Junior Process Automation Technician',
