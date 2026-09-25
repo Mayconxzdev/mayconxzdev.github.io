@@ -78,7 +78,7 @@ def pt_common():
         'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
         'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · atuação interna em automação, sistemas, dados/BI e IA',
         'vesper_bullets': [
-            '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
+            '<b>Automação e integrações:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
             '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial (ODT/PDF + IMAP/SMTP), reduzindo propostas simples de 2–4 min para &lt;30 s; implantei Produção Operacional em 10+ PCs e 1 TV, com lembretes agendados e relatórios mensais em PDF/Excel.',
             '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
             '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação, treinamento e sustentação.',
@@ -158,7 +158,7 @@ def content(lang='pt', track='general'):
                     'Atuo com automação e IA aplicada: integro APIs com Python, construo fluxos com n8n e valido soluções com contexto recuperado, revisão humana e testes.'
                 ),
                 'projects': [
-                    '<b>Plataforma SaaS B2B:</b> participo com um colaborador desde a concepção de uma plataforma multiempresa já usada por empresas, trabalhando nos fluxos do produto, permissões e isolamento das informações.',
+                    '<b>Plataforma SaaS B2B:</b> participo com um colaborador desde a concepção de uma plataforma multiempresa, trabalhando nos fluxos do produto, permissões, isolamento das informações e evolução das funcionalidades.',
                     '<b>Postagem Redes:</b> construí uma automação que prepara conteúdo com contexto aprovado e mantém revisão humana antes das ações externas.',
                 ],
                 'skills': [
