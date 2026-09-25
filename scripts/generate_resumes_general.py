@@ -79,16 +79,16 @@ def pt_common():
         'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · atuação interna em automação, sistemas, dados/BI e IA',
         'vesper_bullets': [
             '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
-            '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial (ODT/PDF + IMAP/SMTP), reduzindo propostas simples de 2–4 min para &lt;30 s; implantei Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores.',
+            '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial, reduzindo uma proposta simples de 2–4 min para menos de 30 s; implantei Produção Operacional em 10+ computadores e uma TV de fábrica.',
             '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
-            '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento; 30+ pessoas já orientadas.',
+            '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento.',
         ],
         'vesper_ops_bullet': '<b>Operação de TI:</b> presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes orientam melhorias e automações que implanto e sustento.',
         'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
-        'freelance_meta': 'Aulas pagas semanais (~3h) para públicos de diferentes idades e níveis',
+        'freelance_meta': 'Aulas pagas semanais para públicos de diferentes idades e níveis',
         'freelance_bullets': ['Ensino Excel/Google Sheets, Power BI, Power Query, VBA, Pacote Office, Windows e fundamentos de Linux.'],
         'compass_role': 'COMPASS UOL — Estagiário TI/Dados | out. 2024 – mar. 2025',
-        'compass_meta': 'Programa de bolsas em Engenharia de Dados · 10 sprints práticas',
+        'compass_meta': 'Programa de bolsas em Engenharia de Dados',
         'compass_bullets': ['Desenvolvi pipeline com Python/SQL/Docker/AWS, integrando CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena e QuickSight em fluxo ETL/Data Lake.'],
         'education': [
             '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · previsão: dez/2026',
@@ -109,15 +109,15 @@ def en_common():
         'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · internal work across automation, systems, data/BI and AI',
         'vesper_bullets': [
             '<b>Automation:</b> administer self-hosted n8n with 10k+ production executions and build workflows with n8n/Power Automate, Python, APIs/webhooks, PostgreSQL and error handling.',
-            '<b>Operational impact:</b> built and support Commercial Proposal (ODT/PDF + IMAP/SMTP), reducing simple proposals from 2–4 min to &lt;30 sec; deployed Production Operations to 10+ PCs and 1 TV for 20+ professionals across 9 areas.',
+            '<b>Operational impact:</b> built and support Commercial Proposal, reducing a simple proposal from 2–4 min to under 30 sec; deployed Production Operations to 10+ computers and one factory TV.',
             '<b>Engineering:</b> co-develop Belarc Inventory, in internal use, with a Rust/Tokio Windows agent, Axum/SQLite server and PowerShell/CIM collection.',
-            '<b>Data & process:</b> build Power BI/Excel/Power Query dashboards for production, procurement and inventory and work across requirements, BPMN/AS-IS/TO-BE, UAT, deployment and training; 30+ people guided.',
+            '<b>Data & process:</b> build Power BI/Excel/Power Query dashboards for production, procurement and inventory and work across requirements, BPMN/AS-IS/TO-BE, UAT, deployment and training.',
         ],
         'freelance_role': 'IT INSTRUCTOR (FREELANCE) | Oct. 2024 – Present',
-        'freelance_meta': 'Paid weekly classes (~3h) for learners of different ages and skill levels',
+        'freelance_meta': 'Paid weekly classes for learners of different ages and skill levels',
         'freelance_bullets': ['Teach Excel/Google Sheets, Power BI, Power Query, VBA, Office, Windows and Linux fundamentals.'],
         'compass_role': 'COMPASS UOL — IT/Data Intern | Oct. 2024 – Mar. 2025',
-        'compass_meta': 'Data Engineering scholarship · 10 practical sprints',
+        'compass_meta': 'Data Engineering scholarship program',
         'compass_bullets': ['Built a Python/SQL/Docker/AWS pipeline integrating CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena and QuickSight in an ETL/Data Lake flow.'],
         'education': [
             '<b>Technology Degree in Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026',
@@ -136,9 +136,9 @@ def content(lang='pt', track='general'):
         tracks = {
             'general': {
                 'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
-                'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
+                'title': 'ANALISTA DE AUTOMAÇÃO E INTEGRAÇÕES | Python · n8n · IA APLICADA',
                 'summary': (
-                    'Analista de Automação e IA. Transformo rotinas repetitivas em fluxos com n8n e Power Automate, conecto sistemas com Python e APIs e acompanho implantação e sustentação.'
+                    'Automatizo processos internos com Python, n8n e Power Automate, conecto sistemas por APIs e acompanho a implantação e sustentação das soluções. Uso IA aplicada quando resolve uma necessidade concreta.'
                 ),
                 'projects': [
                     '<b>Postagem Redes:</b> automação n8n que prepara rascunhos com contexto aprovado e pede revisão antes da publicação; integra APIs, RAG e tratamento de falhas por canal.',
@@ -158,7 +158,7 @@ def content(lang='pt', track='general'):
                     'Atuo com automação e IA aplicada: integro APIs com Python, construo fluxos com n8n e valido soluções com contexto recuperado, revisão humana e testes.'
                 ),
                 'projects': [
-                    '<b>Plataforma SaaS B2B:</b> participo com um colaborador desde a concepção de uma plataforma multiempresa já usada por empresas, trabalhando nos fluxos do produto, permissões e isolamento das informações.',
+                    '<b>Plataforma SaaS B2B:</b> desde a concepção, colaboro com outro desenvolvedor em uma plataforma multiempresa. Contribuo para os fluxos do produto, permissões e isolamento dos dados; empresas já usam a plataforma.',
                     '<b>Postagem Redes:</b> construí uma automação que prepara conteúdo com contexto aprovado e mantém revisão humana antes das ações externas.',
                 ],
                 'skills': [
@@ -169,13 +169,19 @@ def content(lang='pt', track='general'):
             },
             'bi': {
                 'vesper_ops_bullet': '<b>Processos e operação:</b> dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes ajudam a priorizar melhorias e ferramentas.',
+                'vesper_bullets': [
+                    '<b>Automação:</b> desenvolvo fluxos com Power Automate, n8n, Python e APIs para reduzir etapas manuais e apoiar a operação.',
+                    '<b>Entrega em produção:</b> implantei Produção Operacional em 10+ computadores e uma TV, organizando o acompanhamento entre escritório e fábrica.',
+                    '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
+                    '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento.',
+                ],
                 'filename': 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
                 'summary': (
                     'Transformo dados e rotinas de produção, compras e estoque em automações e painéis com Power Automate, Power BI, Python e SQL.'
                 ),
                 'projects': [
-                    '<b>Catálogo Operacional:</b> busca e controle de dados para 24 categorias e 480+ códigos, com uso diário, histórico, integridade e revisão otimista.',
+                    '<b>Catálogo Operacional:</b> busca operacional de itens com histórico, integridade de dados, uso diário e revisão otimista.',
                     '<b>Compras e Cotações:</b> aplicação interna de compras/cotações com Python/PySide6, SQLite WAL, IMAP/SMTP, fila persistente, backoff, idempotência e tracking.',
                 ],
                 'skills': [
@@ -192,9 +198,9 @@ def content(lang='pt', track='general'):
     data = en_common()
     data.update({
         'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
-        'title': 'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
+        'title': 'AUTOMATION & INTEGRATIONS ANALYST | Python · n8n · APPLIED AI',
         'summary': (
-            'Automation & AI Analyst. I turn repetitive work into n8n and Power Automate flows, connect systems with Python and APIs, and support rollout and ongoing use.'
+            'I automate internal processes with Python, n8n and Power Automate, connect systems through APIs, and support rollout and ongoing use. I apply AI when it solves a concrete need.'
         ),
         'projects': [
             '<b>Postagem Redes:</b> an n8n automation that drafts content from approved context and asks for review before publication; it connects APIs, retrieval and channel-level failure handling.',

@@ -123,7 +123,7 @@ REQUIRED = {
         "SKILLS AND PRACTICAL EXPERIENCE",
         "WHERE I USE IT IN PRACTICE",
         "multimodal workflows",
-        "10,000 workflow executions in production",
+        "more than 10,000 production workflow executions",
         "AWS",
     ],
 }

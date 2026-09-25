@@ -6,12 +6,12 @@ from pypdf import PdfReader
 
 REQUIRED = {
     'pt-general': [
-        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
+        'ANALISTA DE AUTOMAÇÃO E INTEGRAÇÕES | Python · n8n · IA APLICADA',
         'Power Automate', 'APIs', 'Tradutor documental offline',
         'Postagem Redes', 'Produção Operacional', 'Belarc Inventory',
     ],
     'en-general': [
-        'AUTOMATION & AI ANALYST | n8n · Power Automate · Python',
+        'AUTOMATION & INTEGRATIONS ANALYST | Python · n8n · APPLIED AI',
         'Power Automate', 'APIs', 'Offline Document Translator',
         'Production Operations', 'IT operations', 'Belarc Inventory',
     ],
