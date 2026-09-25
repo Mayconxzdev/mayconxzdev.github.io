@@ -79,11 +79,11 @@ def pt_common():
         'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · atuação interna em automação, sistemas, dados/BI e IA',
         'vesper_bullets': [
             '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
-            '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial (ODT/PDF + IMAP/SMTP), reduzindo propostas simples de 2–4 min para &lt;30 s; implantei Produção Operacional em 10+ PCs e 1 TV para 20+ profissionais em 9 setores.',
+            '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial (ODT/PDF + IMAP/SMTP), reduzindo propostas simples de 2–4 min para &lt;30 s; implantei Produção Operacional em 10+ PCs e 1 TV, com lembretes agendados e relatórios mensais em PDF/Excel.',
             '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
-            '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento; 30+ pessoas já orientadas.',
+            '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação, treinamento e sustentação.',
         ],
-        'vesper_ops_bullet': '<b>Operação de TI:</b> presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes orientam melhorias e automações que implanto e sustento.',
+        'vesper_ops_bullet': '<b>Operação de TI:</b> presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial, usando demandas recorrentes para orientar melhorias e automações.',
         'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
         'freelance_meta': 'Aulas pagas semanais (~3h) para públicos de diferentes idades e níveis',
         'freelance_bullets': ['Ensino Excel/Google Sheets, Power BI, Power Query, VBA, Pacote Office, Windows e fundamentos de Linux.'],
@@ -138,15 +138,15 @@ def content(lang='pt', track='general'):
                 'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
                 'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Power Automate · Python',
                 'summary': (
-                    'Analista de Automação e IA. Transformo rotinas repetitivas em fluxos com n8n e Power Automate, conecto sistemas com Python e APIs e acompanho implantação e sustentação.'
+                    'Transformo processos operacionais em automações e sistemas com n8n, Power Automate, Python e APIs, atuando do levantamento de requisitos à implantação, monitoramento e sustentação.'
                 ),
                 'projects': [
-                    '<b>Postagem Redes:</b> automação n8n que prepara rascunhos com contexto aprovado e pede revisão antes da publicação; integra APIs, RAG e tratamento de falhas por canal.',
-                    '<b>Tradutor documental offline:</b> aplicativo desktop usado internamente para traduzir arquivos Word/ODT localmente, preservar sua estrutura e preparar versões bilíngues para revisão.',
+                    '<b>Postagem Redes:</b> automação n8n com contexto aprovado, RAG/grounding, APIs e revisão humana antes de ações externas, com tratamento de falhas por canal.',
+                    '<b>Tradutor documental offline:</b> aplicativo desktop usado internamente para traduzir Word/ODT localmente, preservar a estrutura e preparar versões bilíngues para revisão.',
                 ],
                 'skills': [
                     '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
-                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · human-in-the-loop · evals',
+                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes/MCP · RAG/LangChain · human-in-the-loop · evals',
                     '<b>Engenharia, dados e BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
                 ],
             },
