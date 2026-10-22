@@ -18,6 +18,7 @@ const expected = [
   'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
 ];
 try {
+  for (const route of ['/assets/cv/', '/en/resumes/']) {
   for (const viewport of [
     { width: 1440, height: 900 },
     { width: 768, height: 1024 },
@@ -28,9 +29,9 @@ try {
     const page = await ctx.newPage();
     const errs = [];
     page.on('pageerror', e => errs.push(String(e)));
-    const response = await page.goto(base + '/assets/cv/', { waitUntil: 'domcontentloaded', timeout: 15000 });
+    const response = await page.goto(base + route, { waitUntil: 'domcontentloaded', timeout: 15000 });
     if (!response?.ok()) failures.push('hub failed to load: '+response?.status());
-    if ((await page.locator('h1').innerText()).trim() !== 'Currículos por área.')
+    if ((await page.locator('h1').innerText()).trim() !== (route.startsWith('/en/') ? 'Resumes by specialty.' : 'Currículos por área.'))
       failures.push('hub title not found');
     const hrefs = await page.locator('a[href$=".pdf"]').evaluateAll(links => links.map(el => el.getAttribute('href')));
     if (hrefs.length !== expected.length) failures.push('expected 8 PDF links; found ' + hrefs.length);
@@ -40,7 +41,7 @@ try {
     }
     const tooWide = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
     if (tooWide) failures.push('horizontal overflow at width '+viewport.width);
-    const link = page.locator('a[href="Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf"]');
+    const link = page.locator('a[href$="Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf"]');
     if (!(await link.isVisible())) failures.push('general resume link invisible');
     if (viewport.width === 1440) {
       for (const file of expected) {
@@ -51,11 +52,12 @@ try {
       }
     }
     if (errs.length) failures.push('browser errors: ' + errs.join(','));
-    await page.screenshot({path:path.join(output, 'cv-hub-' + viewport.width + '.png'),fullPage:true,animations:'disabled'});
+    await page.screenshot({path:path.join(output, 'cv-hub-' + (route.includes('/en/')?'en':'pt') + '-' + viewport.width + '.png'),fullPage:true,animations:'disabled'});
     await ctx.close();
+  }
   }
 } finally {
   await browser.close();
 }
 if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
-console.log('CV hub smoke passed: 8 downloads x 4 viewports, no horizontal scroll or JS errors.');
+console.log('CV hub smoke passed: 8 downloads x 2 languages x 4 viewports, no horizontal scroll or JS errors.');
