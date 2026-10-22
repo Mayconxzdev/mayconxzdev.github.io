@@ -10,6 +10,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 IGNORED_DIRS = {'.git', '.github', '.venv', 'node_modules', 'artifacts', '__pycache__', '.site'}
 ALIASES = {
+    'en/resumes/index.html',  # Standalone English chooser with its own responsive layout.
     'assets/cv/index.html',  # Independent resume chooser (PT with English PDF).
     'en/cases/compras-vesper/index.html',
     'cases/compras-vesper/index.html',
@@ -264,8 +265,8 @@ if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
     errors.append('home pages must expose RAG/grounding as applied AI evidence')
 if 'Defino requisitos, arquitetura e critérios de validação, conduzo agentes de IA por especificações versionadas' not in home:
     errors.append('PT home specification-led AI positioning drifted')
-if 'combining self-hosted n8n and Power Automate, Python/APIs, data/BI and applied AI' not in en_home:
-    errors.append('EN home core positioning drifted')
+if 'I define requirements, architecture and acceptance criteria, guide AI agents with versioned specifications' not in en_home:
+    errors.append('EN home specification-led AI positioning drifted')
 if 'carreira-overview.webp' in home or 'carreira-overview.webp' in en_home:
     errors.append('home pages still reference the known corrupt CarreiraPessoal WebP')
 

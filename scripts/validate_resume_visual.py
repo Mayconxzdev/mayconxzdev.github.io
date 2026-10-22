@@ -28,9 +28,13 @@ for name in FILES:
             for line in b.get('lines',[]):
                 spans+= [s for s in line.get('spans',[]) if s.get('text','').strip()]
         assert spans,name
-        assert min(s['size'] for s in spans)>=8.85, f'Font too small {name}'
+        text=p.get_text('text')
+        assert 'Maycon Ferreira' in text and len(text)>1500,name
+        assert '\ufffd' not in text,name
+        assert all(0 <= v <= p.rect.height for sp in spans for v in (sp['bbox'][1], sp['bbox'][3])),name
+        assert min(s['size'] for s in spans)>=9.65, f'Font too small {name}'
         assert min(s['bbox'][0] for s in spans)>=35, f'Too close to left border {name}'
         assert max(s['bbox'][2] for s in spans)<=p.rect.width-35, f'Too close to right border {name}'
         bottom=p.rect.height-max(s['bbox'][3] for s in spans)
-        assert 30<bottom<245, f'Unbalanced page or clipping {name}: {bottom:.1f}'
+        assert 35<bottom<110, f'Unbalanced page or clipping {name}: {bottom:.1f}'
         print(f'VISUAL PASS: {name} minfont={min(s["size"] for s in spans):.1f} bottom={bottom:.0f}pt')

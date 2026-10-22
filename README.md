@@ -17,7 +17,8 @@ Também desenvolvi o [Tradutor documental offline](cases/tradutor-documental/) p
 
 O portfólio mantém **sete currículos temáticos em português e uma versão geral em inglês**, gerados de forma reprodutível pelo código em [`scripts/generate_resumes_general.py`](scripts/generate_resumes_general.py).
 
-- [Escolher currículo por área](https://mayconxzdev.github.io/assets/cv/)
+- [Escolher currículo por área — PT-BR](https://mayconxzdev.github.io/assets/cv/)
+- [Browse resumes by specialty — EN](https://mayconxzdev.github.io/en/resumes/)
 - [Currículo geral — Soluções Digitais, Automação e IA](assets/cv/Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf)
 - [General Resume (EN)](assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf)
 
