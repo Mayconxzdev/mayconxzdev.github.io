@@ -5,7 +5,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
-PT_RESUME = "/assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf"
+PT_RESUME = "/assets/cv/Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf"
 EN_RESUME = "/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf"
 THEME_INIT = """<script>(function(){try{var t=localStorage.getItem('mf-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}}())</script>"""
 
