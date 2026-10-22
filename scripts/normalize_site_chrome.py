@@ -10,6 +10,7 @@ EN_RESUME = "/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf"
 THEME_INIT = """<script>(function(){try{var t=localStorage.getItem('mf-theme');document.documentElement.dataset.theme=t==='dark'?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}}())</script>"""
 
 ALIASES = {
+    'assets/cv/index.html',  # Independent resume chooser (PT with English PDF).
     "en/cases/compras-vesper/index.html",
     "cases/compras-vesper/index.html",
     "en/cases/vesper-propostas/index.html",
