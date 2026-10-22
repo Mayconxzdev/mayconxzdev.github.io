@@ -101,7 +101,10 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:8000/ >/dev/null
-          node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
+          # Cover changed entry points and representative PT/EN project pages on every build.
+          # Full-site visual smoke remains available via scripts/visual_smoke.mjs without route filter.
+          PORTFOLIO_SMOKE_ROUTES="/,/en/,/competencias/,/en/skills/,/cases/belarc-inventory/,/en/cases/belarc-inventory/" node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
+          node scripts/cv_hub_smoke.mjs http://127.0.0.1:8000 artifacts/visual
           node scripts/site_interaction_smoke.mjs http://127.0.0.1:8000
           node scripts/accessibility_smoke.mjs http://127.0.0.1:8000
       - name: Upload validated resumes
