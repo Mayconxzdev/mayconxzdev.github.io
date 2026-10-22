@@ -1,6 +1,6 @@
 # Portfólio — Maycon Ferreira
 
-Trabalho com automação, IA aplicada, integrações e Python. Converso com as pessoas que usam os processos, entendo suas regras e construo soluções que possam ser usadas e mantidas no contexto real.
+Atuo com soluções digitais, automação e IA aplicada em operações, TI e comunicação. Defino requisitos, arquitetura e critérios de aceitação, conduzo agentes por especificações versionadas e valido as entregas com revisão de código, testes e feedback de usuários.
 
 O [portfólio publicado](https://mayconxzdev.github.io/) reúne projetos de automação, documentação, operação industrial e sistemas internos. Os cases começam pelo problema e pelo uso; cada página também traz detalhes técnicos para quem quiser conhecer as decisões e a implementação.
 
@@ -15,7 +15,13 @@ Também desenvolvi o [Tradutor documental offline](cases/tradutor-documental/) p
 
 ## Currículos
 
-O site mantém quatro currículos em PDF, cada um com uma página e direcionado a um foco profissional. Os PDFs são gerados pela fonte Python em [`scripts/generate_resumes_general.py`](scripts/generate_resumes_general.py) e não devem ser editados manualmente.
+O portfólio mantém **sete currículos temáticos em português e uma versão geral em inglês**, gerados de forma reprodutível pelo código em [`scripts/generate_resumes_general.py`](scripts/generate_resumes_general.py).
+
+- [Escolher currículo por área](https://mayconxzdev.github.io/assets/cv/)
+- [Currículo geral — Soluções Digitais, Automação e IA](assets/cv/Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf)
+- [General Resume (EN)](assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf)
+
+Os três nomes históricos em português continuam disponíveis e apontam para a versão principal, IA/agentes e Dados/BI, preservando links de candidaturas antigas. As fontes estão no repositório e os PDFs são testados quanto a extração, links e legibilidade; esses testes não simulam a pontuação de ATS comerciais.
 
 ## Estrutura do site
 
@@ -43,7 +49,7 @@ python scripts/generate_resumes_general.py
 
 ## Verificações
 
-O workflow de CI executa os validadores de conteúdo, navegação, currículos, acessibilidade, layout e publicação. Os comandos de manutenção estão em [`docs/VALIDATION.md`](docs/VALIDATION.md) e no arquivo de workflow.
+O workflow de CI executa os validadores de conteúdo, navegação, currículos, acessibilidade, layout e publicação, incluindo equivalência entre PDFs rastreados e PDFs regenerados. Os comandos de manutenção estão em [`docs/VALIDATION.md`](docs/VALIDATION.md) e no arquivo de workflow.
 
 ## Publicação
 

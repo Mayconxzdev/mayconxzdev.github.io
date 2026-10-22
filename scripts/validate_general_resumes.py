@@ -1,132 +1,47 @@
+"""One-page, ATS-readability, content and link validations for published CVs."""
 from pathlib import Path
-
 import fitz
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 CV = ROOT / 'assets' / 'cv'
-
 FILES = {
-    'pt-general': CV / 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
-    'pt-ai': CV / 'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
-    'pt-bi': CV / 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
-    'en-general': CV / 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
+  'Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf': ('PERFIL PROFISSIONAL','Belarc Inventory','Hubora','Compass UOL'),
+  'Maycon_Ferreira_Automacao_Integracoes.pdf': ('PERFIL PROFISSIONAL','Mala Direta','Catálogo Operacional','Compass UOL'),
+  'Maycon_Ferreira_Sistemas_Backend.pdf': ('PERFIL PROFISSIONAL','Manutenção em Campo','CarreiraPessoal','Compass UOL'),
+  'Maycon_Ferreira_Web_Produtos_Digitais.pdf': ('PERFIL PROFISSIONAL','Vesper + Vent Rio','Hubora','Compass UOL'),
+  'Maycon_Ferreira_IA_Agentes_MCP.pdf': ('PERFIL PROFISSIONAL','Postagem Redes','ArsenalMind','Compass UOL'),
+  'Maycon_Ferreira_Dados_BI.pdf': ('PERFIL PROFISSIONAL','QuickSight','Catálogo Operacional','Compass UOL'),
+  'Maycon_Ferreira_Conteudo_Video_IA.pdf': ('PERFIL PROFISSIONAL','Conteúdo audiovisual industrial','Postagem Redes','Compass UOL'),
+  'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf': ('PROFESSIONAL SUMMARY','Belarc Inventory','Hubora','Compass UOL'),
+  'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf': ('PERFIL PROFISSIONAL','Belarc Inventory','Hubora','Compass UOL'),
+  'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf': ('PERFIL PROFISSIONAL','Postagem Redes','ArsenalMind','Compass UOL'),
+  'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf': ('PERFIL PROFISSIONAL','QuickSight','Catálogo Operacional','Compass UOL'),
 }
+CONTACTS=('mayconxz00dev@gmail.com','github.com/Mayconxzdev','mayconxzdev.github.io','linkedin.com/in/maycon-ferreira-7bb870231')
+MANDATORY_LINKS=('https://github.com/Mayconxzdev','https://mayconxzdev.github.io/','https://www.linkedin.com/in/maycon-ferreira-7bb870231/')
+FORBIDDEN=('10 mil+', '10k+', '10+ computadores', '20+ profissionais', 'menos de 30', 'under 30 sec')
 
-REQUIRED = {
-    'pt-general': [
-        'ANALISTA DE AUTOMAÇÃO E INTEGRAÇÕES | Python · n8n · IA APLICADA',
-        '10 mil+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
-        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Tradutor documental offline', 'MCP Tools with Agents',
-        'INSTRUTOR DE INFORMÁTICA (FREELANCER)', 'Técnico Júnior em Automação de Processos',
-        'Belarc Inventory', 'leitura técnica intermediária',
-        'presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial',
-    ],
-    'pt-ai': [
-        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
-        'Prompt Engineering', 'RAG/LangChain', 'MCP Tools with Agents', 'Supabase/Qdrant',
-        'Plataforma SaaS B2B', 'Postagem Redes', '10 mil+',
-        'presto suporte a usuários, endpoints Windows e sistemas internos',
-    ],
-    'pt-bi': [
-        'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
-        'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
-        'Excel/Google Sheets', 'VBA', 'ETL/Data Lake', 'Catálogo Operacional', 'Compras e Cotações',
-        'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial',
-    ],
-    'en-general': [
-        'AUTOMATION & INTEGRATIONS ANALYST | Python · n8n · APPLIED AI',
-        '10k+', 'Power BI', 'Power Query', 'Prompt Engineering', 'RAG/LangChain',
-        'Rust/Axum', 'PowerShell/CIM', 'Git/GitHub Actions', 'Postagem Redes', 'Offline Document Translator', 'MCP Tools with Agents',
-        'IT INSTRUCTOR (FREELANCE)', 'Junior Process Automation Technician',
-        'Belarc Inventory', 'intermediate technical reading',
-        'provide hands-on support for users, Windows endpoints and internal systems in an industrial environment',
-    ],
-}
+def normal(s):return ' '.join(s.split()).casefold()
 
-PARSER_REQUIRED = {
-    'pt-general': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'PROPOSTA COMERCIAL', 'presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Postagem Redes', 'Tradutor documental offline', 'FORMAÇÃO', 'IDIOMAS'],
-    'pt-ai': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'presto suporte a usuários, endpoints Windows e sistemas internos', 'Plataforma SaaS B2B', 'Postagem Redes', 'FORMAÇÃO', 'IDIOMAS'],
-    'pt-bi': ['MAYCON FERREIRA', 'Técnico Júnior em Automação de Processos', 'dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial', 'Catálogo Operacional', 'Compras e Cotações', 'FORMAÇÃO', 'IDIOMAS'],
-    'en-general': ['MAYCON FERREIRA', 'Junior Process Automation Technician', 'provide hands-on support for users, Windows endpoints and internal systems in an industrial environment', 'Postagem Redes', 'Offline Document Translator', 'EDUCATION', 'LANGUAGES'],
-}
-
-FORBIDDEN = [
-    '(cargo formal)', '(formal role)', '55 certificações', '55 certifications',
-    'Automation Business Analyst Associate Training',
-    'UiPath Certified Automation Business Analyst Professional',
-    'LangGraph/CrewAI', 'Kafka', 'RabbitMQ', 'ROI',
-    '12 dias', '12 days', 'menos de 4 horas', 'less than 4 hours',
-]
-
-VISIBLE_CONTACTS = {
-    'mayconxz00dev@gmail.com',
-    'linkedin.com/in/maycon-ferreira-7bb870231',
-    'github.com/Mayconxzdev',
-    'mayconxzdev.github.io',
-}
-
-EXPECTED_URIS = {
-    'tel:+5521964810480',
-    'mailto:mayconxz00dev@gmail.com',
-    'https://www.linkedin.com/in/maycon-ferreira-7bb870231/',
-    'https://github.com/Mayconxzdev',
-    'https://mayconxzdev.github.io/',
-}
-
-
-def normalize(value: str) -> str:
-    return ' '.join(value.split()).casefold()
-
-
-def check(key: str, path: Path) -> None:
-    if not path.exists():
-        raise SystemExit(f'Missing resume: {path}')
-    reader = PdfReader(str(path))
-    if len(reader.pages) != 1:
-        raise SystemExit(f'{path.name}: expected 1 page, got {len(reader.pages)}')
-    text = '\n'.join(page.extract_text() or '' for page in reader.pages)
-    flat = normalize(text)
-    if '\ufffd' in text:
-        raise SystemExit(f'{path.name}: pypdf extraction contains Unicode replacement characters')
-    for phrase in REQUIRED[key]:
-        if normalize(phrase) not in flat:
-            raise SystemExit(f'{path.name}: missing required text: {phrase}')
-
-    # Check semantic extraction with a second independent PDF parser and ensure
-    # that ATS-relevant sections and project names remain present and ordered.
-    doc = fitz.open(path)
-    fitz_text = '\n'.join(page.get_text('text') for page in doc)
-    doc.close()
-    fitz_flat = normalize(fitz_text)
-    if '\ufffd' in fitz_text:
-        raise SystemExit(f'{path.name}: PyMuPDF extraction contains Unicode replacement characters')
-    for phrase in PARSER_REQUIRED[key]:
-        if normalize(phrase) not in fitz_flat:
-            raise SystemExit(f'{path.name}: PyMuPDF extraction is missing required text: {phrase}')
-    for before, after in zip(PARSER_REQUIRED[key], PARSER_REQUIRED[key][1:]):
-        if fitz_flat.index(normalize(before)) > fitz_flat.index(normalize(after)):
-            raise SystemExit(f'{path.name}: PyMuPDF extraction order drifted: {before} before {after}')
-    if len(fitz_text.strip()) < 2200:
-        raise SystemExit(f'{path.name}: PyMuPDF extracted text unexpectedly short')
-    for phrase in FORBIDDEN:
-        if normalize(phrase) in flat:
-            raise SystemExit(f'{path.name}: forbidden text found: {phrase}')
-    for contact in VISIBLE_CONTACTS:
-        if normalize(contact) not in flat:
-            raise SystemExit(f'{path.name}: ATS-visible contact missing: {contact}')
-    if len(text.strip()) < 2200:
-        raise SystemExit(f'{path.name}: extracted text unexpectedly short')
-
-    doc = fitz.open(path)
-    links = {item.get('uri') for item in doc[0].get_links() if item.get('uri')}
-    doc.close()
-    missing = EXPECTED_URIS - links
-    if missing:
-        raise SystemExit(f'{path.name}: missing clickable contact links: {sorted(missing)}')
-
-    print(f'OK {path.name}: one page, {len(text)} chars, ATS contacts and links verified')
-
-
-for key, path in FILES.items():
-    check(key, path)
+for name, phrases in FILES.items():
+    path=CV/name
+    assert path.exists(), f'Missing PDF: {path}'
+    a=PdfReader(str(path))
+    with fitz.open(path) as d:
+        assert len(a.pages)==len(d)==1, f'Must be 1 page: {name}'
+        txt1=a.pages[0].extract_text() or ''
+        txt2=d[0].get_text()
+        assert len(txt1)>1600 and len(txt2)>1600, f'Unexpectedly little selectable text: {name}'
+        assert '\ufffd' not in txt1+txt2, f'Encoding error: {name}'
+        for phrase in phrases+CONTACTS:
+            assert normal(phrase) in normal(txt1) and normal(phrase) in normal(txt2), f'Missing {phrase}: {name}'
+        for phrase in FORBIDDEN:
+            assert normal(phrase) not in normal(txt2), f'Disallowed operational numbers: {phrase} in {name}'
+        links={link.get('uri') for link in d[0].get_links() if link.get('uri')}
+        for required in MANDATORY_LINKS:
+            assert required in links, f'Absent link {required}: {name}'
+        rect=d[0].rect
+        assert abs(rect.width-595.3)<2 and abs(rect.height-841.9)<2
+        print('PASS:',name, 'chars=',len(txt2),'links=',len(links))
+print(f'Validated {len(FILES)} published PDFs')

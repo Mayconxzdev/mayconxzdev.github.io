@@ -1,277 +1,310 @@
-from pathlib import Path
+"""Resume source of truth for mayconxzdev.github.io — 2026, AI-led delivery.
 
+Reproducible with: pip install reportlab==4.4.9 ; python scripts/generate_resumes_general.py
+All metrics are deliberately omitted at the candidate's request.
+"""
+from __future__ import annotations
+from html import escape
+from pathlib import Path
+import shutil
 import reportlab
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.units import mm
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets' / 'cv'
 OUT.mkdir(parents=True, exist_ok=True)
+FONTS = Path(reportlab.__file__).parent / 'fonts'
+for short, fullname in [('Vera','Vera'),('VeraBd','VeraBd'),('VeraIt','VeraIt'),('VeraBI','VeraBI')]:
+    pdfmetrics.registerFont(TTFont(short, str(FONTS / (fullname+'.ttf'))))
+pdfmetrics.registerFontFamily('Vera',normal='Vera',bold='VeraBd',italic='VeraIt',boldItalic='VeraBI')
+NAVY = colors.HexColor('#17384F')
+TEAL = colors.HexColor('#087E86')
+GRAY = colors.HexColor('#435766')
+LIGHT = colors.HexColor('#BCD6DA')
 
-BLACK = colors.HexColor('#111111')
-GRAY = colors.HexColor('#555555')
-LIGHT = colors.HexColor('#D9D9D9')
+URLS = {
+    'Belarc Inventory': 'https://github.com/Mayconxzdev/Belarc-Inventory',
+    'Manutenção em Campo': 'https://github.com/Mayconxzdev/ManutencaoEmCampo',
+    'Postagem Redes': 'https://github.com/Mayconxzdev/PostagemRedes',
+    'Hubora': 'https://github.com/Mayconxzdev/Hubora',
+    'Mala Direta': 'https://github.com/Mayconxzdev/MalaDireta',
+    'Catálogo Operacional': 'https://github.com/Mayconxzdev/CatalogoOperacional',
+    'CarreiraPessoal': 'https://github.com/Mayconxzdev/CarreiraPessoal',
+    'Produção Operacional': 'https://github.com/Mayconxzdev/ProducaoOperacional',
+    'Vesper + Vent Rio': 'https://vesper.ind.br/',
+    'Compass UOL': 'https://github.com/Mayconxzdev/Estagio-CompassUOL',
+}
 
-# ReportLab's built-in Type 1 fonts render Portuguese glyphs, but the generated
-# PDFs lacked reliable Unicode text maps in common extractors. Bundled Vera TTF
-# fonts provide an embedded ToUnicode map for ATS-readable accented text.
-REPORTLAB_FONTS = Path(reportlab.__file__).resolve().parent / 'fonts'
-pdfmetrics.registerFont(TTFont('Vera', str(REPORTLAB_FONTS / 'Vera.ttf')))
-pdfmetrics.registerFont(TTFont('VeraBd', str(REPORTLAB_FONTS / 'VeraBd.ttf')))
-pdfmetrics.registerFont(TTFont('VeraIt', str(REPORTLAB_FONTS / 'VeraIt.ttf')))
-pdfmetrics.registerFont(TTFont('VeraBI', str(REPORTLAB_FONTS / 'VeraBI.ttf')))
-pdfmetrics.registerFontFamily('Vera', normal='Vera', bold='VeraBd', italic='VeraIt', boldItalic='VeraBI')
+COMMON_PT = {
+    'city': 'Rio de Janeiro, RJ',
+    'vesper': 'Vesper Equipamentos EX',
+    'role': 'Técnico Júnior em Automação de Processos',
+    'date': '2026 - atual',
+    'vemser': 'VemSer  |  Assistente de Informática  |  2025',
+    'vemser_text': 'Suporte a usuários e computadores, orientação em ferramentas digitais e apoio à operação de TI.',
+    'compass': 'Compass UOL  |  Estágio de formação prática em Engenharia de Dados  |  out/2024 - mar/2025',
+    'compass_text': 'Em sprints práticas, construí pipeline CSV/API, S3/Lambda, Glue/PySpark e Athena, com dashboard Amazon QuickSight.',
+    'teacher': 'Atuação autônoma  |  Instrutor de Informática (desde 2024): aulas de informática e produtividade digital.',
+    'education': [
+        '<b>UNISUAM</b>  Tecnólogo em Análise e Desenvolvimento de Sistemas | conclusão prevista: dez/2026',
+        '<b>42 Rio</b>  Piscine intensiva (2025): C, Linux, Git e resolução de problemas',
+    ],
+    'languages': 'Português nativo; inglês: leitura técnica intermediária, escrita e conversação básicas.',
+}
 
-CONTACT_PT = (
-    'Rio de Janeiro - RJ · '
-    '<link href="tel:+5521964810480" color="#555555">+55 (21) 96481-0480</link> · '
-    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555">mayconxz00dev@gmail.com</link><br/>'
-    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555">linkedin.com/in/maycon-ferreira-7bb870231</link> · '
-    '<link href="https://github.com/Mayconxzdev" color="#555555">github.com/Mayconxzdev</link> · '
-    '<link href="https://mayconxzdev.github.io/" color="#555555">mayconxzdev.github.io</link>'
-)
-CONTACT_EN = (
-    'Rio de Janeiro, Brazil · '
-    '<link href="tel:+5521964810480" color="#555555">+55 (21) 96481-0480</link> · '
-    '<link href="mailto:mayconxz00dev@gmail.com" color="#555555">mayconxz00dev@gmail.com</link><br/>'
-    '<link href="https://www.linkedin.com/in/maycon-ferreira-7bb870231/" color="#555555">linkedin.com/in/maycon-ferreira-7bb870231</link> · '
-    '<link href="https://github.com/Mayconxzdev" color="#555555">github.com/Mayconxzdev</link> · '
-    '<link href="https://mayconxzdev.github.io/" color="#555555">mayconxzdev.github.io</link>'
-)
+TRACKS = {
+ 'general': {
+    'file':'Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf',
+    'title':'SOLUÇÕES DIGITAIS | AUTOMAÇÃO DE PROCESSOS E IA APLICADA',
+    'summary':'Concebo e entrego soluções digitais para operações, TI e comunicação. Transformo necessidades em requisitos, arquitetura e critérios de aceitação; utilizo agentes de IA para acelerar a execução, com revisão técnica, testes e validação humana até a implantação.',
+    'vesper_bullets':[
+      'Concebi e implantei <b>Produção Operacional</b>, aplicativo Windows para ordens de produção, importação validada, prevenção de duplicidades e acompanhamento fabril.',
+      'Defino arquitetura e contratos de dados; orquestro agentes de IA por especificações versionadas, reviso diffs e valido regras, testes e segurança antes de entregar.',
+      'Automatizei propostas e documentos com Python, n8n e APIs; criei sites, catálogos industriais e vídeos técnicos com apoio de IA.'
+    ],
+    'projects':[
+      ('Belarc Inventory','Co-desenvolvimento de agente Windows e sistema de inventário de computadores para suporte e operação de TI.'),
+      ('Manutenção em Campo','Full-stack React/FastAPI para ordens, QR Code, checklists, evidências e histórico auditável.'),
+      ('Postagem Redes','Produção de conteúdo com IA, fontes verificáveis, aprovação humana, APIs e tratamento de falhas.'),
+      ('Hubora','Projeto final apresentado na Casa Firjan: aplicação web/PWA com APIs e persistência, na formação de IA de 40h.')
+    ],
+    'skills':'Especificações e engenharia de contexto; agentes/MCP; revisão de código e testes. Python, SQL, React/TypeScript, n8n, Power Automate, APIs, Excel/Power Query, AWS, Git e Docker.',
+    'education_extra':[],
+    'credentials':'Microsoft Applied Skills (2026): agentes Microsoft Foundry, integração MCP e Power Apps. SENAI Casa Firjan: Ferramentas de IA, Agentes e Automações (40h).',
+ },
+ 'automation':{
+    'file':'Maycon_Ferreira_Automacao_Integracoes.pdf',
+    'title':'AUTOMAÇÃO DE PROCESSOS | INTEGRAÇÕES E IA',
+    'summary':'Transformo processos em automações confiáveis. Especifico regras, exceções e critérios de aceitação antes de orientar agentes de IA; verifico dados, falhas e resultados com testes e revisão humana.',
+    'vesper_bullets':[
+      'Estruturei fluxos de propostas, documentos e mensagens com Python, n8n e APIs, validação de entradas, revisão humana e recuperação de falhas.',
+      'Especifiquei e implantei Produção Operacional, conectando atividades do escritório ao acompanhamento fabril com prevenção de duplicidades.',
+      'Levanto requisitos, orquestro agentes e acompanho testes, implantação, treinamento e sustentação de soluções.'
+    ],
+    'projects':[
+      ('Mala Direta','Campanhas em n8n com fila, deduplicação, revalidação de cancelamento e auditoria por destinatário.'),
+      ('Catálogo Operacional','FastAPI e SQLite FTS5 com busca, histórico, revisão otimista, conflitos de edição e backups.'),
+      ('Postagem Redes','n8n, APIs Meta e IA com revisão humana, idempotência e isolamento de falhas por rede.')
+    ],
+    'skills':'Requisitos, especificações, testes, revisão de agentes, logs e tratamento de falhas. n8n, Power Automate, Python, APIs REST, webhooks, OAuth, SQL, Excel/Power Query, Docker e Git.',
+    'education_extra':[],
+    'credentials':'Microsoft Applied Skills: Power Apps e ferramentas MCP (2026). n8n Academy (N8N102/N8N103); UiPath Automation Business Analyst.'
+ },
+ 'systems':{
+    'file':'Maycon_Ferreira_Sistemas_Backend.pdf',
+    'title':'DESENVOLVIMENTO DE SISTEMAS | BACKEND E APLICAÇÕES',
+    'summary':'Concebo sistemas internos e produtos digitais com arquitetura modular, modelos de dados, APIs e interfaces. Trabalho por especificações e coordeno agentes de IA, preservando revisão de código, testes e responsabilidade técnica.',
+    'vesper_bullets':[
+      'Arquitetei e implantei Produção Operacional para Windows, com persistência, importação validada e prevenção de duplicidades.',
+      'Defino componentes, contratos de API e esquemas de dados; reviso diffs, regras de negócio e testes automatizados.',
+      'Desenvolvo ferramentas para manutenção, propostas e suporte, acompanhando a implantação com usuários.'
+    ],
+    'projects':[
+      ('Manutenção em Campo','React e FastAPI com ordens, QR Code, checklists versionados, evidências, histórico e PDFs.'),
+      ('Belarc Inventory','Co-desenvolvimento de inventário de estações Windows, agentes e interface de operação de TI.'),
+      ('CarreiraPessoal','Aplicação local-first com FastAPI, React e Tauri para oportunidades, evidências e currículos.')
+    ],
+    'skills':'Arquitetura modular, modelos de dados, APIs, revisão de diffs, testes e CI. Python, FastAPI, SQL/SQLite/PostgreSQL, React/TypeScript, Rust/Tauri, Docker e Git.',
+    'education_extra':[],
+    'credentials':'Microsoft Applied Skills (2026): agentes Microsoft Foundry, integração MCP e Power Apps.'
+ },
+ 'web':{
+    'file':'Maycon_Ferreira_Web_Produtos_Digitais.pdf',
+    'title':'DESENVOLVIMENTO WEB | PRODUTOS DIGITAIS E INTERFACES',
+    'summary':'Planejo experiências web responsivas, dos requisitos à arquitetura de componentes, publicação e manutenção. Utilizo agentes de IA para acelerar implementação, com revisão técnica, testes e atenção à experiência do usuário.',
+    'vesper_bullets':[
+      'Planejei, desenvolvi e publiquei os sites Vesper e Vent Rio, com catálogos técnicos, páginas de produtos, responsividade e conteúdo PT/EN.',
+      'Estruturei componentes reutilizáveis em React/Vite e interfaces orientadas por dados, com critérios de aceitação e validação técnica.',
+      'Integrei interfaces, APIs e serviços; acompanhei deploy, domínio, testes de navegação e manutenção.'
+    ],
+    'projects':[
+      ('Vesper + Vent Rio','Sites industriais publicados, React/Vite, i18n, catálogos orientados a dados e mobile.'),
+      ('Hubora','Projeto final Casa Firjan: React/TypeScript/PWA, APIs, Supabase e demonstração pública.'),
+      ('Manutenção em Campo','Checklists e QR Code em interface responsiva, com backend FastAPI e histórico auditável.')
+    ],
+    'skills':'Arquitetura de componentes, UX responsiva, testes e revisão de agentes. React, TypeScript, HTML/CSS, Vite, APIs REST, Supabase, PWA, i18n e Git.',
+    'education_extra':[],
+    'credentials':'SENAI Casa Firjan: Ferramentas de IA, Agentes e Automações (40h). Microsoft Applied Skills: Power Apps.'
+ },
+ 'ai':{
+    'file':'Maycon_Ferreira_IA_Agentes_MCP.pdf',
+    'title':'IA APLICADA | AGENTES, MCP, INTEGRAÇÕES E AVALIAÇÃO',
+    'summary':'Projeto soluções com IA generativa e agentes, definindo contexto, contratos de saída, integração de ferramentas e critérios de avaliação. Combino inferência local ou em nuvem com governança, testes e revisão humana.',
+    'vesper_bullets':[
+      'Especifico aplicações de IA para documentos, conteúdo e processos, com saídas estruturadas e revisão humana.',
+      'Integro APIs, ferramentas MCP e workflows; avalio modelos locais e em nuvem segundo custo, contexto e privacidade.',
+      'Conduzo desenvolvimento assistido por agentes com arquitetura e especificações versionadas, revisão de diffs e testes.'
+    ],
+    'projects':[
+      ('Postagem Redes','IA com grounding, avaliação, revisão humana e integrações para publicação.'),
+      ('ArsenalMind','Projeto local de orquestração modular, ferramentas MCP e testes de componentes.'),
+      ('CarreiraPessoal','IA opcional para apoio à análise de vagas, com revisão humana de candidaturas.')
+    ],
+    'skills':'Engenharia de contexto, desenvolvimento orientado por especificações, agentes/MCP, RAG, saídas estruturadas, avaliação, roteamento local/nuvem e revisão humana. Python, Pydantic, n8n, Ollama, APIs de LLMs e Docker.',
+    'education_extra':[],
+    'credentials':'Microsoft Applied Skills: agentes Microsoft Foundry, ferramentas MCP e Power Apps (2026). Make Academy: AI Agent Builder; SENAI Casa Firjan (40h).'
+ },
+ 'data':{
+    'file':'Maycon_Ferreira_Dados_BI.pdf',
+    'title':'ANÁLISE DE DADOS E AUTOMAÇÃO | PYTHON, SQL, AWS E BI',
+    'summary':'Conecto dados e processos por extração, tratamento, modelagem e análise. Utilizo Python, SQL, AWS e ferramentas de IA para acelerar a entrega, com validação, rastreabilidade e revisão dos resultados.',
+    'vesper_bullets':[
+      'Desenvolvi sistemas para organizar ordens e informações operacionais, com consultas, histórico e relatórios.',
+      'Criei catálogo pesquisável para materiais e compras com FastAPI, SQLite FTS5, prevenção de conflitos e backups.',
+      'Automatizo o tratamento de planilhas, documentos e dados com Python, verificando regras e resultados antes da adoção.'
+    ],
+    'projects':[
+      ('Compass UOL','Pipeline de dados AWS: CSV/API, S3/Lambda, Glue/PySpark, modelo dimensional, Athena e dashboard QuickSight.'),
+      ('Catálogo Operacional','Busca em SQLite FTS5, histórico de materiais, revisão concorrente e exportação.'),
+      ('Brasil às Claras','Protótipo local com APIs públicas oficiais, dados e visualizações informativas.')
+    ],
+    'skills':'ETL, modelagem, validação de dados, documentação e revisão com IA. Python, Pandas, SQL, AWS S3/Lambda/Glue/Athena/QuickSight, PySpark, Excel/Power Query e Power BI.',
+    'education_extra':[],
+    'credentials':'Compass UOL: Programa de Bolsas em Engenharia de Dados. Microsoft Applied Skills (2026): agentes Foundry, MCP e Power Apps.'
+ },
+ 'content':{
+    'file':'Maycon_Ferreira_Conteudo_Video_IA.pdf',
+    'title':'CONTEÚDO DIGITAL E IA | VÍDEO, DESIGN E AUTOMAÇÃO',
+    'summary':'Planejo e produzo conteúdo técnico de produtos: pesquisa, roteiro, composição, edição e revisão. Utilizo IA generativa e automação na criação audiovisual e digital, com consistência técnica e visual.',
+    'vesper_bullets':[
+      'Crio e edito vídeos técnicos industriais, da pesquisa ao roteiro, cenas, edição e revisão assistidas por IA.',
+      'Desenvolvi sites e catálogos para Vesper e Vent Rio, convertendo especificações em conteúdo visual e navegação comercial.',
+      'Estruturei processos de publicação com IA, fontes verificáveis, revisão humana, APIs e validação de conteúdo.'
+    ],
+    'projects':[
+      ('Conteúdo audiovisual industrial','Vídeos demonstrativos e materiais promocionais para produtos e divulgação técnica.'),
+      ('Vesper + Vent Rio','Sites publicados, catálogos digitais, páginas de produto e conteúdo responsivo.'),
+      ('Postagem Redes','Painel e workflows de produção, revisão, agendamento e distribuição de conteúdo digital.')
+    ],
+    'skills':'Roteiro, edição e composição de vídeo, IA generativa visual, revisão técnica, consistência visual e automação editorial. Criação web, catálogos digitais, n8n e APIs.',
+    'education_extra':[],
+    'credentials':'SENAI Casa Firjan: Ferramentas de IA, Agentes e Automações (40h). Make Academy: AI Agent Builder.'
+ }
+}
+
+EN = {
+  'title': 'DIGITAL SOLUTIONS | PROCESS AUTOMATION AND APPLIED AI',
+  'summary': 'I design and deliver digital solutions for operations, IT and communication. I translate needs into requirements, architecture and acceptance criteria; I guide AI agents to accelerate implementation while retaining technical review, testing and human validation.',
+  'vesper_bullets': [
+    'Designed and rolled out Production Operations, a Windows system for work orders, validated imports, duplicate prevention and factory tracking.',
+    'Define architecture and data contracts; guide AI agents through versioned specifications and review diffs, business rules, tests and security.',
+    'Automated proposals and documents with Python, n8n and APIs; built industrial websites, catalogs and AI-assisted technical content.'
+  ],
+  'projects': [
+    ('Belarc Inventory', 'Co-development of Windows inventory and IT support application.'),
+    ('Field Maintenance', 'React/FastAPI solution for maintenance orders, QR codes, checklists, evidence and history.'),
+    ('Social Publishing', 'AI-assisted content workflows, human review, APIs and failure recovery.'),
+    ('Hubora', 'Web/PWA project presented at Casa Firjan as part of AI and automation training.')
+  ],
+  'skills': 'Specification-driven development, context engineering, agents/MCP, code review and tests. Python, SQL, React/TypeScript, n8n, Power Automate, APIs, Excel/Power Query, AWS, Git and Docker.',
+  'credentials': 'Microsoft Applied Skills: Foundry agents, MCP integration and Power Apps. SENAI Casa Firjan: AI Tools, Agents and Automation (40h).'
+}
+
+
+def para(style, txt):
+    return Paragraph(txt, style)
 
 
 def styles():
-    base = getSampleStyleSheet()
+    def ps(name,size,leading,bold=False,color=NAVY,before=0,after=0):
+        return ParagraphStyle(name, fontName='VeraBd' if bold else 'Vera',fontSize=size,leading=leading,textColor=color,spaceBefore=before,spaceAfter=after,allowWidows=0,allowOrphans=0)
     return {
-        'name': ParagraphStyle('name', parent=base['Normal'], fontName='VeraBd', fontSize=19.0, leading=20.5, textColor=BLACK, spaceAfter=1.5 * mm),
-        'title': ParagraphStyle('title', parent=base['Normal'], fontName='VeraBd', fontSize=11.0, leading=12.6, textColor=BLACK, spaceAfter=1.2 * mm),
-        'contact': ParagraphStyle('contact', parent=base['Normal'], fontName='Vera', fontSize=10.0, leading=11.8, textColor=GRAY, spaceAfter=2.4 * mm),
-        'section': ParagraphStyle('section', parent=base['Normal'], fontName='VeraBd', fontSize=10.2, leading=11.8, textColor=BLACK, spaceBefore=3.1 * mm, spaceAfter=1.65 * mm),
-        'body': ParagraphStyle('body', parent=base['Normal'], fontName='Vera', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=1.0 * mm),
-        'small': ParagraphStyle('small', parent=base['Normal'], fontName='Vera', fontSize=10.1, leading=12.35, textColor=BLACK, spaceAfter=0.65 * mm),
-        'role': ParagraphStyle('role', parent=base['Normal'], fontName='VeraBd', fontSize=10.15, leading=12.45, textColor=BLACK, spaceAfter=0.5 * mm),
-        'meta': ParagraphStyle('meta', parent=base['Normal'], fontName='Vera', fontSize=10.0, leading=11.6, textColor=GRAY, spaceAfter=0.7 * mm),
+      'name':ps('name',20.0,23,True,after=2),
+      'title':ps('title',10.35,12,True,TEAL,after=4),
+      'contact':ps('contact',8.9,11,color=GRAY,after=4),
+      'section':ps('section',10.0,12.0,True,TEAL,before=8,after=2.8),
+      'body':ps('body',10.05,13.35,after=3.3),
+      'job':ps('job',9.8,12.5,after=3),
+      'project':ps('project',9.8,13.0,after=3),
+      'footer':ps('footer',9.6,12.65,after=2.1),
     }
 
 
-def line(canvas, doc):
-    canvas.saveState()
-    canvas.setStrokeColor(LIGHT)
-    canvas.setLineWidth(0.45)
-    canvas.line(doc.leftMargin, A4[1] - 18.5 * mm, A4[0] - doc.rightMargin, A4[1] - 18.5 * mm)
-    canvas.restoreState()
+def link_text(label,url):
+    return f'<link href="{escape(url, quote=True)}" color="#087E86">{escape(label)}</link>'
 
 
-def bullet(text, style):
-    return Paragraph('• ' + text, style)
-
-
-def pt_common():
-    return {
-        'contact': CONTACT_PT,
-        'sections': ['RESUMO PROFISSIONAL', 'EXPERIÊNCIA PROFISSIONAL', 'PROJETOS SELECIONADOS', 'COMPETÊNCIAS TÉCNICAS', 'FORMAÇÃO', 'CREDENCIAIS SELECIONADAS', 'IDIOMAS'],
-        'vesper_role': 'GRUPO VESPER — Técnico Júnior em Automação de Processos | dez. 2025 – atual',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · atuação interna em automação, sistemas, dados/BI e IA',
-        'vesper_bullets': [
-            '<b>Automação:</b> administro n8n self-hosted com 10 mil+ execuções em produção e desenvolvo fluxos com n8n/Power Automate, Python, APIs/webhooks, PostgreSQL e tratamento de erros.',
-            '<b>Impacto operacional:</b> desenvolvi e sustento Proposta Comercial, reduzindo uma proposta simples de 2–4 min para menos de 30 s; implantei Produção Operacional em 10+ computadores e uma TV de fábrica.',
-            '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
-            '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento.',
-        ],
-        'vesper_ops_bullet': '<b>Operação de TI:</b> presto suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes orientam melhorias e automações que implanto e sustento.',
-        'freelance_role': 'INSTRUTOR DE INFORMÁTICA (FREELANCER) | out. 2024 – atual',
-        'freelance_meta': 'Aulas pagas semanais para públicos de diferentes idades e níveis',
-        'freelance_bullets': ['Ensino Excel/Google Sheets, Power BI, Power Query, VBA, Pacote Office, Windows e fundamentos de Linux.'],
-        'compass_role': 'COMPASS UOL — Estagiário TI/Dados | out. 2024 – mar. 2025',
-        'compass_meta': 'Programa de bolsas em Engenharia de Dados',
-        'compass_bullets': ['Desenvolvi pipeline com Python/SQL/Docker/AWS, integrando CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena e QuickSight em fluxo ETL/Data Lake.'],
-        'education': [
-            '<b>Tecnólogo em Análise e Desenvolvimento de Sistemas — UNISUAM</b> · previsão: dez/2026',
-            '<b>Piscine 42 Rio</b> · programa intensivo em Linux/C · concluído jul. 2025',
-        ],
-        'credentials': [
-            '<b>Microsoft Applied Skills:</b> Foundry Agents · MCP Tools with Agents · Power Apps; <b>n8n Academy:</b> N8N102 · N8N103; <b>UiPath:</b> Automation Business Analyst Professional Training.'
-        ],
-        'languages': ['Português nativo · Inglês: leitura técnica intermediária; escrita e conversação básicas'],
-    }
-
-
-def en_common():
-    return {
-        'contact': CONTACT_EN,
-        'sections': ['PROFESSIONAL SUMMARY', 'PROFESSIONAL EXPERIENCE', 'SELECTED PROJECTS', 'TECHNICAL SKILLS', 'EDUCATION', 'SELECTED CREDENTIALS', 'LANGUAGES'],
-        'vesper_role': 'GRUPO VESPER — Junior Process Automation Technician | Dec. 2025 – Present',
-        'vesper_meta': 'Vesper Equipamentos EX / Vent Rio · internal work across automation, systems, data/BI and AI',
-        'vesper_bullets': [
-            '<b>Automation:</b> administer self-hosted n8n with 10k+ production executions and build workflows with n8n/Power Automate, Python, APIs/webhooks, PostgreSQL and error handling.',
-            '<b>Operational impact:</b> built and support Commercial Proposal, reducing a simple proposal from 2–4 min to under 30 sec; deployed Production Operations to 10+ computers and one factory TV.',
-            '<b>Engineering:</b> co-develop Belarc Inventory, in internal use, with a Rust/Tokio Windows agent, Axum/SQLite server and PowerShell/CIM collection.',
-            '<b>Data & process:</b> build Power BI/Excel/Power Query dashboards for production, procurement and inventory and work across requirements, BPMN/AS-IS/TO-BE, UAT, deployment and training.',
-        ],
-        'freelance_role': 'IT INSTRUCTOR (FREELANCE) | Oct. 2024 – Present',
-        'freelance_meta': 'Paid weekly classes for learners of different ages and skill levels',
-        'freelance_bullets': ['Teach Excel/Google Sheets, Power BI, Power Query, VBA, Office, Windows and Linux fundamentals.'],
-        'compass_role': 'COMPASS UOL — IT/Data Intern | Oct. 2024 – Mar. 2025',
-        'compass_meta': 'Data Engineering scholarship program',
-        'compass_bullets': ['Built a Python/SQL/Docker/AWS pipeline integrating CSV/API, S3, Lambda, Glue/PySpark, Parquet, Athena and QuickSight in an ETL/Data Lake flow.'],
-        'education': [
-            '<b>Technology Degree in Systems Analysis and Development — UNISUAM</b> · expected Dec. 2026',
-            '<b>42 Rio Piscine</b> · intensive Linux/C program · completed Jul. 2025',
-        ],
-        'credentials': [
-            '<b>Microsoft Applied Skills:</b> Foundry Agents · MCP Tools with Agents · Power Apps; <b>n8n Academy:</b> N8N102 · N8N103; <b>UiPath:</b> Automation Business Analyst Professional Training.'
-        ],
-        'languages': ['Portuguese: native · English: intermediate technical reading; basic writing and conversation'],
-    }
-
-
-def content(lang='pt', track='general'):
-    if lang == 'pt':
-        data = pt_common()
-        tracks = {
-            'general': {
-                'filename': 'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf',
-                'title': 'ANALISTA DE AUTOMAÇÃO E INTEGRAÇÕES | Python · n8n · IA APLICADA',
-                'summary': (
-                    'Automatizo processos internos com Python, n8n e Power Automate, conecto sistemas por APIs e acompanho a implantação e sustentação das soluções. Uso IA aplicada quando resolve uma necessidade concreta.'
-                ),
-                'projects': [
-                    '<b>Postagem Redes:</b> automação n8n que prepara rascunhos com contexto aprovado e pede revisão antes da publicação; integra APIs, RAG e tratamento de falhas por canal.',
-                    '<b>Tradutor documental offline:</b> aplicativo desktop usado internamente para traduzir arquivos Word/ODT localmente, preservar sua estrutura e preparar versões bilíngues para revisão.',
-                ],
-                'skills': [
-                    '<b>Automação e integrações:</b> n8n self-hosted · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
-                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · human-in-the-loop · evals',
-                    '<b>Engenharia, dados e BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
-                ],
-            },
-            'ai': {
-                'vesper_ops_bullet': '<b>Operação:</b> presto suporte a usuários, endpoints Windows e sistemas internos; demandas recorrentes alimentam melhorias e automações.',
-                'filename': 'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf',
-                'title': 'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
-                'summary': (
-                    'Atuo com automação e IA aplicada: integro APIs com Python, construo fluxos com n8n e valido soluções com contexto recuperado, revisão humana e testes.'
-                ),
-                'projects': [
-                    '<b>Plataforma SaaS B2B:</b> desde a concepção, colaboro com outro desenvolvedor em uma plataforma multiempresa. Contribuo para os fluxos do produto, permissões e isolamento dos dados; empresas já usam a plataforma.',
-                    '<b>Postagem Redes:</b> construí uma automação que prepara conteúdo com contexto aprovado e mantém revisão humana antes das ações externas.',
-                ],
-                'skills': [
-                    '<b>IA aplicada:</b> Prompt Engineering · APIs de LLM · agentes · RAG/LangChain · human-in-the-loop · evals · Supabase/Qdrant',
-                    '<b>Automação e backend:</b> n8n self-hosted · Python/FastAPI · REST/Webhooks/OAuth · WhatsApp Cloud API · PostgreSQL/Redis · Docker',
-                    '<b>Dados e BI:</b> SQL · Power BI · Power Query · Excel/Google Sheets',
-                ],
-            },
-            'bi': {
-                'vesper_ops_bullet': '<b>Processos e operação:</b> dou suporte a usuários, endpoints Windows e sistemas internos em ambiente industrial; demandas recorrentes ajudam a priorizar melhorias e ferramentas.',
-                'vesper_bullets': [
-                    '<b>Automação:</b> desenvolvo fluxos com Power Automate, n8n, Python e APIs para reduzir etapas manuais e apoiar a operação.',
-                    '<b>Entrega em produção:</b> implantei Produção Operacional em 10+ computadores e uma TV, organizando o acompanhamento entre escritório e fábrica.',
-                    '<b>Engenharia:</b> co-desenvolvo o Belarc Inventory, em uso interno, com agente Windows em Rust/Tokio, servidor Axum/SQLite e coleta PowerShell/CIM.',
-                    '<b>Dados e processos:</b> crio dashboards Power BI/Excel/Power Query para produção, compras e estoque e atuo em requisitos, BPMN/AS-IS/TO-BE, UAT, implantação e treinamento.',
-                ],
-                'filename': 'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf',
-                'title': 'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
-                'summary': (
-                    'Transformo dados e rotinas de produção, compras e estoque em automações e painéis com Power Automate, Power BI, Python e SQL.'
-                ),
-                'projects': [
-                    '<b>Catálogo Operacional:</b> busca operacional de itens com histórico, integridade de dados, uso diário e revisão otimista.',
-                    '<b>Compras e Cotações:</b> aplicação interna de compras/cotações com Python/PySide6, SQLite WAL, IMAP/SMTP, fila persistente, backoff, idempotência e tracking.',
-                ],
-                'skills': [
-                    '<b>Automação e BI:</b> Power Automate Cloud/Desktop · Power BI · DAX · Power Query · Python · Excel/Google Sheets · VBA · SQL',
-                    '<b>Integrações e dados:</b> REST/Webhooks/OAuth · PostgreSQL · MySQL · Redis · ETL/Data Lake · Docker',
-                    '<b>Processos:</b> requisitos · BPMN/AS-IS/TO-BE · testes/UAT · implantação · treinamento · sustentação',
-                ],
-            },
-        }
-        data.update(tracks[track])
-        data['vesper_bullets'].append(data['vesper_ops_bullet'])
-        return data
-
-    data = en_common()
-    data.update({
-        'filename': 'Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf',
-        'title': 'AUTOMATION & INTEGRATIONS ANALYST | Python · n8n · APPLIED AI',
-        'summary': (
-            'I automate internal processes with Python, n8n and Power Automate, connect systems through APIs, and support rollout and ongoing use. I apply AI when it solves a concrete need.'
-        ),
-        'projects': [
-            '<b>Postagem Redes:</b> an n8n automation that drafts content from approved context and asks for review before publication; it connects APIs, retrieval and channel-level failure handling.',
-            '<b>Offline Document Translator:</b> an internally used desktop app that translates Word/ODT files locally, preserves their structure and prepares bilingual versions for review.',
-        ],
-        'skills': [
-            '<b>Automation & integrations:</b> self-hosted n8n · Power Automate Cloud/Desktop · Python/FastAPI · REST/JSON · Webhooks/OAuth · PostgreSQL/Redis · Docker · Git/GitHub Actions',
-            '<b>Applied AI:</b> Prompt Engineering · LLM APIs · agents · RAG/LangChain · human-in-the-loop · evals',
-            '<b>Engineering, data & BI:</b> Rust/Axum · PowerShell/CIM · Power BI · DAX · Power Query · Excel/VBA · SQL',
-        ],
-    })
-    data['vesper_ops_bullet'] = (
-        '<b>IT operations:</b> provide hands-on support for users, Windows endpoints and internal systems in an industrial environment, '
-        'turning recurring operational issues into improvements and automation opportunities.'
-    )
-    data['vesper_bullets'].append(data['vesper_ops_bullet'])
-    return data
-
-
-def build(lang='pt', track='general'):
-    data = content(lang, track)
-    s = styles()
-    path = OUT / data['filename']
-    name = 'MAYCON FERREIRA'
-    doc = SimpleDocTemplate(
-        str(path), pagesize=A4,
-        leftMargin=12 * mm, rightMargin=12 * mm,
-        topMargin=10.5 * mm, bottomMargin=10.5 * mm,
-        title=name + ' - ' + data['title'],
-        author='Maycon Ferreira',
-        subject='One-page resume focused on automation, applied AI, integrations and production-ready internal systems',
-    )
-    story = [Paragraph(name, s['name']), Paragraph(data['title'], s['title']), Paragraph(data['contact'], s['contact'])]
-
-    def section(label):
-        story.append(Paragraph(label, s['section']))
-
-    section(data['sections'][0])
-    story.append(Paragraph(data['summary'], s['body']))
-    section(data['sections'][1])
-    story.extend([Paragraph(data['vesper_role'], s['role']), Paragraph(data['vesper_meta'], s['meta'])])
+def build(track='general', lang='pt'):
+    data = EN if lang=='en' else TRACKS[track]
+    name = ('Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf' if lang=='en' else data['file'])
+    s=styles()
+    dest=OUT/name
+    doc=SimpleDocTemplate(str(dest),pagesize=A4,leftMargin=17*mm,rightMargin=17*mm,topMargin=15*mm,bottomMargin=14*mm, title='Maycon Ferreira - '+data['title'],author='Maycon Ferreira')
+    contact_city='Rio de Janeiro, Brazil' if lang=='en' else COMMON_PT['city']
+    contact = f'{contact_city}  |  <link href="tel:+5521964810480">(21) 96481-0480</link>  |  <link href="mailto:mayconxz00dev@gmail.com">mayconxz00dev@gmail.com</link><br/>'
+    contact += link_text('github.com/Mayconxzdev','https://github.com/Mayconxzdev')+'  |  '+link_text('mayconxzdev.github.io','https://mayconxzdev.github.io/')+'  |  '+link_text('linkedin.com/in/maycon-ferreira-7bb870231','https://www.linkedin.com/in/maycon-ferreira-7bb870231/')
+    story=[para(s['name'],'Maycon Ferreira'),para(s['title'],data['title']),para(s['contact'],contact)]
+    def sec(pt,en=None):
+        story.append(para(s['section'],en if lang=='en' else pt))
+        story.append(HRFlowable(width='100%',thickness=0.35,color=LIGHT,spaceBefore=0,spaceAfter=4))
+    sec('PERFIL PROFISSIONAL','PROFESSIONAL SUMMARY')
+    story.append(para(s['body'],data['summary']))
+    sec('EXPERIÊNCIA PROFISSIONAL','EXPERIENCE')
+    if lang=='en':
+        story.append(para(s['job'],'<b>Vesper Equipamentos EX</b>  |  Junior Process Automation Technician  |  2026 - Present'))
+    else:
+        story.append(para(s['job'],f'<b>{COMMON_PT["vesper"]}</b>  |  {COMMON_PT["role"]}  |  {COMMON_PT["date"]}'))
     for item in data['vesper_bullets']:
-        story.append(bullet(item, s['small']))
-    story.extend([Spacer(1, 0.6 * mm), Paragraph(data['freelance_role'], s['role']), Paragraph(data['freelance_meta'], s['meta'])])
-    for item in data['freelance_bullets']:
-        story.append(bullet(item, s['small']))
-    story.extend([Spacer(1, 0.6 * mm), Paragraph(data['compass_role'], s['role']), Paragraph(data['compass_meta'], s['meta'])])
-    for item in data['compass_bullets']:
-        story.append(bullet(item, s['small']))
-    section(data['sections'][2])
-    for item in data['projects']:
-        story.append(bullet(item, s['small']))
-    section(data['sections'][3])
-    for item in data['skills']:
-        story.append(Paragraph(item, s['small']))
-    section(data['sections'][4])
-    for item in data['education']:
-        story.append(Paragraph(item, s['small']))
-    section(data['sections'][5])
-    for item in data['credentials']:
-        story.append(Paragraph(item, s['small']))
-    section(data['sections'][6])
-    for item in data['languages']:
-        story.append(Paragraph(item, s['small']))
+        story.append(para(s['body'],'&#8226;  '+item))
+    if lang=='en':
+        story.extend([
+          para(s['job'],'<b>VemSer</b>  |  IT Assistant  |  2025'),
+          para(s['body'],'&#8226;  Provided user support and hands-on assistance with computers and digital tools.'),
+          para(s['job'],'<b>Compass UOL</b>  |  Practical Data Engineering Internship/Training  |  Oct/2024 - Mar/2025'),
+          para(s['body'],'&#8226;  Built a CSV/API, S3/Lambda, Glue/PySpark and Athena pipeline, with an Amazon QuickSight dashboard.'),
+          para(s['body'],'<b>Freelance IT Instructor</b> (since 2024): practical computer and digital productivity lessons.'),
+        ])
+    else:
+        story.extend([
+          para(s['job'],'<b>VemSer</b>  |  Assistente de Informática  |  2025'),
+          para(s['body'],'&#8226;  '+COMMON_PT['vemser_text']),
+          para(s['job'],'<b>Compass UOL</b>  |  Estágio de formação prática em Engenharia de Dados  |  out/2024 - mar/2025'),
+          para(s['body'],'&#8226;  '+COMMON_PT['compass_text']),
+          para(s['body'],'<b>Atuação autônoma</b>  |  Instrutor de Informática (desde 2024): aulas práticas de informática e produtividade digital.'),
+        ])
+    sec('PROJETOS SELECIONADOS','SELECTED PROJECTS')
+    for label,descr in data['projects']:
+        link=URLS.get(label)
+        txt=(link_text(label,link) if link else '<b>'+escape(label)+'</b>')+' — '+escape(descr)
+        story.append(para(s['project'],txt))
+    sec('COMPETÊNCIAS','SKILLS')
+    story.append(para(s['body'],data['skills']))
+    sec('FORMAÇÃO E CREDENCIAIS','EDUCATION & CREDENTIALS')
+    if lang=='en':
+        rows=[
+          '<b>UNISUAM</b>  Technology Degree in Systems Analysis and Development | expected Dec/2026',
+          '<b>42 Rio</b>  Intensive Piscine: C, Linux, Git (2025)',
+          '<b>Credentials</b>  '+data['credentials'],
+          '<b>Languages</b>  Portuguese native; English intermediate technical reading, basic speaking and writing.'
+        ]
+    else:
+        rows=COMMON_PT['education']+['<b>Certificações</b>  '+data['credentials'],'<b>Idiomas</b>  '+COMMON_PT['languages']]
+    for row in rows:story.append(para(s['footer'],row))
+    doc.build(story)
+    return dest
 
-    doc.build(story, onFirstPage=line)
-    return path
+
+def run():
+    files=[]
+    for track in TRACKS:
+        files.append(build(track))
+    files.append(build('general','en'))
+    # Existing inbound links must remain valid and point to current versions.
+    aliases={
+        'Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf':TRACKS['general']['file'],
+        'Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf':TRACKS['ai']['file'],
+        'Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf':TRACKS['data']['file'],
+    }
+    for old,source in aliases.items():
+        shutil.copy2(OUT/source,OUT/old)
+        files.append(OUT/old)
+    for p in files:print('RESUME',p.name, p.stat().st_size)
 
 
-if __name__ == '__main__':
-    print(build('pt', 'general'))
-    print(build('pt', 'ai'))
-    print(build('pt', 'bi'))
-    print(build('en', 'general'))
+if __name__ == '__main__': run()

@@ -10,6 +10,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 IGNORED_DIRS = {'.git', '.github', '.venv', 'node_modules', 'artifacts', '__pycache__', '.site'}
 ALIASES = {
+    'assets/cv/index.html',  # Independent resume chooser (PT with English PDF).
     'en/cases/compras-vesper/index.html',
     'cases/compras-vesper/index.html',
     'en/cases/vesper-propostas/index.html',
@@ -261,8 +262,8 @@ for text, surface in [(home, 'PT home'), (en_home, 'EN home')]:
 
 if 'RAG/grounding' not in home or 'RAG/grounding' not in en_home:
     errors.append('home pages must expose RAG/grounding as applied AI evidence')
-if 'combinando n8n e Power Automate, Python/APIs, dados/BI e IA aplicada' not in home:
-    errors.append('PT home core positioning drifted')
+if 'Defino requisitos, arquitetura e critérios de validação, conduzo agentes de IA por especificações versionadas' not in home:
+    errors.append('PT home specification-led AI positioning drifted')
 if 'combining self-hosted n8n and Power Automate, Python/APIs, data/BI and applied AI' not in en_home:
     errors.append('EN home core positioning drifted')
 if 'carreira-overview.webp' in home or 'carreira-overview.webp' in en_home:
