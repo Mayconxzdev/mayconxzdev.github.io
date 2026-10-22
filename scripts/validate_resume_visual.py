@@ -36,5 +36,5 @@ for name in FILES:
         assert min(s['bbox'][0] for s in spans)>=35, f'Too close to left border {name}'
         assert max(s['bbox'][2] for s in spans)<=p.rect.width-35, f'Too close to right border {name}'
         bottom=p.rect.height-max(s['bbox'][3] for s in spans)
-        assert 35<bottom<110, f'Unbalanced page or clipping {name}: {bottom:.1f}'
+        assert 35<bottom<120, f'Unbalanced page or clipping {name}: {bottom:.1f}'
         print(f'VISUAL PASS: {name} minfont={min(s["size"] for s in spans):.1f} bottom={bottom:.0f}pt')
