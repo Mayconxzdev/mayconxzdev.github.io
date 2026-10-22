@@ -215,14 +215,14 @@ def styles():
     def ps(name,size,leading,bold=False,color=NAVY,before=0,after=0):
         return ParagraphStyle(name, fontName='VeraBd' if bold else 'Vera',fontSize=size,leading=leading,textColor=color,spaceBefore=before,spaceAfter=after,allowWidows=0,allowOrphans=0)
     return {
-      'name':ps('name',20.0,23,True,after=3),
-      'title':ps('title',10.6,13.0,True,TEAL,after=4.5),
-      'contact':ps('contact',9.7,12.6,color=GRAY,after=5.5),
-      'section':ps('section',10.3,12.8,True,TEAL,before=9,after=3.3),
-      'body':ps('body',10.55,14.45,after=3.7),
-      'job':ps('job',10.3,13.6,after=3.4),
-      'project':ps('project',10.45,14.1,after=3.5),
-      'footer':ps('footer',10.1,13.5,after=2.8),
+      'name':ps('name',20.0,23,True,after=2),
+      'title':ps('title',10.35,12,True,TEAL,after=4),
+      'contact':ps('contact',9.5,12.0,color=GRAY,after=5),
+      'section':ps('section',10.5,13.0,True,TEAL,before=9,after=3.5),
+      'body':ps('body',10.4,14.25,after=4.0),
+      'job':ps('job',10.2,13.4,after=3.5),
+      'project':ps('project',10.2,14.0,after=3.4),
+      'footer':ps('footer',10.0,13.3,after=2.4),
     }
 
 
