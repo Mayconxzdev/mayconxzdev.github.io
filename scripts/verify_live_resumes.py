@@ -1,62 +1,42 @@
-from __future__ import annotations
+"""Check the four historical public CV URLs after deployment.
 
+They remain stable links but now point to current profiles. This is a smoke test,
+not a claim that external applicant tracking systems will accept the documents.
+"""
 from pathlib import Path
 import sys
 from pypdf import PdfReader
 
 REQUIRED = {
-    'pt-general': [
-        'ANALISTA DE AUTOMAÇÃO E INTEGRAÇÕES | Python · n8n · IA APLICADA',
-        'Power Automate', 'APIs', 'Tradutor documental offline',
-        'Postagem Redes', 'Produção Operacional', 'Belarc Inventory',
-    ],
-    'en-general': [
-        'AUTOMATION & INTEGRATIONS ANALYST | Python · n8n · APPLIED AI',
-        'Power Automate', 'APIs', 'Offline Document Translator',
-        'Production Operations', 'IT operations', 'Belarc Inventory',
-    ],
-    'pt-ai': [
-        'ANALISTA DE AUTOMAÇÃO E IA | n8n · Python · LLMs/RAG',
-        'Power Automate', 'RAG/LangChain', 'Supabase/Qdrant',
-        'Plataforma SaaS B2B', 'Postagem Redes',
-    ],
-    'pt-bi': [
-        'ANALISTA DE AUTOMAÇÃO E BI | Power Automate · Power BI · Python',
-        'Power Automate Cloud/Desktop', 'Power BI', 'DAX', 'Power Query',
-        'Excel/Google Sheets', 'Catálogo Operacional',
-    ],
+    'pt-general':['SOLUÇÕES DIGITAIS', 'Produção Operacional', 'Belarc Inventory', 'Hubora', 'Compass UOL', 'Microsoft Applied Skills'],
+    'en-general':['DIGITAL SOLUTIONS', 'Production Operations', 'Belarc Inventory', 'Hubora', 'Compass UOL'],
+    'pt-ai':['IA APLICADA', 'AGENTES', 'Postagem Redes', 'ArsenalMind', 'Compass UOL'],
+    'pt-bi':['ANÁLISE DE DADOS', 'Power BI', 'QuickSight', 'Catálogo Operacional', 'Compass UOL'],
 }
+BANNED = ('10 mil+', '10k+', '10+ computadores', '20+ profissionais', 'menos de 30', 'under 30 sec')
 
-FORBIDDEN = [
-    '12 dias', '12 days', 'menos de 4 horas', 'less than 4 hours',
-    '55 certificações', '55 certifications',
-    'UiPath Certified Automation Business Analyst Professional',
-]
+def norm(s):
+    return ' '.join(s.split()).casefold()
 
-def normalized(value: str) -> str:
-    return ' '.join(value.split())
-
-def check(key: str, path: Path) -> None:
+def check(name,path):
     reader = PdfReader(str(path))
-    if len(reader.pages) != 1:
-        raise SystemExit(f'{path.name}: live resume must be one page, got {len(reader.pages)}')
-    text = '\n'.join(page.extract_text() or '' for page in reader.pages)
-    flat = normalized(text)
-    for phrase in REQUIRED[key]:
-        if normalized(phrase) not in flat:
-            raise SystemExit(f'{path.name}: stale/incomplete live resume; missing {phrase!r}')
-    for phrase in FORBIDDEN:
-        if normalized(phrase) in flat:
-            raise SystemExit(f'{path.name}: stale/forbidden live resume text found: {phrase!r}')
-    print(f'OK live {key} resume: one page and current candidature-ready content verified.')
+    if len(reader.pages)!=1:
+        raise SystemExit(f'{path}: expected one-page PDF')
+    text=norm(reader.pages[0].extract_text() or '')
+    if len(text)<1500 or '\ufffd' in text:
+        raise SystemExit(f'{path}: insufficient or invalid selectable text')
+    for value in REQUIRED[name]:
+        if norm(value) not in text:
+            raise SystemExit(f'{path}: missing current phrase {value}')
+    for value in BANNED:
+        if norm(value) in text:
+            raise SystemExit(f'{path}: unwanted operational number {value}')
+    print('LIVE CV PASS:',name,Path(path).name)
 
-def main() -> None:
-    if len(sys.argv) != 5:
-        raise SystemExit('usage: verify_live_resumes.py <pt-general> <en-general> <pt-ai> <pt-bi>')
-    check('pt-general', Path(sys.argv[1]))
-    check('en-general', Path(sys.argv[2]))
-    check('pt-ai', Path(sys.argv[3]))
-    check('pt-bi', Path(sys.argv[4]))
+def main():
+    if len(sys.argv)!=5:
+        raise SystemExit('usage: verify_live_resumes.py <general> <english> <ai> <bi>')
+    for key,path in zip(REQUIRED.keys(),sys.argv[1:]):
+        check(key,path)
 
-if __name__ == '__main__':
-    main()
+if __name__=='__main__':main()
