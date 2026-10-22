@@ -10,6 +10,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 IGNORED_DIRS = {'.git', '.github', '.venv', 'node_modules', 'artifacts', '__pycache__', '.site'}
 ALIASES = {
+    'assets/cv/index.html',  # Independent resume chooser (PT with English PDF).
     'en/cases/compras-vesper/index.html',
     'cases/compras-vesper/index.html',
     'en/cases/vesper-propostas/index.html',
