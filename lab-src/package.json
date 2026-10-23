@@ -1,0 +1,19 @@
+{
+  "name": "laboratorio-vivo-maycon",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 8789",
+    "build": "node scripts/prepare-public.mjs && node scripts/generate-cases.mjs && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4190",
+    "audit": "node scripts/audit.mjs"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1",
+    "vite": "^7.1.0"
+  }
+}
