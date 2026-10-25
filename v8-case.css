@@ -1,0 +1,64 @@
+/* V8 shared case motion and evidence-first design */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:v8-out .17s ease both}
+::view-transition-new(root){animation:v8-in .22s ease both}
+@keyframes v8-out{to{opacity:.25;transform:translateY(-9px)}}
+@keyframes v8-in{from{opacity:.15;transform:translateY(10px)}to{opacity:1;transform:none}}
+.case-page .case-hero{background:radial-gradient(ellipse at 85% 7%,#426f6642,transparent 50%),#142126;color:#f5f2e9}
+.case-page .case-hero h1{letter-spacing:-.07em;line-height:1.0}
+.case-page .case-hero .case-headline{line-height:1.35}
+.case-page .case-showcase{background:#f3f2ed}
+.case-page .case-next{background:#dfbd59;color:#142327}
+.case-page .case-jump a,.case-page .v4-case-jump a{transition:background .2s,color .2s}
+.case-page .v4-proof-media img{transition:transform .45s cubic-bezier(.2,.72,.2,1)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .case-page .v4-proof:hover img{transform:scale(1.023)}
+}
+.v8-client-showcase{display:flex;flex-direction:column;gap:23px;background:#132127;color:#edf0e9;padding:clamp(17px,3vw,42px);border:1px solid #8ba09c4d}
+.v8-client-intro{display:grid;grid-template-columns:1fr 2fr;align-items:end;gap:9px 28px;border-bottom:1px solid #b4c3c24e;padding-bottom:26px}
+.v8-client-intro>span{font:700 10px "IBM Plex Mono",Consolas,monospace;letter-spacing:.055em;color:#efc246}
+.v8-client-intro h2{grid-column:2;font:400 clamp(32px,4vw,57px)/1.05 "Archivo Black",Arial,sans-serif;letter-spacing:-.065em;margin:0;color:#faf8f1}
+.v8-client-intro p{grid-column:2;margin:0;max-width:720px;font:14px/1.7 "IBM Plex Sans",Arial,sans-serif;color:#c0d1d0}
+.v8-client-frames{display:grid;grid-template-columns:1.45fr 1fr;align-items:stretch;gap:15px}
+.v8-client-frames figure{margin:0;min-width:0;background:#f1f1ed;border:1px solid #97aaaa9c;display:flex;flex-direction:column}
+.v8-client-frames img{display:block;width:100%;height:clamp(200px,35vw,440px);object-fit:cover;object-position:center top}
+.v8-client-main img{object-position:center 9%}
+.v8-client-second img{object-position:center 0}
+.v8-client-frames figcaption{margin-top:auto;padding:16px 17px 18px;display:flex;justify-content:space-between;gap:10px;background:#112026;color:#fff}
+.v8-client-frames strong{font:700 13px "IBM Plex Mono",Consolas,monospace}
+.v8-client-frames small{font-size:11px;color:#cbd6d1;line-height:1.5}
+.v8-client-foot{color:#bac8c4;font:12px/1.6 "IBM Plex Sans",Arial,sans-serif;margin:0}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .v8-client-frames figure{overflow:hidden}
+ .v8-client-frames img{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+ .v8-client-frames figure:hover img{transform:scale(1.025)}
+}
+.v8-motion-ready .case-essentials,.v8-motion-ready .case-decisions,.v8-motion-ready .case-proof,.v8-motion-ready .case-next{
+ opacity:0;transform:translateY(25px);
+ transition:opacity .5s ease,transform .55s cubic-bezier(.2,.75,.2,1)
+}
+.v8-motion-ready .case-essentials.v8-seen,.v8-motion-ready .case-decisions.v8-seen,.v8-motion-ready .case-proof.v8-seen,.v8-motion-ready .case-next.v8-seen{opacity:1;transform:none}
+@media(max-width:740px){
+ .v8-client-intro{display:block}
+ .v8-client-intro h2{font-size:34px;margin:14px 0}
+ .v8-client-intro p{font-size:12px}
+ .v8-client-frames{grid-template-columns:1fr}
+ .v8-client-frames img{height:auto;max-height:400px;object-fit:contain}
+ .v8-client-frames figcaption{padding:12px;align-items:center}
+ .v8-client-frames small{max-width:50%;text-align:right}
+}
+@media(prefers-reduced-motion:reduce){
+ ::view-transition-old(root),::view-transition-new(root){animation:none}
+ .v8-motion-ready .case-essentials,.v8-motion-ready .case-decisions,.v8-motion-ready .case-proof,.v8-motion-ready .case-next{opacity:1;transform:none;transition:none}
+ .case-page .v4-proof-media img,.v8-client-frames img{transition:none}
+}
+
+/* Keep browser-window captions legible despite inherited legacy case rules. */
+.v8-client-showcase .v8-client-frames figcaption{background:#122329!important;color:#ffffff!important}
+.v8-client-showcase .v8-client-frames figcaption strong{color:#ffffff!important}
+.v8-client-showcase .v8-client-frames figcaption small{color:#deece9!important}
+
+/* Page-of-events editorial crop: left-aligned to keep title, filters and first gallery visible. */
+.v8-client-showcase .v8-client-frames figure img{max-width:none!important;max-height:none!important;height:clamp(230px,35vw,440px)!important;width:100%!important;object-fit:cover!important}
+.v8-client-showcase .v8-client-frames .v8-client-second img{object-position:left top!important}
+@media(max-width:740px){.v8-client-showcase .v8-client-frames figure img{height:clamp(220px,66vw,380px)!important}}

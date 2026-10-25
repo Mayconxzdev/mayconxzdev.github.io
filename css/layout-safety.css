@@ -74,3 +74,13 @@ html,body{max-width:100%;overflow-x:clip}
   .skills-shell .capability-proof article{padding:14px 15px}
   .skills-shell>.contact{padding-top:58px!important;padding-bottom:58px!important}
 }
+/* Preserved historical documents have a clear path to the current portfolio. */
+.legacy-review-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;margin:0;padding:14px max(20px,calc((100vw - 1320px)/2));background:#e8eef9;color:#172832;font:500 14px/1.5 system-ui,sans-serif;border-bottom:1px solid #afbbc4}
+.legacy-review-banner a{color:#174fca;display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.privacy-review-note{padding:24px;margin:0;font:500 16px/1.6 system-ui,sans-serif;color:#172832;background:#e8eef9}
+/* Long historical titles remain legible even when the body clips overflow. */
+@media(max-width:600px){
+ .case-body .case-identity h1{font-size:clamp(30px,9vw,44px);line-height:.98;letter-spacing:-.05em;max-width:100%;overflow-wrap:anywhere;hyphens:auto}
+ .case-body .case-hero{padding-top:40px}
+}
+.case-body .case-showcase img{aspect-ratio:auto;max-height:620px;object-fit:contain}

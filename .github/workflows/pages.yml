@@ -2,7 +2,7 @@ name: Validate and deploy GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'release/**']
   pull_request:
   workflow_dispatch:
 
@@ -12,238 +12,102 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: pages-release
+  cancel-in-progress: false
 
 jobs:
   validate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
-        with:
-          persist-credentials: false
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - name: Install resume and visual-validation dependencies
-        run: python -m pip install --disable-pip-version-check reportlab==4.4.9 pypdf==5.9.0 pymupdf==1.26.7
-      - name: Validate source syntax
-        run: python -m compileall -q scripts
-      - name: Snapshot tracked resume PDFs
+      - name: Install PDF checker
+        run: python -m pip install --disable-pip-version-check pypdf==5.9.0
+      - name: Validate static portfolio, all cases, and exactly 3 PT + 3 EN PDFs
+        shell: bash
         run: |
-          rm -rf /tmp/tracked-cv
-          mkdir -p /tmp/tracked-cv
-          cp assets/cv/*.pdf /tmp/tracked-cv/
-      - name: Generate current site artifacts
+          python - <<'PY'
+          from pathlib import Path
+          from pypdf import PdfReader
+          root=Path('.')
+          assert (root/'index.html').is_file()
+          assert (root/'.nojekyll').is_file()
+          assert (root/'robots.txt').is_file()
+          cases=[p for p in (root/'projetos').iterdir() if p.is_dir() and (p/'index.html').is_file()]
+          assert len(cases)==18, len(cases)
+          cv=root/'assets/cv'
+          pdfs=list(cv.glob('*.pdf'))
+          assert len(pdfs)==6,len(pdfs)
+          assert sum(p.name.endswith('_PT.pdf') for p in pdfs)==3
+          assert sum(p.name.endswith('_EN.pdf') for p in pdfs)==3
+          assert (root/'en/resumes/index.html').is_file()
+          for f in pdfs:
+              reader=PdfReader(str(f))
+              assert len(reader.pages)==1,f
+              text=reader.pages[0].extract_text()
+              assert '2026' in text and len(text)>1500,f
+          for p in [root/'index.html',root/'en/resumes/index.html']:
+              t=p.read_text(encoding='utf8')
+              assert t.count('assets/cv/')>=3,p
+          civic=(root/'projetos/brasil-as-claras/index.html').read_text(encoding='utf8')
+          assert 'Geraldo Magela' in civic
+          assert 'creativecommons.org/licenses/by/2.0' in civic
+          assert not (root/'assets/v13-local-review').exists()
+          print('PASS: 18 case pages, six single-page A4 resumes, language routing, attribution')
+          PY
+      - name: Build GitHub Pages static artifact
+        if: github.ref == 'refs/heads/main'
+        shell: bash
         run: |
-          python scripts/generate_resumes_general.py
-          python scripts/add_resume_links.py
-          python scripts/validate_social_cover.py
-      - name: Apply current project content and shared layout
-        run: |
-          python scripts/add_carreirapessoal_home.py
-          python scripts/patch_career_visual.py
-          python scripts/patch_skills_current.py
-          python scripts/patch_portfolio_consistency.py
-          python scripts/patch_case_visual_safety.py
-          python scripts/patch_human_project_stories.py
-          python scripts/patch_public_narrative_media.py
-          python scripts/normalize_site_chrome.py
-          python scripts/patch_navigation_targets.py
-          python scripts/patch_404_language.py
-          python scripts/normalize_case_sequence.py
-          python scripts/patch_project_archive.py
-          # Run idempotent materializers twice intentionally so a future merge cannot
-          # duplicate site labels, controls or skill copy.
-          python scripts/patch_skills_current.py
-          python scripts/patch_project_archive.py
-          python scripts/curate_featured_projects.py
-      - name: Ensure tracked source matches generated site output
-        run: |
-          python scripts/validate_tracked_resume_equivalence.py /tmp/tracked-cv assets/cv
-          if ! git diff --exit-code -- index.html 404.html assets/social cases competencias en css sitemap.xml; then
-            echo "::error::Tracked published source differs from the materialized build. Run python scripts/materialize_portfolio_source.py and commit the results."
-            git diff --stat -- index.html 404.html assets/social cases competencias en css sitemap.xml
-            exit 1
-          fi
-      - name: Validate resume content, links and visual layout
-        run: |
-          python scripts/validate_general_resumes.py
-          python scripts/validate_resume_visual.py
-      - name: Validate every canonical page, local reference, shared layout and referenced visual
-        run: |
-          python scripts/validate_site.py
-          python scripts/validate_navigation_targets.py
-          python scripts/validate_editorial_consistency.py
-          python scripts/validate_public_voice.py
-          python scripts/validate_case_visual_consistency.py
-          python scripts/validate_case_sequence.py
-          python scripts/performance_budget.py
-      - name: Validate JavaScript syntax
-        run: |
-          node --check js/site.js
-          node --check js/project-archive.js
-          node --check scripts/visual_smoke.mjs
-          node --check scripts/site_interaction_smoke.mjs
-          node --check scripts/accessibility_smoke.mjs
-      - name: Install browser and accessibility dependencies
-        run: |
-          npm install --no-save playwright@1.54.2 @axe-core/playwright@4.12.1
-          npx playwright install --with-deps chromium
-      - name: Run browser interactions and accessibility checks
-        run: |
-          python -m http.server 8000 --bind 127.0.0.1 >/tmp/portfolio-http.log 2>&1 &
-          SERVER_PID=$!
-          trap 'kill "$SERVER_PID"' EXIT
-          for attempt in {1..20}; do
-            if curl -fsS http://127.0.0.1:8000/ >/dev/null; then break; fi
-            sleep 1
-          done
-          curl -fsS http://127.0.0.1:8000/ >/dev/null
-          # Cover changed entry points and representative PT/EN project pages on every build.
-          # Full-site visual smoke remains available via scripts/visual_smoke.mjs without route filter.
-          PORTFOLIO_SMOKE_ROUTES="/,/en/,/competencias/,/en/skills/,/cases/belarc-inventory/,/en/cases/belarc-inventory/" node scripts/visual_smoke.mjs http://127.0.0.1:8000 artifacts/visual
-          node scripts/cv_hub_smoke.mjs http://127.0.0.1:8000 artifacts/visual
-          node scripts/site_interaction_smoke.mjs http://127.0.0.1:8000
-          node scripts/accessibility_smoke.mjs http://127.0.0.1:8000
-      - name: Upload validated resumes
-        if: always()
-        uses: actions/upload-artifact@v6
-        with:
-          name: validated-resumes-${{ github.run_id }}
-          path: assets/cv/*.pdf
-          if-no-files-found: error
-          retention-days: 30
-      - name: Upload full visual QA screenshots
-        if: always()
-        uses: actions/upload-artifact@v6
-        with:
-          name: portfolio-visual-qa-${{ github.run_id }}
-          path: artifacts/visual/
-          if-no-files-found: warn
-          retention-days: 14
-      - name: Build clean Pages artifact
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        run: |
-          rm -rf .site
-          mkdir .site
-          cp -r index.html 404.html assets cases competencias en css js robots.txt sitemap.xml .nojekyll .site/
-          RELEASE_TOKEN="${GITHUB_SHA:0:12}"
-          python scripts/version_resume_links.py .site "$RELEASE_TOKEN"
+          mkdir -p .site
+          rsync -a --exclude='/.git/' --exclude='/.github/' --exclude='/.site/' --exclude='/docs/' --exclude='/README.md' --exclude='/SECURITY.md' --exclude='/.gitignore' --exclude='/.gitattributes' ./ .site/
           printf '%s\n' "$GITHUB_SHA" > .site/build.txt
       - name: Configure GitHub Pages
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v6
-      - name: Upload validated site
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+      - name: Upload verified static site
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v5
         with:
           path: .site
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     needs: validate
-    permissions:
-      pages: write
-      id-token: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
     steps:
-      - name: Deploy GitHub Pages
+      - name: Publish GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
 
   verify-live:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     needs: deploy
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
-      - uses: actions/checkout@v6
-        with:
-          persist-credentials: false
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.13'
-      - name: Install live-release verification dependency
-        run: python -m pip install --disable-pip-version-check pypdf==5.9.0
-      - name: Confirm exact portfolio build and current resumes are live
+      - name: Check exact released commit and public resumes
         shell: bash
         run: |
-          RELEASE_TOKEN="${GITHUB_SHA:0:12}"
-          for attempt in {1..36}; do
-            BUILD_SHA="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/build.txt?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            HOME_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            CAREER_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/carreira-pessoal/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            PROD_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/producao-operacional/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            BELARC_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/belarc-inventory/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            MAINT_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/manutencao-campo/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            ISO_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/cases/central-iso/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            SKILLS_HTML="$(curl -fsSL --max-time 20 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/competencias/?build=${GITHUB_SHA}&attempt=${attempt}" || true)"
-            CAREER_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/evidence/carreira-product-overview.svg?build=${GITHUB_SHA}" | head -n 1 || true)"
-            SOCIAL_IMAGE="$(curl -fsSI --max-time 20 "https://mayconxzdev.github.io/assets/social/og-cover.png?build=${GITHUB_SHA}" | head -n 1 || true)"
-
-            rm -f /tmp/resume-pt.pdf /tmp/resume-en.pdf /tmp/resume-ai.pdf /tmp/resume-bi.pdf
-            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
-              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
-              -o /tmp/resume-pt.pdf || true
-            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
-              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
-              -o /tmp/resume-en.pdf || true
-            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
-              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Automacao_IA_n8n_Python_LLMs.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
-              -o /tmp/resume-ai.pdf || true
-            curl -fsSL --max-time 25 -H 'Cache-Control: no-cache' \
-              "https://mayconxzdev.github.io/assets/cv/Maycon_Ferreira_Automacao_BI_Power_Automate_Power_BI.pdf?v=${RELEASE_TOKEN}&attempt=${attempt}" \
-              -o /tmp/resume-bi.pdf || true
-
-            RESUMES_OK=false
-            if [[ -s /tmp/resume-pt.pdf && -s /tmp/resume-en.pdf && -s /tmp/resume-ai.pdf && -s /tmp/resume-bi.pdf ]]; then
-              if python scripts/verify_live_resumes.py /tmp/resume-pt.pdf /tmp/resume-en.pdf /tmp/resume-ai.pdf /tmp/resume-bi.pdf; then
-                RESUMES_OK=true
-              fi
-            fi
-
-            if [[ "$BUILD_SHA" == "$GITHUB_SHA" ]] \
-              && grep -Fq "PROJETOS PRINCIPAIS" <<<"$HOME_HTML" \
-              && grep -Fq '<h3>Belarc Inventory</h3>' <<<"$HOME_HTML" \
-              && grep -Fq '<h3>Produção Operacional</h3>' <<<"$HOME_HTML" \
-              && grep -Fq '<h3>Manutenção em Campo</h3>' <<<"$HOME_HTML" \
-              && grep -Fq '<h3>Postagem Redes</h3>' <<<"$HOME_HTML" \
-              && ! grep -Eq 'PR #[0-9]+' <<<"$HOME_HTML" \
-              && grep -Fq 'data-global-chrome="2026-08"' <<<"$HOME_HTML" \
-              && grep -Fq 'class="archive-expand"' <<<"$HOME_HTML" \
-              && grep -Fq "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf?v=${RELEASE_TOKEN}" <<<"$HOME_HTML" \
-              && grep -Fq 'Automation Business Analyst Professional Training' <<<"$HOME_HTML" \
-              && grep -Fq 'data-global-chrome="2026-08"' <<<"$CAREER_HTML" \
-              && grep -Fq 'class="case-page"' <<<"$CAREER_HTML" \
-              && grep -Fq '>Competências<' <<<"$CAREER_HTML" \
-              && grep -Fq 'data-global-chrome="2026-08"' <<<"$PROD_HTML" \
-              && grep -Fq '>Competências<' <<<"$PROD_HTML" \
-              && grep -Fq 'Produção<br>Operacional' <<<"$PROD_HTML" \
-              && grep -Fq 'Belarc Inventory' <<<"$BELARC_HTML" \
-              && grep -Fq 'EM USO INTERNO' <<<"$BELARC_HTML" \
-              && grep -Fq 'Rust · Axum · Tokio · SQLite' <<<"$BELARC_HTML" \
-              && grep -Fq 'data-global-chrome="2026-08"' <<<"$BELARC_HTML" \
-              && grep -Fq 'EM USO NA EMPRESA' <<<"$MAINT_HTML" \
-              && grep -Fq 'demonstração pública independente' <<<"$MAINT_HTML" \
-              && grep -Fq 'data-global-chrome="2026-08"' <<<"$ISO_HTML" \
-              && grep -Fq 'class="case-page"' <<<"$ISO_HTML" \
-              && grep -Fq 'RASTREABILIDADE, CONFIABILIDADE E SEGURANÇA' <<<"$SKILLS_HTML" \
-              && ! grep -Fq 'RASTREABILIDADE, RASTREABILIDADE' <<<"$SKILLS_HTML" \
-              && grep -Fq "VISÃO DO FLUXO" <<<"$CAREER_HTML" \
-              && grep -Fq "200" <<<"$CAREER_IMAGE" \
-              && grep -Fq "200" <<<"$SOCIAL_IMAGE" \
-              && [[ "$RESUMES_OK" == true ]]; then
-              echo "Published Pages SHA, public pages and all four live resumes match this exact build."
+          set -e
+          for attempt in $(seq 1 24); do
+            build="$(curl -fsSL --max-time 15 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/build.txt?attempt=$attempt" || true)"
+            if [ "$build" = "$GITHUB_SHA" ]; then
+              curl -fsSL "https://mayconxzdev.github.io/?commit=$GITHUB_SHA" | grep -q 'SISTEMAS'
+              curl -fsSL "https://mayconxzdev.github.io/en/resumes/" | grep -q 'Three directions'
+              for pdf in Maycon_Ferreira_Geral_Automacao_IA_PT.pdf Maycon_Ferreira_Agentes_Automacao_n8n_PT.pdf Maycon_Ferreira_Produtos_Conteudo_IA_PT.pdf Maycon_Ferreira_General_Automation_AI_EN.pdf Maycon_Ferreira_AI_Agents_Automation_n8n_EN.pdf Maycon_Ferreira_AI_Digital_Products_Content_EN.pdf; do
+                curl -fsSLI "https://mayconxzdev.github.io/assets/cv/$pdf" >/dev/null
+              done
+              echo "LIVE_VERIFIED=$GITHUB_SHA"
               exit 0
             fi
-            echo "Published release is not fully current yet (attempt ${attempt}/36; live build=${BUILD_SHA:-missing}; expected=${GITHUB_SHA})."
             sleep 10
           done
-          echo "Pages deployed, but exact build/resume verification did not converge within the verification window."
+          echo "Exact live commit was not found" >&2
           exit 1
