@@ -99,8 +99,10 @@ jobs:
           for attempt in $(seq 1 24); do
             build="$(curl -fsSL --max-time 15 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/build.txt?attempt=$attempt" || true)"
             if [ "$build" = "$GITHUB_SHA" ]; then
-              curl -fsSL "https://mayconxzdev.github.io/?commit=$GITHUB_SHA" | grep -q 'SISTEMAS'
-              curl -fsSL "https://mayconxzdev.github.io/en/resumes/" | grep -q 'Three directions'
+              curl -fsSL "https://mayconxzdev.github.io/?commit=$GITHUB_SHA" -o "$RUNNER_TEMP/portfolio-home.html"
+              grep -q 'SISTEMAS' "$RUNNER_TEMP/portfolio-home.html"
+              curl -fsSL "https://mayconxzdev.github.io/en/resumes/" -o "$RUNNER_TEMP/portfolio-en-resumes.html"
+              grep -q 'Three directions' "$RUNNER_TEMP/portfolio-en-resumes.html"
               for pdf in Maycon_Ferreira_Geral_Automacao_IA_PT.pdf Maycon_Ferreira_Agentes_Automacao_n8n_PT.pdf Maycon_Ferreira_Produtos_Conteudo_IA_PT.pdf Maycon_Ferreira_General_Automation_AI_EN.pdf Maycon_Ferreira_AI_Agents_Automation_n8n_EN.pdf Maycon_Ferreira_AI_Digital_Products_Content_EN.pdf; do
                 curl -fsSLI "https://mayconxzdev.github.io/assets/cv/$pdf" >/dev/null
               done
