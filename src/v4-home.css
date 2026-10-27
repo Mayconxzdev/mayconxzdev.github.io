@@ -1,0 +1,50 @@
+
+/* Laboratorio Vivo V4 — composições reais aplicadas aos destaques e ao acervo inteiro. */
+.feature .v4-feature-duo{width:100%;height:100%;display:grid;grid-template-columns:1.15fr .85fr;gap:9px;padding:15px;background:#d9e1e8;position:relative}
+.feature .v4-feature-duo img{width:100%;height:100%;object-fit:contain;padding:9px;background:#edf1f4;box-shadow:none;min-width:0;transition:transform .4s ease}
+.feature .v4-feature-duo img:nth-child(2){background:#d1ddeb}
+.feature .feature-image:hover .v4-feature-duo img:nth-child(1){transform:translateY(-6px)}
+.feature .feature-image:hover .v4-feature-duo img:nth-child(2){transform:translateY(6px)}
+.feature .v4-feature-photo{display:grid;grid-template-columns:.54fr .46fr;gap:9px;width:100%;height:100%;padding:10px;background:#151619}
+.feature .v4-feature-photo>img{object-fit:cover;width:100%;height:100%;padding:0;background:#151619;box-shadow:none}
+.feature .v4-event-stack{display:grid;grid-template-rows:1fr 1fr;gap:9px;min-height:0}
+.feature .v4-event-stack img{width:100%;height:100%;object-fit:cover;padding:0;background:#141616;min-height:0}
+.feature .feature-image:hover .v4-feature-photo>img{transform:scale(1.01)}
+.feature .feature-image:hover .v4-event-stack img:first-child{transform:translateX(-5px)}
+.feature .feature-image:hover .v4-event-stack img:last-child{transform:translateX(5px)}
+.feature .v4-photo-credit{position:absolute;z-index:5;bottom:0;left:0;background:#151619d9;color:#fff;font:600 9px "IBM Plex Mono",monospace;padding:9px 13px;letter-spacing:.025em}
+.feature-card .v4-feature-duo{gap:6px;padding:8px}
+.feature .feature-image{isolation:isolate}
+.feature .feature-image>.image-kicker{z-index:7}
+.feature .image-overlay{pointer-events:none}
+.catalog-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.catalog-item{padding:0;overflow:hidden;background:#fffdf8}
+.catalog-item .catalog-visual{height:182px;background:#e4eaf0;border-bottom:1px solid #aebac0;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden}
+.catalog-item .catalog-visual img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;padding:10px;transition:transform .35s ease;filter:none}
+.catalog-item:hover .catalog-visual img{transform:scale(1.025)}
+.catalog-item .catalog-visual--no-image{background:repeating-linear-gradient(90deg,#f0efe8 0 30px,#ecebe4 31px 33px)}
+.catalog-item .catalog-visual--no-image span{font:400 clamp(17px,2vw,25px)/1.15 "Archivo Black",sans-serif;letter-spacing:-.05em;text-align:center;max-width:260px;padding:25px;color:#2c4248}
+.catalog-item .catalog-visual-tag{position:absolute;top:9px;left:9px;z-index:2;background:#174fca;color:#fff;font:600 9px "IBM Plex Mono",monospace;padding:7px 9px}
+.catalog-item .catalog-item-content{padding:23px 23px 20px;display:flex;flex-direction:column;flex:1}
+.catalog-item{min-height:410px}
+.catalog-item .catalog-item-top{font:600 9px "IBM Plex Mono",monospace;color:#4a5a50}
+.catalog-item .catalog-item-content h3{font-size:22px;margin:22px 0 12px;line-height:1.16}
+.catalog-item .catalog-item-content>p{font-size:12px;line-height:1.65;color:#45534b}
+.catalog-item .catalog-item-content>a{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:15px;border-top:1px solid #b6c1b8;font-size:11px;gap:15px}
+.catalog-item .catalog-item-content>a span:first-child{flex:1}
+.catalog-item .catalog-item-content>a span:last-child{font-size:19px}
+.catalog-item:hover{background:#f7faf3}
+.cv-card{transition:transform .25s ease,background .25s ease}
+.cv-card:focus-visible,.catalog-item a:focus-visible{outline:3px solid #b7492f;outline-offset:3px}
+@media(max-width:840px){.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){
+ .catalog-grid{grid-template-columns:1fr}
+ .catalog-item{min-height:340px}
+ .catalog-item .catalog-visual{height:185px}
+ .feature .v4-feature-duo{padding:8px;gap:5px}
+ .feature .v4-feature-duo img{padding:4px}
+ .feature .v4-feature-photo{padding:6px;gap:5px}
+ .feature .v4-event-stack{gap:5px}
+ .feature .v4-photo-credit{font-size:8px;padding:6px 7px}
+}
+@media(prefers-reduced-motion:reduce){.v4-feature-duo img,.v4-feature-photo img,.catalog-visual img{transition:none!important}.feature .feature-image:hover .v4-feature-duo img,.feature .feature-image:hover .v4-feature-photo img{transform:none!important}}

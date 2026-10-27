@@ -1,0 +1,86 @@
+/* V14 · curated archive; five cinematic projects remain untouched. */
+#catalog-grid{display:block!important;max-width:none!important}
+.v14-selection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;margin:0 0 28px}
+.v14-feature{display:flex;flex-direction:column;min-width:0;border:1px solid #9cb0bf;background:#faf9f6;overflow:hidden}
+.v14-feature:first-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.74fr);min-height:390px}
+.v14-feature-photo{display:block;text-decoration:none;min-width:0;overflow:hidden;background:#e8eef9}
+.v14-card-art{position:relative;width:100%;height:235px;background:#e8eef9;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:14px}
+.v14-card-art img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.v14-feature:hover .v14-card-art img,.v14-compact:hover .v14-card-art img{transform:scale(1.027)}
+.v14-feature:first-child .v14-card-art{height:100%;min-height:390px;padding:24px;background:#e4ecf3}
+.v14-card-evidence{position:absolute;top:12px;left:12px;background:#174fca;padding:6px 8px;color:#fff;font:700 9px "IBM Plex Mono",monospace;letter-spacing:.015em}
+.v14-feature-body{padding:28px clamp(18px,2.9vw,42px) 27px;display:flex;flex-direction:column;justify-content:space-between;gap:26px;flex:1}
+.v14-feature-index{font:700 10px "IBM Plex Mono",monospace;color:#b94327;letter-spacing:.04em}
+.v14-feature-sub{font:700 10px "IBM Plex Mono",monospace;color:#556c7b;margin-bottom:10px}
+.v14-feature h3{font:400 clamp(24px,2.6vw,42px)/1.13 "Archivo Black",sans-serif;letter-spacing:-.05em;margin:0;color:#142735}
+.v14-feature-body p{font:400 14px/1.62 "IBM Plex Sans",sans-serif;color:#415967;margin:13px 0 0;max-width:460px}
+.v14-feature-body>a{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 0 0;border-top:1px solid #b5c3cc;color:#174fca;font:700 12px "IBM Plex Mono",monospace;text-decoration:none}
+.v14-feature-body>a:hover{color:#b94327}
+.v14-feature:nth-child(3) .v14-card-evidence{background:#b94327}
+.v14-catalog-rest{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.v14-compact{background:#faf9f6;border:1px solid #b2c1ca;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.v14-compact-art{display:block;text-decoration:none;background:#e8eef9;overflow:hidden}
+.v14-compact .v14-card-art{height:162px;padding:12px}
+.v14-compact .v14-card-evidence{font-size:8px;padding:5px}
+.v14-compact-body{display:flex;flex:1;flex-direction:column;padding:22px 22px 20px}
+.v14-compact-body>span{font:700 10px "IBM Plex Mono",monospace;color:#a8472b;margin-bottom:11px}
+.v14-compact-body h3{font:400 clamp(19px,1.65vw,25px)/1.17 "Archivo Black",sans-serif;letter-spacing:-.045em;color:#172e3a;margin:0}
+.v14-compact-body p{font:400 12px/1.6 "IBM Plex Sans",sans-serif;color:#49606b;margin:12px 0 22px}
+.v14-compact-body>a{display:flex;align-items:start;justify-content:space-between;gap:12px;border-top:1px solid #c2cbd0;padding:11px 0 0;margin-top:auto;color:#174fca;font:700 10px/1.4 "IBM Plex Mono",monospace;text-decoration:none}
+.v14-compact-body>a:hover{color:#b94327}
+.v14-card-art--diagram{display:flex;flex-direction:column;gap:13px;background:repeating-linear-gradient(125deg,#e7eff5,#e7eff5 27px,#dce7ef 28px);color:#183643}
+.v14-card-art--diagram>span{font:700 10px "IBM Plex Mono",monospace;color:#b94327}
+.v14-card-art--diagram>strong{font:400 25px "Archivo Black",sans-serif;letter-spacing:-.045em;text-align:center}
+.v14-feature:focus-within,.v14-compact:focus-within{outline:2px solid #174fca;outline-offset:2px}
+.v14-compact:hover{box-shadow:4px 4px 0 #174fca;transform:translateY(-2px)}
+.archive-controls{margin-bottom:24px}
+@media(max-width:1000px){
+ .v14-feature:first-child{grid-template-columns:1fr 1fr}
+ .v14-catalog-rest{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:750px){
+ .v14-selection{display:flex;flex-direction:column;gap:13px;margin-bottom:18px}
+ .v14-feature:first-child{display:flex;min-height:0}
+ .v14-feature:first-child .v14-card-art{height:260px;min-height:0;padding:13px}
+ .v14-feature .v14-card-art{height:220px}
+ .v14-feature-body{padding:21px;gap:19px}
+ .v14-feature h3{font-size:clamp(24px,6.5vw,30px)}
+ .v14-feature-body p{font-size:13px}
+ .v14-catalog-rest{grid-template-columns:1fr;gap:11px}
+ .v14-compact{flex-direction:row;min-height:146px}
+ .v14-compact-art{width:34%;min-width:34%}
+ .v14-compact .v14-card-art{height:100%;min-height:146px;padding:7px}
+ .v14-compact-body{padding:15px 12px}
+ .v14-compact-body h3{font-size:18px;line-height:1.13}
+ .v14-compact-body p{font-size:11px;margin:8px 0}
+ .v14-compact-body>span{font-size:9px;margin-bottom:5px}
+ .v14-compact-body>a{font-size:9px}
+ .v14-compact .v14-card-evidence{font-size:7px;top:5px;left:5px}
+}
+@media(max-width:400px){
+ .v14-compact-art{width:32%;min-width:32%}
+ .v14-compact-body h3{font-size:16px}
+ .v14-card-art--diagram strong{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ .v14-compact,.v14-card-art img{transition:none!important;transform:none!important}
+}
+
+.v14-cv-more{display:none}
+@media(max-width:760px){
+ .v14-cv-more{display:block;width:100%;padding:12px 14px;border:1px solid #174fca;background:#faf9f6;color:#174fca;font:700 11px "IBM Plex Mono",monospace;text-align:center;margin:16px 0;cursor:pointer}
+ #curriculos.v14-cv-collapsed #cv-grid .cv-card:nth-child(n+5){display:none!important}
+ #curriculos.v14-cv-collapsed #cv-grid .cv-card.featured{display:flex!important}
+}
+
+/* A vitrine usa recortes editoriais; o case oferece a captura integral em object-fit: contain. */
+.v14-selection .v14-feature .v14-card-art{height:290px;padding:0;background:#dbe6ee}
+.v14-selection .v14-feature .v14-card-art img{object-fit:cover;object-position:center top;width:100%;height:100%;max-height:none}
+.v14-selection .v14-feature:first-child .v14-card-art{height:100%;min-height:390px;padding:0}
+.v14-selection .v14-feature:first-child .v14-card-art img{object-position:center 12%}
+.v14-selection .v14-feature:nth-child(2) .v14-card-art img{object-position:center 9%}
+.v14-selection .v14-feature:nth-child(3) .v14-card-art img{object-position:center 12%}
+@media(max-width:750px){
+ .v14-selection .v14-feature .v14-card-art{height:210px}
+ .v14-selection .v14-feature:first-child .v14-card-art{height:250px;min-height:0}
+}

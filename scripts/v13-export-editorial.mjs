@@ -1,0 +1,1 @@
+import{editorial}from '../src/editorial-v13.js';import{writeFileSync}from'node:fs';writeFileSync('evidence/v13/editorial.json',JSON.stringify(editorial,null,2));console.log(Object.keys(editorial).length);

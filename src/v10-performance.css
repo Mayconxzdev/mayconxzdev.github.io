@@ -1,0 +1,40 @@
+/* V10 frame-cost corrections: keep selected V9 art direction. */
+.world-atmosphere,.world-aura,.world-orbit,.world-fragment{display:none!important}
+.world-slide{will-change:auto;filter:none!important;contain:paint}
+.world-slide .world-art{will-change:auto}
+.world-main-image{filter:none!important;will-change:auto}
+.v8-rail-fill{height:100%;transform:scaleY(0);transform-origin:top center;will-change:transform}
+.hero-stage{will-change:transform}
+@media(prefers-reduced-motion:reduce){
+ .v8-rail-fill{transform:none}
+ .world-slide{contain:none}
+}
+
+/* Mobile-specific framing: content must not meet the descriptive panel. */
+@media(max-width:800px){
+ .world-slide:nth-child(4) .world-art{top:8%;height:47%}
+ .world-slide:nth-child(4) .world-main-image{max-height:100%;max-width:97%;-webkit-mask-image:none!important;mask-image:none!important}
+ .world-description{background:linear-gradient(0deg,#faf9f6 0%,#faf9f6 91%,#faf9f600 100%)}
+ .world-fragment{display:none!important}
+}
+@media(max-width:390px){
+ .world-slide:nth-child(4) .world-art{top:8%;height:44%}
+}
+
+@media(max-width:800px){
+ /* Native mobile capture: framed screenshot with a real crop, never overflow into labels. */
+ .world-slide:nth-child(4) .world-art{top:7%;height:49%}
+ .world-slide:nth-child(4) .world-main-screen{height:100%;overflow:hidden;align-items:flex-start}
+ .world-slide:nth-child(4) .world-main-screen::after{
+  content:"";position:absolute;inset:auto 0 0;height:15%;
+  background:linear-gradient(transparent,#faf9f6);
+  pointer-events:none;z-index:2
+ }
+ .world-slide:nth-child(4) .world-main-image{
+  width:100%;height:auto;max-height:none!important;max-width:100%;
+  object-fit:contain;object-position:top;-webkit-mask-image:none!important;mask-image:none!important
+ }
+}
+@media(max-width:390px){
+ .world-slide:nth-child(4) .world-art{top:7%;height:48%}
+}

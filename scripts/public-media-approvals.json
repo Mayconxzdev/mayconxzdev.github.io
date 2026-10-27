@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-26",
+  "authorization": "Portfolio owner explicitly authorized publication of both exact screenshots and the complete portfolio update on 2026-10-26.",
+  "items": [
+    {
+      "path": "assets/portfolio-approved/brasil_as_claras_01_desktop.png",
+      "sha256": "15e153769e95ec2878d3874001636261ead26c3783b847d873e50725486343ba",
+      "source": "Original project screenshot supplied by the portfolio owner",
+      "rights": "Portfolio display authorized by owner on 2026-10-26; preserve credits and privacy protections."
+    },
+    {
+      "path": "assets/portfolio-approved/videomind_ui_timeline.png",
+      "sha256": "ff65c0189f77df8b062596e0b90baca51b54841da347ecece60b1c135b8312e5",
+      "source": "Original project screenshot supplied by the portfolio owner",
+      "rights": "Portfolio display authorized by owner on 2026-10-26; preserve credits and privacy protections."
+    }
+  ]
+}

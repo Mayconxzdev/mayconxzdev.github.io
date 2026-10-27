@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://mayconxzdev.github.io/sitemap.xml

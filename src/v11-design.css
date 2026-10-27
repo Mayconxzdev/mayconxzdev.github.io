@@ -1,0 +1,131 @@
+/* LABORATÓRIO VIVO V11 — editorial hierarchy + authentic evidence. */
+:root{--v11-paper:#faf9f6;--v11-ink:#182328;--v11-blue:#174fca;--v11-clay:#b94327;--v11-soft:#e8eef9}
+html{scroll-padding-top:76px}
+.v11-motion-toggle{font:700 9px/1 "IBM Plex Mono",monospace;border:1px solid #9dabb2;background:transparent;color:#18252b;padding:10px 12px;cursor:pointer;white-space:nowrap}
+.v11-motion-toggle:hover,.v11-motion-toggle:focus-visible{background:#e8eef9;outline-color:#174fca}
+.v11-motion-toggle[aria-pressed=true]{background:#e8eef9;color:#174fca;border-color:#174fca}
+.v11-role{font:700 13px/1.5 "IBM Plex Sans",sans-serif;color:#142c4b;margin:10px 0 0;max-width:485px}
+.v11-route-links{display:flex;gap:17px;flex-wrap:wrap;margin:12px 0 0}
+.v11-route-links a{color:#a03e2a;font:700 10px/1.45 "IBM Plex Mono",monospace;border-bottom:1px solid #b94327;padding-bottom:3px}
+.v11-route-links a:hover{color:#174fca;border-color:#174fca}
+.v11-world-jumpbar{position:absolute;z-index:24;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:3px;align-items:center;padding:5px 7px;background:#faf9f6ec;border:1px solid #1e3039;box-shadow:3px 3px 0 #174fca;max-width:83vw}
+.v11-world-jumpbar>span{color:#7a4a37;font:700 9px "IBM Plex Mono",monospace;padding:0 12px 0 3px}
+.v11-world-jumpbar button{font:700 10px/1.2 "IBM Plex Mono",monospace;padding:7px 9px;border:1px solid transparent;color:#39484d;background:transparent;cursor:pointer;white-space:nowrap;min-width:45px}
+.v11-world-jumpbar button span{margin-left:5px}
+.v11-world-jumpbar button:hover,.v11-world-jumpbar button:focus-visible{outline:1px solid #174fca;color:#174fca}
+.v11-world-jumpbar button.is-current{background:#174fca;color:#fff;border-color:#174fca}
+.v11-screen-proof{display:none} /* duplicated prose in V10 context is reduced; kept for rich context semantics */
+.world-actions-head{font-size:10px}
+.world-links{justify-content:flex-start;gap:20px;flex-wrap:wrap}
+.world-links a,.world-links button{white-space:nowrap;line-height:1.25}
+.world-links .v11-inspect{border-bottom:1px solid #174fca;color:#174fca}
+.world-links .v11-inspect:hover{color:#b94327;border-color:#b94327}
+.v11-evidence-lens[hidden]{display:none!important}
+.v11-evidence-lens{position:absolute;z-index:18;left:50%;top:12%;transform:translateX(-50%);width:min(760px,80%);padding:14px;background:#faf9f6;border:1px solid #1d2d34;box-shadow:7px 7px 0 #174fca}
+.v11-lens-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px}
+.v11-lens-top span{font:700 10px "IBM Plex Mono",monospace;color:#aa482e}
+.v11-lens-close{font:700 22px Arial,sans-serif;border:1px solid #182a31;background:#174fca;color:white;cursor:pointer;width:33px;height:33px}
+.v11-lens-images{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v11-lens-images img{width:100%;height:clamp(150px,22vh,240px);object-fit:contain;background:#e5ebf3;border:1px solid #a4b4bd}
+.v11-discover{display:flex;justify-content:space-between;align-items:center;gap:25px;border:1px solid #899da6;background:#e8eef9;padding:24px 26px;margin:28px 0 0}
+.v11-discover>div:first-child{display:flex;flex-direction:column;gap:3px}
+.v11-discover strong{font:400 clamp(19px,1.8vw,29px) "Archivo Black",Arial,sans-serif;letter-spacing:-.04em}
+.v11-discover span{font-size:12px;color:#4b5b65}
+.v11-discover-actions{display:flex;gap:7px;flex-wrap:wrap;max-width:720px;justify-content:flex-end}
+.v11-discover button{background:#fff;color:#1c323a;padding:10px 12px;border:1px solid #8ea1aa;font:700 11px "IBM Plex Sans",Arial,sans-serif;cursor:pointer}
+.v11-discover button:hover,.v11-discover button.is-active,.v11-discover button:focus-visible{background:#174fca;border-color:#174fca;color:#fff}
+.archive .catalog-item{transition:transform .23s ease,box-shadow .23s ease}
+.archive .catalog-visual{min-height:125px}
+.archive .catalog-visual--no-image{background:repeating-linear-gradient(145deg,#dce5ee 0 1px,#e7edf5 1px 25px);border-bottom:1px solid #718e9c}
+.archive .catalog-visual--no-image:before{content:"DOCUMENTAÇÃO / SEM CAPTURA PÚBLICA";position:absolute;top:13px;left:13px;font:700 9px "IBM Plex Mono",monospace;color:#194f76}
+.archive .catalog-item-content{min-height:0;display:flex;flex-direction:column}
+.archive .catalog-item-content a{margin-top:auto}
+.archive .catalog-item-content p{line-height:1.55}
+.v11-method-evidence{display:inline-flex;gap:10px;margin-top:24px;padding:12px 16px;background:#e8eef9;color:#174fca;border:1px solid #174fca;font:700 11px/1.4 "IBM Plex Mono",monospace;text-decoration:none;max-width:100%}
+.v11-method-evidence:hover,.v11-method-evidence:focus-visible{background:#174fca;color:white}
+.v11-cv-chooser{background:#e8eef9;border:1px solid #879ba6;padding:23px 26px;margin:24px 0}
+.v11-cv-chooser p{margin:0 0 14px;color:#24383f;max-width:900px;line-height:1.55;font-size:13px}
+.v11-cv-chooser strong{font-size:15px}
+.v11-cv-chooser [role=group]{display:flex;flex-wrap:wrap;gap:7px}
+.v11-cv-chooser button{border:1px solid #829aa5;padding:10px 13px;background:#fff;color:#192a33;font:700 11px "IBM Plex Sans",sans-serif;cursor:pointer}
+.v11-cv-chooser button[aria-pressed=true],.v11-cv-chooser button:hover,.v11-cv-chooser button:focus-visible{background:#174fca;color:white;border-color:#174fca}
+#v11-cv-count{display:block;margin-top:13px;font:10px "IBM Plex Mono",monospace;color:#374e57}
+.cv-card[hidden]{display:none!important}
+.cv-card:focus-visible{outline:3px solid #b94327;outline-offset:4px}
+.hero-copy .hero-actions{margin-top:24px}
+.hero-tags{margin-top:22px}
+@media(max-width:1050px){
+ .v11-world-jumpbar button span{display:none}
+ .v11-discover{display:block}
+ .v11-discover-actions{margin-top:14px;justify-content:flex-start}
+}
+@media(max-width:760px){
+ .v11-motion-toggle{font-size:9px;position:absolute;right:64px;top:16px;padding:8px 7px;z-index:20}
+ .v11-role{font-size:11px;line-height:1.35}
+ .v11-route-links{gap:11px;margin:8px 0}
+ .v11-route-links a{font-size:9px}
+ .v11-world-jumpbar{left:8px;right:8px;top:9px;transform:none;max-width:none;justify-content:space-between;padding:4px}
+ .v11-world-jumpbar>span{display:none}
+ .v11-world-jumpbar button{padding:7px 8px;flex:1}
+ .v11-evidence-lens{top:13%;width:91%;padding:9px}
+ .v11-lens-images img{height:130px}
+ .v11-lens-top span{font-size:9px}
+ .world-links{gap:10px 16px}
+ .world-links .v11-inspect{font-size:9px}
+ .v11-discover{padding:16px;margin-top:16px}
+ .v11-discover button{font-size:10px;padding:9px}
+ .v11-cv-chooser{padding:16px;margin:16px 0}
+ .v11-cv-chooser button{padding:9px 10px;font-size:10px}
+}
+@media(max-width:390px){
+ .v11-route-links a{font-size:8px}
+ .v11-motion-toggle{right:58px;font-size:8px}
+ .v11-lens-images{grid-template-columns:1fr}
+ .v11-lens-images img{height:100px}
+}
+html.v11-direct .hero{min-height:0;height:auto}
+html.v11-direct .hero-stage,html.v11-direct .hero-copy,html.v11-direct .hero-foot{transform:none!important;opacity:1!important}
+html.v11-direct .v8-world-sticky{height:auto!important;min-height:0!important;position:static!important;overflow:visible!important}
+html.v11-direct .v8-world-viewport{height:auto!important;overflow:visible!important}
+html.v11-direct .v8-world-length,html.v11-direct .v8-world-rail{display:none!important}
+html.v11-direct .world-slide{position:relative!important;min-height:640px!important;opacity:1!important;visibility:visible!important;transform:none!important;clip-path:none!important;mask-image:none!important;filter:none!important;border-bottom:2px solid #b6c6d2}
+html.v11-direct .world-slide .world-art{transform:none!important}
+html.v11-direct .world-slide .world-description,html.v11-direct .world-slide .world-scene-label{opacity:1!important}
+html.v11-direct .v11-world-jumpbar{position:sticky;top:70px;left:0;right:0;transform:none;width:max-content;margin:0 auto}
+html.v11-direct .world-slide,.html.v11-direct .hero-stage{scroll-margin-top:95px}
+html.v11-direct *,html.v11-direct *::before,html.v11-direct *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+@media(prefers-reduced-motion:reduce){
+ .v11-lens-images img{transition:none}
+ .v11-world-jumpbar{position:relative;left:auto;right:auto;transform:none;top:0;margin:auto}
+}
+
+.v11-handoff-ghost{position:fixed!important;z-index:46;pointer-events:none!important;visibility:hidden;opacity:0;transform-origin:top left;overflow:hidden;background:#f4f6f8;border:1px solid #16252d;box-shadow:4px 5px 0 #174fca;will-change:transform,opacity}
+.v11-handoff-ghost .stage-window-top{display:flex;line-height:20px;font-size:9px}
+.v11-handoff-ghost img{width:100%;height:calc(100% - 25px);object-fit:cover;display:block}
+@media(max-width:780px){.v11-handoff-ghost{display:none!important}}
+@media(prefers-reduced-motion:reduce){.v11-handoff-ghost{display:none!important}}
+html.v11-direct .v11-handoff-ghost{display:none!important}
+@media(max-width:760px){.header .header-cta{display:none!important}.v11-motion-toggle{top:20px;right:65px}}
+.v11-lens-images img{object-fit:cover;object-position:center}
+
+/* Final mobile visual hierarchy: navigation first, no overlapping CTAs. */
+@media(max-width:760px){
+ .header-cta,.header .header-cta{display:none!important}
+ .v11-motion-toggle{right:66px;top:18px;z-index:29;background:#faf9f6}
+ .hero-tags{display:none!important}
+ .v11-role{margin:9px 0 0}
+ .hero-copy .hero-actions{margin-top:20px}
+}
+@media(max-width:390px){
+ .v11-motion-toggle{right:60px;font-size:8px;padding:8px 6px}
+}
+
+/* Direct mode is a compact readable sequence, never a second sticky cinematic rail. */
+html.v11-direct .v11-world-jumpbar{position:relative!important;top:auto!important;left:auto!important;right:auto!important;transform:none!important;width:max-content;max-width:97%;margin:0 auto 7px}
+html.v11-direct .world-slide{min-height:0!important}
+html.v11-direct .world-art{position:relative!important;top:auto!important;height:clamp(190px,37svh,330px)!important;margin-top:52px!important;transform:none!important}
+html.v11-direct .world-description{position:relative!important;bottom:auto!important;min-height:0!important;padding:18px 4% 24px!important}
+html.v11-direct .v8-world-skip{display:none!important}
+@media(max-width:760px){
+ .v8-world-skip{display:none!important}
+}

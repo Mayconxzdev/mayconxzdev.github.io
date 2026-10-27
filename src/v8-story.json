@@ -1,0 +1,421 @@
+[
+  {
+    "key": "producao-operacional",
+    "short": "PRODUÇÃO",
+    "name": "Produção Operacional",
+    "kind": "AUTOMAÇÃO / OPERAÇÃO",
+    "headline": "Indicadores, ordens e acompanhamento.",
+    "description": "Organizei o percurso entre a visão geral da produção, os registros de cada ordem e o painel compartilhado.",
+    "states": [
+      [
+        "Painel de dados",
+        "Indicadores de andamento",
+        "/assets/evidence/producao-relatorio-mensal-clientes-desfocados.webp",
+        "Visão consolidada de indicadores, setores e ordens, com dados de clientes desfocados.",
+        {
+          "width": 1202,
+          "height": 832
+        },
+        null,
+        {
+          "title": "O andamento da produção em um olhar.",
+          "context": "Indicadores de ordens, prazos e setores ajudam a identificar o que merece atenção antes de abrir cada registro."
+        },
+        {
+          "fragments": [
+            "/assets/v8/producao-operacional-1-1.webp",
+            "/assets/v8/producao-operacional-1-2.webp"
+          ]
+        }
+      ],
+      [
+        "Ordens de produção",
+        "Onde tudo começa",
+        "/assets/evidence/producao-tela-inicial.png",
+        "Lista de ordens em diferentes estados. A equipe consulta o andamento de cada registro.",
+        {
+          "width": 1920,
+          "height": 1032
+        },
+        null,
+        {
+          "title": "Cada ordem tem uma situação e um próximo passo.",
+          "context": "A lista reúne dados da OP, modelo, datas, setor e pendências num ponto de consulta para a rotina."
+        },
+        {
+          "fragments": [
+            "/assets/v8/producao-operacional-2-1.webp",
+            "/assets/v8/producao-operacional-2-2.webp"
+          ]
+        }
+      ],
+      [
+        "Acompanhamento na TV",
+        "Produção à vista",
+        "/assets/evidence/producao-tv-foco.png",
+        "Painel de acompanhamento para visualizar as ordens e seus setores durante o trabalho.",
+        {
+          "width": 1920,
+          "height": 1080
+        },
+        null,
+        {
+          "title": "Informação que chega ao chão de produção.",
+          "context": "A visão de TV destaca estados e prioridades sem exigir que a equipe abra a tela administrativa."
+        },
+        {
+          "fragments": [
+            "/assets/v8/producao-operacional-3-1.webp",
+            "/assets/v8/producao-operacional-3-2.webp"
+          ]
+        }
+      ],
+      [
+        "Setores e configuração",
+        "Uma tela que acompanha a operação",
+        "/assets/evidence/producao-personalizacao-setores.png",
+        "Configuração de setores, ordem e cores para adaptar a visualização da operação.",
+        {
+          "width": 1920,
+          "height": 1032
+        },
+        null,
+        {
+          "title": "A configuração reflete a organização da equipe.",
+          "context": "Setores, ordem e cores definem como a operação é acompanhada; esta captura mostra a configuração documentada no projeto."
+        },
+        {
+          "fragments": []
+        }
+      ]
+    ],
+    "accent": "#4c86ff",
+    "entry": "cut",
+    "routeLabel": "Indicadores → Ordens → TV → Setores"
+  },
+  {
+    "key": "manutencao-em-campo",
+    "short": "MANUTENÇÃO",
+    "name": "Manutenção em Campo",
+    "kind": "SISTEMAS / INSPEÇÃO",
+    "headline": "Identificar, inspecionar e consultar.",
+    "description": "Estruturei a consulta de equipamentos, os checklists e o histórico para apoiar quem trabalha em campo.",
+    "states": [
+      [
+        "Painel de ativos",
+        "Visão do que precisa de atenção",
+        "/assets/evidence/campo-dashboard.webp",
+        "Ponto de partida para consultar registros, tarefas e equipamentos.",
+        {
+          "width": 1440,
+          "height": 1054
+        },
+        null,
+        {
+          "title": "Uma visão do que precisa ser feito em campo.",
+          "context": "O painel reúne tarefas, alertas e acessos para organizar as inspeções e o acompanhamento dos ativos."
+        },
+        {
+          "fragments": [
+            "/assets/v8/manutencao-em-campo-1-1.webp",
+            "/assets/v8/manutencao-em-campo-1-2.webp"
+          ]
+        }
+      ],
+      [
+        "Checklist de campo",
+        "A verificação passo a passo",
+        "/assets/evidence/campo-checklist.webp",
+        "Interface de inspeção com itens que precisam ser conferidos.",
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        null,
+        {
+          "title": "A inspeção começa com um roteiro claro.",
+          "context": "Checklists e registros por equipamento ajudam a não perder etapas durante a verificação."
+        },
+        {
+          "fragments": [
+            "/assets/v8/manutencao-em-campo-2-1.webp",
+            "/assets/v8/manutencao-em-campo-2-2.webp"
+          ]
+        }
+      ],
+      [
+        "Histórico",
+        "O que foi feito permanece",
+        "/assets/evidence/campo-historico.webp",
+        "Registros de atividades concluídas e informações para consulta posterior.",
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        null,
+        {
+          "title": "O histórico acompanha o equipamento.",
+          "context": "Inspeções anteriores e itens registrados ficam disponíveis para consulta antes do próximo atendimento."
+        },
+        {
+          "fragments": [
+            "/assets/v8/manutencao-em-campo-3-1.webp",
+            "/assets/v8/manutencao-em-campo-3-2.webp"
+          ]
+        }
+      ]
+    ],
+    "accent": "#d77843",
+    "entry": "rise",
+    "routeLabel": "Ativos → Checklist → Histórico"
+  },
+  {
+    "key": "belarc-inventory",
+    "short": "INFRAESTRUTURA",
+    "name": "Belarc Inventory",
+    "kind": "INVENTÁRIO / SUPORTE",
+    "headline": "Do computador ao atendimento.",
+    "description": "Co-desenvolvi inventário e suporte para relacionar o equipamento às informações de que o atendimento precisa.",
+    "states": [
+      [
+        "Dashboard",
+        "Visão da infraestrutura",
+        "/assets/evidence/belarc-bi.jpg",
+        "Resumo visual com dados de estações e indicadores de suporte.",
+        {
+          "width": 1600,
+          "height": 900
+        },
+        null,
+        {
+          "title": "Primeiro, o panorama dos computadores e chamados.",
+          "context": "Indicadores resumem o inventário e os atendimentos, ajudando o suporte a enxergar a situação geral."
+        },
+        {
+          "fragments": [
+            "/assets/v8/belarc-inventory-1-1.webp",
+            "/assets/v8/belarc-inventory-1-2.webp"
+          ]
+        }
+      ],
+      [
+        "Inventário",
+        "Olhar uma máquina de perto",
+        "/assets/evidence/belarc-inventario.jpg",
+        "Detalhes de estação consultáveis para apoiar diagnóstico e manutenção.",
+        {
+          "width": 1600,
+          "height": 900
+        },
+        null,
+        {
+          "title": "Os detalhes do computador, em um lugar.",
+          "context": "O inventário permite consultar informações da estação para orientar diagnóstico e suporte."
+        },
+        {
+          "fragments": [
+            "/assets/v8/belarc-inventory-3-1.webp",
+            "/assets/v8/belarc-inventory-3-2.webp"
+          ]
+        }
+      ],
+      [
+        "Suporte / chamado",
+        "Quando alguém precisa de ajuda",
+        "/assets/evidence/belarc-portal.jpg",
+        "Formulário para registrar um atendimento e orientar sua resolução.",
+        {
+          "width": 1600,
+          "height": 1000
+        },
+        null,
+        {
+          "title": "Abrir um chamado sem perder o contexto da máquina.",
+          "context": "O formulário reúne equipamento, prioridade e descrição do problema para iniciar o atendimento."
+        },
+        {
+          "fragments": [
+            "/assets/v8/belarc-inventory-2-1.webp",
+            "/assets/v8/belarc-inventory-2-2.webp"
+          ]
+        }
+      ],
+      [
+        "Kanban de chamados",
+        "Acompanhar o trabalho",
+        "/assets/evidence/belarc-kanban.jpg",
+        "Quadro de etapas para acompanhar os chamados registrados.",
+        {
+          "width": 1600,
+          "height": 900
+        },
+        null,
+        {
+          "title": "Os atendimentos seguem etapas visíveis.",
+          "context": "O quadro Kanban separa chamados por situação e facilita acompanhar o que ainda falta resolver."
+        },
+        {
+          "fragments": [
+            "/assets/v8/belarc-inventory-4-1.webp",
+            "/assets/v8/belarc-inventory-4-2.webp"
+          ]
+        }
+      ]
+    ],
+    "accent": "#e1aa35",
+    "entry": "scan",
+    "routeLabel": "Panorama → Equipamento → Atendimento"
+  },
+  {
+    "key": "zero21fotos",
+    "short": "WEBSITE / FOTOGRAFIA",
+    "name": "ZERO21FOTOS",
+    "kind": "DESIGN WEB / CLIENTE",
+    "headline": "Do fotógrafo ao evento.",
+    "description": "Desenvolvi a presença digital do fotógrafo e o catálogo que leva às galerias de venda.",
+    "states": [
+      [
+        "A pessoa por trás de cada imagem",
+        "A pessoa por trás de cada imagem",
+        "/assets/live/zero21-v15-sobre.webp",
+        "A identidade e o olhar do fotógrafo aparecem na página Sobre do site publicado.",
+        {
+          "width": 1260,
+          "height": 975
+        },
+        null,
+        {
+          "title": "A pessoa por trás de cada imagem",
+          "context": "A identidade e o olhar do fotógrafo aparecem na página Sobre do site publicado."
+        },
+        {
+          "fragments": [
+            "/assets/v8/zero21fotos-1-1.webp",
+            "/assets/v8/zero21fotos-1-2.webp"
+          ]
+        }
+      ],
+      [
+        "Encontrar um evento",
+        "Encontrar um evento",
+        "/assets/live/zero21-v15-eventos-entrada.webp",
+        "A página de eventos apresenta busca, categorias e capas para encontrar a cobertura desejada.",
+        {
+          "width": 1260,
+          "height": 840
+        },
+        null,
+        {
+          "title": "Encontrar um evento",
+          "context": "A página de eventos apresenta busca, categorias e capas para encontrar a cobertura desejada."
+        },
+        {
+          "fragments": [
+            "/assets/v8/zero21fotos-2-1.webp",
+            "/assets/v8/zero21fotos-2-2.webp"
+          ]
+        }
+      ],
+      [
+        "Explorar as coberturas",
+        "Explorar as coberturas",
+        "/assets/live/zero21-v15-eventos-catalogo.webp",
+        "A grade organiza coberturas e permite abrir o evento na plataforma de venda de fotos.",
+        {
+          "width": 1260,
+          "height": 960
+        },
+        null,
+        {
+          "title": "Explorar as coberturas",
+          "context": "A grade organiza coberturas e permite abrir o evento na plataforma de venda de fotos."
+        },
+        {
+          "fragments": [
+            "/assets/v8/zero21fotos-3-1.webp",
+            "/assets/v8/zero21fotos-3-2.webp"
+          ]
+        }
+      ]
+    ],
+    "accent": "#f5ac8d",
+    "entry": "reveal",
+    "routeLabel": "Fotógrafo → Eventos → Galerias"
+  },
+  {
+    "key": "hubora",
+    "short": "PRODUTO WEB",
+    "name": "Hubora",
+    "kind": "PLATAFORMA / ENTRETENIMENTO",
+    "headline": "Descobrir, guardar e retomar.",
+    "description": "Criei uma biblioteca pessoal para explorar conteúdos e organizar o que quero acompanhar.",
+    "states": [
+      [
+        "Descoberta",
+        "A porta de entrada",
+        "/assets/evidence/hubora-home.webp",
+        "Página inicial e recomendações de filmes, séries e outros conteúdos.",
+        {
+          "width": 1600,
+          "height": 792
+        },
+        null,
+        {
+          "title": "Um ponto de partida para descobrir conteúdo.",
+          "context": "A tela inicial reúne recomendações, categorias e caminhos para explorar filmes, séries e jogos."
+        },
+        {
+          "fragments": [
+            "/assets/v8/hubora-1-1.webp",
+            "/assets/v8/hubora-1-2.webp"
+          ]
+        }
+      ],
+      [
+        "Biblioteca pessoal",
+        "Conteúdos organizados",
+        "/assets/evidence/hubora-library.webp",
+        "Visão dos títulos adicionados à biblioteca do usuário.",
+        {
+          "width": 1600,
+          "height": 792
+        },
+        null,
+        {
+          "title": "O que foi salvo passa a ter seu lugar.",
+          "context": "A biblioteca organiza títulos escolhidos pelo usuário numa visão direta e navegável."
+        },
+        {
+          "fragments": [
+            "/assets/v8/hubora-2-1.webp",
+            "/assets/v8/hubora-2-2.webp"
+          ]
+        }
+      ],
+      [
+        "Detalhes",
+        "Aprofundar o conteúdo",
+        "/assets/evidence/hubora-details.webp",
+        "Página com informações de um título e ações relacionadas.",
+        {
+          "width": 1600,
+          "height": 784
+        },
+        null,
+        {
+          "title": "Mais contexto antes de escolher um título.",
+          "context": "A página de detalhes reúne informações e ações relacionadas ao conteúdo selecionado."
+        },
+        {
+          "fragments": [
+            "/assets/v8/hubora-3-1.webp",
+            "/assets/v8/hubora-3-2.webp"
+          ]
+        }
+      ]
+    ],
+    "accent": "#ab88f6",
+    "entry": "cascade",
+    "routeLabel": "Descoberta → Biblioteca → Detalhes"
+  }
+]

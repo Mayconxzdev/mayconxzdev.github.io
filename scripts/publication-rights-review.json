@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-26",
+  "status": "cleared",
+  "policy": "Owner authorized the complete publication on 2026-10-26. Existing privacy quarantine and third-party attribution remain mandatory. Approval applies to the exact media hashes in media-release-inventory.json; new or changed media require review.",
+  "items": [
+    {
+      "id": "brasil-as-claras-screenshot",
+      "status": "cleared",
+      "path": "public/assets/portfolio-approved/brasil_as_claras_01_desktop.png",
+      "sha256": "15e153769e95ec2878d3874001636261ead26c3783b847d873e50725486343ba",
+      "summary": "Owner explicitly released this screenshot on 2026-10-26; inspected again for private content. Geraldo Magela / Agencia Senado and CC BY 2.0 credit remains visible in screenshot and case caption."
+    },
+    {
+      "id": "videomind-screenshot",
+      "status": "cleared",
+      "path": "public/assets/portfolio-approved/videomind_ui_timeline.png",
+      "sha256": "ff65c0189f77df8b062596e0b90baca51b54841da347ecece60b1c135b8312e5",
+      "summary": "Owner explicitly released this screenshot on 2026-10-26; inspected again. Demonstration media names visible, no client credentials or commercial data observed; project remains described as in development."
+    },
+    {
+      "id": "remaining-customer-and-third-party-media",
+      "status": "cleared",
+      "path": "scripts/media-release-inventory.json",
+      "summary": "Existing authorization of Vesper, Vent Rio and ZERO21FOTOS declared by owner on 2026-10-25; existing public/demo screenshots reviewed in V15 audit. Exact inventory retained, sensitive originals stay in private-review outside public/Git."
+    }
+  ],
+  "clearedBy": "Portfolio owner authorization in current conversation plus visual/privacy review",
+  "clearanceEvidence": [
+    "Owner explicitly authorized complete update and both named screenshots on 2026-10-26.",
+    "Previous owner authorization for Vesper, Vent Rio and ZERO21FOTOS on 2026-10-25.",
+    "ASSETS.md documents attribution, display scope and quarantine.",
+    "scripts/media-release-inventory.json records exact image hashes."
+  ]
+}

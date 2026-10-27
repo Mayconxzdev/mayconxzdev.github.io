@@ -1,0 +1,36 @@
+{
+  "name": "laboratorio-vivo-maycon",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 8789",
+    "build": "node scripts/release-gate.mjs && node scripts/prepare-public.mjs && node scripts/media-privacy.mjs && node scripts/generate-cases.mjs && vite build && node scripts/write-build-info.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 4214 --strictPort",
+    "preview:v15": "vite preview --host 127.0.0.1 --port 4214 --strictPort",
+    "audit": "node scripts/audit.mjs && node scripts/audit-evidence.mjs",
+    "audit:v15": "npm run audit && node scripts/qa-v14-cases.cjs && node scripts/qa-v14-handoffs.cjs && node scripts/a11y-v14.cjs && node scripts/qa-v14-cv.cjs",
+    "test:v15": "node scripts/qa-v15.cjs && node scripts/qa-v14.cjs",
+    "release:check": "node scripts/release-gate.mjs",
+    "test:mission": "node scripts/qa-mission.cjs",
+    "test:motion": "node scripts/qa-motion-mission.cjs",
+    "test:motion-gallery": "node scripts/qa-motion-gallery-fix.cjs",
+    "measure:mission": "node scripts/performance-mission.cjs",
+    "test": "node scripts/test-local.mjs",
+    "test:full": "node scripts/test-local.mjs --full",
+    "resumes:build": "python scripts/build-resumes.py",
+    "resumes:verify": "python scripts/verify-resumes.py"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "playwright": "^1.56.1",
+    "vite": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "description": "Portfolio de Maycon Ferreira: sistemas, automacao, integracoes e IA aplicada."
+}

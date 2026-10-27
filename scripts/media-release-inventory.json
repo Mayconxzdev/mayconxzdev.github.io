@@ -1,0 +1,582 @@
+{
+  "reviewDate": "2026-10-26",
+  "scope": "Existing portfolio media, sanitized demonstrations and the two owner-approved project captures. No private-review files are included.",
+  "items": [
+    {
+      "path": "assets/art/workflow-sculpture.webp",
+      "sha256": "f9fe0a571c90eebf378e047e52e6e2ab5d1f2ad04510f03473f777ecbcabcfc2"
+    },
+    {
+      "path": "assets/evidence/belarc-bi.jpg",
+      "sha256": "3c0ffc73bfd0ff9c33f0f5b0abf3bb477f208fdcaac7cd4bbabe04048032e35d"
+    },
+    {
+      "path": "assets/evidence/belarc-frota.jpg",
+      "sha256": "ab701017e35632dada0e37c0c60b576b6e82fb89c9ba18bc4f63033e834749b5"
+    },
+    {
+      "path": "assets/evidence/belarc-inventario.jpg",
+      "sha256": "ab396ccdafe001828e13af9231eafa743b4884d1b6e7a8b8ce9c950b947bcaa7"
+    },
+    {
+      "path": "assets/evidence/belarc-kanban.jpg",
+      "sha256": "e7b95d2a0f6541502013ac9f31cbe87abadd8a68dcdbaeea703f4b01f5dffa7e"
+    },
+    {
+      "path": "assets/evidence/belarc-portal.jpg",
+      "sha256": "96d253fb7cbcc1519a4c17d919f8f2e347f197e05eb8562d9d5d5606c54aca5f"
+    },
+    {
+      "path": "assets/evidence/belarc-setor.jpg",
+      "sha256": "b29d8f477a173109d3bd700332aa83e1fc2b8f4fe542963b20356bbc3f021a39"
+    },
+    {
+      "path": "assets/evidence/campo-ativos.webp",
+      "sha256": "155e7145db9b8caea4abd1e7e3469efdca8d1e5bde868d8ba458a2891f80e7e5"
+    },
+    {
+      "path": "assets/evidence/campo-checklist.webp",
+      "sha256": "024231cfd307a849a82e2e01187967052b7621bd1fd161ff1baed44549437978"
+    },
+    {
+      "path": "assets/evidence/campo-dashboard.webp",
+      "sha256": "057e7f68ee2c5a3cf5a5af4709541f63b3af1eb1563b8d3c95076ee02da0e355"
+    },
+    {
+      "path": "assets/evidence/campo-historico.webp",
+      "sha256": "87b747506a772878666042d7428dbd90b63f7d4dd4a06e2e532f9a7accfda3d1"
+    },
+    {
+      "path": "assets/evidence/carreira-product-overview.svg",
+      "sha256": "94d55612a29549061a5734567951ea0fbb2dde88ef1aaeb9876393874a611734"
+    },
+    {
+      "path": "assets/evidence/central-iso-dashboard.webp",
+      "sha256": "f7482237e52315fff920c1f71d967bca9fafac43bc4b931de6ed0428a2e937bb"
+    },
+    {
+      "path": "assets/evidence/central-iso-overview.webp",
+      "sha256": "f7482237e52315fff920c1f71d967bca9fafac43bc4b931de6ed0428a2e937bb"
+    },
+    {
+      "path": "assets/evidence/compass-athena-data-sanitized.webp",
+      "sha256": "e5fa3563082fe7327453ee04b7ef4468f3e70a12ed1d60ffd15e21ff583248e2"
+    },
+    {
+      "path": "assets/evidence/compass-dashboard.webp",
+      "sha256": "6a4ef81399e9467c0cc3ab85b0280475b8db7657c8eb8cd8f5fc976e29097474"
+    },
+    {
+      "path": "assets/evidence/compass-runs-sanitized.webp",
+      "sha256": "7b358c5c5d225e5b7c79a11811d546bfb3478b4798f9b707ebe26af5badf5498"
+    },
+    {
+      "path": "assets/evidence/compass-s3-sanitized.webp",
+      "sha256": "b39bb5f079e855ac3d09b0d3877e472431749637c6cf34e005784aaa59d54f1d"
+    },
+    {
+      "path": "assets/evidence/compras-acompanhamento.png",
+      "sha256": "2e80d210aed0b4a4f21911f7c10e547890a8c031d1ae51301edcfff64e143907"
+    },
+    {
+      "path": "assets/evidence/compras-cotacao-frete.png",
+      "sha256": "6d817d9a43a113146e1f4047e59e2db341797bd7a79d0d57de4dc30f2259df1d"
+    },
+    {
+      "path": "assets/evidence/compras-painel-inicial.png",
+      "sha256": "a0e460ec1fb6d80184ea06b46e0890b5b3ba5ddc59edc4a1e04c328e2b794072"
+    },
+    {
+      "path": "assets/evidence/helpdesk-chat.webp",
+      "sha256": "436d4451cfe792c4edce980bc5336477f2691a16c2c9d88f178d3a2353d2ffe5"
+    },
+    {
+      "path": "assets/evidence/helpdesk-portal.webp",
+      "sha256": "8b23525c96181af9baa69ea538263d5541a305ebc6da783258e26c953e1ca14f"
+    },
+    {
+      "path": "assets/evidence/helpdesk-shortcuts.webp",
+      "sha256": "e64628fc3e09c96ae08e2d4d35eeca282bf093f5bef4dccfab7e0af3023dc21b"
+    },
+    {
+      "path": "assets/evidence/helpdesk-ticket.webp",
+      "sha256": "ae95b54626edfea3ff97502dfafd01dca73e8ec720e065872edbb048f152d069"
+    },
+    {
+      "path": "assets/evidence/hubora-details.webp",
+      "sha256": "9a81dd7b035089057b7d361961bab91305655470425827f7c85bf239ecb82b36"
+    },
+    {
+      "path": "assets/evidence/hubora-games.webp",
+      "sha256": "60f8c143135a67507ea8f285bdae7f8014128aa1ee82e0318a97915fbf6ba995"
+    },
+    {
+      "path": "assets/evidence/hubora-home.webp",
+      "sha256": "7f40efad71834991eb466218b442252c7c2c5e55e6073bca537d93494ff506a9"
+    },
+    {
+      "path": "assets/evidence/hubora-library.webp",
+      "sha256": "f106a91ef04358e21d20e8fada1c37167c44236354af0a5c1f8dd54cc87d42c9"
+    },
+    {
+      "path": "assets/evidence/hubora-releases.webp",
+      "sha256": "fe5c057cabb315f25e46e04aac3144f00cddb1d98c47776f75e84dfbeae186fd"
+    },
+    {
+      "path": "assets/evidence/hubora-sources.webp",
+      "sha256": "d0c6372af23a77ec719cb0d15536a86f2d95634db67ab143cbd892a850d4fb4e"
+    },
+    {
+      "path": "assets/evidence/mala-dashboard.webp",
+      "sha256": "8e88a3789dd1d79a8aa94f70966aeb1c6ad6857a4ca4e4a56682fd77f96a3981"
+    },
+    {
+      "path": "assets/evidence/mala-destinatarios.webp",
+      "sha256": "1bc91931e1d7d42a49294c027b9aa06f20b40bc0010f3a06db9b52b811cde040"
+    },
+    {
+      "path": "assets/evidence/mala-editor.webp",
+      "sha256": "2fb328f11334173e9683301464dabe20ee0beb8f0e4c34504354b4eb96370df4"
+    },
+    {
+      "path": "assets/evidence/mala-fila.webp",
+      "sha256": "caa2028e943579ac50ca97f26ea5e6991c76bde0a0efe44139a8e82dfe24bb65"
+    },
+    {
+      "path": "assets/evidence/mala-workflow.webp",
+      "sha256": "d9bacaf823bdf491cee8a1a6bccb33816abc6225d1f9805d6331538778decd4f"
+    },
+    {
+      "path": "assets/evidence/manutencao-chat.svg",
+      "sha256": "def7ba1d18ff0ff1b25c95052f0fa662e3f1e46dcef00795de6271a11417769b"
+    },
+    {
+      "path": "assets/evidence/manutencao-dashboard.svg",
+      "sha256": "7d53c0f071076acd1ac75356ac4279e87c73a1b2ec221ea8d3c60210e87081f9"
+    },
+    {
+      "path": "assets/evidence/manutencao-document.svg",
+      "sha256": "068be0f3729f31a8b1731a2d89df1451dc79fdab0b3a1c4b61cda4191069a740"
+    },
+    {
+      "path": "assets/evidence/manutencao-equipment.svg",
+      "sha256": "aee6b9e96ecc6126033a59b30d3a450bc71ce457e8529192d565dcf8ff369942"
+    },
+    {
+      "path": "assets/evidence/portfolio-cases.webp",
+      "sha256": "42fffdca728f9d735c5cb483e1f9203d1bf2203d26a7216d48e7b34f3d0aa60f"
+    },
+    {
+      "path": "assets/evidence/portfolio-dark.webp",
+      "sha256": "1e4dbc3bb1e052ce7576fb321b34a1f07724b47adb5a95b010c4c013fdc3b990"
+    },
+    {
+      "path": "assets/evidence/portfolio-home.webp",
+      "sha256": "adb80a1479331de052884e310dc2d2be01d682f1f294f7afb0a02e67d476cf08"
+    },
+    {
+      "path": "assets/evidence/portfolio-mobile.webp",
+      "sha256": "03dfb1770aec10c4536356b677a64e6815bc5df93e44f7a5daff96cefe1e66a0"
+    },
+    {
+      "path": "assets/evidence/postagem-actions.webp",
+      "sha256": "083149f52336e5ff4e320d61a7d3f558d3cd9cb3bfd706739bdb0e0939f15342"
+    },
+    {
+      "path": "assets/evidence/postagem-biblioteca.webp",
+      "sha256": "2f49df1b1e39da3d1d5f15f271af4e626cda2ddc98e9723b1a84734c70ed8b18"
+    },
+    {
+      "path": "assets/evidence/postagem-editor.webp",
+      "sha256": "064be070258b6148173778c88b9a4884b67cf5ae36c76847818aa33f9c39989c"
+    },
+    {
+      "path": "assets/evidence/postagem-files.webp",
+      "sha256": "a8a98a3b07a762dd20a8e5f0e5e3eab56787181c19a8e354d0e48e7144b4aa8c"
+    },
+    {
+      "path": "assets/evidence/postagem-rapida.webp",
+      "sha256": "8351fb663d2232e3245d5051b9c9d89cfe64aba41ec6461f4b1488047b52b9a4"
+    },
+    {
+      "path": "assets/evidence/procureflow-conflict.webp",
+      "sha256": "95cabab87e34f2731c826afcc5a57c5daaeaaf05feb3dbbadb89d8fa686a7ef2"
+    },
+    {
+      "path": "assets/evidence/procureflow-new.webp",
+      "sha256": "9af13bb925d135b7284c6818f89a562b94db504e3b175856f4b3fcf61348a711"
+    },
+    {
+      "path": "assets/evidence/procureflow-search.webp",
+      "sha256": "648ea1df44a3ef26214d3715d5d396d576d8486983be201980b5abb67669f807"
+    },
+    {
+      "path": "assets/evidence/producao-lembrete-agendamento.png",
+      "sha256": "a3b590033f10dae59fb205a239e3923e25002f55d7435a90d77b19e7a58ac870"
+    },
+    {
+      "path": "assets/evidence/producao-lembretes-configuracao.png",
+      "sha256": "b51037d3cda2294fdee13f6d1c85bd9db19acecc128aadf2d678b41fc0deda74"
+    },
+    {
+      "path": "assets/evidence/producao-personalizacao-setores.png",
+      "sha256": "1dfb96883777ebd35341ce21b15b84bc522b79607402f502faf246be6a1707c2"
+    },
+    {
+      "path": "assets/evidence/producao-relatorio-mensal-clientes-desfocados-640.webp",
+      "sha256": "9547eeb471fb3c2e22ef191b24d9e0c9dac05f2961962381545bfa0779c694bf"
+    },
+    {
+      "path": "assets/evidence/producao-relatorio-mensal-clientes-desfocados-960.webp",
+      "sha256": "b8a53571c40fce598be9e30a8c7ccda822e67724cdb88db4150435010057a627"
+    },
+    {
+      "path": "assets/evidence/producao-relatorio-mensal-clientes-desfocados.png",
+      "sha256": "a0e592a47d2c2f2ac24034b300626d9ea3c6e0a6ea527b978a0adb5587bb8ca6"
+    },
+    {
+      "path": "assets/evidence/producao-relatorio-mensal-clientes-desfocados.webp",
+      "sha256": "3917dbaf3bb3c5c3eeee1523c252aaa6036aae618a2159a197d6c0cfe908bfea"
+    },
+    {
+      "path": "assets/evidence/producao-tela-inicial.png",
+      "sha256": "e6663a52efaeb345b06730f9f08c99379fba855e2158a09a424dce69449bb101"
+    },
+    {
+      "path": "assets/evidence/producao-tv-foco.png",
+      "sha256": "22364ba4a20d36df1d2930d50f6726a40c0cb9f2737a992ba366cceb7de0a044"
+    },
+    {
+      "path": "assets/evidence/proposta-envio-sanitizada.webp",
+      "sha256": "d6690278a4f7fc988812d51cc8b9a8323a6e4dce04f553d7904653e9d67f616d"
+    },
+    {
+      "path": "assets/evidence/proposta-revisao-sanitizada.webp",
+      "sha256": "a890121cb763bb327bb4b25a316dfe4fdb649f0630cc83367c20b4ca58443d2a"
+    },
+    {
+      "path": "assets/evidence/tradutor-documento-pronto.png",
+      "sha256": "d82fc0420caf538ae467debb9acb5772d1a0710dea7ed50cedc6a8d7fc5b8288"
+    },
+    {
+      "path": "assets/evidence/tradutor-interface-bilingue.png",
+      "sha256": "0fb56305df8ea6d2370d1208635852e1ebfbd067837a8d0a40daedbf6d0fc201"
+    },
+    {
+      "path": "assets/evidence/ventrio-home-desktop.webp",
+      "sha256": "4b836accf25ac70babcfde8a473b4d64690cd54d3c81447f622e86d623a38c0b"
+    },
+    {
+      "path": "assets/evidence/ventrio-home-mobile.webp",
+      "sha256": "3131e7133dfa1b60d7373394f699dbd3280ae2435507b47dd0fda92b55c944ab"
+    },
+    {
+      "path": "assets/evidence/ventrio-solutions.webp",
+      "sha256": "8f94fcd90316288b04c547fb04049663e7e37d99aae1d7856747c091d431dfcc"
+    },
+    {
+      "path": "assets/evidence/vesper-home-desktop.webp",
+      "sha256": "49970642279a4807f759defe2dc287dd2285f3500fb8b7ca3550b24d0d51b9f9"
+    },
+    {
+      "path": "assets/evidence/vesper-home-mobile.webp",
+      "sha256": "6632fb3e2cc9aecb0853c9ba122f8f76f844df4d8986448003c39dc4d727fb64"
+    },
+    {
+      "path": "assets/evidence/vesper-manutencao-dashboard.webp",
+      "sha256": "94c180ebc907f1eb054ef001e2f2a0de78ebdf3d4159a18c8a4a75a4df0818cd"
+    },
+    {
+      "path": "assets/evidence/vesper-manutencao-historico.webp",
+      "sha256": "40074473e506d09e54bfaa2b84007724a703ca43f6f06e143d35ca10195787c1"
+    },
+    {
+      "path": "assets/evidence/vesper-manutencao-ordem.webp",
+      "sha256": "32732056fc1a418a000157dafe6d959c61f34d4e0cec124fa181d697bbdc156e"
+    },
+    {
+      "path": "assets/evidence/vesper-manutencao-planejamento.webp",
+      "sha256": "dfe10187a83b01dd9d11c87890c11aba4b2d0ffb4d468b2f5f32eeaaa613bbfc"
+    },
+    {
+      "path": "assets/evidence/vesper-solutions.webp",
+      "sha256": "a344d2cca5ae75a3963e9b317a6cd82a4244db543c26252529dc5e6146d004c8"
+    },
+    {
+      "path": "assets/favicon.svg",
+      "sha256": "d0f0d77dc33b9874a35818047976472e8a35de65be90bbcdb5e5be7bd24ac579"
+    },
+    {
+      "path": "assets/live/zero21-contato.webp",
+      "sha256": "b04685788883143889220584e2d12185403f84a776ba0d7512af9e6094f3972e"
+    },
+    {
+      "path": "assets/live/zero21-evento-cavalgada.webp",
+      "sha256": "2a555ef22b326f6b2eee616aa8e0ccfcfb84121a4092828a15c8840d0822789d"
+    },
+    {
+      "path": "assets/live/zero21-evento-cavalhada.webp",
+      "sha256": "c0a41412ec5ef0ffaebc9539c453ca30c7470395536c3842fd5441fb6de678f0"
+    },
+    {
+      "path": "assets/live/zero21-evento-show.webp",
+      "sha256": "c1ed663ab7435e7b8e2642d67ba37261c09ed71a297e62f6f07a21a7c5422a9c"
+    },
+    {
+      "path": "assets/live/zero21-eventos-mobile-v6.webp",
+      "sha256": "0e7bef8d7ba633d4496e83c40c642946166bc418c20e1fd9c8df5cc0e57491d8"
+    },
+    {
+      "path": "assets/live/zero21-eventos.webp",
+      "sha256": "b4c10728a836824272f5f1ab672a479d191152b34fe72223c5a7a58291f7aa02"
+    },
+    {
+      "path": "assets/live/zero21-fotografo-acao.webp",
+      "sha256": "e97d421654ff8c9933174a92c63484870806cca40bf72897d1ca747b55f43390"
+    },
+    {
+      "path": "assets/live/zero21-fotografo-retrato.webp",
+      "sha256": "5f08b8153c75b26d5387548782c80daa692a3b594f7cb53c7ec3df00fa8bbcdc"
+    },
+    {
+      "path": "assets/live/zero21-home-contexto.webp",
+      "sha256": "5f55cda08533fa230ecb3edc4f86c33e3662c9a5f2edd19e0ad1a491ab6e151e"
+    },
+    {
+      "path": "assets/live/zero21-home-mobile-v6.webp",
+      "sha256": "1b666ab9eeff93c06d34c8b8b937f466611a623a94634bd03619ce2b60aa9021"
+    },
+    {
+      "path": "assets/live/zero21-home.webp",
+      "sha256": "3da777ededc1bebf67f735d8d8935934dac244929da9915a2b95f5569ea2b0ab"
+    },
+    {
+      "path": "assets/live/zero21-mobile.webp",
+      "sha256": "26878f9148a9bdb9a1c3651f7d9042052aa5647e7a85888fd1ad01f5a88f886c"
+    },
+    {
+      "path": "assets/live/zero21-portfolio.webp",
+      "sha256": "b20ed433c6ec79ea27ebf1a3a2e5c54f1890206419a232199536ef0f7a891e97"
+    },
+    {
+      "path": "assets/live/zero21-sobre.webp",
+      "sha256": "15f43d4784f96cb9c924ed2065934e30057172f1401b4ecefdd27c6cf1c93159"
+    },
+    {
+      "path": "assets/live/zero21-v15-eventos-catalogo.png",
+      "sha256": "4506c8cc80545f251ddc3eee966efc3fe63dc54b17db06e8f48cc033f5312ee0"
+    },
+    {
+      "path": "assets/live/zero21-v15-eventos-catalogo.webp",
+      "sha256": "97e61f5783d8c261ed72eb06dc2c094bcd37ee0e15268a83d15702c1ff1a3fff"
+    },
+    {
+      "path": "assets/live/zero21-v15-eventos-entrada.png",
+      "sha256": "c5636939c50d28adf7a9eb751e22d082cc90f3caaf9652fde026136869356a85"
+    },
+    {
+      "path": "assets/live/zero21-v15-eventos-entrada.webp",
+      "sha256": "a39464f0127d7a8e5488a04cc6a02598e7c2e618587888c9257df5cf4ace9f0a"
+    },
+    {
+      "path": "assets/live/zero21-v15-sobre.png",
+      "sha256": "605149d605fbc8174ae2c6b3300c2abd910e8fe0e0e723309ab626b740048490"
+    },
+    {
+      "path": "assets/live/zero21-v15-sobre.webp",
+      "sha256": "1e8c961b7dc8a4a2f118f96e06aa763c920ae0758bee678fe2ab5b00e1d5c120"
+    },
+    {
+      "path": "assets/portfolio-approved/brasil_as_claras_01_desktop.png",
+      "sha256": "15e153769e95ec2878d3874001636261ead26c3783b847d873e50725486343ba"
+    },
+    {
+      "path": "assets/portfolio-approved/videomind_ui_timeline.png",
+      "sha256": "ff65c0189f77df8b062596e0b90baca51b54841da347ecece60b1c135b8312e5"
+    },
+    {
+      "path": "assets/profile/mf-profile.svg",
+      "sha256": "9f0562fb956e31c43825bcce9aeea87bc32afc3e8eb528c57dbb8dc59a493809"
+    },
+    {
+      "path": "assets/projects/compass-dashboard.webp",
+      "sha256": "6a4ef81399e9467c0cc3ab85b0280475b8db7657c8eb8cd8f5fc976e29097474"
+    },
+    {
+      "path": "assets/projects/compras-dashboard.webp",
+      "sha256": "e6596f3ac64c891861d4aad738ac667f62b2d4ffe91b3677c181fc73d4b6c4ab"
+    },
+    {
+      "path": "assets/projects/helpdesk-portal.webp",
+      "sha256": "5d8965b2334f78def4a7b5ad8f59e6e021995aff38b6c80f225edd0440d41d06"
+    },
+    {
+      "path": "assets/projects/manutencao-ativos.webp",
+      "sha256": "155e7145db9b8caea4abd1e7e3469efdca8d1e5bde868d8ba458a2891f80e7e5"
+    },
+    {
+      "path": "assets/projects/n8n-overview.png",
+      "sha256": "fee3f1c74301071d90ad61391c44ba04cf6d936a99c4772a44cac2ed862d5cd0"
+    },
+    {
+      "path": "assets/projects/n8n-overview.webp",
+      "sha256": "c2cfddf233bca5957ed3a8602a7c31efec1f43c5973202fa701d25175d66426f"
+    },
+    {
+      "path": "assets/projects/postagem-editor.webp",
+      "sha256": "064be070258b6148173778c88b9a4884b67cf5ae36c76847818aa33f9c39989c"
+    },
+    {
+      "path": "assets/projects/procureflow-search.webp",
+      "sha256": "648ea1df44a3ef26214d3715d5d396d576d8486983be201980b5abb67669f807"
+    },
+    {
+      "path": "assets/projects/producao-escritorio-demo.webp",
+      "sha256": "3933cfe6031668543e93144d7d159abff09ee66a70544912d8f73867b01ca0bb"
+    },
+    {
+      "path": "assets/projects/studiocad-review.webp",
+      "sha256": "22e4b6540f18de4bd95e7b3881502a960b14642cbb6e7763033407dce773719c"
+    },
+    {
+      "path": "assets/projects/ventrio-live-home.webp",
+      "sha256": "ae911c8ff4c66fa7a59146c6f6595924944a14e21f3d7ca07a96c9c2f6ecfdc1"
+    },
+    {
+      "path": "assets/projects/vesper-live-home.webp",
+      "sha256": "72b6f4df37ae2cd8b2daeda39dc7100f5c7d40a720659d7d1cb770366725ae34"
+    },
+    {
+      "path": "assets/social/og-cover.png",
+      "sha256": "a9b8e12698a27c0c73247931cb36b25244a32da74e6cefd6049361d16a1dbae2"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-1-1.webp",
+      "sha256": "f49eb29e6d102f6efd5b18b96d609c0c396bf5b278bb55209c9cebf8b25637ab"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-1-2.webp",
+      "sha256": "ced3da7c83860a31ecef38d56c3ca79b799bb3c1f1295cb49d635a084ff1fe2a"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-2-1.webp",
+      "sha256": "95461af366d979108cba09ca430689ed728a47a7e36695c886e266ddaf266787"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-2-2.webp",
+      "sha256": "50b86226ed05a14404b2e7649ca4ea77ba147f0469924c5d2f0585f756ff3da4"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-3-1.webp",
+      "sha256": "62b654ea0d8bbe333729dc2b5800fa3f06ecba18111d4ebf105f9044feb06700"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-3-2.webp",
+      "sha256": "6ea8d3b593a4df5f387f27365da7b6b3f484b61bd55e1930e8ab53ab985cb641"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-4-1.webp",
+      "sha256": "6e7cd73c98d525aeaa0640314a6ec2ac30f2dd7526420c6ae32d3b50cd655f8c"
+    },
+    {
+      "path": "assets/v8/belarc-inventory-4-2.webp",
+      "sha256": "63f357a6453aab2b39df868321d41c33fe9e1313dd8267f01d452bd9337097dc"
+    },
+    {
+      "path": "assets/v8/hubora-1-1.webp",
+      "sha256": "89d9618e827800c0338fffdbadc82459f4196fb546a0290998ce5ba8212c6710"
+    },
+    {
+      "path": "assets/v8/hubora-1-2.webp",
+      "sha256": "7ec775470e47d7f0a780afcae6e6e1ea77dc256d5780d7704799fdaba0090a01"
+    },
+    {
+      "path": "assets/v8/hubora-2-1.webp",
+      "sha256": "34f0b675a0c28081301ba7781d5dddb050a3b05cc0b02b635d9658e905d57568"
+    },
+    {
+      "path": "assets/v8/hubora-2-2.webp",
+      "sha256": "24e8104d8494a676ae4f30b3d4981d84018f2f678ab5dab65c8fbba0fa69b5e4"
+    },
+    {
+      "path": "assets/v8/hubora-3-1.webp",
+      "sha256": "b993fad67ed8c401328b9ad395b5f9650aeb1b6a47d80200e63c795ca4f9f8af"
+    },
+    {
+      "path": "assets/v8/hubora-3-2.webp",
+      "sha256": "017618237026dfb7df8d51f8871037458d45696b4a8b9c9bc710b6447b1e5673"
+    },
+    {
+      "path": "assets/v8/manutencao-em-campo-1-1.webp",
+      "sha256": "29c9af74580e71e1bb0f96e92809efbd04cdfab2de6cf007b5619b840474e8b1"
+    },
+    {
+      "path": "assets/v8/manutencao-em-campo-1-2.webp",
+      "sha256": "88a39a2bfeb7962c2af7526f124f60869de8c823c690089c411a2c24a82de071"
+    },
+    {
+      "path": "assets/v8/manutencao-em-campo-2-1.webp",
+      "sha256": "dd9b6fd9124441fec1c8b969773dcfbeac3e37544b4814c1607194bc6ca82747"
+    },
+    {
+      "path": "assets/v8/manutencao-em-campo-2-2.webp",
+      "sha256": "3b280666284bb3b04af069f53707f7500a9c9760c8f3299e8a6ef4067c546f0d"
+    },
+    {
+      "path": "assets/v8/manutencao-em-campo-3-1.webp",
+      "sha256": "23aa78500668e1b1cf114cc372872ce5bd6f19e2a8c0b70d2bea13bf328f0555"
+    },
+    {
+      "path": "assets/v8/manutencao-em-campo-3-2.webp",
+      "sha256": "23def2d2369d74e1b8062675332297b55b0783bd040ef8202275577e5fd3548a"
+    },
+    {
+      "path": "assets/v8/producao-operacional-1-1.webp",
+      "sha256": "9c27d5a1f94285558f45180fd392a3fdedf10edca4d1df67054aeaa15d384a59"
+    },
+    {
+      "path": "assets/v8/producao-operacional-1-2.webp",
+      "sha256": "4d2f9a0eb38abd3104e69eaec314053d8900bb7c269f28028a6128017056c543"
+    },
+    {
+      "path": "assets/v8/producao-operacional-2-1.webp",
+      "sha256": "dd17f858cbf7ba1bfdc4dc0791c3ffdefdedee18bfd7049717290750bf501331"
+    },
+    {
+      "path": "assets/v8/producao-operacional-2-2.webp",
+      "sha256": "3caaa4be48ea56fbfe3605adfafcbe031bc6ef624129ab29adad839e9c0d8c09"
+    },
+    {
+      "path": "assets/v8/producao-operacional-3-1.webp",
+      "sha256": "0ca118151c6a0013b8616ea4de2be4c4a2a62519e82c3450afab812ff892d593"
+    },
+    {
+      "path": "assets/v8/producao-operacional-3-2.webp",
+      "sha256": "24d11ab242f15276c5b68ab1a25de5ee0eaeb43fe1849692d44cbe2108b71416"
+    },
+    {
+      "path": "assets/v8/zero21fotos-1-1.webp",
+      "sha256": "5cbdb193980e97b09906ce4408344bfe783f6d2df3044210570222337705d7f9"
+    },
+    {
+      "path": "assets/v8/zero21fotos-1-2.webp",
+      "sha256": "84ac29b1e223c7d692dd1a30d73d502ce25776b1c3a39a14c6bee238d841f0ae"
+    },
+    {
+      "path": "assets/v8/zero21fotos-2-1.webp",
+      "sha256": "7190a6e0939042d08bfe6569a9daac79033316d2b7be5332b11a47e30e286aee"
+    },
+    {
+      "path": "assets/v8/zero21fotos-2-2.webp",
+      "sha256": "e7243475ecce4ed590b5307f7e6ed9e9571cebb4bd7357eb51571d955e3a4d70"
+    },
+    {
+      "path": "assets/v8/zero21fotos-3-1.webp",
+      "sha256": "e73a7645909d9c271cd91a922940282ed39e15c098abc9ddd148a56d571b96a0"
+    },
+    {
+      "path": "assets/v8/zero21fotos-3-2.webp",
+      "sha256": "56c1a52dd02e3e6caf60c7c42099a2fec544ca3cbcc7e1596c88ad275f0d5e7e"
+    }
+  ]
+}
