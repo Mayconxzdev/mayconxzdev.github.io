@@ -3,6 +3,9 @@ import {existsSync,readFileSync} from "node:fs";
 import {resolve} from "node:path";
 import assert from "node:assert/strict";
 const root=resolve(import.meta.dirname,"..");
+assert(existsSync(resolve(root,"public/404.html")),"Custom 404 page must remain available after source normalization");
+const missingPage=readFileSync(resolve(root,"public/404.html"),"utf8");
+assert(missingPage.includes('href="/#acervo"')&&missingPage.includes('href="/assets/cv/"'),"404 recovery links must use absolute site paths");
 const idset=new Set();
 for(const project of projects){
  assert.match(project.slug,/^[a-z0-9-]+$/);
