@@ -1,7 +1,12 @@
+* text=auto eol=lf
 *.pdf binary
 *.png binary
-*.svg text
-*.html text eol=lf
-*.css text eol=lf
-*.js text eol=lf
-*.md text eol=lf
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif binary
+*.svg -text
+*.woff2 binary
+*.ttf binary
+public/assets/fonts/*-OFL.txt -whitespace

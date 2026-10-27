@@ -1,0 +1,275 @@
+/* Final V15 polish: preserve the approved editorial desktop composition.
+   Mobile inspection is optional, manual, and does not interfere with scroll. */
+:root{--v15-focus:#174fca;--v15-paper:#faf9f6}
+.v15-hero-proof-picker{display:none}
+@media(max-width:550px){
+ .hero-stage{height:425px!important;margin-bottom:24px!important;isolation:isolate}
+ .hero-stage .stage-evidence-label{bottom:50px!important;z-index:12}
+ html.js .v15-hero-proof-picker{
+  position:absolute;bottom:0;left:0;right:0;display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;z-index:16;
+ }
+ .v15-hero-proof-picker button{
+  min-width:0;min-height:48px;border:1px solid #607886;
+  background:#fefdf9;color:#203340;
+  font:700 10px/1.25 "IBM Plex Mono",monospace;
+  padding:7px 4px;cursor:pointer;transition:background .16s ease,color .16s ease;
+ }
+ .v15-hero-proof-picker button span{display:block;margin-top:3px;font:700 10px/1.3 "IBM Plex Sans",sans-serif}
+ .v15-hero-proof-picker button[data-hero-preview="0"][aria-pressed=true]{background:#174fca;color:#fff;border-color:#174fca}
+ .v15-hero-proof-picker button[data-hero-preview="1"][aria-pressed=true]{background:#b94327;color:#fff;border-color:#b94327}
+ .v15-hero-proof-picker button[data-hero-preview="2"][aria-pressed=true]{background:#b68516;color:#fff;border-color:#b68516}
+ .v15-hero-proof-picker button:focus-visible{outline:3px solid #b94327;outline-offset:2px}
+ .hero-stage.v15-preview-engaged .stage-window{
+   transition:opacity .2s ease,transform .22s ease,visibility .2s ease!important
+ }
+ .hero-stage.v15-preview-engaged .stage-window:not(.v15-preview-active){opacity:.12;visibility:hidden;pointer-events:none}
+ .hero-stage.v15-preview-engaged .stage-window.v15-preview-active{
+   top:5%!important;left:1%!important;right:1%!important;bottom:auto!important;
+   width:98%!important;height:320px!important;max-height:calc(100% - 87px)!important;
+   opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+   transform:rotate(0)!important;z-index:10!important;box-shadow:5px 6px 0 #174fca!important;
+ }
+ .hero-stage.v15-preview-engaged[data-preview="1"] .stage-window.v15-preview-active{box-shadow:5px 6px 0 #b94327!important;
+ }
+ .hero-stage.v15-preview-engaged[data-preview="2"] .stage-window.v15-preview-active{box-shadow:5px 6px 0 #b68516!important;
+ }
+ .hero-stage.v15-preview-engaged[data-preview="1"] .stage-window.v15-preview-active{box-shadow:5px 6px 0 #b94327!important;
+ }
+ .hero-stage.v15-preview-engaged[data-preview="2"] .stage-window.v15-preview-active{box-shadow:5px 6px 0 #b68516!important;
+ }
+ .hero-stage.v15-preview-engaged .stage-window.v15-preview-active img{
+   object-fit:contain!important;padding:4px!important
+ }
+ .hero-stage.v15-preview-engaged .stage-evidence-label{opacity:0;visibility:hidden}
+}
+@media(max-width:800px){
+ .header .v11-motion-toggle{min-height:44px!important;padding:9px 11px!important}
+ .header .menu-toggle{min-width:44px!important;min-height:44px!important}
+ .world-links .v11-inspect,.world-links .world-zoom,.world-links .world-case-link{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-height:44px!important;min-width:44px!important;padding:8px 12px!important;
+  line-height:1.35!important;white-space:normal!important
+ }
+ .world-tabs .world-tab{min-height:44px!important}
+ .v11-world-jumpbar button{min-height:44px!important}
+ .v14-feature-photo,.v14-compact-art{touch-action:manipulation}
+}
+@media(prefers-reduced-motion:reduce){
+ .v15-hero-proof-picker button,.hero-stage .stage-window{transition:none!important}
+}
+/* Keyboard users always receive an unobscured focus indicator on actual controls. */
+:where(.stage-window,.v15-hero-proof-picker button,.v14-feature-photo,.v14-compact-art,.world-zoom):focus-visible{
+ outline:3px solid #174fca;outline-offset:3px;z-index:50
+}
+
+@media(max-width:360px){.header .v11-motion-toggle{width:90px!important;min-width:90px!important;max-width:90px!important;min-height:44px!important;padding:7px 3px!important;font-size:9px!important}.header .menu-toggle{margin-left:3px!important}}
+
+/* Last-mile touch QA across catalog, resume filters and method navigation. */
+@media(max-width:800px){
+ .method-tab,button[data-filter],button[data-cv-filter],#catalog-show-all,#v14-cv-more{min-height:44px!important;align-items:center;justify-content:center}
+ .v11-cv-chooser [role="group"]{gap:6px}
+}
+/* Mission refinement: evidence first, readable controls, progressive enhancement. */
+.v15-static-project{display:flex;flex-direction:column;gap:14px;padding:24px;color:#172832;background:#e8eef9;border-bottom:1px solid #afbbc4;text-decoration:none}
+.v15-static-project strong{font:700 24px/1.2 'IBM Plex Sans',sans-serif}
+.v15-static-project span{font-size:16px;line-height:1.6;max-width:65ch}
+.v15-static-project small{font-size:13px;color:#174fca}
+@media(max-width:800px){
+ .hero-copy .v11-role{font-size:14px;line-height:1.55}
+ .hero-copy .v11-route-links a{font-size:12px;line-height:1.5;padding-block:8px}
+ #project-search{font-size:16px}
+ html.v15-mobile-stable .world-desc-context{font-size:15px!important;line-height:1.65!important}
+ html.v15-mobile-stable .world-links a,html.v15-mobile-stable .world-links button{font-size:12px!important}
+ html.v15-mobile-stable .v11-screen-proof strong{font-size:13px;line-height:1.5}
+ .v15-hero-proof-picker button,.v15-hero-proof-picker button span{font-size:12px}
+}
+/* Scripts are enhancements: all five projects and static links remain readable. */
+html:not(.js) .reveal{opacity:1!important;visibility:visible!important;transform:none!important}
+html:not(.js) .v8-world,html:not(.js) .v8-world-sticky,html:not(.js) .v8-world-viewport{height:auto!important;min-height:0!important;position:relative!important;overflow:visible!important}
+html:not(.js) .world-slide{position:relative!important;inset:auto!important;min-height:600px;visibility:visible!important;opacity:1!important;clip-path:none!important;transform:none!important;pointer-events:auto!important}
+html:not(.js) .world-art{position:relative!important;height:350px!important;margin-top:60px!important;top:auto!important}
+html:not(.js) .world-description{position:relative!important;inset:auto!important;opacity:1!important;padding:24px!important}
+html:not(.js) .world-description *,html:not(.js) .world-scene-label{opacity:1!important;color:#142a38!important}
+html:not(.js) .v8-world-rail,html:not(.js) .v11-world-jumpbar,html:not(.js) .world-tabs,html:not(.js) .v11-inspect,html:not(.js) .world-zoom,html:not(.js) .v11-motion-toggle,html:not(.js) .catalog-controls,html:not(.js) .v11-discover,html:not(.js) .v11-cv-chooser,html:not(.js) #v14-cv-more{display:none!important}
+@media(max-width:800px){html:not(.js) .header{position:relative;flex-wrap:wrap;height:auto}html:not(.js) .header .nav{display:flex!important;position:static!important;width:100%;flex-wrap:wrap}html:not(.js) .menu-toggle{display:none!important}}
+/* Compact tablet header, including low-height landscape. */
+@media(min-width:801px) and (max-width:1100px){.header .header-cta{display:none!important}.header .nav a{padding-inline:10px}.header .v11-motion-toggle{margin-left:8px;padding-inline:8px}}
+@media(max-width:800px){
+ .header .menu-toggle{order:4}
+ .hero .hero-copy .v11-route-links{display:none}
+ .hero .hero-copy .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+ .hero .hero-actions .btn{width:auto;min-width:0;min-height:54px;padding:12px 10px;font-size:10px}
+ .hero .hero-copy .hero-lead{font-size:15px;line-height:1.65;margin-block:20px}
+ .hero .hero-copy .v11-role{font-size:13px;line-height:1.5;margin-block:0}
+ .hero .hero-copy{padding-bottom:0}
+ .hero .hero-layout{padding-top:32px}
+ html.v15-mobile-stable .world-page-label{color:#eaf2f8!important}
+}
+/* An opaque reading surface prevents screenshot text showing through the captions. */
+@media(min-width:801px){.world-description{background:#faf9f6}}
+/* A short landscape viewport cannot contain a fixed cinematic stage. */
+@media(max-height:600px){
+ html.v15-mobile-stable .world-page-label{color:#eaf2f8!important}
+ html.v15-mobile-stable .world-desc-context{font-size:15px!important}
+ html.v15-mobile-stable .v11-world-jumpbar button span{display:inline;margin-left:6px;font-size:12px}
+ html.v15-mobile-stable .world-links a,html.v15-mobile-stable .world-links button{font-size:12px!important}
+}
+/* The two historical cases remain discoverable without competing with current work. */
+.v15-history{margin-top:32px;padding:22px 0;border-top:1px solid #afbbc4}
+.v15-history summary{cursor:pointer;min-height:44px;display:list-item;font:600 17px/1.5 'IBM Plex Sans',sans-serif;color:#203744}
+.v15-history p{font-size:15px;line-height:1.6;color:#354f5d;max-width:65ch}
+.v15-history>div{display:flex;flex-wrap:wrap;gap:12px 32px}
+.v15-history a{display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:44px;font-size:16px;color:#174fca}
+.v15-history a span{font-size:13px;color:#354f5d}
+html:not(.js) .v15-history{display:none}
+/* The handoff transfers the real screenshot without duplicated window chrome. */
+.v11-handoff-ghost .stage-window-top{display:none}
+.v11-handoff-ghost img{height:100%;object-fit:contain}
+/* Readable catalog summaries; metadata remains secondary. */
+.v14-feature-body p,.v14-compact-body p{font-size:15px;line-height:1.65}
+.v14-compact-body>a{min-height:44px;display:flex;align-items:center;font-size:12px;line-height:1.5}
+@media(max-width:800px){
+ .method-rail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}
+ .method-rail .method-tab{min-width:0;width:auto;white-space:normal;gap:12px;padding:14px;font-size:13px;line-height:1.4}
+ .method-rail .method-tab:last-child{grid-column:1/-1}
+}
+/* Refinement: a clear role, less instruction and an optional, stoppable journey. */
+.v15-profession{font:600 16px/1.5 'IBM Plex Sans',sans-serif;color:#243d4b;margin:0 0 16px;max-width:40ch}
+.hero .hero-copy .hero-lead{max-width:57ch}
+.hero .hero-copy .hero-actions{margin-top:30px}
+.world-route-status.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.world-links .world-route-play{font:600 13px/1.4 'IBM Plex Sans',sans-serif;min-height:44px;padding:8px 0;color:#174fca;border:0;border-bottom:1px solid currentColor;background:transparent;cursor:pointer}
+.world-links .world-route-play[aria-pressed=true]{color:#9d341c}
+.world-links{align-items:center}
+.world-route-play:focus-visible{outline:3px solid #174fca;outline-offset:4px}
+.world-tabs{position:relative;padding-bottom:9px}
+.world-tabs::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:#174fca;transform:scaleX(var(--view-progress,0));transform-origin:left;transition:transform .38s ease}
+.world-actions-head{font-family:'IBM Plex Sans',sans-serif;font-size:13px}
+.world-desc-kicker{font-size:13px}
+.world-desc-context{font-size:16px;line-height:1.6}
+.v14-compact-body>a{font-family:'IBM Plex Sans',sans-serif;font-size:14px}
+.archive-header>p,.resumes-head>p{font-size:16px;line-height:1.7}
+.hero .stage-evidence-label{font-family:'IBM Plex Sans',sans-serif;font-size:12px}
+@media(max-width:800px){
+ .v15-profession{font-size:14px;margin-bottom:12px}
+ .hero .hero-copy .hero-actions{margin-top:22px}
+ html.v15-mobile-stable .world-links .world-route-play{font-size:13px!important;color:#f0cf80}
+ html.v15-mobile-stable .world-links .world-route-play[aria-pressed=true]{color:#fff}
+ html.v15-mobile-stable .world-actions-head{font-size:12px!important}
+ html.v15-mobile-stable .world-desc-kicker{font-size:12px}
+ .world-tabs::after{background:#f0cf80}
+ .about .timeline{margin-top:28px}
+}
+html.v11-direct .world-route-play{display:none}
+@media(prefers-reduced-motion:reduce){.world-route-play{display:none}.world-tabs::after{transition:none}}
+/* The career record uses the full page width instead of leaving an empty column. */
+@media(min-width:801px){
+ .about .about-copy{display:contents}
+ .about-layout>div:first-child{grid-column:1;grid-row:1/3}
+ .about .about-copy>p{grid-column:2;margin-bottom:0}
+ .about .timeline{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 50px;margin-top:20px}
+ .about .timeline>div{min-height:110px}
+ .method .method-rail .method-tab{min-height:64px;padding:18px 24px}
+ .method .method-content{min-height:300px!important;padding-block:32px!important}
+}
+.about .timeline>div>span{font-size:12px}
+.about .timeline strong{font-size:16px;line-height:1.45}
+.about .timeline small{font-size:14px;line-height:1.6}
+
+/* Desktop hover depth and elevation */
+@media(min-width:551px){
+ .stage-window{transition:transform .3s cubic-bezier(.2,.85,.25,1),box-shadow .3s cubic-bezier(.2,.85,.25,1),z-index 0s!important}
+ .stage-window:hover,.stage-window:focus-visible{transform:translateY(-8px) scale(1.015) rotate(0deg)!important;z-index:20!important}
+ .stage-main:hover,.stage-main:focus-visible{box-shadow:12px 14px 0 #174fca!important}
+ .stage-field:hover,.stage-field:focus-visible{box-shadow:10px 12px 0 #b94327!important}
+ .stage-inventory:hover,.stage-inventory:focus-visible{box-shadow:10px 12px 0 #b68516!important}
+}
+
+/* Direct reading keeps each real capture complete, with clear selectable evidence. */
+.world-tab-thumb{display:none}
+html.v11-direct .v8-world-jumpbar{position:relative!important;top:auto!important;left:auto!important;right:auto!important;transform:none!important;width:max-content;max-width:94%;margin:14px auto 10px}
+html.v11-direct .world-slide{overflow:visible!important;padding:22px clamp(16px,4vw,64px) 28px}
+html.v11-direct .world-scene-label{position:relative;top:auto;left:auto;right:auto;margin:0 auto 8px;max-width:1380px}
+html.v11-direct .world-art{position:relative!important;z-index:1;inset:auto!important;width:min(100%,1380px);height:auto!important;min-height:0!important;margin:18px auto 0!important;display:grid;place-items:center}
+html.v11-direct .world-main-screen{width:100%;height:auto!important;min-height:0!important;overflow:visible!important;display:flex;align-items:center;justify-content:center}
+html.v11-direct .world-main-image{display:block;width:auto!important;height:auto!important;max-width:100%!important;max-height:min(58svh,520px)!important;object-fit:contain!important;filter:none!important}
+html.v11-direct .world-description{position:relative!important;inset:auto!important;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);align-items:end;max-width:1380px;min-height:0!important;margin:0 auto;padding:22px 0 14px!important;background:#faf9f6!important;color:#12191d!important}
+html.v11-direct .world-desc-content h3{color:#12191d!important}
+html.v11-direct .world-desc-context{color:#42515b!important}
+html.v11-direct .world-desc-kicker{color:#94351f!important}
+html.v11-direct .world-desc-kicker span{color:#566a69!important}
+html.v11-direct .world-actions-head{color:#203340!important}
+html.v11-direct .world-page-label{color:#174fca!important}
+html.v11-direct .world-scene-label{position:relative!important;inset:auto!important;max-width:1380px;margin:0 auto 8px;text-shadow:none!important}
+html.v11-direct .world-links a,html.v11-direct .world-links button{color:#174fca!important}
+html.v11-direct .world-tabs{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:8px}
+html.v11-direct .world-tab{display:grid;grid-template-rows:auto 1fr;gap:7px;min-width:0;min-height:0;padding:8px!important;font-size:10px!important}
+html.v11-direct .world-tab-thumb{display:block;width:100%;height:56px;object-fit:contain;background:#f4f6f4;border:1px solid #c4d1d2}
+html.v11-direct .world-tab-label{display:block;line-height:1.3}
+@media(max-width:800px){
+ html.v11-direct .world-slide{padding:18px 16px 24px}
+ html.v11-direct .world-art{width:100%;margin-top:14px!important}
+ html.v11-direct .world-description{display:block;padding:18px 0 8px!important}
+ html.v11-direct .world-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html.v11-direct .world-tab{font-size:11px!important}
+ html.v11-direct .world-tab-thumb{height:52px}
+}
+.world-image-fallback{position:absolute;z-index:5;left:6%;right:6%;bottom:12px;padding:12px 14px;background:#fff;color:#172328;border:2px solid #9d341c;font:600 13px/1.5 'IBM Plex Sans',sans-serif;text-align:center}
+.world-image-fallback[hidden],.world-fragment[hidden]{display:none!important}
+
+/* A readable no-JavaScript path remains available if enhancement fails. */
+html:not(.js) .v8-hero{height:auto;min-height:100svh}
+html:not(.js) .v8-hero-sticky{position:relative;height:auto;min-height:100svh;overflow:visible}
+html:not(.js) .v8-world-sticky{position:relative;height:auto;min-height:0;overflow:visible}
+html:not(.js) .v8-world-viewport{height:auto;overflow:visible}
+html:not(.js) .v8-world-length,html:not(.js) .v8-world-rail{display:none!important}
+html:not(.js) .world-slide,html:not(.js) .world-slide:first-child{position:relative;inset:auto;display:block;min-height:0;overflow:visible;opacity:1;visibility:visible;transform:none;clip-path:none;padding:24px 18px;border-bottom:1px solid #cad5d0}
+html:not(.js) .world-scene-label{position:relative;inset:auto;margin-bottom:14px}
+html:not(.js) .world-art{position:relative;inset:auto;width:min(100%,1200px);height:auto;margin:0 auto;z-index:1}
+html:not(.js) .world-main-screen{height:auto;min-height:0;overflow:visible}
+html:not(.js) .world-main-image{width:auto;height:auto;max-width:100%;max-height:56svh;object-fit:contain}
+html:not(.js) .world-description{position:relative;inset:auto;display:block;min-height:0;padding:18px 0;background:none}
+
+/* An explicit visitor choice can override the OS reduced-motion setting on capable desktops. */
+@media (prefers-reduced-motion:reduce) and (min-width:801px) and (min-height:601px){
+ html[data-motion-mode="motion"] .v8-hero{height:148svh;min-height:880px}
+ html[data-motion-mode="motion"] .v8-hero-sticky{position:sticky;height:100svh;min-height:610px;overflow:hidden}
+ html[data-motion-mode="motion"] .v8-world-sticky{height:100svh;min-height:610px;position:sticky;top:0;overflow:hidden}
+ html[data-motion-mode="motion"] .v8-world-viewport{height:100%;overflow:hidden}
+ html[data-motion-mode="motion"] .v8-world-length{height:355svh;display:block!important}
+ html[data-motion-mode="motion"] .v8-world-step{height:71svh}
+ html[data-motion-mode="motion"] .world-slide,html[data-motion-mode="motion"] .world-slide:first-child{position:absolute;inset:0;min-height:0;overflow:hidden;transform:none!important;clip-path:none!important}
+ html[data-motion-mode="motion"] .world-slide[aria-hidden="true"]{opacity:0!important;visibility:hidden!important}
+ html[data-motion-mode="motion"] .world-slide[aria-hidden="false"]{opacity:1!important;visibility:visible!important}
+ html[data-motion-mode="motion"] .world-art{position:absolute;inset:9% 5% auto;height:67%;width:auto;margin:0;display:grid}
+ html[data-motion-mode="motion"] .world-description{position:absolute;inset:auto 0 0;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(310px,.85fr);min-height:27%;max-width:none;margin:0;padding:32px max(5vw,calc((100vw - 1380px)/2)) 37px;background:linear-gradient(0deg,#081116 18%,#0b1518f5 72%,#0b151800)}
+ html[data-motion-mode="motion"] .world-tabs{display:flex}
+ html[data-motion-mode="motion"] .world-tab-thumb{display:none}
+ html[data-motion-mode="motion"] .v11-world-jumpbar{position:absolute;top:15px;left:0;right:0;display:flex;transform:none;margin:auto}
+ html[data-motion-mode="motion"] .world-route-play{display:inline-flex!important}
+ html[data-motion-mode="motion"] .v11-handoff-ghost{display:block!important}
+}
+
+/* Release preparation: evidence readability and short-landscape navigation. */
+.v15-license-credit{
+ max-width:72ch;margin:12px auto 28px;padding:10px 16px;
+ font:400 13px/1.65 'IBM Plex Sans',sans-serif;
+ color:#243947;background:#f3f6fa;border-left:3px solid #174fca;
+}
+.v15-license-credit a{color:#164aa2;text-decoration:underline;text-underline-offset:3px}
+.v15-license-credit a:focus-visible{outline:3px solid #174fca;outline-offset:3px}
+@media (orientation:landscape) and (max-height:600px){
+ .header{min-height:56px!important;height:56px!important}
+ .header .header-inner{min-height:56px!important}
+ .header .v11-motion-toggle{min-height:40px!important}
+ .header .header-cta{display:none!important}
+ .header .nav a{padding-block:9px!important}
+ html{scroll-padding-top:65px!important}
+}
+@media(max-width:800px){
+ .v11-cv-chooser button[data-cv-filter]{min-height:44px!important}
+ .v15-license-credit{margin:12px 16px 24px;padding:12px 14px}
+ .world-links a,.world-links button{min-height:44px!important;display:inline-flex;align-items:center}
+ .v11-world-jumpbar [data-jump]{min-height:44px!important}
+}

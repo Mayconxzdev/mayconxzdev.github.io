@@ -1,0 +1,302 @@
+[
+  {
+    "key": "producao-operacional",
+    "short": "PRODUÇÃO",
+    "name": "Produção Operacional",
+    "kind": "AUTOMAÇÃO / OPERAÇÃO",
+    "headline": "A rotina muda quando as ordens ficam visíveis.",
+    "description": "Uma visão geral mostra o andamento; depois você entra nos pedidos e vê o quadro de acompanhamento. Não são três imagens iguais: são três necessidades diferentes da operação.",
+    "states": [
+      [
+        "Painel de dados",
+        "Indicadores de andamento",
+        "/assets/evidence/producao-relatorio-mensal-clientes-desfocados.png",
+        "Visão consolidada de indicadores, setores e ordens, com dados de clientes desfocados.",
+        {
+          "width": 1202,
+          "height": 832
+        },
+        null,
+        {
+          "title": "O andamento da produção em um olhar.",
+          "context": "Indicadores de ordens, prazos e setores ajudam a identificar o que merece atenção antes de abrir cada registro."
+        }
+      ],
+      [
+        "Ordens de produção",
+        "Onde tudo começa",
+        "/assets/evidence/producao-tela-inicial.png",
+        "Lista de ordens em diferentes estados. A equipe consulta o andamento de cada registro.",
+        {
+          "width": 1920,
+          "height": 1032
+        },
+        null,
+        {
+          "title": "Cada ordem tem uma situação e um próximo passo.",
+          "context": "A lista reúne dados da OP, modelo, datas, setor e pendências num ponto de consulta para a rotina."
+        }
+      ],
+      [
+        "Acompanhamento na TV",
+        "Produção à vista",
+        "/assets/evidence/producao-tv-foco.png",
+        "Painel de acompanhamento para visualizar as ordens e seus setores durante o trabalho.",
+        {
+          "width": 1920,
+          "height": 1080
+        },
+        null,
+        {
+          "title": "Informação que chega ao chão de produção.",
+          "context": "A visão de TV destaca estados e prioridades sem exigir que a equipe abra a tela administrativa."
+        }
+      ]
+    ],
+    "accent": "#4c86ff",
+    "entry": "cut"
+  },
+  {
+    "key": "manutencao-em-campo",
+    "short": "MANUTENÇÃO",
+    "name": "Manutenção em Campo",
+    "kind": "SISTEMAS / INSPEÇÃO",
+    "headline": "Cada inspeção precisa deixar um registro.",
+    "description": "O trabalho começa nos ativos, passa pelas verificações e termina num histórico consultável. O site revela essas camadas conforme você explora.",
+    "states": [
+      [
+        "Painel de ativos",
+        "Visão do que precisa de atenção",
+        "/assets/evidence/campo-dashboard.webp",
+        "Ponto de partida para consultar registros, tarefas e equipamentos.",
+        {
+          "width": 1440,
+          "height": 1054
+        },
+        null,
+        {
+          "title": "Uma visão do que precisa ser feito em campo.",
+          "context": "O painel reúne tarefas, alertas e acessos para organizar as inspeções e o acompanhamento dos ativos."
+        }
+      ],
+      [
+        "Checklist de campo",
+        "A verificação passo a passo",
+        "/assets/evidence/campo-checklist.webp",
+        "Interface de inspeção com itens que precisam ser conferidos.",
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        null,
+        {
+          "title": "A inspeção começa com um roteiro claro.",
+          "context": "Checklists e registros por equipamento ajudam a não perder etapas durante a verificação."
+        }
+      ],
+      [
+        "Histórico",
+        "O que foi feito permanece",
+        "/assets/evidence/campo-historico.webp",
+        "Registros de atividades concluídas e informações para consulta posterior.",
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        null,
+        {
+          "title": "O histórico acompanha o equipamento.",
+          "context": "Inspeções anteriores e itens registrados ficam disponíveis para consulta antes do próximo atendimento."
+        }
+      ]
+    ],
+    "accent": "#d77843",
+    "entry": "rise"
+  },
+  {
+    "key": "belarc-inventory",
+    "short": "INFRAESTRUTURA",
+    "name": "Belarc Inventory",
+    "kind": "INVENTÁRIO / SUPORTE",
+    "headline": "Do panorama da TI ao chamado de suporte.",
+    "description": "A visão geral não conta tudo. Veja como o sistema organiza indicadores, abre um chamado e permite consultar o inventário de uma máquina. Projeto desenvolvido em colaboração.",
+    "states": [
+      [
+        "Dashboard",
+        "Visão da infraestrutura",
+        "/assets/evidence/belarc-bi.jpg",
+        "Resumo visual com dados de estações e indicadores de suporte.",
+        {
+          "width": 1600,
+          "height": 900
+        },
+        null,
+        {
+          "title": "Primeiro, o panorama dos computadores e chamados.",
+          "context": "Indicadores resumem o inventário e os atendimentos, ajudando o suporte a enxergar a situação geral."
+        }
+      ],
+      [
+        "Suporte / chamado",
+        "Quando alguém precisa de ajuda",
+        "/assets/evidence/belarc-portal.jpg",
+        "Formulário para registrar um atendimento e orientar sua resolução.",
+        {
+          "width": 1600,
+          "height": 1000
+        },
+        null,
+        {
+          "title": "Abrir um chamado sem perder o contexto da máquina.",
+          "context": "O formulário reúne equipamento, prioridade e descrição do problema para iniciar o atendimento."
+        }
+      ],
+      [
+        "Inventário",
+        "Olhar uma máquina de perto",
+        "/assets/evidence/belarc-inventario.jpg",
+        "Detalhes de estação consultáveis para apoiar diagnóstico e manutenção.",
+        {
+          "width": 1600,
+          "height": 900
+        },
+        null,
+        {
+          "title": "Os detalhes do computador, em um lugar.",
+          "context": "O inventário permite consultar informações da estação para orientar diagnóstico e suporte."
+        }
+      ],
+      [
+        "Kanban de chamados",
+        "Acompanhar o trabalho",
+        "/assets/evidence/belarc-kanban.jpg",
+        "Quadro de etapas para acompanhar os chamados registrados.",
+        {
+          "width": 1600,
+          "height": 900
+        },
+        null,
+        {
+          "title": "Os atendimentos seguem etapas visíveis.",
+          "context": "O quadro Kanban separa chamados por situação e facilita acompanhar o que ainda falta resolver."
+        }
+      ]
+    ],
+    "accent": "#e1aa35",
+    "entry": "scan"
+  },
+  {
+    "key": "zero21fotos",
+    "short": "WEBSITE / FOTOGRAFIA",
+    "name": "ZERO21FOTOS",
+    "kind": "DESIGN WEB / CLIENTE",
+    "headline": "O que o fotógrafo registra encontra um lugar no site.",
+    "description": "A abertura mistura navegação, identidade e uma prévia dos eventos. Depois você explora a página de eventos e a experiência de descoberta das galerias.",
+    "states": [
+      [
+        "Página inicial",
+        "Marca, fotógrafo e prévia de eventos",
+        "/assets/live/zero21-home-contexto.webp",
+        "Captura da página inicial publicada, incluindo a navegação, o fotógrafo e o início da seção de eventos.",
+        {
+          "width": 1440,
+          "height": 850
+        },
+        "/assets/live/zero21-home-mobile-v6.webp",
+        {
+          "title": "O trabalho fotográfico aparece logo na entrada.",
+          "context": "A homepage combina identidade, menu, fotógrafo e uma primeira amostra dos eventos no mesmo percurso."
+        }
+      ],
+      [
+        "Página de eventos",
+        "Onde o público encontra suas fotos",
+        "/assets/live/zero21-eventos.webp",
+        "Lista de coberturas fotográficas organizada para o visitante navegar.",
+        {
+          "width": 1440,
+          "height": 470
+        },
+        "/assets/live/zero21-eventos-mobile-v6.webp",
+        {
+          "title": "Encontrar a cobertura pelo próprio evento.",
+          "context": "A página pública organiza as coberturas com busca, filtros e fotografias que ajudam a reconhecer cada evento."
+        }
+      ],
+      [
+        "Encontrar evento",
+        "Acesso às coberturas",
+        "/assets/live/zero21-portfolio.webp",
+        "Outra página pública com busca e navegação entre os eventos.",
+        {
+          "width": 1440,
+          "height": 690
+        },
+        null,
+        {
+          "title": "O visitante encontra caminhos para continuar.",
+          "context": "A navegação oferece outras entradas para explorar o portfólio de eventos sem sair do contexto do fotógrafo."
+        }
+      ]
+    ],
+    "accent": "#f5ac8d",
+    "entry": "reveal"
+  },
+  {
+    "key": "hubora",
+    "short": "PRODUTO WEB",
+    "name": "Hubora",
+    "kind": "PLATAFORMA / ENTRETENIMENTO",
+    "headline": "Descobrir, guardar e continuar de onde parou.",
+    "description": "Três visões do mesmo produto: descoberta de conteúdos, sua biblioteca e informações detalhadas. Capturas históricas do projeto original.",
+    "states": [
+      [
+        "Descoberta",
+        "A porta de entrada",
+        "/assets/evidence/hubora-home.webp",
+        "Página inicial e recomendações de filmes, séries e outros conteúdos.",
+        {
+          "width": 1600,
+          "height": 792
+        },
+        null,
+        {
+          "title": "Um ponto de partida para descobrir conteúdo.",
+          "context": "A tela inicial reúne recomendações, categorias e caminhos para explorar filmes, séries e jogos."
+        }
+      ],
+      [
+        "Biblioteca pessoal",
+        "Conteúdos organizados",
+        "/assets/evidence/hubora-library.webp",
+        "Visão dos títulos adicionados à biblioteca do usuário.",
+        {
+          "width": 1600,
+          "height": 792
+        },
+        null,
+        {
+          "title": "O que foi salvo passa a ter seu lugar.",
+          "context": "A biblioteca organiza títulos escolhidos pelo usuário numa visão direta e navegável."
+        }
+      ],
+      [
+        "Detalhes",
+        "Aprofundar o conteúdo",
+        "/assets/evidence/hubora-details.webp",
+        "Página com informações de um título e ações relacionadas.",
+        {
+          "width": 1600,
+          "height": 784
+        },
+        null,
+        {
+          "title": "Mais contexto antes de escolher um título.",
+          "context": "A página de detalhes reúne informações e ações relacionadas ao conteúdo selecionado."
+        }
+      ]
+    ],
+    "accent": "#ab88f6",
+    "entry": "cascade"
+  }
+]

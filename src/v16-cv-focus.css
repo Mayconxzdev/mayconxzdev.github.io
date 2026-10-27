@@ -1,0 +1,16 @@
+
+/* V16: three precise PT resumes. English resumes are separate at /en/resumes/. */
+.v16-cv-intro{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:20px 0 24px;color:#263c48}
+.v16-cv-intro p{margin:0;max-width:650px;line-height:1.6}
+.v16-cv-languages{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 11px/1.5 "IBM Plex Mono",monospace}
+.v16-cv-languages span,.v16-cv-languages a{display:inline-flex;min-height:42px;align-items:center;border:1px solid #8395a0;padding:9px 12px;text-decoration:none}
+.v16-cv-languages span{border-color:#174fca;background:#174fca;color:#fff}
+.v16-cv-languages a{background:#fff;color:#174fca}
+.v16-cv-languages a:hover{background:#eaf0f7}
+.v16-cv-languages a:focus-visible{outline:3px solid #b94327;outline-offset:3px}
+#curriculos #cv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#curriculos #cv-grid .cv-card{min-width:0}
+.v16-cv-footnote{font-size:12px;color:#536774;margin:19px 0 0}
+#curriculos .v14-cv-more{display:none!important}
+@media(max-width:850px){#curriculos #cv-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:610px){#curriculos #cv-grid{grid-template-columns:1fr} .v16-cv-intro{align-items:flex-start;gap:12px}}

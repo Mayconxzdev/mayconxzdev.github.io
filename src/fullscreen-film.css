@@ -1,0 +1,211 @@
+/* V6 / CINEMÁTICA FULLSCREEN — image is the scene, text stays in the lower strip. */
+.fullscreen-film{position:relative;background:#080f14;color:#f6f7f3;isolation:isolate}
+.film-offset-anchor{position:absolute;top:0}
+.film-introduction{position:relative;z-index:2;padding-top:75px;padding-bottom:67px;display:grid;grid-template-columns:minmax(200px,.6fr) minmax(0,1.4fr);gap:12px 5vw;border-bottom:1px solid #435453}
+.film-introduction>span{font:700 10px "IBM Plex Mono",Consolas,monospace;letter-spacing:.07em;color:#efc646;padding-top:17px}
+.film-introduction h2{font:400 clamp(38px,5vw,74px)/1.03 "Archivo Black",Arial,sans-serif;letter-spacing:-.065em;margin:0}
+.film-introduction p{grid-column:2;max-width:690px;color:#bac8c8;font:14px/1.7 "IBM Plex Sans",Arial,sans-serif;margin:10px 0 0}
+.film-project{height:146svh;min-height:650px;position:relative;isolation:isolate;scroll-margin-top:0}
+.film-stage{position:sticky;top:0;height:100vh;height:100svh;min-height:560px;isolation:isolate;overflow:hidden;background:#111920}
+.film-atmosphere{position:absolute;inset:-10%;z-index:-3;background-position:center center;background-size:cover;filter:blur(45px) brightness(.43) saturate(.65);transform:scale(1.13);transition:background-image .28s}
+.film-stage:before{position:absolute;content:"";inset:0;z-index:-2;background:radial-gradient(circle at 45% 40%,transparent 15%,#080c14a6 100%),linear-gradient(90deg,#0a111822,transparent 50%,#0a111822)}
+.film-photo-area{position:absolute;inset:6.2% 2.5% 20%;z-index:-1;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.film-screen{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 18px 40px #0008);transform-origin:center;will-change:opacity,transform}
+.film-stage:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(to top,#080e14 0%,#080e14f7 9%,#080e14d6 26%,#080e1429 51%,transparent 82%)}
+.film-topline{position:absolute;left:3.3%;right:3.3%;top:4.5%;z-index:4;display:flex;justify-content:space-between;gap:25px;align-items:start;pointer-events:none}
+.film-top-identity{display:flex;flex-direction:column;gap:7px}
+.film-top-identity>span{font:700 10px "IBM Plex Mono",Consolas,monospace;color:var(--film-accent);letter-spacing:.08em}
+.film-top-identity strong{font:400 clamp(18px,2vw,30px)/1.2 "Archivo Black",Arial,sans-serif;letter-spacing:-.04em;text-shadow:0 3px 12px #0009}
+.film-type{font:700 10px "IBM Plex Mono",Consolas,monospace;color:#e2e9e4;background:#111b23b8;border:1px solid #bcc7c655;padding:10px 14px;letter-spacing:.035em}
+.film-bottom{position:absolute;left:3.3%;right:3.3%;bottom:5.3%;z-index:3;display:grid;grid-template-columns:1fr minmax(350px,.88fr);align-items:end;gap:4.8vw}
+.film-overline{display:flex;align-items:center;gap:14px;font:700 10px "IBM Plex Mono",Consolas,monospace;letter-spacing:.065em;color:#dce5dc}
+.film-index{padding:8px 10px;border-left:4px solid var(--film-accent);background:#111b1de6;color:#fff}
+.film-about h3{margin:14px 0 10px;font:400 clamp(24px,3.05vw,48px)/1.06 "Archivo Black",Arial,sans-serif;letter-spacing:-.055em;max-width:730px;text-wrap:balance}
+.film-description{font:13px/1.66 "IBM Plex Sans",Arial,sans-serif;color:#d2ded9;margin:0;max-width:580px;min-height:42px}
+.film-actions{padding:17px 19px;background:#111b24de;border:1px solid #9daaa44b;border-top:3px solid var(--film-accent);backdrop-filter:blur(16px);box-shadow:0 14px 40px #0005}
+.film-view-heading{display:flex;justify-content:space-between;gap:15px;margin-bottom:11px;font:700 9px "IBM Plex Mono",Consolas,monospace;letter-spacing:.055em;color:#dfe9e8}
+.film-view-count{color:var(--film-accent)}
+.film-tabs{display:flex;align-items:stretch;flex-wrap:wrap;gap:6px}
+.film-view{flex:1 1 auto;min-width:87px;display:flex;align-items:center;gap:9px;padding:11px 12px;text-align:left;background:#29343b;border:1px solid #72868887;color:#ebf1ed;font:700 11px/1.2 "IBM Plex Sans",Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.film-view>span{font:600 9px "IBM Plex Mono",Consolas,monospace;opacity:.75}
+.film-view:hover,.film-view:focus-visible{border-color:#eff8f5;background:#3a4b50}
+.film-view.is-selected,.film-view[aria-pressed="true"]{background:var(--film-accent);border-color:var(--film-accent);color:#11171c}
+.film-footlinks{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:15px;padding-top:12px;border-top:1px solid #d5e1e139}
+.film-footlinks a{color:#fff;font:700 11px "IBM Plex Mono",Consolas,monospace;border-bottom:1px solid var(--film-accent);padding-bottom:5px}
+.film-footlinks a:hover{color:var(--film-accent)}
+.film-footlinks>span{color:#bfcac7;font:600 9px/1.2 "IBM Plex Mono",Consolas,monospace;text-align:right}
+.film-progress-track{position:absolute;z-index:5;bottom:0;left:0;right:0;background:#ffffff35;height:3px}
+.film-progress-fill{height:100%;width:0;background:var(--film-accent);will-change:width}
+.film-shortcuts{position:fixed;z-index:35;left:17px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;opacity:0;pointer-events:none;transition:opacity .25s}
+body.film-in-view .film-shortcuts{opacity:1;pointer-events:auto}
+.film-shortcuts a{width:35px;height:33px;display:grid;place-items:center;background:#0f1820d9;border:1px solid #7e93937a;color:#e5efeb;font:700 10px "IBM Plex Mono",Consolas,monospace;backdrop-filter:blur(9px)}
+.film-shortcuts a.is-current{background:#f1c32f;color:#152028;border-color:#f1c32f}
+.film-outro{position:relative;padding:70px 0 85px;background:#f1c32f;color:#16212a}
+.film-outro .container{display:flex;justify-content:space-between;align-items:center;gap:35px}
+.film-outro span{font:700 10px "IBM Plex Mono",Consolas,monospace;letter-spacing:.055em}
+.film-outro h2{font:400 clamp(26px,3.3vw,50px)/1.1 "Archivo Black",Arial,sans-serif;letter-spacing:-.055em;margin:0}
+.film-outro a{font:700 12px "IBM Plex Mono",Consolas,monospace;padding:13px 0;border-bottom:2px solid #18242b;white-space:nowrap}
+@media(prefers-reduced-motion:no-preference){
+ .film-project.is-current.film--cut .film-screen{animation:film-enter-right .5s both}
+ .film-project.is-current.film--rise .film-screen{animation:film-enter-bottom .52s both}
+ .film-project.is-current.film--scan .film-screen{animation:film-enter-scan .55s both}
+ .film-project.is-current.film--reveal .film-screen{animation:film-enter-expand .57s both}
+ .film-project.is-current.film--cascade .film-screen{animation:film-enter-left .48s both}
+}
+@keyframes film-enter-right{from{opacity:.3;transform:translateX(65px)}to{opacity:1;transform:none}}
+@keyframes film-enter-bottom{from{opacity:.25;transform:translateY(55px)}to{opacity:1;transform:none}}
+@keyframes film-enter-scan{from{opacity:.4;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+@keyframes film-enter-expand{from{opacity:.2;transform:scale(1.05);clip-path:inset(25%)}to{opacity:1;transform:none;clip-path:inset(0)}}
+@keyframes film-enter-left{from{opacity:.3;transform:translateX(-55px)}to{opacity:1;transform:none}}
+@media(max-width:1060px){
+ .film-bottom{grid-template-columns:1fr .93fr;gap:2vw}
+ .film-about h3{font-size:clamp(23px,3vw,36px)}
+ .film-actions{padding:13px}
+ .film-view{padding:9px;min-width:80px;font-size:10px}
+ .film-screen{max-width:100%;max-height:100%}
+ .film-shortcuts{left:7px}
+}
+@media(max-width:800px){
+ .film-introduction{display:block;padding-top:55px;padding-bottom:50px}
+ .film-introduction>span{display:block;padding:0 0 12px}
+ .film-introduction h2{font-size:clamp(31px,6vw,55px)}
+ .film-introduction p{margin-top:16px;font-size:13px}
+ .film-project{height:132svh;min-height:615px}
+ .film-stage{min-height:580px}
+ .film-topline{top:3%;left:3.5%;right:3.5%}
+ .film-top-identity strong{font-size:18px}
+ .film-type{font-size:8px;padding:7px;max-width:40%;text-align:right}
+ .film-photo-area{inset:10% 2% 32%}
+ .film-screen{max-width:100%;max-height:100%}
+ .film-stage:after{background:linear-gradient(to top,#080e14 0%,#080e14ff 12%,#080e14ec 33%,#080e1411 67%,transparent)}
+ .film-bottom{display:block;left:3%;right:3%;bottom:3.7%}
+ .film-overline{font-size:8px}
+ .film-index{padding:5px}
+ .film-about h3{font-size:clamp(20px,3.3vw,30px);line-height:1.12;margin:8px 0}
+ .film-description{font-size:11px;line-height:1.45;min-height:0;margin-bottom:11px;max-width:none}
+ .film-actions{padding:10px 12px}
+ .film-view-heading{font-size:8px;margin-bottom:8px}
+ .film-tabs{gap:4px}
+ .film-view{padding:8px;min-width:78px;font-size:10px}
+ .film-footlinks{margin-top:10px;padding-top:8px}
+ .film-footlinks a{font-size:10px}
+ .film-footlinks>span{font-size:8px}
+ .film-shortcuts{display:none}
+ .film-outro .container{display:block}
+ .film-outro h2{margin:17px 0 21px}
+}
+@media(max-width:480px){
+ .film-project{height:130svh;min-height:600px}
+ .film-stage{min-height:575px}
+ .film-top-identity strong{font-size:16px}
+ .film-type{font-size:7px}
+ .film-photo-area{inset:11% 1.5% 34%}
+ .film-bottom{left:3.2%;right:3.2%;bottom:3%}
+ .film-about h3{font-size:clamp(20px,5vw,26px)}
+ .film-description{font-size:11px;line-height:1.4;max-width:100%}
+ .film-actions{padding:10px}
+ .film-view{flex:1 1 30%;min-width:75px;font-size:9px;gap:4px;padding:8px 5px}
+ .film-view span{font-size:8px}
+ .film-footlinks>span{display:none}
+}
+@media(max-height:675px) and (min-width:801px){
+ .film-photo-area{inset:5% 4% 27%}
+ .film-bottom{bottom:3%}
+ .film-about h3{font-size:27px}
+ .film-description{font-size:11px;min-height:0}
+ .film-actions{padding:9px}
+ .film-view{padding:6px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .film-screen,.film-atmosphere,.film-view,.film-shortcuts{animation:none!important;transition:none!important}
+}
+/* Visual QA: the heading stays readable even above a screenshot's own navigation. */
+.film-top-identity{padding:11px 15px 12px;border-left:3px solid var(--film-accent);background:linear-gradient(90deg,#0a1219ee,#0a12199b);backdrop-filter:blur(9px)}
+/* On phones, keep the screenshot legible instead of dimming the interface itself. */
+@media(max-width:800px){
+ .film-stage:after{background:linear-gradient(to top,#080e14 0%,#080e14 26%,#080e14eb 35%,#080e146b 47%,transparent 65%)}
+ .film-atmosphere{filter:blur(35px) brightness(.54) saturate(.7)}
+ .film-photo-area{inset:10% 1% 31%}
+}
+@media(max-width:480px){
+ .film-top-identity{padding:7px 9px}
+ .film-photo-area{inset:10% 1% 31%}
+}
+
+/* The photographer's actual mobile site is used on narrow screens. */
+.film-responsive-image{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+@media(max-width:700px){
+ .film--reveal .film-photo-area{inset:10% 0 31%}
+ .film--reveal .film-responsive-image{overflow:hidden}
+ .film--reveal .film-screen{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover;object-position:center top}
+}
+
+/* V7 — scroll-linked scene handoffs and stronger image composition. */
+.film-project{height:136svh;min-height:635px}
+.film-photo-area{inset:4.5% .5% 17%}
+.film-screen{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.film-stage{background:#091017}
+html.film-motion .film-project.is-current .film-screen{animation:none!important}
+html.film-motion .film-photo-area{
+ transform:translate3d(var(--film-motion-x,0px),calc(var(--film-motion-y,0px) + var(--film-depart-y,0px)),0) scale(var(--film-motion-scale,1));
+ transform-origin:center;will-change:transform;
+}
+html.film-motion .film-bottom{transform:translate3d(0,calc(var(--film-panel-shift,0px) + var(--film-panel-exit,0px)),0);will-change:transform}
+.film-top-identity{background:linear-gradient(90deg,#06121aed,#06121aaa);z-index:3}
+.film-introduction{padding-top:58px;padding-bottom:49px}
+.statement{padding-top:88px;padding-bottom:88px}
+.film-screen{filter:drop-shadow(0 14px 28px #03091066)}
+@media(max-width:800px){
+ .film-project{height:124svh;min-height:600px}
+ .film-photo-area{inset:8.3% 1% 29%}
+ .statement{padding:67px 0}
+ .film-introduction{padding-top:44px;padding-bottom:40px}
+ .film-about h3{font-size:clamp(21px,3.8vw,34px)}
+ .film-description{max-width:100%}
+}
+@media(max-width:480px){
+ .film-project{height:122svh;min-height:580px}
+ .film-photo-area{inset:9% 0 30%}
+ .film--reveal .film-photo-area{inset:9% 0 30%}
+ .film-about h3{font-size:clamp(18px,5.2vw,25px)}
+ .film-description{line-height:1.4}
+}
+/* Screenshot labels remain readable as adjacent projects cross during the scroll. */
+.film-stage:after{background:linear-gradient(to top,#080e14 0%,#080e14f7 9%,#080e14d2 26%,#080e1409 49%,transparent 80%)}
+@media(max-width:800px){
+ .film-stage:after{background:linear-gradient(to top,#080e14 0%,#080e14 26%,#080e14ef 34%,#080e1454 48%,transparent 65%)}
+}
+@media(prefers-reduced-motion:reduce){
+ .film-photo-area,.film-bottom,.film-stage{transform:none!important;filter:none!important;clip-path:none!important;opacity:1!important}
+}
+
+/* The next screenshot arrives before its overlay labels, for clean halfway frames. */
+html.film-motion .film-topline,html.film-motion .film-bottom{opacity:var(--film-caption-alpha,1)}
+@media(prefers-reduced-motion:reduce){
+ html.film-motion .film-topline,html.film-motion .film-bottom{opacity:1!important}
+}
+
+/* Optional true-resolution viewer: helpful for dense dashboards on phones. */
+.film-open-capture{border:0;border-bottom:1px solid #d5e2de8b;background:transparent;color:#e7f3ef;font:700 10px "IBM Plex Mono",Consolas,monospace;white-space:nowrap;padding:4px 1px;cursor:pointer}
+.film-open-capture:hover{color:var(--film-accent);border-color:var(--film-accent)}
+.film-capture-dialog{border:1px solid #93a6a7;background:#0f191f;color:#f6f6f2;padding:0;width:min(96vw,1500px);height:min(91vh,950px);max-width:96vw;max-height:91vh;box-shadow:0 18px 80px #000b}
+.film-capture-dialog[open]{display:flex;flex-direction:column}
+.film-capture-dialog::backdrop{background:#01090dc9;backdrop-filter:blur(8px)}
+.film-capture-head{padding:16px 23px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid #6e84808a}
+.film-capture-head>div>span{font:700 10px "IBM Plex Mono",Consolas,monospace;color:#f0c440}
+.film-capture-head h2{color:#fff;margin:6px 0 0;font:400 clamp(18px,2vw,27px) "Archivo Black",Arial,sans-serif;letter-spacing:-.035em}
+.film-capture-controls{display:flex;gap:8px}
+.film-capture-controls button{background:#283a41;color:#fff;border:1px solid #82999b;padding:10px 13px;font:700 11px "IBM Plex Mono",Consolas,monospace;cursor:pointer}
+.film-capture-controls button:last-child{background:#f1c32f;color:#131c21;border-color:#f1c32f}
+.film-capture-view{min-height:0;flex:1;overflow:auto;display:flex;align-items:flex-start;justify-content:flex-start;background:#1b282d}
+.film-capture-view img{height:auto;width:auto;max-width:100%;margin:auto;object-fit:contain}
+.film-capture-dialog.is-zoomed .film-capture-view img{margin:0;max-width:none;width:auto;height:auto}
+.film-capture-note{font:11px/1.6 "IBM Plex Sans",Arial,sans-serif;margin:0;padding:11px 23px;color:#c3d0cf;border-top:1px solid #526568}
+@media(max-width:700px){
+ .film-footlinks{flex-wrap:wrap}
+ .film-open-capture{font-size:9px}
+ .film-capture-head{padding:11px;display:block}
+ .film-capture-controls{margin-top:10px}
+ .film-capture-controls button{font-size:10px;padding:9px}
+ .film-capture-note{padding:9px;font-size:10px}
+}

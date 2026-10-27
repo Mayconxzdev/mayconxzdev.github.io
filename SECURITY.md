@@ -1,14 +1,7 @@
-# Segurança e privacidade
+# Comunicação de problemas de segurança
 
-Este portfólio deve conter apenas informações públicas, dados sintéticos, screenshots sanitizados e descrições autorizadas.
+Para relatar uma exposição de dados, credencial ou vulnerabilidade, entre em contato em privado com mayconxz00dev@gmail.com.
 
-Não publicar:
+Informe a URL, o comportamento observado e os passos mínimos de reprodução. Não coloque dados pessoais, credenciais, documentos de clientes ou material confidencial em issues públicas.
 
-- credenciais, tokens ou chaves;
-- e-mails de clientes ou colaboradores;
-- caminhos internos, IPs ou nomes de servidores;
-- propostas, valores, documentos ou arquivos corporativos;
-- logs com dados pessoais;
-- segredos de workflows ou integrações.
-
-Os projetos privados aparecem apenas como cases sanitizados, com limites explícitos e sem código interno.
+O site é estático e não deve conter bases internas, credenciais ou painéis administrativos privados. Demonstrações de cases não devem executar operações comerciais reais.

@@ -1,0 +1,234 @@
+{
+  "version": "V15-career-audit-20261026",
+  "person": {
+    "name": "Maycon Ferreira",
+    "location": "Rio de Janeiro, RJ",
+    "locationEn": "Rio de Janeiro, Brazil",
+    "phone": "(21) 96481-0480",
+    "phoneEn": "+55 21 96481-0480",
+    "phoneLink": "tel:+5521964810480",
+    "email": "mayconxz00dev@gmail.com",
+    "github": "https://github.com/Mayconxzdev",
+    "portfolio": "https://mayconxzdev.github.io/",
+    "linkedin": "https://www.linkedin.com/in/maycon-ferreira-7bb870231/"
+  },
+  "shared": {
+    "currentRole": {
+      "organization": "Vesper Equipamentos EX",
+      "titlePt": "Técnico Júnior em Automação de Processos",
+      "periodPt": "2026–atual",
+      "titleEn": "Junior Process Automation Technician",
+      "periodEn": "2026–present"
+    },
+    "support": "<b>VemSer · Assistente de Informática</b> | 2025<br/>Suporte a usuários e computadores, diagnóstico inicial e orientação sobre sistemas e ferramentas digitais.",
+    "supportEn": "<b>VemSer · IT Assistant</b> | 2025<br/>User and computer support, initial troubleshooting and guidance on digital tools.",
+    "compass": "<b>Compass UOL · Estágio de formação prática em Engenharia de Dados</b> | out/2024–mar/2025<br/>Pipeline formativo: ingestão CSV/API, AWS S3/Lambda, Glue/PySpark, consultas Athena e painel QuickSight.",
+    "compassEn": "<b>Compass UOL · Data Engineering Internship / Practical Training</b> | Oct/2024–Mar/2025<br/>Training pipeline: CSV/API ingestion, AWS S3/Lambda, Glue/PySpark, Athena queries and a QuickSight dashboard.",
+    "instructor": "<b>Instrutor de Informática · Autônomo</b> | desde 2024<br/>Aulas práticas de informática e produtividade digital.",
+    "instructorEn": "<b>IT Instructor · Self-employed</b> | since 2024<br/>Practical computer skills and digital productivity lessons.",
+    "education": [
+      "<b>UNISUAM</b> · Tecnólogo em Análise e Desenvolvimento de Sistemas — conclusão prevista: dez/2026.",
+      "<b>42 Rio</b> · Piscine intensiva (2025): lógica, C, Linux e Git."
+    ],
+    "languages": "<b>Idiomas:</b> português nativo; inglês: leitura técnica intermediária, escrita e conversação básicas."
+  },
+  "resumes": [
+    {
+      "id": "general_pt",
+      "lang": "pt",
+      "file": "Maycon_Ferreira_Geral_Automacao_IA_PT.pdf",
+      "title": "Sistemas, Automação e IA Aplicada | Integrações e Dados",
+      "summary": "Construo sistemas e automações para rotinas de operação, suporte e integração. Trabalho com Python, SQL/SQLite, APIs REST, validação de dados e testes. Também desenvolvo projetos pessoais de automação e ferramentas para agentes.",
+      "current": [
+        "Desenvolvi e implantei <b>Produção Operacional</b> em Python/PySide6 e SQLite: ordens, importação validada, prevenção de duplicidades, relatórios e acompanhamento em TV.",
+        "Estruturei fluxos de <b>Manutenção em Campo</b> para ativos, QR Codes, checklists e histórico; a demonstração pública usa dados fictícios.",
+        "Implementei busca de materiais com FastAPI/SQLite, filtros e histórico; tratei validação, falhas e regras de negócio."
+      ],
+      "projects": [
+        {
+          "name": "Belarc Inventory",
+          "url": "https://github.com/Mayconxzdev/Belarc-Inventory",
+          "text": "Co-desenvolvimento de inventário Windows e acompanhamento de suporte; telas públicas com dados fictícios."
+        },
+        {
+          "name": "ZERO21FOTOS",
+          "url": "https://zero21fotos.com.br/",
+          "text": "Site entregue a cliente, com busca de eventos, acesso a galerias e painel privado para atualizar e importar eventos."
+        },
+        {
+          "name": "Engenharia de Dados · Compass UOL",
+          "url": "https://github.com/Mayconxzdev/Estagio-CompassUOL",
+          "text": "Estágio de formação prática com ingestão, AWS Glue/PySpark, consultas Athena e dashboard QuickSight."
+        }
+      ],
+      "skills": "<b>Automação e integração:</b> Python, SQL/SQLite, APIs REST/HTTP, n8n, Excel/Power Query, FastAPI. <b>IA aplicada:</b> agentes, MCP, integração de ferramentas, validação de saídas. <b>Engenharia:</b> testes, Git, Docker, requisitos e documentação.",
+      "credentials": "<b>Formação complementar:</b> Microsoft Applied Skills (agentes Foundry, MCP e Power Apps); SENAI Casa Firjan — Ferramentas de IA, Agentes e Automações (40h)."
+    },
+    {
+      "id": "agents_pt",
+      "lang": "pt",
+      "file": "Maycon_Ferreira_Agentes_Automacao_n8n_PT.pdf",
+      "title": "Desenvolvimento e Automação com IA | Python, n8n, APIs e MCP",
+      "summary": "Desenvolvo sistemas e automações que conectam APIs, dados, documentos e ferramentas de IA. Trabalho com Python, n8n e MCP, definindo contratos, tratamento de falhas, testes e revisão humana para conferir as saídas.",
+      "current": [
+        "Desenvolvi fluxos com extração e conferência de campos, tratamento de exceções e revisão antes de gerar documentos.",
+        "Implementei serviços Python e APIs HTTP/JSON com SQLite, validação de entradas, logs e ajustes após testes.",
+        "Modelei automações de produção e manutenção com históricos, prevenção de duplicidades e regras alinhadas à operação."
+      ],
+      "projects": [
+        {
+          "name": "ArsenalMind",
+          "text": "Catálogo de ferramentas para agentes via MCP, com descoberta de capacidades, parâmetros e limites de execução."
+        },
+        {
+          "name": "Postagem Redes · experimento encerrado",
+          "url": "https://github.com/Mayconxzdev/PostagemRedes",
+          "text": "Workflows n8n com APIs, LangChain/Supabase para RAG e aprovação humana; projeto não representa operação recorrente atual."
+        },
+        {
+          "name": "Mala Direta",
+          "url": "https://github.com/Mayconxzdev/MalaDireta",
+          "text": "Campanhas de e-mail sob demanda com fila por destinatário, revisão, tratamento de falhas e auditoria."
+        }
+      ],
+      "skills": "<b>Agentes e integração:</b> MCP, n8n, APIs REST, webhooks, APIs de LLMs e RAG (experimento encerrado). <b>Desenvolvimento:</b> Python, JavaScript, Pydantic, SQL/SQLite, Docker e Git. <b>Qualidade:</b> logs, testes, tratamento de falhas, documentação e revisão humana.",
+      "credentials": "<b>Formação complementar:</b> Microsoft Applied Skills (agentes Foundry, MCP e Power Apps); n8n Academy (N8N102/N8N103); Make Academy — AI Agent Builder."
+    },
+    {
+      "id": "creative_pt",
+      "lang": "pt",
+      "file": "Maycon_Ferreira_Produtos_Conteudo_IA_PT.pdf",
+      "title": "Produtos Digitais e Conteúdo com IA | Web, Vídeo e Automação",
+      "summary": "Desenvolvo produtos web e conteúdo técnico com apoio de IA: interfaces, sites institucionais, ferramentas de edição e automação editorial. Entreguei sites para clientes e empresas; nos projetos pessoais, mantenho revisão humana e explicito o que ainda está em evolução.",
+      "current": [
+        "Desenvolvi os sites institucionais de Vesper e Vent Rio, organizando linhas de produtos, páginas responsivas e caminhos de contato.",
+        "Produzi conteúdo audiovisual técnico e revisei especificações, cenas, legendas e montagem antes da entrega.",
+        "Testei navegação web em desktop e celular, integrei serviços por APIs e corrigi problemas encontrados na revisão."
+      ],
+      "projects": [
+        {
+          "name": "ZERO21FOTOS",
+          "url": "https://zero21fotos.com.br/",
+          "text": "Site freelance com busca por eventos, links para venda de fotos e painel privado para conteúdo e importação de eventos."
+        },
+        {
+          "name": "VideoMind",
+          "text": "Ferramenta pessoal em evolução, integrada a outro agente para cortes, legendas e exportação; reviso a saída antes de usar."
+        },
+        {
+          "name": "Hubora",
+          "url": "https://hubora.netlify.app/",
+          "text": "Experiência web/PWA para descobrir e organizar filmes, séries e outros conteúdos."
+        }
+      ],
+      "skills": "<b>Web e produto:</b> HTML, CSS, JavaScript/TypeScript, React, Vite, APIs HTTP/JSON, PWA, responsividade. <b>Conteúdo:</b> roteiro, composição, legendas, edição de vídeo, CapCut, Google Flow. <b>IA:</b> ferramentas generativas com revisão e automações com n8n.",
+      "credentials": "<b>Formação complementar:</b> SENAI Casa Firjan — IA, Agentes e Automações (40h); Make Academy — AI Agent Builder; Microsoft Applied Skills em Power Apps."
+    },
+    {
+      "id": "general_en",
+      "lang": "en",
+      "file": "Maycon_Ferreira_General_Automation_AI_EN.pdf",
+      "title": "Systems, Automation & Applied AI | Integrations and Data",
+      "summary": "I build systems and automations for operations, support and integrations. My work includes Python, SQL/SQLite, REST APIs, data validation and testing, along with personal automation projects and tools for AI agents.",
+      "current": [
+        "Built and deployed <b>Production Operations</b> with Python/PySide6 and SQLite: work orders, validated imports, duplicate prevention, reports and a shared TV view.",
+        "Structured <b>Field Maintenance</b> workflows for assets, QR codes, checklists and history; the public demonstration uses fictional data.",
+        "Implemented material search with FastAPI/SQLite, filters and history, including input validation, error handling and business rules."
+      ],
+      "projects": [
+        {
+          "name": "Belarc Inventory",
+          "url": "https://github.com/Mayconxzdev/Belarc-Inventory",
+          "text": "Co-developed Windows inventory and support tracking; public screens use fictional data."
+        },
+        {
+          "name": "ZERO21FOTOS",
+          "url": "https://zero21fotos.com.br/",
+          "text": "Client website with event search, gallery links and private tools to update content and import events."
+        },
+        {
+          "name": "Data Engineering · Compass UOL",
+          "url": "https://github.com/Mayconxzdev/Estagio-CompassUOL",
+          "text": "Practical training internship with data ingestion, AWS Glue/PySpark, Athena queries and a QuickSight dashboard."
+        }
+      ],
+      "skills": "<b>Automation and integration:</b> Python, SQL/SQLite, REST/HTTP APIs, n8n, Excel/Power Query, FastAPI. <b>Applied AI:</b> agents, MCP, tool integration and output validation. <b>Engineering:</b> testing, Git, Docker, requirements and documentation.",
+      "credentials": "<b>Additional training:</b> Microsoft Applied Skills (Foundry agents, MCP and Power Apps); SENAI Casa Firjan — AI Tools, Agents and Automation (40h).",
+      "education": [
+        "<b>UNISUAM</b> · Degree in Systems Analysis and Development — expected completion Dec 2026.",
+        "<b>42 Rio</b> · Intensive Piscine (2025): problem solving, C, Linux and Git."
+      ],
+      "languages": "<b>Languages:</b> Portuguese native; English intermediate technical reading, basic writing and speaking."
+    },
+    {
+      "id": "agents_en",
+      "lang": "en",
+      "file": "Maycon_Ferreira_AI_Agents_Automation_n8n_EN.pdf",
+      "title": "Development & AI Automation | Python, n8n, APIs and MCP",
+      "summary": "I develop systems and automations that connect APIs, data, documents and AI tools. My work uses Python, n8n and MCP, with input/output contracts, error handling, tests and human review to check results.",
+      "current": [
+        "Built document workflows with field checks, exception handling and review before producing output.",
+        "Implemented Python services and HTTP/JSON APIs with SQLite, input validation, logs and post-test fixes.",
+        "Modeled production and field maintenance automations with history, duplicate prevention and operational rules."
+      ],
+      "projects": [
+        {
+          "name": "ArsenalMind",
+          "text": "MCP tool catalog for agents, including capability discovery, parameters and execution boundaries."
+        },
+        {
+          "name": "Postagem Redes · completed experiment",
+          "url": "https://github.com/Mayconxzdev/PostagemRedes",
+          "text": "n8n workflows, APIs and LangChain/Supabase RAG with human approval; not a current recurring operation."
+        },
+        {
+          "name": "Mala Direta",
+          "url": "https://github.com/Mayconxzdev/MalaDireta",
+          "text": "On-demand email campaigns with recipient queues, review, error handling and audit history."
+        }
+      ],
+      "skills": "<b>Agents and integrations:</b> MCP, n8n, REST APIs, webhooks, LLM APIs and RAG (completed experiment). <b>Development:</b> Python, JavaScript, Pydantic, SQL/SQLite, Docker and Git. <b>Quality:</b> logging, testing, error handling, documentation and human review.",
+      "credentials": "<b>Additional training:</b> Microsoft Applied Skills (Foundry agents, MCP and Power Apps); n8n Academy (N8N102/N8N103); Make Academy — AI Agent Builder.",
+      "education": [
+        "<b>UNISUAM</b> · Degree in Systems Analysis and Development — expected completion Dec 2026.",
+        "<b>42 Rio</b> · Intensive Piscine (2025): problem solving, C, Linux and Git."
+      ],
+      "languages": "<b>Languages:</b> Portuguese native; English intermediate technical reading, basic writing and speaking."
+    },
+    {
+      "id": "creative_en",
+      "lang": "en",
+      "file": "Maycon_Ferreira_AI_Digital_Products_Content_EN.pdf",
+      "title": "AI-Enabled Digital Products & Content | Web and Video",
+      "summary": "I build web products and technical content with AI assistance: interfaces, institutional websites, editing tools and content workflows. I have delivered client and company websites; personal tools remain clearly marked when they are still evolving.",
+      "current": [
+        "Developed the Vesper and Vent Rio institutional websites, organizing product lines, responsive pages and contact paths.",
+        "Produced technical audiovisual content and reviewed specifications, scenes, captions and editing before delivery.",
+        "Tested web navigation on desktop and mobile, integrated services through APIs and fixed issues found in review."
+      ],
+      "projects": [
+        {
+          "name": "ZERO21FOTOS",
+          "url": "https://zero21fotos.com.br/",
+          "text": "Freelance website with event discovery, links to photo sales galleries and private content/event import tools."
+        },
+        {
+          "name": "VideoMind",
+          "text": "Personal tool in development, integrated with another agent for cuts, captions and export; I review the output before use."
+        },
+        {
+          "name": "Hubora",
+          "url": "https://hubora.netlify.app/",
+          "text": "Web/PWA experience for discovering and organizing films, series and other media."
+        }
+      ],
+      "skills": "<b>Web and product:</b> HTML, CSS, JavaScript/TypeScript, React, Vite, HTTP/JSON APIs, PWAs and responsive design. <b>Content:</b> scriptwriting, composition, subtitles, video editing, CapCut, Google Flow. <b>AI:</b> generative tools with review and n8n automations.",
+      "credentials": "<b>Additional training:</b> SENAI Casa Firjan — AI Tools, Agents and Automation (40h); Make Academy — AI Agent Builder; Microsoft Applied Skills in Power Apps.",
+      "education": [
+        "<b>UNISUAM</b> · Degree in Systems Analysis and Development — expected completion Dec 2026.",
+        "<b>42 Rio</b> · Intensive Piscine (2025): problem solving, C, Linux and Git."
+      ],
+      "languages": "<b>Languages:</b> Portuguese native; English intermediate technical reading, basic writing and speaking."
+    }
+  ]
+}

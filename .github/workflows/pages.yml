@@ -2,114 +2,88 @@ name: Validate and deploy GitHub Pages
 
 on:
   push:
-    branches: [main, 'release/**']
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages-release
+  group: portfolio-pages
   cancel-in-progress: false
 
 jobs:
   validate:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      pages: read
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
-      - name: Install PDF checker
-        run: python -m pip install --disable-pip-version-check pypdf==5.9.0
-      - name: Validate static portfolio, all cases, and exactly 3 PT + 3 EN PDFs
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          from pypdf import PdfReader
-          root=Path('.')
-          assert (root/'index.html').is_file()
-          assert (root/'.nojekyll').is_file()
-          assert (root/'robots.txt').is_file()
-          cases=[p for p in (root/'projetos').iterdir() if p.is_dir() and (p/'index.html').is_file()]
-          assert len(cases)==18, len(cases)
-          cv=root/'assets/cv'
-          pdfs=list(cv.glob('*.pdf'))
-          assert len(pdfs)==6,len(pdfs)
-          assert sum(p.name.endswith('_PT.pdf') for p in pdfs)==3
-          assert sum(p.name.endswith('_EN.pdf') for p in pdfs)==3
-          assert (root/'en/resumes/index.html').is_file()
-          for f in pdfs:
-              reader=PdfReader(str(f))
-              assert len(reader.pages)==1,f
-              text=reader.pages[0].extract_text()
-              assert '2026' in text and len(text)>1500,f
-          for p in [root/'index.html',root/'en/resumes/index.html']:
-              t=p.read_text(encoding='utf8')
-              assert t.count('assets/cv/')>=3,p
-          civic=(root/'projetos/brasil-as-claras/index.html').read_text(encoding='utf8')
-          assert 'Geraldo Magela' in civic
-          assert 'creativecommons.org/licenses/by/2.0' in civic
-          assert not (root/'assets/v13-local-review').exists()
-          print('PASS: 18 case pages, six single-page A4 resumes, language routing, attribution')
-          PY
-      - name: Build GitHub Pages static artifact
-        if: github.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          mkdir -p .site
-          rsync -a --exclude='/.git/' --exclude='/.github/' --exclude='/.site/' --exclude='/docs/' --exclude='/README.md' --exclude='/SECURITY.md' --exclude='/.gitignore' --exclude='/.gitattributes' ./ .site/
-          printf '%s\n' "$GITHUB_SHA" > .site/build.txt
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m pip install --disable-pip-version-check -r requirements-verify.txt
+      - run: npm run build
+      - run: npm run resumes:verify
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:full
+      - name: Preserve test reports
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: validation-reports
+          path: evidence/**/*.json
+          retention-days: 7
+      - name: Preserve exact release manifest
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v5
+        with:
+          name: release-manifest
+          path: dist/build.json
       - name: Configure GitHub Pages
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/configure-pages@v6
-      - name: Upload verified static site
-        if: github.ref == 'refs/heads/main'
+      - name: Upload tested production artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:
-          path: .site
+          path: dist
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: validate
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
     steps:
-      - name: Publish GitHub Pages
-        id: deployment
+      - name: Publish verified artifact
         uses: actions/deploy-pages@v5
 
   verify-live:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: deploy
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
-      - name: Check exact released commit and public resumes
-        shell: bash
-        run: |
-          set -e
-          for attempt in $(seq 1 24); do
-            build="$(curl -fsSL --max-time 15 -H 'Cache-Control: no-cache' "https://mayconxzdev.github.io/build.txt?attempt=$attempt" || true)"
-            if [ "$build" = "$GITHUB_SHA" ]; then
-              curl -fsSL "https://mayconxzdev.github.io/?commit=$GITHUB_SHA" -o "$RUNNER_TEMP/portfolio-home.html"
-              grep -q 'SISTEMAS' "$RUNNER_TEMP/portfolio-home.html"
-              curl -fsSL "https://mayconxzdev.github.io/en/resumes/" -o "$RUNNER_TEMP/portfolio-en-resumes.html"
-              grep -q 'Three directions' "$RUNNER_TEMP/portfolio-en-resumes.html"
-              for pdf in Maycon_Ferreira_Geral_Automacao_IA_PT.pdf Maycon_Ferreira_Agentes_Automacao_n8n_PT.pdf Maycon_Ferreira_Produtos_Conteudo_IA_PT.pdf Maycon_Ferreira_General_Automation_AI_EN.pdf Maycon_Ferreira_AI_Agents_Automation_n8n_EN.pdf Maycon_Ferreira_AI_Digital_Products_Content_EN.pdf; do
-                curl -fsSLI "https://mayconxzdev.github.io/assets/cv/$pdf" >/dev/null
-              done
-              echo "LIVE_VERIFIED=$GITHUB_SHA"
-              exit 0
-            fi
-            sleep 10
-          done
-          echo "Exact live commit was not found" >&2
-          exit 1
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v5
+        with:
+          name: release-manifest
+          path: release-manifest
+      - name: Verify commit and every public file
+        run: node scripts/verify-live.mjs --manifest release-manifest/build.json
