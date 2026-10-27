@@ -15,6 +15,8 @@ O GitHub Pages precisa usar GitHub Actions como fonte de publicação. O workflo
 
 Confira a execução de Actions, o arquivo público /build.txt e /build.json. Um HTTP 200 ou um check de compilação, isoladamente, não demonstra que a versão pretendida foi publicada. Os hashes servem para identificar o artefato exato, incluindo PDFs e HTML de cases.
 
+O manifesto também registra .nojekyll, um marcador consumido pelo GitHub Pages que não é servido por HTTP. Essa única entrada é identificada como arquivo exclusivo do artefato; todos os recursos públicos continuam sendo verificados por tamanho e SHA-256.
+
 ## Rollback
 
 O histórico anterior à normalização está preservado no Git. O último head publicado antes desta entrega era 6e1506c870e0692c7832ce02f6cea4ce6c532357.

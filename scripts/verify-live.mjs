@@ -19,10 +19,13 @@ for(let attempt=0;attempt<24;attempt++){
 if(!ready)throw Error('The expected commit is not live: '+revision);
 const actual=JSON.parse((await get('build.json')).toString());
 if(actual.sourceRevision!==revision||JSON.stringify(actual.files)!==JSON.stringify(expected.files))throw Error('Public build manifest differs from the tested artifact.');
+// GitHub Pages consumes this deployment marker but does not expose it as an HTTP resource.
+const artifactOnlyFiles=expected.files.filter(file=>file.path==='.nojekyll').map(file=>file.path);
+const publicFiles=expected.files.filter(file=>file.path!=='.nojekyll');
 const failures=[];let cursor=0;
 async function worker(){
- while(cursor<expected.files.length){
-  const file=expected.files[cursor++];let error;
+ while(cursor<publicFiles.length){
+  const file=publicFiles[cursor++];let error;
   for(let attempt=0;attempt<3;attempt++){
    try{
     const bytes=await get(file.path);
@@ -35,4 +38,4 @@ async function worker(){
 }
 await Promise.all(Array.from({length:6},worker));
 if(failures.length){console.error(JSON.stringify(failures,null,2));process.exitCode=1;}
-else console.log(JSON.stringify({sourceRevision:revision,filesVerified:expected.files.length,result:'LIVE_VERIFIED'},null,2));
+else console.log(JSON.stringify({sourceRevision:revision,filesVerified:publicFiles.length,artifactOnlyFiles,result:'LIVE_VERIFIED'},null,2));
