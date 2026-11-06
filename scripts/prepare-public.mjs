@@ -3,27 +3,33 @@ import {resolve,join} from "node:path";
 const root=resolve(import.meta.dirname,"..");
 const target=resolve(root,"public");mkdirSync(target,{recursive:true});
 // public/ is the versioned source of static assets; the build never reads a parent workspace.
-// Keep only the six currently approved CV PDFs (3 PT + 3 EN) in public media.
+// Keep only four current CV PDFs (2 PT + 2 EN) in public media.
 const cvData=JSON.parse(readFileSync(resolve(root,"scripts","resumes-content.json"),"utf8"));
 const allowed=new Set(cvData.resumes.map(x=>x.file));
-if(allowed.size!==6)throw new Error("CV release requires six distinct PDFs");
+if(allowed.size!==4)throw new Error("CV release requires four distinct PDFs");
 const cvDir=resolve(target,"assets","cv");
 for(const name of readdirSync(cvDir)){
  if(name.toLowerCase().endsWith(".pdf")&&!allowed.has(name))unlinkSync(resolve(cvDir,name));
 }
 for(const name of allowed)if(!existsSync(resolve(cvDir,name)))throw new Error("Missing selected CV "+name);
-// Keep one six-item canonical catalog while serving old direct PDF URLs as
+// Keep one four-item canonical catalog while serving old direct PDF URLs as
 // byte-identical aliases to the closest matching current version.
 const aliasTargets={
- "Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf":"general_pt",
- "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf":"agents_pt",
- "Maycon_Ferreira_IA_Agentes_MCP.pdf":"agents_pt",
- "Maycon_Ferreira_Automacao_Integracoes.pdf":"agents_pt",
- "Maycon_Ferreira_Dados_BI.pdf":"general_pt",
- "Maycon_Ferreira_Sistemas_Backend.pdf":"general_pt",
- "Maycon_Ferreira_Web_Produtos_Digitais.pdf":"creative_pt",
- "Maycon_Ferreira_Conteudo_Video_IA.pdf":"creative_pt",
- "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf":"general_en"
+ "Maycon_Ferreira_Solucoes_Digitais_Automacao_IA.pdf":"pt_sw",
+ "Maycon_Ferreira_Analista_Automacao_IA_Integracoes.pdf":"pt_ai",
+ "Maycon_Ferreira_IA_Agentes_MCP.pdf":"pt_ai",
+ "Maycon_Ferreira_Automacao_Integracoes.pdf":"pt_sw",
+ "Maycon_Ferreira_Dados_BI.pdf":"pt_sw",
+ "Maycon_Ferreira_Sistemas_Backend.pdf":"pt_sw",
+ "Maycon_Ferreira_Web_Produtos_Digitais.pdf":"pt_sw",
+ "Maycon_Ferreira_Conteudo_Video_IA.pdf":"pt_sw",
+ "Maycon_Ferreira_AI_Automation_Integrations_Analyst.pdf":"en_ai",
+ "Maycon_Ferreira_Geral_Automacao_IA_PT.pdf":"pt_sw",
+ "Maycon_Ferreira_Agentes_Automacao_n8n_PT.pdf":"pt_ai",
+ "Maycon_Ferreira_Produtos_Conteudo_IA_PT.pdf":"pt_sw",
+ "Maycon_Ferreira_General_Automation_AI_EN.pdf":"en_sw",
+ "Maycon_Ferreira_AI_Agents_Automation_n8n_EN.pdf":"en_ai",
+ "Maycon_Ferreira_AI_Digital_Products_Content_EN.pdf":"en_sw"
 };
 const byId=new Map(cvData.resumes.map(x=>[x.id,x.file]));
 for(const [alias,id] of Object.entries(aliasTargets)){
