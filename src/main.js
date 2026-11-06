@@ -14,6 +14,7 @@ import "./v14-home.css";
 import "./v15-stability.css";
 import "./v15-final-polish.css";
 import "./v16-cv-focus.css";
+import "./v17-career-focus.css";
 import {initHeroPreviewPicker} from "./v15-hero-preview.js";
 import {initVisitorExperience} from "./v11-experience.js";
 import {evidenceList} from "../scripts/evidence-map.mjs";
