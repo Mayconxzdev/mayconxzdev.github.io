@@ -10,8 +10,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: portfolio-pages
-  cancel-in-progress: false
+  group: portfolio-pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   validate:
@@ -33,7 +33,7 @@ jobs:
       - run: python -m pip install --disable-pip-version-check -r requirements-verify.txt -r requirements-resumes.txt
       - run: npm run build
       - run: npm run resumes:verify
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install chromium --only-shell
       - run: npm run test:full
       - name: Preserve test reports
         if: always()
