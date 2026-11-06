@@ -13,13 +13,14 @@ try{
   const cards=section.locator(".career-focus-card");
   const heading=await section.locator("h2").innerText();
   const titles=await cards.locator("h3").allInnerTexts();
+  const proofNotes=await cards.locator(".career-focus-proof").allInnerTexts();
   const overflow=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
   const source=await p.locator(".hero-actions a.btn-accent").getAttribute("href");
   const resumes=await p.locator("#cv-grid a").evaluateAll(a=>a.map(x=>x.getAttribute("href")));
   const focusLinks=await section.locator("a[href]").evaluateAll(a=>a.map(x=>x.getAttribute("href")));
-  const item={width,status:home.status(),heading,titles,overflow,source,resumes,focusLinks,jsErrors};
+  const item={width,status:home.status(),heading,titles,proofNotes,overflow,source,resumes,focusLinks,jsErrors};
   results.push(item);
-  if(item.status!==200||!item.heading.includes("construí")||cards&&titles.length!==4||!titles.includes("ArsenalMind Universal")||!titles.includes("Desapega AI")||!titles.includes("Belarc Inventory")||item.overflow>1||item.source!=="#avaliar"||resumes.length!==2||!focusLinks.includes("/estudos/desapega-ai/")||jsErrors.length)errors.push(item);
+  if(item.status!==200||!item.heading.includes("construí")||cards&&titles.length!==4||!titles.includes("ArsenalMind Universal")||!titles.includes("Desapega AI")||!titles.includes("Belarc Inventory")||proofNotes.length!==4||proofNotes.some(note=>!note.startsWith("Para conferir:"))||item.overflow>1||item.source!=="#avaliar"||resumes.length!==2||!focusLinks.includes("/estudos/desapega-ai/")||jsErrors.length)errors.push(item);
   if(width===390||width===1440){
    await section.scrollIntoViewIfNeeded();
    const dir=path.resolve("evidence/career-v17");fs.mkdirSync(dir,{recursive:true});
