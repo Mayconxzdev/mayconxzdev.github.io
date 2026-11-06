@@ -46,7 +46,7 @@ let currentFilter="all", query="", includeFeatured=false;
 const featured=new Set(["producao-operacional","manutencao-em-campo","belarc-inventory","zero21fotos","hubora"]);
 const showAllButton=document.querySelector("#catalog-show-all");
 const grid=$("#catalog-grid"),count=$("#result-count");
-const v14Order=["engenharia-de-dados-compass","sites-industriais","compras-e-cotacoes","tradutor-documental","gestao-de-propostas","videomind","brasil-as-claras","arsenalmind","mala-direta","gestao-de-locacao","conversa360"];
+const v14Order=["arsenalmind","mala-direta","engenharia-de-dados-compass","sites-industriais","compras-e-cotacoes","tradutor-documental","gestao-de-propostas","videomind","brasil-as-claras","gestao-de-locacao","conversa360"];
 const v14Ranks=new Map(v14Order.map((slug,index)=>[slug,index]));
 function catalogVisual(p,priority=false){
  const shots=evidenceList(p.slug);
