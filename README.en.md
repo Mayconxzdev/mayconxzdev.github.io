@@ -1,8 +1,8 @@
 # Laboratório Vivo — Maycon Ferreira
 
-My portfolio of systems, automation, integrations, data and applied AI. Each case explains the problem, my contribution, implementation decisions, evidence and project limits.
+My software engineering portfolio with applied AI, MCP tooling and integrations. It includes a direct selection for recruiters and an optional cinematic project walkthrough. Each case explains the problem, my contribution, implementation decisions, evidence and project limits.
 
-[Portfolio](https://mayconxzdev.github.io/) · [Six PT/EN resumes](https://mayconxzdev.github.io/assets/cv/) · [Português](README.md)
+[Portfolio](https://mayconxzdev.github.io/) · [Four PT/EN resumes](https://mayconxzdev.github.io/assets/cv/) · [Português](README.md)
 
 ## Run locally
 
@@ -24,9 +24,9 @@ The build is self-contained and writes dist/. Preview uses http://127.0.0.1:4214
 
 - index.html and src/ contain the homepage, project data, motion and styles.
 - scripts/evidence-map.mjs defines gallery images, captions, sources and stable IDs.
-- scripts/generate-cases.mjs and templates/case.html generate 18 canonical case pages.
+- scripts/generate-cases.mjs and templates/case.html generate 18 generated case pages plus an independent Desapega AI study.
 - public/ contains approved media, fonts, versioned PDFs and retained historical URLs.
-- scripts/resumes-content.json contains the three Portuguese resumes and three English equivalents.
+- scripts/resumes-content.json contains four current resumes (two Portuguese and two English).
 
 The site offers Automatic, Animation and Direct reading modes. The five featured projects remain accessible without animation; small screens use normal document flow. Screenshots, illustrative demos, co-authorship and private areas are identified.
 
@@ -42,7 +42,7 @@ These are Chromium laboratory checks, not certification, physical-device testing
 
 ## Resume generation
 
-The web build preserves committed PDFs and needs no Python. Optional regeneration:
+The build generates four current PDFs with Python from the versioned resume content and preserves old PDF URLs as aliases. To reproduce locally:
 
     python -m pip install -r requirements-resumes.txt
     npm run resumes:build
