@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desapega AI — Assistente de Revenda com IA | Maycon Ferreira</title>
+<meta name="description" content="Como desenvolvi um assistente de revenda para um familiar: IA aplicada, Telegram, SQLite, regras de preço, supervisão humana e os limites das integrações.">
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://mayconxzdev.github.io/estudos/desapega-ai/">
+<meta property="og:type" content="article"><meta property="og:title" content="Desapega AI — Maycon Ferreira"><meta property="og:description" content="IA aplicada com regras comerciais, estado local e supervisão humana. Estudo de caso com escopo real e limites.">
+<link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/fonts.css">
+<style>
+:root{--paper:#f5f2ec;--ink:#152b39;--muted:#51616b;--blue:#184f9d;--line:#cbd1d0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);margin:0;font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+a{color:var(--blue);text-underline-offset:4px}
+a:focus-visible{outline:3px solid #ae5738;outline-offset:5px}
+.skip{position:absolute;top:-100px;left:10px;padding:10px;background:#fff;z-index:10}.skip:focus{top:10px}
+header{border-bottom:1px solid var(--line);background:#fff}
+header>div{width:min(1120px,calc(100% - 40px));margin:auto;display:flex;gap:24px;justify-content:space-between;align-items:center;padding:20px 0}
+header a{text-decoration:none;font-weight:700}
+header nav{display:flex;flex-wrap:wrap;gap:20px}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+.hero{background:#182f45;color:#fff;padding:clamp(64px,9vw,120px) 0}
+.kicker{font:700 .76rem/1.5 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase;color:#b1cdec}
+h1{font-size:clamp(2.9rem,8vw,6.5rem);letter-spacing:-.065em;line-height:.95;margin:17px 0 25px}
+.hero p{max-width:780px;font-size:clamp(1rem,2vw,1.3rem);line-height:1.6;color:#e2ebf3}
+.status{display:inline-block;border:1px solid #72889b;padding:6px 12px;font-size:.82rem;color:#f4f4f4;margin-top:13px}
+main section.content{padding:55px 0}
+h2{font-size:clamp(1.7rem,3vw,2.55rem);letter-spacing:-.04em;line-height:1.15;margin:0 0 15px}
+p{margin:0 0 17px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{background:#fff;border:1px solid var(--line);padding:28px}
+.card h3{font-size:1.24rem;margin:0 0 14px}
+.card ul{margin:0;padding-left:21px}
+.card li{margin:9px 0}
+.fact{border-top:1px solid var(--line);padding:15px 0}
+.fact strong{display:block;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
+.callout{background:#e7edf2;border-left:4px solid var(--blue);padding:23px 27px}
+.link-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:25px}
+.link-row a{display:inline-block;padding:11px 15px;border:1px solid #6885a8;text-decoration:none;font-weight:700}
+footer{border-top:1px solid var(--line);padding:40px 0 55px;color:var(--muted)}
+@media(max-width:720px){header>div{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.card{padding:22px}.wrap{width:min(1120px,calc(100% - 28px))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o case</a>
+<header><div><a href="/">MF / MAYCON FERREIRA</a><nav aria-label="Navegação"><a href="/#avaliar">Projetos selecionados</a><a href="/#curriculos">Currículos</a><a href="/#contato">Contato</a></nav></div></header>
+<main id="conteudo">
+<section class="hero"><div class="wrap"><span class="kicker">IA aplicada · projeto pessoal · uso por familiar</span><h1>Desapega AI<span style="color:#f7aa6b">.</span></h1>
+<p>Fiz este assistente para ajudar meu irmão com a revenda de produtos. Queria reduzir o trabalho repetitivo de pesquisar preços, preparar anúncios e organizar respostas, sem deixar decisões comerciais importantes nas mãos de um modelo de linguagem.</p>
+<span class="status">Utilizado em situações reais · integrações externas ainda em revisão por versão</span>
+</div></section>
+<section class="content"><div class="wrap grid"><div>
+<h2>O problema que tentei resolver</h2>
+<p>Quem revende produtos precisa avaliar oportunidades, definir preços, publicar anúncios e conversar com interessados. Meu irmão queria um jeito mais simples de fazer isso, inclusive por conversa no Telegram.</p>
+<p>Comecei pelo fluxo do vendedor: informar o produto, receber uma sugestão, revisar preço e condições e então decidir o que publicar ou responder.</p>
+</div><div class="card"><h3>O que construí</h3><ul>
+<li>Estado local em Python e SQLite para produtos, pendências e histórico de tarefas.</li>
+<li>Interação por Telegram e sugestões com apoio de IA.</li>
+<li>Regras determinísticas de preço, pagamento e aprovação humana.</li>
+<li>Tratamento de mensagens repetidas e cenários de recuperação em testes locais.</li>
+<li>Integrações e automações de navegador experimentadas em diferentes versões.</li>
+</ul></div></div></section>
+<section class="content" style="background:#fff"><div class="wrap">
+<h2>Como o ArsenalMind entrou na história</h2>
+<div class="grid"><p>Durante o desenvolvimento, usei o <a href="/projetos/arsenalmind/">ArsenalMind Universal</a> para pesquisar modelos locais e possíveis integrações, comparar alternativas e analisar riscos. Foi uma ferramenta de apoio à escolha técnica, não algo que escreveu ou operou o Desapega sozinho.</p>
+<div class="callout"><strong>Uma decisão importante:</strong><p style="margin:8px 0 0">Interpretação de texto e sugestão podem usar IA. Restrições comerciais e operações que comprometem o vendedor devem ser verificadas por regras explícitas e aprovação humana. Os cenários de teste não provam que todas as versões das integrações já respeitam isso.</p></div></div>
+</div></section>
+<section class="content"><div class="wrap">
+<h2>O que consigo comprovar hoje</h2>
+<div class="grid">
+<div><div class="fact"><strong>Uso relatado</strong>Meu irmão utilizou o sistema para pedir sugestões e publicar anúncios. Ele relatou publicações automáticas.</div>
+<div class="fact"><strong>Código inspecionado</strong>Existem módulos de regras comerciais, estado e integração com mensageria, além de testes com dados fictícios.</div>
+<div class="fact"><strong>Testes disponíveis</strong>Há verificações de regras comerciais, persistência e duplicidade em ambientes isolados.</div></div>
+<div class="card"><h3>O que ainda falta validar</h3><ul>
+<li>Identificar o código e a versão exatos usados em cada publicação automática.</li>
+<li>Verificar as confirmações das plataformas sem acessar conversas ou credenciais privadas.</li>
+<li>Conferir permissões e condições de uso dos serviços externos.</li>
+<li>Medir resultados como tempo por anúncio, número de publicações e vendas concluídas.</li>
+</ul></div></div>
+<p style="margin-top:25px">Não afirmo que o robô fechou vendas sozinho, economizou um número específico de horas ou mantém todas as integrações funcionando permanentemente. O código da instalação não é público porque contém configurações de contas e sessões privadas.</p>
+<div class="link-row"><a href="https://github.com/Mayconxzdev/Mayconxzdev/blob/main/cases/DESAPEGA.md" target="_blank" rel="noopener noreferrer">Ler o registro no GitHub ↗</a><a href="/projetos/arsenalmind/">Ver ArsenalMind ↗</a><a href="/#avaliar">Voltar aos trabalhos ↗</a></div>
+</div></section>
+</main><footer><div class="wrap">Maycon Ferreira · Engenharia de software e IA aplicada · <a href="/#contato">Contato</a></div></footer>
+</body></html>

@@ -1,4 +1,4 @@
-"""Build six factual, single-column V15 resumes and their historical aliases.
+"""Build four factual, single-column career resumes and their historical aliases.
 
 Use the installed document-toolkit Python environment. No office conversion,
 network calls or source-repository mutation. Requires reportlab/pypdf/pypdfium2.
@@ -33,9 +33,9 @@ if regular.exists() and bold.exists():
  face='ResumeSans';heavy='ResumeSans-Bold'
 else:face='Helvetica';heavy='Helvetica-Bold'
 ink=HexColor('#172832');blue=HexColor('#174fca');muted=HexColor('#405460')
-body=ParagraphStyle('body',fontName=face,fontSize=10.55,leading=14.25,textColor=ink,spaceAfter=6)
-small=ParagraphStyle('small',parent=body,fontSize=9.3,leading=12.4,textColor=muted,spaceAfter=4)
-section=ParagraphStyle('section',parent=body,fontName=heavy,fontSize=10.75,leading=14.2,textColor=blue,spaceBefore=11,spaceAfter=6)
+body=ParagraphStyle('body',fontName=face,fontSize=9.75,leading=13.2,textColor=ink,spaceAfter=4)
+small=ParagraphStyle('small',parent=body,fontSize=9.0,leading=11.8,textColor=muted,spaceAfter=4)
+section=ParagraphStyle('section',parent=body,fontName=heavy,fontSize=10.4,leading=13.6,textColor=blue,spaceBefore=8,spaceAfter=5)
 name=ParagraphStyle('name',parent=body,fontName=heavy,fontSize=23,leading=26,spaceAfter=3)
 title=ParagraphStyle('title',parent=body,fontName=heavy,fontSize=10.5,leading=13.2,textColor=blue,spaceAfter=5)
 bullet=ParagraphStyle('bullet',parent=body,leftIndent=11,firstLineIndent=-10,spaceAfter=5)
@@ -79,12 +79,12 @@ for cv in data['resumes']:
  for annot in reader.pages[0].get('/Annots',[]):
   uri=annot.get_object().get('/A',{}).get('/URI')
   if uri:links.append(str(uri))
- if cv['id'] in ['general_pt','creative_pt','general_en','creative_en']:
-  assert 'ZERO21FOTOS' in text and 'https://zero21fotos.com.br/' in links
- if cv['id'] in ['agents_pt','agents_en']:
-  assert 'Postagem Redes' in text and 'https://github.com/Mayconxzdev/PostagemRedes' in links
-  assert 'Mala Direta' in text and 'https://github.com/Mayconxzdev/MalaDireta' in links
-  assert 'n8n' in text and 'MCP' in text
+ if cv['id'] in ['pt_ai','en_ai']:
+  assert 'ArsenalMind' in text and 'Desapega AI' in text
+  assert 'MCP' in text
+ if cv['id'] in ['pt_sw','en_sw']:
+  assert 'Belarc' in text and 'Mala Direta' in text
+  assert 'GitHub' in text or 'github.com' in text
  if en:assert '+55 21 96481-0480' in text
  render=evidence/cv['id'];render.mkdir(exist_ok=True)
  pdfium.PdfDocument(output)[0].render(scale=1.6).to_pil().save(render/'page-1.png')
