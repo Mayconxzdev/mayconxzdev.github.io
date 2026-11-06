@@ -1,15 +1,16 @@
 # Laboratório Vivo — Maycon Ferreira
 
-Meu portfólio de sistemas, automação, integrações, dados e IA aplicada. Apresento o problema, minha participação, decisões de implementação e evidências de cada trabalho, com o estado e os limites de cada projeto.
+Meu portfólio de engenharia de software, IA aplicada, ferramentas MCP e integrações. Reuni alguns trabalhos que mostram o que construí, as decisões que tomei e as limitações que ainda preciso resolver. Apresento o problema, minha participação, decisões de implementação e evidências de cada trabalho, com o estado e os limites de cada projeto.
 
-[Abrir portfólio](https://mayconxzdev.github.io/) · [Seis currículos PT/EN](https://mayconxzdev.github.io/assets/cv/) · [English](README.en.md)
+[Abrir portfólio](https://mayconxzdev.github.io/) · [Currículos PT/EN](https://mayconxzdev.github.io/assets/cv/) · [English](README.en.md)
 
 ## O que você encontra
 
-- 18 cases, incluindo Produção Operacional, Manutenção em Campo, Belarc Inventory, ZERO21FOTOS e Hubora.
+- Quatro projetos principais em uma entrada direta para recrutadores: ArsenalMind Universal, Desapega AI, Belarc Inventory e Produção Operacional. Os cinco destaques narrativos originais continuam disponíveis.
+- 18 cases gerados e um estudo independente do Desapega, com evidências e estados separados.
 - Capturas reais ou demonstrações identificadas, com miniaturas, legendas e ampliação integral. Coautoria e áreas privadas são explicitadas.
 - Três modos de apresentação: Automático acompanha o dispositivo; Animação é uma escolha explícita; Leitura direta mantém os cinco destaques no fluxo da página.
-- Três currículos em português e três equivalentes em inglês: Geral, Desenvolvimento e Automação com IA, Produtos Digitais e Conteúdo com IA.
+- Dois currículos em português e dois em inglês: Engenharia de Software e IA Aplicada; Software, Backend e Integrações. Os PDFs são regenerados no build e passam por verificações próprias.
 
 O portfólio é uma aplicação estática. Ele apresenta os sistemas; não conecta o visitante às bases internas ou às operações dos clientes. As simulações nos cases são demonstrações ilustrativas.
 
@@ -27,7 +28,7 @@ O desenvolvimento abre em http://127.0.0.1:8789. Para gerar e inspecionar a prod
     npm run build
     npm run preview
 
-A prévia fica em http://127.0.0.1:4214. O build lê somente arquivos deste repositório, verifica a integridade das mídias e gera 18 páginas antes do Vite. A saída fica em dist/ e não deve ser editada ou commitada.
+A prévia fica em http://127.0.0.1:4214. O build lê somente arquivos deste repositório, valida as mídias, gera os quatro PDFs atuais e cria 18 páginas de projeto antes do Vite. A saída fica em dist/ e não deve ser editada ou commitada.
 
 ## Onde editar
 
@@ -39,7 +40,7 @@ A prévia fica em http://127.0.0.1:4214. O build lê somente arquivos deste repo
 | scripts/evidence-map.mjs | Galerias, IDs estáveis, legendas e origem das evidências |
 | templates/case.html e scripts/generate-cases.mjs | Geração dos cases canônicos em public/projetos/ |
 | public/ | Mídias autorizadas, fontes, PDFs e páginas históricas preservadas |
-| scripts/resumes-content.json | Conteúdo dos seis currículos |
+| scripts/resumes-content.json | Conteúdo dos quatro currículos atuais |
 | .github/workflows/pages.yml | Build, testes, publicação e conferência do artefato online |
 
 Os HTML de public/projetos/, lab.css, robots.txt e sitemap.xml são gerados e ficam fora do versionamento. Para alterar um case, edite os dados, o template ou o gerador e rode o build. Os arquivos históricos em /cases/, /en/ e /competencias/ mantêm links antigos e estão identificados como acervo anterior; não são versões ativas adicionais.
@@ -58,9 +59,9 @@ Essas verificações usam Chromium e emulação. Não representam testes em todo
 
 ## Currículos
 
-Os seis PDFs canônicos e nove aliases de URLs antigas ficam em public/assets/cv/. O catálogo mostra somente as seis versões atuais. O build web preserva os PDFs versionados, sem depender de Python.
+Quatro PDFs canônicos (dois PT, dois EN) são gerados a partir de `scripts/resumes-content.json` em cada build e publicados em `assets/cv/`. O build preserva quinze URLs antigas como cópias idênticas à versão atual mais próxima, para não quebrar links existentes.
 
-Para revisar o conteúdo ou regenerar os PDFs:
+Para revisar o conteúdo e regenerar os PDFs em um ambiente local:
 
     python -m pip install -r requirements-resumes.txt
     npm run resumes:build
