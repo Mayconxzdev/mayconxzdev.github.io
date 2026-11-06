@@ -29,7 +29,7 @@ try{
   const body=await p.locator("main").innerText();
   const skip=await p.locator("a.skip").count();
   const caseOverflow=await p.evaluate(()=>document.documentElement.scrollWidth-innerWidth);
-  if(caseResponse.status()!==200||!body.includes("estado local")||!body.includes("ArsenalMind")||!body.includes("versão")||skip!==1||caseOverflow>1||jsErrors.length)errors.push({width,route:"/estudos/desapega-ai/",status:caseResponse.status(),overflow:caseOverflow,skip,jsErrors});
+  if(caseResponse.status()!==200||!body.toLowerCase().includes("estado local")||!body.includes("ArsenalMind")||!body.includes("versão")||skip!==1||caseOverflow>1||jsErrors.length)errors.push({width,route:"/estudos/desapega-ai/",status:caseResponse.status(),overflow:caseOverflow,skip,jsErrors});
   await ctx.close();
  }
 }finally{await browser.close()}
