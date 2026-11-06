@@ -11,7 +11,7 @@ for(const width of [1440,390,320]){
  const order=await home.locator('#catalog-grid [data-project]').evaluateAll(els=>els.map(el=>el.dataset.project));
  const overflow=await home.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
  checks.push({width,page:'home',http:response.status(),order,overflow,errors:errs});
- if(overflow||order.slice(0,3).join()!=='engenharia-de-dados-compass,sites-industriais,compras-e-cotacoes'||errs.length)issues.push({width,page:'home',order:order.slice(0,3),overflow,errs});
+ if(overflow||order.slice(0,3).join()!=='arsenalmind,mala-direta,engenharia-de-dados-compass'||errs.length)issues.push({width,page:'home',order:order.slice(0,3),overflow,errs});
  await home.close();
  const slugs=['engenharia-de-dados-compass','sites-industriais','compras-e-cotacoes','tradutor-documental','gestao-de-propostas','videomind','brasil-as-claras','arsenalmind','gestao-de-locacao','conversa360','producao-operacional','zero21fotos'];
  for(const slug of slugs){
