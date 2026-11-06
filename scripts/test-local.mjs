@@ -15,7 +15,7 @@ try{
   for(let i=0;i<80;i++){await delay(250);html=await running();if(html!==null)break;}
   if(html!==expected)throw Error('Preview did not start with the expected dist/index.html.');
  }
- const scripts=['audit.mjs','audit-evidence.mjs','qa-v15.cjs','qa-v14.cjs','qa-v14-cases.cjs','qa-v14-handoffs.cjs','a11y-v14.cjs','qa-v14-cv.cjs','qa-motion-gallery-fix.cjs'];
+ const scripts=['audit.mjs','audit-evidence.mjs','qa-v15.cjs','qa-v14.cjs','qa-v14-cases.cjs','qa-v14-handoffs.cjs','a11y-v14.cjs','qa-v14-cv.cjs','qa-v17-career.cjs','qa-motion-gallery-fix.cjs'];
  if(process.argv.includes('--full'))scripts.push('qa-mission.cjs','qa-motion-mission.cjs','qa-legacy-mission.cjs');
  for(const script of scripts){
   console.log('\nRunning '+script);
