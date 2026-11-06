@@ -14,7 +14,7 @@ expected={
 }
 assert len(content["resumes"])==4 and {x["id"]:x["file"] for x in content["resumes"]}==expected
 source=(site/"src/data.js").read_text(encoding="utf8")
-listed=set(re.findall(r'file:\\s*"([^"]+\\.pdf)"',source))
+listed=set(re.findall('file:' + '\\s*' + '"([^"]+\\.pdf)"', source))
 assert listed=={expected["pt_ai"],expected["pt_sw"]}, "Homepage must expose two current PT resumes"
 class Links(html.parser.HTMLParser):
  def __init__(self):super().__init__();self.hrefs=[]
