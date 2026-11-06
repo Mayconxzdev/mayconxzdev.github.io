@@ -1,9 +1,8 @@
 import {caseCopy} from "./v4-copy.js";
 
 export const cvList=[
- {id:"general_pt",title:"Sistemas, automação e IA aplicada",file:"Maycon_Ferreira_Geral_Automacao_IA_PT.pdf",tag:"GERAL · PT-BR",featured:true},
- {id:"agents_pt",title:"Desenvolvimento e automação com IA",file:"Maycon_Ferreira_Agentes_Automacao_n8n_PT.pdf",tag:"PYTHON · n8n · APIs · MCP",featured:false},
- {id:"creative_pt",title:"Produtos digitais e conteúdo com IA",file:"Maycon_Ferreira_Produtos_Conteudo_IA_PT.pdf",tag:"WEB · AUDIOVISUAL · AUTOMAÇÃO",featured:false}
+ {id:"pt_ai",title:"Engenharia de software e IA aplicada",file:"Maycon_Ferreira_IA_Aplicada_Agentes_PT_2026_V2.pdf",tag:"AGENTES · MCP · APIS",featured:true},
+ {id:"pt_sw",title:"Software, backend e integrações",file:"Maycon_Ferreira_Backend_Integracoes_PT_2026_V2.pdf",tag:"BACKEND · RUST · SISTEMAS",featured:false}
 ];
 
 export const projects=[
@@ -152,23 +151,23 @@ export const projects=[
   },
   {
     "slug": "arsenalmind",
-    "name": "ArsenalMind",
+    "name": "ArsenalMind Universal",
     "kind": "ia",
-    "group": "IA e engenharia de contexto",
+    "group": "Agent tooling e MCP",
     "status": "Ferramenta pessoal local",
     "role": "Desenvolvimento pessoal",
-    "headline": "Dar ao agente uma ferramenta e um contrato para usá-la.",
-    "summary": "Ferramentas e contexto organizados para os agentes que uso no meu trabalho.",
-    "problem": "Uma ferramenta disponível não significa que toda ação é adequada. Contexto, entradas e efeitos precisam ser compreendidos.",
-    "solution": "Desenhei contratos e verificações para estudar como agentes consultam e acionam ferramentas sob revisão.",
+    "headline": "Descobrir e comparar tecnologias antes de escolher o que usar.",
+    "summary": "Radar de tecnologias, ferramentas MCP e skills para pesquisar alternativas nos agentes que uso.",
+    "problem": "Novas bibliotecas e ferramentas surgem diariamente. Não quero que meus agentes dependam só de opções antigas ou escolham algo sem comparar.",
+    "solution": "Criei um toolkit pessoal com servidor MCP, Tech Intelligence e Solution Scout para descobrir candidatos, comparar opções e guardar a pesquisa.",
     "decisions": [
       "Descoberta: Registro capacidades e instruções para que o agente encontre a ferramenta adequada.",
       "Contrato: Defino entradas e saídas para tornar a chamada verificável.",
       "Contexto: Guardo decisões e informações úteis entre etapas da tarefa.",
       "Limites: Valido entradas e destinos de rede conforme cada ferramenta. Essas verificações reduzem riscos, mas não garantem segurança absoluta."
     ],
-    "roleDetail": "Desenvolvi o núcleo e as integrações da ferramenta para meu próprio fluxo de trabalho.",
-    "limitations": "Esta apresentação é um mapa das capacidades documentadas. A ferramenta é local e pessoal; não há interface SaaS ou auditoria independente de segurança.",
+    "roleDetail": "Desenvolvi o toolkit para uso pessoal. Usei suas ferramentas na pesquisa técnica do Desapega AI.",
+    "limitations": "O kit completo é local. Há módulo público com testes offline, mas ainda não medi em benchmark independente o ganho dos agentes com a ferramenta.",
     "stack": [
       "MCP",
       "TypeScript",
@@ -378,13 +377,13 @@ export const projects=[
     "headline": "Construindo um ambiente de edição operável por agentes.",
     "summary": "Ferramentas de edição para que agentes possam organizar cenas, cortes e legendas.",
     "problem": "Operações repetidas de edição e processamento podem ser difíceis de reproduzir sem um fluxo organizado.",
-    "solution": "Desenvolvi ferramentas locais de edição que operam em integração com outro agente, com timeline para inspecionar mídia, cortes e faixas de texto e áudio.",
+    "solution": "Desenvolvi componentes locais para operações de mídia e integração MCP, mas o fluxo completo de importar, visualizar e editar na interface ainda precisa de correções.",
     "decisions": [
       "O que já exploro: Desenvolvi e testei componentes de organização de mídia, faixas e processamento local. A captura mostra a timeline do protótipo.",
-      "O que estou construindo: A integração com outro agente já executa cortes, legendas e exportações; continuo refinando verificações, fluxos e revisão da saída."
+      "O que estou construindo: Ainda preciso unir e homologar importação de mídia, prévia, timeline e exportação na interface."
     ],
     "roleDetail": "Desenvolvi e testei componentes locais da ferramenta de edição e processamento.",
-    "limitations": "Projeto pessoal em evolução. A captura mostra a interface autorizada; não comprova sozinha o agente em ação nem substitui a revisão do resultado.",
+    "limitations": "Protótipo em desenvolvimento. A captura não prova edição ponta a ponta; versões testadas apresentaram falhas na importação e na prévia.",
     "stack": [
       "Python",
       "FFmpeg",
@@ -399,18 +398,18 @@ export const projects=[
     "name": "CarreiraPessoal",
     "kind": "ia",
     "group": "Ferramenta pessoal",
-    "status": "Uso pessoal",
+    "status": "Protótipo incompleto",
     "role": "Projeto próprio",
-    "headline": "Organizar o próprio processo de carreira.",
-    "summary": "Organizar candidaturas e versões de currículo, sem depender de planilhas soltas.",
+    "headline": "Experimento para organizar candidaturas e currículos.",
+    "summary": "Protótipo pessoal não concluído, com uma demonstração limitada de regras e evidências.",
     "problem": "Comparar oportunidades e manter diferentes currículos se torna confuso quando cada decisão está em um lugar.",
-    "solution": "Estruturei um fluxo local de organização e revisão de informações, com apoio de análise assistida.",
+    "solution": "Explorei módulos para classificação de vagas e validação de evidências; a jornada completa não foi homologada.",
     "decisions": [
       "Oportunidades e próximos passos: Reúno informações e acompanho decisões da minha busca profissional.",
       "Versões e documentos: Organizo materiais para recuperar e revisar o que faz sentido em cada oportunidade."
     ],
     "roleDetail": "Projeto pessoal que desenvolvi para minhas próprias rotinas.",
-    "limitations": "Ferramenta de uso pessoal. Não há serviço comercial de recrutamento nem promessa de aprovação em candidaturas.",
+    "limitations": "Não concluí nem passei a usar o aplicativo integralmente. A demonstração pública é parcial e possui regras ainda em revisão.",
     "stack": [
       "Python",
       "SQLite",
