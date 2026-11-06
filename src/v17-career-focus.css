@@ -14,6 +14,11 @@
 .career-focus-card h3{font-size:clamp(1.6rem,2.6vw,2.75rem);line-height:1.1;letter-spacing:-.04em;margin:16px 0 13px}
 .career-focus-card p{line-height:1.65;color:#455a68;margin:0 0 22px;max-width:62ch}
 .career-focus-card--primary p{color:#e1ebf3}
+.career-focus-card .career-focus-proof{font-size:.83rem;line-height:1.5;color:#516779;border-top:1px solid #dce3e6;padding-top:12px;margin-top:auto;margin-bottom:16px}
+.career-focus-card .career-focus-proof strong{font-weight:800;color:#223e51}
+.career-focus-card--primary .career-focus-proof{color:#c7dceb;border-top-color:#426079}
+.career-focus-card--primary .career-focus-proof strong{color:#fff}
+.career-focus-card:has(.career-focus-proof) .career-focus-links{margin-top:0}
 .career-focus-links{display:flex;flex-wrap:wrap;gap:12px 20px;margin-top:auto}
 .career-focus-links a,.career-focus-bottom a{color:#164d96;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px;font-weight:700;line-height:1.35}
 .career-focus-card--primary a{color:#bcdafa}
