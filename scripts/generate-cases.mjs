@@ -43,11 +43,14 @@ for(const p of projects){
   NAV:renderV14Nav(p),VISUAL:renderV14Visual(p),STORY:"",
   CREDIT:renderCredit(p),EXPERIENCE:renderDemo(p.slug)
  };
+ if(p.slug==="arsenalmind"){
+  fields.EXPERIENCE += '<section style="background:#f3f6f8;color:#172a3b;padding:34px 20px"><div class="container" style="max-width:1020px"><h2 style="font-size:clamp(1.5rem,3vw,2.3rem)">ArsenalMind no meu fluxo de trabalho</h2><p>Uso o ArsenalMind para pesquisar novas ferramentas e comparar alternativas. Durante o desenvolvimento do Desapega AI, utilizei essa pesquisa para avaliar modelos locais e integrações. O ArsenalMind não criou o Desapega sozinho.</p><p><a href="/estudos/desapega-ai/">Ver onde usei no Desapega AI ↗</a> · <a href="https://github.com/Mayconxzdev/Mayconxzdev/tree/main/samples/arsenalmind-capability-watch">Executar o módulo público ↗</a></p><p>O código completo do meu ambiente MCP é local; publiquei um módulo menor com testes offline para avaliação.</p></div></section>';
+ }
  let html=template;
  for(const [key,value] of Object.entries(fields)) html=html.replaceAll("{{"+key+"}}",["NAV","VISUAL","STORY","CREDIT","ROBOTS","EXPERIENCE"].includes(key)?value:esc(value));
  const out=join(root,"public","projetos",p.slug);mkdirSync(out,{recursive:true});writeFileSync(join(out,"index.html"),html,"utf8");
 }
-const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+['/','/projetos/'].concat(projects.filter(p=>getEditorial(p).priority!=='archive').map(p=>'/projetos/'+p.slug+'/')).filter(x=>x!=='/projetos/').map(path=>' <url><loc>https://mayconxzdev.github.io'+path+'</loc></url>').join("\n")+'\n</urlset>\n';
+const sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+['/','/estudos/desapega-ai/','/projetos/'].concat(projects.filter(p=>getEditorial(p).priority!=='archive').map(p=>'/projetos/'+p.slug+'/')).filter(x=>x!=='/projetos/').map(path=>' <url><loc>https://mayconxzdev.github.io'+path+'</loc></url>').join("\n")+'\n</urlset>\n';
 writeFileSync(join(root,"public","sitemap.xml"),sitemap);
 writeFileSync(join(root,"public","robots.txt"),"User-agent: *\nAllow: /\nDisallow: /cases/\nDisallow: /en/\nDisallow: /competencias/\nSitemap: https://mayconxzdev.github.io/sitemap.xml\n");
 console.log(JSON.stringify({generatedCases:projects.length,publicAssets:"versioned public assets",cvFiles:"six canonical files plus legacy aliases",status:"production build; deployment verified separately"}));
