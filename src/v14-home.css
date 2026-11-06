@@ -29,7 +29,7 @@
 .v14-compact-body>a{display:flex;align-items:start;justify-content:space-between;gap:12px;border-top:1px solid #c2cbd0;padding:11px 0 0;margin-top:auto;color:#174fca;font:700 10px/1.4 "IBM Plex Mono",monospace;text-decoration:none}
 .v14-compact-body>a:hover{color:#b94327}
 .v14-card-art--diagram{display:flex;flex-direction:column;gap:13px;background:repeating-linear-gradient(125deg,#e7eff5,#e7eff5 27px,#dce7ef 28px);color:#183643}
-.v14-card-art--diagram>span{font:700 10px "IBM Plex Mono",monospace;color:#b94327}
+.v14-card-art--diagram>span{font:700 10px "IBM Plex Mono",monospace;color:#842c19}
 .v14-card-art--diagram>strong{font:400 25px "Archivo Black",sans-serif;letter-spacing:-.045em;text-align:center}
 .v14-feature:focus-within,.v14-compact:focus-within{outline:2px solid #174fca;outline-offset:2px}
 .v14-compact:hover{box-shadow:4px 4px 0 #174fca;transform:translateY(-2px)}
