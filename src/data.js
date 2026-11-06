@@ -316,7 +316,7 @@ export const projects=[
     "name": "Engenharia de Dados · Compass UOL",
     "kind": "dados",
     "group": "Formação prática",
-    "status": "Estágio concluído",
+    "status": "Formação concluída",
     "role": "Estagiário de dados",
     "headline": "Da ingestão à consulta.",
     "summary": "Da preparação dos dados na AWS à consulta e visualização no QuickSight.",
