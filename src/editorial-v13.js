@@ -133,12 +133,12 @@ export const editorial={
     "narrativeLayout": "collection"
   },
   "arsenalmind": {
-    "type": "Ferramenta de IA e MCP",
+    "type": "MCP e pesquisa de tecnologias",
     "status": "Ferramenta pessoal local",
     "role": "Desenvolvimento pessoal",
-    "lead": "Ferramentas e contexto organizados para os agentes que uso no meu trabalho.",
-    "title": "Dar ao agente uma ferramenta e um contrato para usá-la.",
-    "story": "Desenvolvi o ArsenalMind para organizar ferramentas que meus agentes conseguem descobrir e chamar. O núcleo usa MCP; cada capacidade precisa ter entradas claras e limites de execução.",
+    "lead": "Pesquiso novas tecnologias e comparo alternativas com ferramentas MCP antes de adotá-las.",
+    "title": "Pesquisar melhor antes de escolher a ferramenta.",
+    "story": "Criei o ArsenalMind porque uso agentes para muitos tipos de projeto e não queria depender sempre das mesmas recomendações. Ele reúne ferramentas MCP, radar de tecnologias e pesquisa de alternativas; usei essa estrutura durante a pesquisa técnica do Desapega AI.",
     "steps": [
       [
         "Descoberta",
@@ -157,8 +157,8 @@ export const editorial={
         "Valido entradas e destinos de rede conforme cada ferramenta. Essas verificações reduzem riscos, mas não garantem segurança absoluta."
       ]
     ],
-    "credit": "Desenvolvi o núcleo e as integrações da ferramenta para meu próprio fluxo de trabalho.",
-    "caution": "Esta apresentação é um mapa das capacidades documentadas. A ferramenta é local e pessoal; não há interface SaaS ou auditoria independente de segurança.",
+    "credit": "Desenvolvi o ArsenalMind como ferramenta pessoal para pesquisa, escolha e integração de tecnologias.",
+    "caution": "Parte do código foi publicada como módulo executável com testes offline. O kit completo é local e ainda não tem comparação independente de desempenho.",
     "kind": "tool",
     "priority": "technical",
     "narrativeLayout": "architecture"
@@ -335,11 +335,11 @@ export const editorial={
   },
   "videomind": {
     "type": "Ferramenta audiovisual local",
-    "status": "Ferramenta pessoal em evolução",
+    "status": "Protótipo incompleto",
     "role": "Desenvolvimento pessoal",
     "lead": "Ferramentas de edição para que agentes possam organizar cenas, cortes e legendas.",
     "title": "Construindo um ambiente de edição operável por agentes.",
-    "story": "O VideoMind já trabalha integrado a outro agente para executar tarefas de edição, incluindo cortes, legendas e exportação. A timeline permite inspecionar o material e revisar a saída. A integração exige ferramentas disponíveis e verificação humana; não substitui todas as etapas de um editor tradicional.",
+    "story": "Experimentei integrar ferramentas de mídia a agentes por MCP, com componentes de timeline, processamento e exportação. Ainda estou corrigindo a ligação entre a interface e os fluxos reais de edição.",
     "steps": [
       [
         "O que já exploro",
@@ -347,22 +347,22 @@ export const editorial={
       ],
       [
         "O que estou construindo",
-        "A integração com outro agente já executa operações de edição; sigo aperfeiçoando os fluxos, a observabilidade das ações e as verificações por tarefa."
+        "A importação e a prévia precisam de homologação antes de tratar o VideoMind como editor concluído."
       ]
     ],
     "credit": "Desenvolvi e testei componentes locais da ferramenta de edição e processamento.",
-    "caution": "Ferramenta pessoal em evolução, operável em conjunto com outro agente. A captura mostra a interface; não demonstra sozinha a execução, os limites nem a qualidade de um vídeo exportado.",
+    "caution": "Captura de protótipo. Há ferramentas MCP registradas, mas versões testadas apresentaram falhas na interface de importação e prévia.",
     "kind": "tool",
     "priority": "support",
     "narrativeLayout": "development"
   },
   "carreirapessoal": {
     "type": "Ferramenta pessoal",
-    "status": "Uso pessoal",
+    "status": "Protótipo incompleto",
     "role": "Projeto próprio",
-    "lead": "Organizar candidaturas e versões de currículo, sem depender de planilhas soltas.",
+    "lead": "Experimento ainda incompleto para organizar candidaturas e validar informações de currículos.",
     "title": "Organizar o próprio processo de carreira.",
-    "story": "Criei uma ferramenta para organizar minhas oportunidades, decisões e versões de currículo. O objetivo é retomar cada candidatura sem perder os documentos e o contexto.",
+    "story": "Comecei o CarreiraPessoal para organizar vagas, decisões e currículos. Ainda não concluí o aplicativo nem consegui usar a jornada inteira; o repositório público tem uma demonstração reduzida.",
     "steps": [
       [
         "Oportunidades e próximos passos",
@@ -373,8 +373,8 @@ export const editorial={
         "Organizo materiais para recuperar e revisar o que faz sentido em cada oportunidade."
       ]
     ],
-    "credit": "Projeto pessoal que desenvolvi para minhas próprias rotinas.",
-    "caution": "Ferramenta de uso pessoal. Não há serviço comercial de recrutamento nem promessa de aprovação em candidaturas.",
+    "credit": "Experimento pessoal. Não concluí a experiência completa.",
+    "caution": "Protótipo não homologado de ponta a ponta. Há regras ainda em revisão, e os testes disponíveis não comprovam o aplicativo integral.",
     "kind": "tool",
     "priority": "archive",
     "narrativeLayout": "personal"
