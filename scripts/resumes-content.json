@@ -1,5 +1,5 @@
 {
-  "version": "V17-career-aligned-20261106",
+  "version": "V18-audit360-20261109",
   "person": {
     "name": "Maycon Ferreira",
     "location": "Rio de Janeiro, RJ",
@@ -22,8 +22,8 @@
     },
     "support": "<b>VemSer · Assistente de Informática</b> | 2025<br/>Suporte a usuários e computadores, diagnóstico inicial e orientação sobre sistemas e ferramentas digitais.",
     "supportEn": "<b>VemSer · IT Assistant</b> | 2025<br/>User and computer support, initial troubleshooting and guidance on digital tools.",
-    "compass": "<b>Compass UOL · Formação prática em Engenharia de Dados</b> | out/2024–mar/2025<br/>Pipeline de formação: CSV/API → AWS S3/Lambda → Glue/PySpark → Athena e QuickSight.",
-    "compassEn": "<b>Compass UOL · Practical Data Engineering Training</b> | Oct/2024–Mar/2025<br/>Training pipeline: CSV/API → AWS S3/Lambda → Glue/PySpark → Athena and QuickSight.",
+    "compass": "<b>Compass UOL · Programa de Bolsas (formação em Engenharia de Dados)</b> | out/2024–mar/2025<br/>Dez sprints; construí pipeline de CSV/API com AWS S3, Lambda, Glue/PySpark, Athena e QuickSight.",
+    "compassEn": "<b>Compass UOL · Scholarship Program (Data Engineering training)</b> | Oct/2024–Mar/2025<br/>Ten training sprints; built a CSV/API pipeline with AWS S3, Lambda, Glue/PySpark, Athena and QuickSight.",
     "instructor": "<b>Instrutor de Informática · Autônomo</b> | desde 2024<br/>Aulas práticas de informática e produtividade digital.",
     "instructorEn": "<b>IT Instructor · Self-employed</b> | since 2024<br/>Practical computer skills and digital productivity lessons.",
     "education": [
@@ -42,31 +42,31 @@
       "lang": "pt",
       "file": "Maycon_Ferreira_IA_Aplicada_Agentes_PT_2026_V2.pdf",
       "title": "DESENVOLVIMENTO DE SOFTWARE | IA APLICADA, MCP E AGENTES",
-      "summary": "Técnico Júnior em Automação de Processos com experiência em sistemas Windows/web, APIs e integrações. Nos projetos pessoais, desenvolvo ferramentas MCP e soluções com IA, separando decisões de modelos de linguagem, regras de negócio e testes. Busco engenharia de software e IA aplicada.",
+      "summary": "Atuo com automação de processos e desenvolvimento de software para operações reais: aplicações Windows/web, dados e integrações. Em projetos pessoais, desenvolvo ferramentas MCP e assistentes de IA com regras de negócio verificáveis. Busco posições em engenharia de software e IA aplicada.",
       "current": [
-        "Desenvolvo aplicações para produção, manutenção e suporte, participando de requisitos, testes, implantação e melhorias após uso pelas equipes.",
-        "Implementei fluxos de importação, consultas e persistência SQL/SQLite com validação de dados e tratamento de falhas.",
-        "Integro APIs e webhooks com Python e n8n, incluindo revisão humana antes de ações sensíveis."
+        "Desenvolvi e implantei aplicação Windows para acompanhar ordens de produção, com importação revisável, prevenção de duplicidade, relatórios PDF/Excel e painel de TV.",
+        "Implementei persistência SQL/SQLite, validação de dados e tratamento de falhas em ferramentas para produção, manutenção e suporte.",
+        "Criei fluxos com Python, APIs, webhooks e n8n; nas automações de envio, tratei filas por destinatário, deduplicação, cancelamento e registro de falhas."
       ],
       "projects": [
         {
           "name": "ArsenalMind Universal",
-          "text": "Criei ferramentas MCP e radar tecnológico para agentes de programação; módulo Python público com SQLite, testes offline e CI.",
+          "text": "Desenvolvi ferramentas MCP e radar de tecnologias para apoiar agentes; publiquei módulo Python de coleta e histórico com SQLite, testes offline e CI.",
           "url": "https://github.com/Mayconxzdev/Mayconxzdev/tree/main/samples/arsenalmind-capability-watch"
         },
         {
           "name": "Desapega AI",
-          "text": "Assistente de revenda criado para meu irmão: Telegram, IA, estado SQLite e regras de preço com supervisão humana; uso real relatado.",
+          "text": "Assistente de revenda usado por meu irmão para sugerir preços e publicar anúncios, com Telegram, SQLite e regras comerciais; integrações externas em validação por versão.",
           "url": "https://mayconxzdev.github.io/estudos/desapega-ai/"
         },
         {
           "name": "Belarc Inventory",
-          "text": "Co-desenvolvi com Diogo Rodrigues agente Windows em Rust, servidor, API e portal de suporte para rede privada.",
+          "text": "Co-desenvolvi com Diogo Rodrigues agente Windows em Rust, servidor e portal de chamados associado ao inventário de computadores.",
           "url": "https://github.com/Mayconxzdev/Belarc-Inventory"
         },
         {
           "name": "Produção Operacional",
-          "text": "Aplicação Windows em Python/PySide6 e SQLite para ordens, importações, relatórios e TV; participei da implantação.",
+          "text": "Aplicação Python/PySide6 e SQLite com importação revisável, bloqueio de ordens duplicadas, relatórios e painel de TV; acompanhei a implantação.",
           "url": "https://github.com/Mayconxzdev/ProducaoOperacional"
         }
       ],
@@ -78,31 +78,31 @@
       "lang": "pt",
       "file": "Maycon_Ferreira_Backend_Integracoes_PT_2026_V2.pdf",
       "title": "DESENVOLVIMENTO DE SOFTWARE | BACKEND E INTEGRAÇÕES",
-      "summary": "Técnico Júnior em Automação de Processos com experiência em aplicações desktop/web, APIs, bancos de dados e integração de sistemas. Participo da definição do problema, implementação, testes, implantação e suporte. Uso agentes de IA para acelerar o desenvolvimento, revisando as decisões e o código entregue.",
+      "summary": "Desenvolvo aplicações Windows/web, integrações e automações para fluxos operacionais. Trabalho da definição do problema à implementação, testes, instalação e suporte. Uso agentes de IA como apoio, revisando código e decisões antes de entregar.",
       "current": [
-        "Desenvolvo aplicações Windows e web para produção e manutenção, com interfaces, persistência, documentos e relatórios.",
-        "Construí integrações entre arquivos, sistemas e serviços com Python, SQL, APIs, webhooks e workflows n8n; implementei validações e tratamento de erros.",
-        "Participo de testes, instalação, documentação e suporte, corrigindo problemas observados no uso."
+        "Desenvolvi aplicação Python/PySide6 para ordens de produção, com importação revisável, bloqueio de duplicidades, relatórios PDF/Excel e acompanhamento em TV.",
+        "Construí integrações de arquivos, APIs, webhooks e n8n; implementei fila por destinatário, deduplicação e revalidação de cancelamento em automações de envio.",
+        "Participei da instalação e sustentação de sistemas internos, ajustando regras, interfaces e tratamento de erros conforme problemas encontrados pelas equipes."
       ],
       "projects": [
         {
           "name": "Belarc Inventory",
-          "text": "Co-desenvolvi com Diogo Rodrigues sistema cliente-servidor com agente Windows em Rust, inventário e suporte.",
+          "text": "Co-desenvolvi com Diogo Rodrigues inventário Windows com agente em Rust, servidor e chamados associados ao contexto de cada computador.",
           "url": "https://github.com/Mayconxzdev/Belarc-Inventory"
         },
         {
           "name": "Produção Operacional",
-          "text": "Desenvolvi aplicação Python/PySide6 e SQLite com importação revisável, validação, relatórios e painel TV.",
+          "text": "Desenvolvi aplicativo Python/PySide6 e SQLite com importação revisável, prevenção de duplicidades, relatórios PDF/Excel e TV de acompanhamento.",
           "url": "https://github.com/Mayconxzdev/ProducaoOperacional"
         },
         {
           "name": "Mala Direta",
-          "text": "Automação n8n com filas por destinatário, deduplicação, cancelamento revalidado e registros de falhas.",
+          "text": "Automação n8n com fila por destinatário, deduplicação, cancelamento revalidado antes do envio e histórico de eventos e falhas.",
           "url": "https://github.com/Mayconxzdev/MalaDireta"
         },
         {
           "name": "ArsenalMind Universal",
-          "text": "Tooling MCP e radar de tecnologias para agentes; publiquei código Python com testes offline e GitHub Actions.",
+          "text": "Ferramentas MCP e pesquisa de tecnologias para agentes; publiquei módulo Python com SQLite, testes offline e CI.",
           "url": "https://github.com/Mayconxzdev/Mayconxzdev/tree/main/samples/arsenalmind-capability-watch"
         }
       ],
@@ -114,31 +114,31 @@
       "lang": "en",
       "file": "Maycon_Ferreira_Applied_AI_Agents_EN_2026_V2.pdf",
       "title": "SOFTWARE DEVELOPMENT | APPLIED AI, MCP & AGENT TOOLING",
-      "summary": "Junior Process Automation Technician with experience in desktop/web applications, APIs and integrations. I also build personal MCP tooling and AI-assisted systems, separating language-model output from business rules and functional verification. Seeking software engineering and applied AI roles.",
+      "summary": "Process Automation Technician building Windows/web software, data workflows and integrations. In personal projects, I develop MCP tooling and AI-assisted systems with explicit business rules and checks beyond LLM output. Seeking software engineering and applied AI roles.",
       "current": [
-        "Build applications for production, maintenance and support, contributing to requirements, testing, deployment and follow-up improvements.",
-        "Implement SQL/SQLite data imports, persistence, input validation and error handling in operational tools.",
-        "Connect services with Python, REST APIs, webhooks and n8n, keeping human review for sensitive actions."
+        "Built and deployed a Windows production-order application with reviewable imports, duplicate prevention, PDF/Excel reports and a shared TV display.",
+        "Implemented SQL/SQLite persistence, input validation and failure handling in production, maintenance and support applications.",
+        "Built integrations with Python, APIs, webhooks and n8n; developed per-recipient queues, deduplication, cancellation checks and failure records."
       ],
       "projects": [
         {
           "name": "ArsenalMind Universal",
-          "text": "Built MCP tooling and technology research for coding agents; published a Python example with SQLite, offline tests and CI.",
+          "text": "Developed MCP tooling and technology research for coding agents; published a Python collection/history module with SQLite, offline tests and CI.",
           "url": "https://github.com/Mayconxzdev/Mayconxzdev/tree/main/samples/arsenalmind-capability-watch"
         },
         {
           "name": "Desapega AI",
-          "text": "Built an AI-assisted resale tool for a family member with Telegram, SQLite, price rules and human approval; real use reported.",
+          "text": "Resale assistant used by my brother for price suggestions and listing publication, with Telegram, SQLite and business rules; external integrations remain version-specific.",
           "url": "https://mayconxzdev.github.io/estudos/desapega-ai/"
         },
         {
           "name": "Belarc Inventory",
-          "text": "Co-developed with Diogo Rodrigues a Rust Windows agent, server, API and support portal for private networks.",
+          "text": "Co-developed with Diogo Rodrigues a Rust Windows agent, server and computer-linked ticket portal for private networks.",
           "url": "https://github.com/Mayconxzdev/Belarc-Inventory"
         },
         {
           "name": "Production Operations",
-          "text": "Built a PySide6/SQLite Windows app for production orders, import workflows and shared TV tracking.",
+          "text": "Built a PySide6/SQLite desktop application with reviewable imports, duplicate prevention, reports and TV tracking; supported deployment.",
           "url": "https://github.com/Mayconxzdev/ProducaoOperacional"
         }
       ],
@@ -155,31 +155,31 @@
       "lang": "en",
       "file": "Maycon_Ferreira_Backend_Integrations_EN_2026_V2.pdf",
       "title": "SOFTWARE DEVELOPMENT | BACKEND, SYSTEMS & INTEGRATIONS",
-      "summary": "Junior Process Automation Technician building desktop/web software, APIs, databases and integrations. My work includes problem discovery, implementation, testing, deployment and user support. I use AI coding agents while taking responsibility for technical decisions and delivered results.",
+      "summary": "Process Automation Technician building desktop/web software and integrations for operational workflows. Work spans problem discovery, implementation, tests, deployment and support. I use coding agents to assist development while reviewing decisions and delivered code.",
       "current": [
-        "Build Windows and web applications for operational workflows, including interfaces, persistent data, document processing and reports.",
-        "Develop integrations with Python, SQL, APIs, webhooks and n8n, including input validation and error handling.",
-        "Support testing, installation, documentation and troubleshooting based on user needs."
+        "Built a PySide6 production-order application with reviewable imports, duplicate prevention, PDF/Excel reporting and a shared TV display.",
+        "Integrated files, APIs, webhooks and n8n; implemented per-recipient queues, deduplication and cancellation rechecks in email automations.",
+        "Supported deployment, documentation and maintenance of internal tools, improving workflows and error handling based on user feedback."
       ],
       "projects": [
         {
           "name": "Belarc Inventory",
-          "text": "Co-developed with Diogo Rodrigues a Windows inventory/support platform with Rust agents, API and ticket portal for private networks.",
+          "text": "Co-developed with Diogo Rodrigues a Windows inventory platform with Rust agents, server and tickets linked to each computer.",
           "url": "https://github.com/Mayconxzdev/Belarc-Inventory"
         },
         {
           "name": "Production Operations",
-          "text": "Built a Python/PySide6 and SQLite desktop application with controlled imports, duplicate prevention and TV reporting.",
+          "text": "Built a Python/PySide6 and SQLite desktop app with controlled imports, duplicate prevention, reports and TV tracking.",
           "url": "https://github.com/Mayconxzdev/ProducaoOperacional"
         },
         {
           "name": "Mala Direta",
-          "text": "Built n8n automation with recipient queues, deduplication, rechecked cancellation and audit logs.",
+          "text": "Built n8n automation with per-recipient queues, deduplication, cancellation rechecks before sending and event/error history.",
           "url": "https://github.com/Mayconxzdev/MalaDireta"
         },
         {
           "name": "ArsenalMind Universal",
-          "text": "Built MCP tooling and technology discovery; published a runnable Python module with offline tests and CI.",
+          "text": "Built MCP tooling and technology research workflows; published a Python SQLite module with offline tests and CI.",
           "url": "https://github.com/Mayconxzdev/Mayconxzdev/tree/main/samples/arsenalmind-capability-watch"
         }
       ],
