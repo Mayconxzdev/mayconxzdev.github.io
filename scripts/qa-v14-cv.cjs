@@ -25,7 +25,7 @@ const {chromium}=require("playwright"),fs=require("fs"),path=require("path");
   for(const name of [...pt,...en,...legacy])statuses.push((await p.request.get(base+"/assets/cv/"+name)).status());
   const test={width,home:res.status(),english:english.status(),catalog:catalog.status(),ptCards,enCards,catalogLinks,enRobots,overflow,catOverflow,geo,errors,pdfStatuses:statuses};
   result.push(test);
-  if(test.home!==200||test.english!==200||test.catalog!==200||JSON.stringify(ptCards)!==JSON.stringify(pt)||JSON.stringify(enCards)!==JSON.stringify(en)||catalogLinks.length!==4||catalogLinks.some(x=>![...pt,...en].includes(x))||overflow>1||catOverflow>1||geo.some(g=>g.left<0||g.right>width||g.height<35)||errors.length||statuses.some(x=>x!==200)||enRobots!=="noindex,nofollow")issues.push(test);
+  if(test.home!==200||test.english!==200||test.catalog!==200||JSON.stringify(ptCards)!==JSON.stringify(pt)||JSON.stringify(enCards)!==JSON.stringify(en)||catalogLinks.length!==4||catalogLinks.some(x=>![...pt,...en].includes(x))||overflow>1||catOverflow>1||geo.some(g=>g.left<0||g.right>width||g.height<35)||errors.length||statuses.some(x=>x!==200)||enRobots!=="noindex,follow")issues.push(test);
   await p.close();
  }
  }finally{await browser.close();}
