@@ -1,5 +1,5 @@
 {
-  "version": "V18-audit360-20261109",
+  "version": "V19-audit22-interview-evidence-20261110",
   "person": {
     "name": "Maycon Ferreira",
     "location": "Rio de Janeiro, RJ",
@@ -45,7 +45,7 @@
       "summary": "Atuo com automação de processos e desenvolvimento de software para operações reais: aplicações Windows/web, dados e integrações. Em projetos pessoais, desenvolvo ferramentas MCP e assistentes de IA com regras de negócio verificáveis. Busco posições em engenharia de software e IA aplicada.",
       "current": [
         "Desenvolvi e implantei aplicação Windows para acompanhar ordens de produção, com importação revisável, prevenção de duplicidade, relatórios PDF/Excel e painel de TV.",
-        "Implementei persistência SQL/SQLite, validação de dados e tratamento de falhas em ferramentas para produção, manutenção e suporte.",
+        "Adaptei aplicações a máquinas Windows com configurações diferentes e investiguei falhas de dados com SQL/SQLite e validações de entrada.",
         "Criei fluxos com Python, APIs, webhooks e n8n; nas automações de envio, tratei filas por destinatário, deduplicação, cancelamento e registro de falhas."
       ],
       "projects": [
@@ -82,7 +82,7 @@
       "current": [
         "Desenvolvi aplicação Python/PySide6 para ordens de produção, com importação revisável, bloqueio de duplicidades, relatórios PDF/Excel e acompanhamento em TV.",
         "Construí integrações de arquivos, APIs, webhooks e n8n; implementei fila por destinatário, deduplicação e revalidação de cancelamento em automações de envio.",
-        "Participei da instalação e sustentação de sistemas internos, ajustando regras, interfaces e tratamento de erros conforme problemas encontrados pelas equipes."
+        "Investiguei problemas em computadores Windows diferentes, acompanhei instalações, treinei usuários e ajustei os sistemas após o uso."
       ],
       "projects": [
         {
@@ -107,7 +107,7 @@
         }
       ],
       "skills": "<b>Linguagens e frameworks:</b> Python, Rust, JavaScript, TypeScript, SQL; React, Node.js, FastAPI, Flask, PySide6. <b>Outros projetos:</b> Go e PHP. <b>Backend:</b> APIs REST, webhooks, SQLite, Git, Docker, GitHub Actions, n8n, testes e diagnóstico de falhas.",
-      "credentials": "<b>Complementar:</b> 42 Rio — Piscine (2025); SENAI Casa Firjan — Agentes e Automações (40h); Microsoft Applied Skills (Foundry, MCP e Power Apps)."
+      "credentials": "<b>Complementar:</b> SENAI Casa Firjan — Agentes e Automações (40h); Microsoft Applied Skills (Foundry, MCP e Power Apps)."
     },
     {
       "id": "en_ai",
@@ -117,7 +117,7 @@
       "summary": "Process Automation Technician building Windows/web software, data workflows and integrations. In personal projects, I develop MCP tooling and AI-assisted systems with explicit business rules and checks beyond LLM output. Seeking software engineering and applied AI roles.",
       "current": [
         "Built and deployed a Windows production-order application with reviewable imports, duplicate prevention, PDF/Excel reports and a shared TV display.",
-        "Implemented SQL/SQLite persistence, input validation and failure handling in production, maintenance and support applications.",
+        "Adapted Windows software to computers with different configurations and investigated data issues using SQL/SQLite and input validation.",
         "Built integrations with Python, APIs, webhooks and n8n; developed per-recipient queues, deduplication, cancellation checks and failure records."
       ],
       "projects": [
@@ -159,7 +159,7 @@
       "current": [
         "Built a PySide6 production-order application with reviewable imports, duplicate prevention, PDF/Excel reporting and a shared TV display.",
         "Integrated files, APIs, webhooks and n8n; implemented per-recipient queues, deduplication and cancellation rechecks in email automations.",
-        "Supported deployment, documentation and maintenance of internal tools, improving workflows and error handling based on user feedback."
+        "Diagnosed issues across different Windows computers, supported installation, trained users and improved systems after deployment feedback."
       ],
       "projects": [
         {
