@@ -15,7 +15,12 @@ check("four canonical resumes",()=>{
   for(const item of data.resumes)assert(exists("assets/cv/"+item.file),item.file);
 });
 check("favicon paths",()=>{
-  assert(exists("assets/favicon.svg"));
+  assert(exists("assets/favicon.svg"))
+  for (const page of ["404.html","estudos/desapega-ai/index.html"]){
+    const pageHtml=read(page);
+    assert(pageHtml.includes('href="/assets/favicon.svg"'),"missing favicon in "+page);
+    assert(!pageHtml.includes('href="/favicon.svg"'),"old favicon in "+page);
+  };
   assert(index.includes('href="/assets/favicon.svg"'));
   assert(en.includes('href="/assets/favicon.svg"'));
   const cases=fs.readdirSync(path.join(dist,"projetos"),{withFileTypes:true}).filter(d=>d.isDirectory()&&exists("projetos/"+d.name+"/index.html"));
