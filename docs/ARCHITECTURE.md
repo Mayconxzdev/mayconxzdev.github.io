@@ -2,7 +2,7 @@
 
 ## Build
 
-O repositório contém a fonte Vite. O build valida o registro de mídia e seus hashes, prepara os seis PDFs e nove aliases, aplica a política de privacidade, gera os 18 cases e compila a homepage. Por fim, grava build.txt e build.json em dist/.
+O repositório contém a fonte Vite. O build valida o registro de mídia e seus hashes, prepara os quatro PDFs canônicos e quinze aliases históricos, aplica a política de privacidade, gera os 18 cases e compila a homepage. Por fim, grava build.txt e build.json em dist/.
 
 public/ é a fonte versionada de assets. O build não copia pastas do diretório pai. Nenhum backend, banco de clientes ou credencial é necessário para desenvolver ou publicar o portfólio.
 
@@ -20,9 +20,9 @@ Desktop mantém a narrativa dos cinco protagonistas. Celulares e telas baixas us
 
 ## Currículos e legado
 
-scripts/resumes-content.json é a fonte editorial dos seis PDFs. A regeneração usa Python e exige inspeção visual; o build web preserva os arquivos já validados.
+scripts/resumes-content.json é a fonte editorial dos quatro PDFs (IA aplicada e backend, PT/EN). A regeneração usa Python e exige inspeção visual; o build web preserva os arquivos já validados.
 
-Os antigos /cases/, /en/ e /competencias/ continuam acessíveis, identificados como acervo e excluídos de indexação. O sitemap prioriza os cases atuais. URLs antigas de PDFs permanecem como aliases binários, fora do catálogo de seis versões.
+Os antigos /cases/, /en/cases/ e /competencias/ continuam acessíveis como acervo histórico e excluídos de indexação. A página /en/ é uma entrada inglesa atual e indexável; /en/resumes/ é um catálogo funcional, porém fora da indexação. O sitemap prioriza os cases atuais. URLs antigas de PDFs permanecem como quinze aliases binários, fora do catálogo de quatro versões.
 
 ## Verificação
 
