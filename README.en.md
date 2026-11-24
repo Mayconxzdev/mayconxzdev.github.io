@@ -1,60 +1,30 @@
-# Laboratório Vivo — Maycon Ferreira
+# Maycon Ferreira — Portfolio
 
-My software engineering portfolio with applied AI, MCP tooling and integrations. It includes a direct selection for recruiters and an optional cinematic project walkthrough. Each case explains the problem, my contribution, implementation decisions, evidence and project limits.
+**Applied AI · Process automation · Digital products · Creative production**
 
-[Portfolio](https://mayconxzdev.github.io/) · [Four PT/EN resumes](https://mayconxzdev.github.io/assets/cv/) · [Português](README.md)
+[Portfolio](https://mayconxzdev.github.io/) · [English introduction](https://mayconxzdev.github.io/en/) · [Work](https://mayconxzdev.github.io/trabalhos/) · [Creative work](https://mayconxzdev.github.io/audiovisual/) · [Resumes PT/EN](https://mayconxzdev.github.io/curriculos/) · [Português](README.md)
 
-## Run locally
+This repository contains my professional portfolio: operational systems, personal products, automation, websites and creative work. Cases distinguish internal use, public demonstrations, studies and experiments.
 
-The application uses Vite, JavaScript, CSS and GSAP. Node.js 22.12 or later is required; CI uses Node 22.
+## Selected work
 
-    git clone https://github.com/Mayconxzdev/mayconxzdev.github.io.git
-    cd mayconxzdev.github.io
+- [Production Operations](https://mayconxzdev.github.io/projetos/producao-operacional/): production orders, controlled imports, reports and shared factory display.
+- [Hubora](https://mayconxzdev.github.io/projetos/hubora/): published personal web product.
+- [Inventory and IT support](https://mayconxzdev.github.io/projetos/belarc-inventory/): co-developed system.
+- [Social Content Workflow](https://mayconxzdev.github.io/projetos/postagem-redes/): experimental editorial automation with AI and human review.
+- [Creative work](https://mayconxzdev.github.io/audiovisual/): selected industrial communication pieces.
+- [Resumes](https://mayconxzdev.github.io/curriculos/): six one-page PDFs in Portuguese and English for automation, products and creative production.
+
+## Build and verification
+
     npm ci
-    npm run dev
-
-Development runs on http://127.0.0.1:8789. Build and preview:
-
     npm run build
     npm run preview
 
-The build is self-contained and writes dist/. Preview uses http://127.0.0.1:4214. Edit source files rather than dist/.
+The public source is site-release/. The build verifies the SHA-256 manifest and produces dist/. Historical scripts are preserved for reference.
 
-## Source and content
+With Python requirements and Chrome installed, run npm run resumes:verify and npm run test:full. The [Pages workflow](https://github.com/Mayconxzdev/mayconxzdev.github.io/actions/workflows/pages.yml) validates, deploys and verifies public artifact hashes.
 
-- index.html and src/ contain the homepage, project data, motion and styles.
-- scripts/evidence-map.mjs defines gallery images, captions, sources and stable IDs.
-- scripts/generate-cases.mjs and templates/case.html generate 18 generated case pages plus an independent Desapega AI study.
-- public/ contains approved media, fonts, versioned PDFs and retained historical URLs.
-- scripts/resumes-content.json contains four current resumes (two Portuguese and two English).
+The release contains selected public examples and fictional records, not corporate source documents, credentials or private operational data.
 
-The site offers Automatic, Animation and Direct reading modes. The five featured projects remain accessible without animation; small screens use normal document flow. Screenshots, illustrative demos, co-authorship and private areas are identified.
-
-## Validation
-
-    npx playwright install chromium
-    npm test
-    npm run test:full
-
-The runner manages the local preview and runs Playwright and axe-core. Full coverage includes the homepage and 18 cases at eight widths, galleries, keyboard, menus, filters, PDFs, browser back, reduced motion, fast scroll and historical URLs. Low-height layouts and a viewport approximation of 200% zoom are included.
-
-These are Chromium laboratory checks, not certification, physical-device testing, ATS submission or user feedback.
-
-## Resume generation
-
-The build generates four current PDFs with Python from the versioned resume content and preserves old PDF URLs as aliases. To reproduce locally:
-
-    python -m pip install -r requirements-resumes.txt
-    npm run resumes:build
-    npm run build
-    npm run resumes:verify
-
-The generator uses Arial when available, otherwise Helvetica. Inspect rendered pages after regeneration, especially across platforms.
-
-## Delivery and rights
-
-Pull requests run validation. Main publishes only the tested dist/ artifact through GitHub Actions. A final job compares the online commit and every file hash against the tested [build manifest](https://mayconxzdev.github.io/build.json).
-
-See [architecture](docs/ARCHITECTURE.md), [deployment and rollback](docs/DEPLOYMENT.md), [asset permissions](ASSETS.md) and [security reporting](SECURITY.md). Historical deployment commits remain in Git history. Private audit packages, backups and client data are excluded.
-
-Permission to display images in this portfolio does not grant a general reuse license for third-party photographs, brands or systems.
+[GitHub profile](https://github.com/Mayconxzdev) · [LinkedIn](https://www.linkedin.com/in/maycon-ferreira-7bb870231/)
