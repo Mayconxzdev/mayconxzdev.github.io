@@ -1131,18 +1131,18 @@
     },
     {
       "path": "cases/carreira-pessoal/index.html",
-      "sha256": "2461bf066349a416b2da896320de4fdd5cb54c831572d03f421a8ab48c3d2a32",
-      "bytes": 2263
+      "sha256": "dfd4e00f3a1768726a0c60436598ed5fbe2380cd8df505e03d5ab4d675455938",
+      "bytes": 2381
     },
     {
       "path": "cases/catalogo-operacional-compras/index.html",
-      "sha256": "2461bf066349a416b2da896320de4fdd5cb54c831572d03f421a8ab48c3d2a32",
-      "bytes": 2263
+      "sha256": "900bf6e2b6d5acb1f5f2b5363693a406e353c47c6b4d1a13736e7e6be3203a4f",
+      "bytes": 2487
     },
     {
       "path": "cases/central-iso/index.html",
-      "sha256": "2461bf066349a416b2da896320de4fdd5cb54c831572d03f421a8ab48c3d2a32",
-      "bytes": 2263
+      "sha256": "a2f040345884fcfe38c7a038968a2346494a530f93c5b0c353decb95bee9b6e6",
+      "bytes": 2388
     },
     {
       "path": "cases/compass/index.html",
@@ -1156,8 +1156,8 @@
     },
     {
       "path": "cases/compras-e-cotacoes/index.html",
-      "sha256": "2461bf066349a416b2da896320de4fdd5cb54c831572d03f421a8ab48c3d2a32",
-      "bytes": 2263
+      "sha256": "aed0baec238bd765969f1716e5e6a3cf6ca299e64b72cc296e0d86937c61b3d4",
+      "bytes": 2430
     },
     {
       "path": "cases/compras-vesper/index.html",
@@ -1191,8 +1191,8 @@
     },
     {
       "path": "cases/portal/index.html",
-      "sha256": "2461bf066349a416b2da896320de4fdd5cb54c831572d03f421a8ab48c3d2a32",
-      "bytes": 2263
+      "sha256": "00af9f36f238ff2dc4e49c200eba0d2605c7a9bc7394178abe33328a4012b555",
+      "bytes": 2400
     },
     {
       "path": "cases/portal-vesper/index.html",
@@ -1236,8 +1236,8 @@
     },
     {
       "path": "cases/studiocad/index.html",
-      "sha256": "2461bf066349a416b2da896320de4fdd5cb54c831572d03f421a8ab48c3d2a32",
-      "bytes": 2263
+      "sha256": "0c17ccf265a0bcb556cd247559e80f7824d3ff8c39586abeb74b4af6defca663",
+      "bytes": 2408
     },
     {
       "path": "cases/tradutor-documental/index.html",
@@ -1451,8 +1451,8 @@
     },
     {
       "path": "en/index.html",
-      "sha256": "eee3246599c2003e394dd41c5433f1de5bb7769f13cb0f2fd9df47241bf9d26d",
-      "bytes": 4839
+      "sha256": "56d4e0c29bc253b10040bd5fc7281b89b5e3cb4fb1c69afea49c0b3e693e593d",
+      "bytes": 6257
     },
     {
       "path": "en/resumes/index.html",
@@ -1486,8 +1486,8 @@
     },
     {
       "path": "formacao/index.html",
-      "sha256": "a02653888788304ca14fa45cba33e9519f8de1ad6b8f1c2d91999e0b3d4b3314",
-      "bytes": 4322
+      "sha256": "8cd095acf6a5f94d99efe1187d97e9e730f1ee1a178f87b8c169012cdcf0dc9f",
+      "bytes": 4395
     },
     {
       "path": "ia-automacao/index.html",
@@ -1671,8 +1671,8 @@
     },
     {
       "path": "sobre/index.html",
-      "sha256": "e1717f6f8ca46523fa5b349bf7134e4c8e646994ab7a7bdc212298c1f7370c85",
-      "bytes": 5281
+      "sha256": "3d0a0d30bead4dd4fa34d48de236485dae93d9d6661bc12fee63fc62703ed133",
+      "bytes": 6562
     },
     {
       "path": "trabalhos/index.html",
@@ -1990,5 +1990,6 @@
     "Maycon_Ferreira_Applied_AI_Agents_EN_2026_V2.pdf": "en_ai",
     "Maycon_Ferreira_Backend_Integrations_EN_2026_V2.pdf": "en_sw"
   },
-  "careerRevision": "2026-11-24; value-first cases, evidence and freelance teaching/support"
+  "careerRevision": "2026-11-24; value-first cases, evidence and freelance teaching/support",
+  "profileAlignment": "2026-11-24; freelance teaching, support, business tools and historical case destinations"
 }
