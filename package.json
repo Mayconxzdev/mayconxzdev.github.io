@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 8789",
-    "build": "node scripts/release-gate.mjs && python scripts/build-resumes.py && node scripts/prepare-public.mjs && node scripts/media-privacy.mjs && node scripts/generate-cases.mjs && vite build && node scripts/write-build-info.mjs",
+    "build": "node scripts/build-public-release.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4214 --strictPort",
     "preview:v15": "vite preview --host 127.0.0.1 --port 4214 --strictPort",
     "audit": "node scripts/audit.mjs && node scripts/audit-evidence.mjs",
@@ -17,9 +17,11 @@
     "test:motion-gallery": "node scripts/qa-motion-gallery-fix.cjs",
     "measure:mission": "node scripts/performance-mission.cjs",
     "test": "node scripts/test-local.mjs",
-    "test:full": "node scripts/test-local.mjs --full",
+    "test:full": "node scripts/qa-public-release.cjs",
     "resumes:build": "python scripts/build-resumes.py",
-    "resumes:verify": "python scripts/verify-resumes.py"
+    "resumes:verify": "python scripts/verify-public-resumes.py",
+    "build:legacy": "node scripts/release-gate.mjs && python scripts/build-resumes.py && node scripts/prepare-public.mjs && node scripts/media-privacy.mjs && node scripts/generate-cases.mjs && vite build && node scripts/write-build-info.mjs",
+    "test:legacy": "node scripts/test-local.mjs --full"
   },
   "dependencies": {
     "gsap": "^3.15.0"
@@ -32,5 +34,5 @@
   "engines": {
     "node": ">=22.12.0"
   },
-  "description": "Portfolio de engenharia de software, IA aplicada, MCP e sistemas com evidencias tecnicas."
+  "description": "Portfólio pessoal de IA aplicada, automação, produtos digitais e criação."
 }

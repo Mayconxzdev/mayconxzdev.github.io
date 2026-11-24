@@ -1,0 +1,47 @@
+/* V9 case pages: same ink, cobalt and terracotta as the approved homepage. */
+.case-page{background:#faf9f6;color:#172227}
+.case-page .case-hero{background:linear-gradient(108deg,#faf9f6 0 64%,#e7eefb 64%);color:#151e24}
+.case-page .case-hero h1{color:#11191b}
+.case-page .case-hero h1 span:last-child,.case-page .case-hero h1 em{color:#174fca}
+.case-page .case-hero .case-headline,.case-page .case-hero .case-subtitle{color:#263741}
+.case-page .case-hero a{color:#1e3b6f}
+.case-page .case-hero .case-kicker{color:#b94327}
+.case-page .case-showcase{background:#f0efe9}
+.case-page .v4-case-jump{background:#fffefa;color:#20343a}
+.case-page .v4-case-jump a:hover{color:#174fca}
+.case-page .v4-case-jump a:focus-visible{outline:3px solid #174fca}
+.case-page .case-next{background:#e7eefb;color:#14232d}
+.case-page .case-next h2 em{color:#174fca}
+.case-page .v4-profile{border-color:#174fca}
+.case-page .case-gallery [role="button"]:focus-visible,.case-page .case-gallery button:focus-visible{outline:3px solid #174fca}
+.v8-client-showcase{border:2px solid #1d2931;background:#e7eefb;color:#152026;box-shadow:10px 10px 0 #174fca}
+.v8-client-showcase .v8-client-intro{border-color:#8fa3b7}
+.v8-client-showcase .v8-client-intro>span{color:#b94327}
+.v8-client-showcase .v8-client-intro h2{color:#122027}
+.v8-client-showcase .v8-client-intro p,.v8-client-showcase .v8-client-foot{color:#364b55}
+.v8-client-showcase .v8-client-frames figure{border-color:#1e303b;box-shadow:3px 4px 0 #174fca}
+.v8-client-showcase .v8-client-frames figcaption{background:#122329!important;color:#fff!important}
+@media(prefers-reduced-motion:reduce){
+ ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+}
+
+/* Override legacy V4 hard-coded dark background without losing its content structure. */
+.case-page .case-hero{
+ background:linear-gradient(111deg,#faf9f6 0%,#faf9f6 65%,#e7eefb 65%,#e7eefb 100%)!important;
+ color:#15232b!important;
+}
+.case-page .case-hero:after{background:transparent!important;pointer-events:none}
+.case-page .case-hero h1,.case-page .case-hero .case-headline{color:#152026!important}
+.case-page .case-hero .case-breadcrumb,.case-page .case-hero .case-breadcrumb a{color:#9d3c25!important}
+.case-page .case-hero .case-summary p{color:#34464c!important}
+.case-page .case-hero h1 span{color:#174fca!important}
+
+/* Match the higher-specificity legacy case-kind selectors. */
+.case-page.case--web .case-hero,
+.case-page.case--ia .case-hero,
+.case-page.case--dados .case-hero,
+.case-page.case--lab .case-hero,
+.case-page.case--operacao .case-hero{
+ background:linear-gradient(111deg,#faf9f6 0%,#faf9f6 65%,#e7eefb 65%,#e7eefb 100%)!important;
+ color:#15232b!important;
+}

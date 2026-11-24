@@ -1,0 +1,156 @@
+/* V12 case study design system — same navigation, contrast, spacing and evidence tone as home. */
+:root{--case-primary:#174fca;--case-accent:#174fca}
+.case-page{background:#faf9f6!important;color:#17242b}
+.case-page .case-header.v12-global-header{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:0;height:80px!important;min-height:80px;background:#faf9f6!important;
+ border-bottom:2px solid #162328!important;padding:0 clamp(22px,4vw,72px)!important;
+ color:#18242a!important
+}
+.case-page .v12-global-header .brand{display:flex!important;align-items:center;gap:11px;margin:0 auto 0 0!important;flex-shrink:0}
+.case-page .v12-global-header .brand-name{font:800 12px "IBM Plex Sans",sans-serif!important;color:#121c22;letter-spacing:-.025em}
+.case-page .v12-global-header .brand-name small{display:block!important;font:9px "IBM Plex Mono",monospace;color:#53646b;margin-top:4px}
+.case-page .v12-global-header nav{display:flex!important;align-items:stretch!important;align-self:stretch;gap:0!important;flex-shrink:0}
+.case-page .v12-global-header nav a{
+ display:flex!important;align-items:center;justify-content:center;text-decoration:none;
+ font:700 10px "IBM Plex Mono",monospace;color:#1d2a32!important;
+ padding:0 16px;border-left:1px solid #d0d5d4;letter-spacing:0
+}
+.case-page .v12-global-header nav a:hover,.case-page .v12-global-header nav a:focus-visible{background:#e8eef9!important;color:#174fca!important}
+.case-page .v12-header-cta{
+ display:inline-flex;justify-content:center;align-items:center;gap:16px;
+ margin-left:24px;padding:15px 18px;background:#b94327;color:#fff;
+ font:700 10px "IBM Plex Mono",monospace;text-decoration:none;white-space:nowrap;
+ border:1px solid #b94327
+}
+.case-page .v12-header-cta:hover,.case-page .v12-header-cta:focus-visible{background:#953923;color:white}
+/* Same slanted ice panel, but no extra empty hero height. */
+.case-page .case-hero,.case-page.case--web .case-hero,.case-page.case--ia .case-hero,
+.case-page.case--dados .case-hero,.case-page.case--lab .case-hero,
+.case-page.case--operacao .case-hero{
+ background:linear-gradient(110deg,#faf9f6 0 65%,#e8eef9 65% 100%)!important;
+ padding:48px 0 42px!important;color:#172329!important;min-height:0!important
+}
+.case-page .case-hero:after{display:none!important}
+.case-page .case-breadcrumb{margin-bottom:29px;font:700 10px "IBM Plex Mono",monospace;color:#b94327!important}
+.case-page .case-breadcrumb a{color:#b94327!important}
+.case-page .case-header-grid{display:grid;grid-template-columns:1.15fr .75fr;align-items:end;gap:48px!important}
+.case-page .case-hero h1{font:400 clamp(39px,5.35vw,83px)/1.04 "Archivo Black",sans-serif!important;letter-spacing:-.065em!important;color:#162128!important;margin:0 0 17px!important;overflow-wrap:anywhere}
+.case-page .case-hero h1 span{color:#174fca!important}
+.case-page .case-hero .case-headline{font:600 clamp(17px,1.8vw,26px)/1.42 "IBM Plex Sans",sans-serif!important;color:#263842!important;letter-spacing:-.035em;max-width:690px;margin:0!important}
+.case-page .case-hero .case-summary p{font:400 14px/1.65 "IBM Plex Sans",sans-serif!important;color:#3d4b55!important;margin:0}
+/* One compact, shared case route. No second bar or generic 'back' CTA in header. */
+.case-page .v11-case-route{display:flex!important;justify-content:center;align-items:center;flex-wrap:wrap;gap:0!important;
+ position:relative!important;z-index:5!important;margin:0!important;padding:9px 20px!important;
+ background:#faf9f6!important;border-block:1px solid #b8c6ce!important;min-height:48px}
+.case-page .v11-case-route>span{font:700 10px "IBM Plex Mono",monospace;color:#b94327;padding:0 18px 0 0;margin-right:16px;border-right:1px solid #b8c6ce}
+.case-page .v11-case-route a{color:#293b46!important;font:700 10px "IBM Plex Mono",monospace;
+ padding:8px 13px!important;border:1px solid transparent!important;white-space:nowrap}
+.case-page .v11-case-route a:hover,.case-page .v11-case-route a:focus-visible{border-color:#174fca!important;color:#174fca!important;background:#e8eef9!important}
+.case-page .case-showcase{position:relative!important;margin:0!important;padding:34px 0 42px!important;z-index:1!important;background:#f2f3f1!important}
+.case-page .case-showcase .v4-stage{border:1px solid #adbcc6!important;box-shadow:none!important;background:#fffefa!important;padding:22px!important}
+.case-page .case-showcase .v4-stage-heading{color:#263b44}
+.case-page .case-showcase .v4-stage--screens .v4-stage-screens{gap:15px}
+.case-page .case-showcase .v4-proof{border:1px solid #c4ced6;box-shadow:none!important}
+.case-page .case-showcase .v4-proof-media{background:#e6ecf2!important}
+.case-page .case-showcase .v4-proof figcaption{background:#fdfcf9;color:#233640}
+.case-page .case-showcase .v4-stage-note{font-size:11px;color:#4b5f6a}
+.case-page .case-factstrip{background:#fffefa;border-block:1px solid #b9c7cd;padding:25px 0}
+.case-page .case-factstrip dt{color:#a7412b!important}
+.case-page .case-factstrip dd{color:#1e303b!important}
+.case-page .case-essentials{background:#faf9f6!important;color:#16252f!important;padding:90px 0}
+.case-page .case-essentials h2{color:#17252c!important}
+.case-page .case-essentials h2 em{color:#174fca!important}
+.case-page .case-essentials p{color:#334a56!important}
+.case-page .case-decisions{background:#e8eef9!important;color:#16252b!important;padding-block:75px}
+.case-page .case-decisions .eyebrow{color:#a7412b!important}
+.case-page .case-decisions h2{color:#16252b!important}
+.case-page .case-decisions h2 em{color:#174fca!important}
+.case-page .decisions-grid{gap:13px}
+.case-page .decision{border:1px solid #9caebc!important;background:#faf9f6!important;box-shadow:none!important;color:#17252c!important}
+.case-page .decision p{color:#263b47!important}
+.case-page .decision span{color:#a7412b!important}
+.case-page .case-proof{background:#faf9f6!important;color:#182a32!important}
+.case-page .case-proof h2,.case-page .case-proof h3{color:#17252c!important}
+.case-page .case-proof h2 em{color:#174fca!important}
+.case-page .case-proof p{color:#304652!important}
+.case-page .case-caution{border-left:3px solid #174fca;background:#e8eef9}
+.case-page .case-next{background:#e8eef9!important;color:#17252c!important}
+.case-page .case-next a{color:#174fca!important}
+.case-page .case-footer{background:#142839!important;color:#fff!important}
+/* Differentiated evidence when there is no released screenshot. No empty frames or fake UI. */
+.case-page .case-showcase .v12-documented{border:1px solid #afc0c9;background:#fffefa;padding:clamp(20px,3vw,42px)!important}
+.v12-documented-top{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #b7c6ce;padding-bottom:14px}
+.v12-documented-top span{color:#b94327;font:700 10px/1.5 "IBM Plex Mono",monospace}
+.v12-documented-top strong{color:#174fca;font:700 11px/1.5 "IBM Plex Mono",monospace}
+.case-page .case-showcase .v12-documented h2{color:#17242b;font:400 clamp(25px,3vw,41px)/1.14 "Archivo Black",sans-serif;letter-spacing:-.055em;margin:24px 0 10px}
+.case-page .case-showcase .v12-doc-overview{color:#42535c;font:400 15px/1.6 "IBM Plex Sans",sans-serif;max-width:790px}
+.case-page .case-showcase .v12-documented .v4-doc-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:27px 0 20px}
+.case-page .case-showcase .v12-documented .v4-doc-steps>div{padding:19px;border:1px solid #b1c0c7;background:#edf1f8;min-width:0}
+.case-page .case-showcase .v12-documented .v4-doc-steps p{margin:12px 0 0;color:#30444e;font:400 13px/1.58 "IBM Plex Sans",sans-serif}
+.case-page .case-showcase .v12-documented .v4-doc-steps span{color:#b94327;font:700 10px "IBM Plex Mono",monospace}
+.case-page .case-showcase .v12-documented>small{display:block;font-size:11px;line-height:1.55;color:#586873}
+@media(max-width:1080px){
+ .case-page .v12-global-header nav a{padding:0 10px}
+ .case-page .v12-header-cta{margin-left:14px;padding:13px 12px}
+}
+@media(max-width:800px){
+ .case-page .case-header.v12-global-header{height:72px!important;min-height:72px;padding:0 19px!important}
+ .case-page .v12-global-header nav a:nth-child(n+2):not(:last-child){display:none!important}
+ .case-page .v12-global-header nav a{padding:0 12px;font-size:10px!important}
+ .case-page .v12-global-header .brand-name{font-size:10px!important}
+ .case-page .v12-global-header .brand-name small{display:none!important}
+ .case-page .v12-header-cta{display:none!important}
+ .case-page .case-hero,.case-page.case--web .case-hero,.case-page.case--ia .case-hero,
+ .case-page.case--dados .case-hero,.case-page.case--lab .case-hero,.case-page.case--operacao .case-hero{
+  padding:34px 0 32px!important;
+  background:linear-gradient(116deg,#faf9f6 0 57%,#e8eef9 57% 100%)!important}
+ .case-page .case-breadcrumb{font-size:9px!important;margin-bottom:21px}
+ .case-page .case-header-grid{display:block!important}
+ .case-page .case-hero h1{font-size:clamp(35px,9vw,57px)!important;line-height:1.04}
+ .case-page .case-hero .case-headline{font-size:17px!important;margin:0 0 10px!important}
+ .case-page .case-hero .case-summary p{font-size:13px!important;line-height:1.55}
+ .case-page .v11-case-route{justify-content:flex-start!important;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain;padding:6px 12px;scrollbar-width:thin}
+ .case-page .v11-case-route>span{display:none!important}
+ .case-page .v11-case-route a{flex:0 0 auto;padding:9px 12px;font-size:10px}
+ .case-page .case-showcase{padding:17px 0 28px!important}
+ .case-page .case-showcase .v4-stage{padding:10px!important}
+ .case-page .case-essentials,.case-page .case-decisions{padding:55px 0}
+ .case-page .case-showcase .v12-documented .v4-doc-steps{grid-template-columns:1fr;gap:10px}
+ .case-page .case-showcase .v12-documented .v4-doc-steps>div{padding:15px}
+ .v12-documented-top{display:block}
+ .v12-documented-top strong{display:block;margin-top:6px}
+ .case-page .case-showcase .v12-doc-overview{font-size:13px}
+}
+
+/* Content-specific evidence notes replace repeated generic placeholders. */
+.case-page .case-showcase .v12-doc-lead{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin:24px 0 22px}
+.case-page .case-showcase .v12-doc-lead h2{font:400 clamp(25px,3.4vw,46px)/1.12 "Archivo Black",sans-serif;color:#182832;max-width:780px;letter-spacing:-.057em;margin:0}
+.v12-doc-status{display:inline-flex;max-width:275px;background:#e8eef9;border:1px solid #b3c3cc;color:#244253;padding:10px 13px;font:700 10px/1.5 "IBM Plex Mono",monospace}
+.v12-doc-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.v12-doc-two>div{background:#e8eef9;padding:23px;border:1px solid #bac9d3}
+.v12-doc-two span,.v12-doc-decisions>span{font:700 10px "IBM Plex Mono",monospace;color:#aa452c}
+.v12-doc-two p{color:#344a57;font:400 15px/1.7 "IBM Plex Sans",sans-serif;margin:12px 0 0}
+.v12-doc-decisions{padding:20px 0;margin:18px 0 0;border-top:1px solid #bac9d3}
+.v12-doc-decisions ul{display:flex;gap:12px;list-style:none;padding:0;margin:15px 0}
+.v12-doc-decisions li{border-left:3px solid #174fca;flex:1;background:#f3f5f8;padding:14px 16px;font:400 13px/1.55 "IBM Plex Sans",sans-serif;color:#334954}
+.case-page .v12-global-header .v12-case-menu-toggle{display:none}
+@media(max-width:800px){
+ .case-page .v12-global-header .v12-case-menu-toggle{
+  display:inline-flex;align-items:center;justify-content:center;border:1px solid #a7b5c0;
+  background:#fffefa;color:#132c3d;width:44px;height:44px;font-size:23px;cursor:pointer;margin-left:10px;flex-shrink:0}
+ .case-page .v12-global-header nav{display:none!important;position:absolute;top:100%;left:0;right:0;
+  background:#faf9f6!important;border:1px solid #a8b7c1;box-shadow:0 8px 0 #174fca;
+  flex-direction:column;align-items:stretch!important;z-index:50;padding:8px 14px}
+ .case-page .v12-global-header nav.is-open{display:flex!important}
+ .case-page .v12-global-header nav a{display:flex!important;min-height:46px!important;justify-content:flex-start!important;
+  padding:9px 12px!important;border:0!important;border-bottom:1px solid #d6e0e5!important}
+ .case-page .v12-global-header nav a:nth-child(n+2):not(:last-child){display:flex!important}
+ .case-page .case-showcase .v12-doc-lead{display:block;margin-top:19px}
+ .v12-doc-status{margin-top:14px;max-width:none}
+ .v12-doc-two{grid-template-columns:1fr}
+ .v12-doc-two>div{padding:15px}
+ .v12-doc-two p{font-size:13px}
+ .v12-doc-decisions ul{display:block}
+ .v12-doc-decisions li{margin-bottom:9px;font-size:12px}
+}

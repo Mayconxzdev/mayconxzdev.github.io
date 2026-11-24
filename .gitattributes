@@ -10,3 +10,6 @@
 *.woff2 binary
 *.ttf binary
 public/assets/fonts/*-OFL.txt -whitespace
+
+# Release artifacts keep exact reviewed bytes on all platforms.
+site-release/** -text whitespace=cr-at-eol,-blank-at-eol
